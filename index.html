@@ -489,6 +489,62 @@
                 padding: 3rem 0;
             }
         }
+
+        /* ... (your existing CSS rules) ... */
+
+        .member-expandable-content {
+            margin-top: 1rem;
+            text-align: left; /* Adjust as needed, current team-member is text-align: center */
+            display: none; /* Hidden by default */
+            overflow: hidden; /* Ensures smooth transition if you add CSS transitions later */
+        }
+
+        .member-expandable-content.expanded {
+            display: block; /* Shown when .expanded class is added by JavaScript */
+        }
+
+        .member-bio {
+            font-size: 0.9rem;
+            color: #4a5568; /* Matches .member-focus */
+            margin-bottom: 1rem;
+            line-height: 1.6; /* Matches .research-card p */
+        }
+
+        .member-contact-links {
+            margin-bottom: 1rem;
+        }
+
+        .member-contact-links a {
+            color: #2d5986; /* Main theme color for links */
+            text-decoration: none;
+            margin-right: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .member-contact-links a:hover {
+            text-decoration: underline;
+        }
+
+        .expand-bio-button {
+            background-color: #2d5986;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .expand-bio-button:hover {
+            background-color: #1a365d; /* Darker shade on hover */
+        }
+
+        /* Keep existing .team-member text-align: center if you want button centered */
+        /* If .member-expandable-content needs to be full width and left aligned,
+           you might need to adjust its parent or itself if padding/text-align conflicts arise */
     </style>
 </head>
 <body>
@@ -601,7 +657,19 @@
                     <h4 class="member-name">Felix Krones</h4>
                     <p class="member-role">DPhil Student</p>
                     <p class="member-focus">LLMs, responsible AI, interpretability, mechanistic interpretability</p>
-                </div>
+
+                    <div class="member-expandable-content">
+                        <p class="member-bio">
+                            An example bio about Felix that's long enough that I can start to see how the text might wrap. Hi Felix!
+                        </p>
+                        <div class="member-contact-links">
+                            <a href="mailto:felix.krones@example.com">Email</a>
+                            <a href="https://www.linkedin.com/in/felixkrones" target="_blank">LinkedIn</a>
+                            <a href="https://example.com/felixkrones" target="_blank">Profile</a>
+                        </div>
+                    </div>
+                    <button class="expand-bio-button">Read More</button>
+                    </div>
                 
                 <div class="team-member">
                     <div class="member-photo">[Photo Placeholder]</div>
@@ -757,4 +825,64 @@
                 <div class="publication">
                     <span class="pub-year">2024</span>
                     <h4 class="pub-title">HELP-Med: Human Evaluation of LLM Partnership in Medical Self-Assessment</h4>
-                    <p class="
+                    <p class="pub-authors"></p>
+                    <p class="pub-venue"></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Contact</h2>
+                <p class="section-subtitle">
+                    For inquiries about research, collaboration, or joining the lab, please get in touch.
+                </p>
+            </div>
+            <div class="contact-section">
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <h4>Email</h4>
+                        <p><a href="mailto:adam.mahdi@oii.ox.ac.uk" style="color: #2d5986;">adam.mahdi@oii.ox.ac.uk</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>Address</h4>
+                        <p>Oxford Internet Institute<br>
+                        1 St Giles', Oxford OX1 3JS, United Kingdom</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Reasoning with Machines AI Lab, Oxford University. All rights reserved.</p>
+    </footer>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const expandButtons = document.querySelectorAll('.expand-bio-button');
+
+            expandButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Find the parent .team-member div
+                    const teamMember = this.closest('.team-member');
+                    if (!teamMember) return;
+
+                    // Find the expandable content within this team member
+                    const expandableContent = teamMember.querySelector('.member-expandable-content');
+                    if (!expandableContent) return;
+
+                    // Toggle the 'expanded' class which triggers CSS display change
+                    expandableContent.classList.toggle('expanded');
+
+                    // Update button text based on the state
+                    if (expandableContent.classList.contains('expanded')) {
+                        this.textContent = 'Read Less';
+                    } else {
+                        this.textContent = 'Read More';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
