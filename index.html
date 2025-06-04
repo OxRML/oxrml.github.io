@@ -1133,9 +1133,29 @@
                 const name = teamMemberDiv.querySelector('.member-name').textContent;
                 const role = teamMemberDiv.querySelector('.member-role').textContent;
                 
-                // Get photo content from the card (assuming it's text for now)
-                // If using <img>, you'd get the src attribute.
-                const cardPhotoContent = teamMemberDiv.querySelector('.member-photo').textContent; 
+                // Get photo content from the card: prefer <img> if present, else use text content
+                const photoDiv = teamMemberDiv.querySelector('.member-photo');
+                const imgElem = photoDiv ? photoDiv.querySelector('img') : null;
+                // Store the card's photo content for fallback use later
+                let cardPhotoContent = '';
+                // Clear previous modal photo content
+                modalPhotoPlaceholderElem.innerHTML = '';
+                if (imgElem && imgElem.src) {
+                    // If there's an image, clone it and set correct styles
+                    const modalImg = document.createElement('img');
+                    modalImg.src = imgElem.src;
+                    modalImg.alt = imgElem.alt || name;
+                    modalImg.style.width = '100%';
+                    modalImg.style.height = '100%';
+                    modalImg.style.objectFit = 'cover';
+                    modalImg.style.borderRadius = '50%';
+                    modalPhotoPlaceholderElem.appendChild(modalImg);
+                    cardPhotoContent = ''; // No placeholder text if image is present
+                } else if (photoDiv) {
+                    // Otherwise, use the text content (e.g., [Photo Placeholder])
+                    modalPhotoPlaceholderElem.textContent = photoDiv.textContent;
+                    cardPhotoContent = photoDiv.textContent;
+                }
 
                 // Get hidden detailed content
                 const fullDetailsDiv = teamMemberDiv.querySelector('.member-full-details');
@@ -1151,19 +1171,7 @@
                 if(modalMemberRoleElem) modalMemberRoleElem.textContent = role;
                 if(modalMemberBioElem) modalMemberBioElem.innerHTML = bioHtml;
                 if(modalMemberContactLinksElem) modalMemberContactLinksElem.innerHTML = contactLinksHtml;
-                if(modalPhotoPlaceholderElem) {
-                    // Check if there's a specific modal photo URL stored
-                    const modalPhotoUrlSpan = fullDetailsDiv.querySelector('.modal-photo-url');
-                    if (modalPhotoUrlSpan && modalPhotoUrlSpan.textContent) {
-                        // Example: if you store an actual image URL
-                        // modalPhotoPlaceholderElem.style.backgroundImage = `url(${modalPhotoUrlSpan.textContent})`;
-                        // modalPhotoPlaceholderElem.textContent = ''; // Clear placeholder text
-                        modalPhotoPlaceholderElem.textContent = cardPhotoContent; // Defaulting to card photo content for now
-                    } else {
-                        modalPhotoPlaceholderElem.textContent = cardPhotoContent; // Use card's photo placeholder text
-                    }
-                }
-                
+
                 // Show modal
                 modalOverlay.classList.add('active');
                 document.body.style.overflow = 'hidden'; // Prevent background scroll
