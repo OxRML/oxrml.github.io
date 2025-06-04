@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reasoning with Machines AI Lab - Oxford University</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Charter', 'Georgia', serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            background-color: #fdfdfd;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1a365d 0%, #2d5986 100%);
+            color: white;
+            padding: 3rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .rml-logo {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .logo-circle {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.15);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 1px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .lab-identity h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .lab-tagline {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+        
+        .oxford-affiliation {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+        
+        .nav {
+            background: white;
+            padding: 0;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .nav ul {
+            list-style: none;
+            display: flex;
+            gap: 0;
+        }
+        
+        .nav li {
+            position: relative;
+        }
+        
+        .nav a {
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 1.25rem 1.5rem;
+            display: block;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .nav a:hover, .nav a.active {
+            color: #2d5986;
+            border-bottom-color: #2d5986;
+            background-color: #f8fafc;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section {
+            padding: 4rem 0;
+        }
+        
+        .section-header {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 2.25rem;
+            color: #1a365d;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #718096;
+            max-width: 800px;
+        }
+        
+        .research-overview {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 3rem;
+        }
+        
+        .research-areas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .research-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #2d5986;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .research-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .research-card h3 {
+            color: #1a365d;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .research-card p {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+        
+        .pi-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .pi-profile {
+            display: flex;
+            gap: 2.5rem;
+            align-items: flex-start;
+        }
+        
+        .pi-photo {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #718096;
+            flex-shrink: 0;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .pi-info h3 {
+            font-size: 1.8rem;
+            color: #1a365d;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .pi-title {
+            color: #718096;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+        
+        .pi-description {
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .team-member {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .member-photo {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #718096;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .member-name {
+            font-size: 1.25rem;
+            color: #1a365d;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .member-role {
+            color: #718096;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .member-focus {
+            color: #4a5568;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .past-members-section {
+            background: #f8fafc;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            margin-top: 3rem;
+        }
+        
+        .past-members-section h3 {
+            color: #1a365d;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .past-members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .past-member {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        
+        .past-member-photo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #718096;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .past-member-name {
+            font-size: 1.1rem;
+            color: #1a365d;
+            margin-bottom: 0.25rem;
+            font-weight: 600;
+        }
+        
+        .past-member-role {
+            color: #718096;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+        
+        .collaborators-section {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .collaborators-section h4 {
+            color: #1a365d;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .collaborators-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .collaborator-tag {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            color: #4a5568;
+            font-size: 0.9rem;
+        }
+        
+        .publications-list {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+        
+        .publication {
+            padding: 2rem;
+            border-bottom: 1px solid #f1f5f9;
+            transition: background-color 0.2s;
+        }
+        
+        .publication:hover {
+            background-color: #f8fafc;
+        }
+        
+        .publication:last-child {
+            border-bottom: none;
+        }
+        
+        .pub-year {
+            display: inline-block;
+            background: #2d5986;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        
+        .pub-title {
+            font-size: 1.15rem;
+            color: #1a365d;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        
+        .pub-authors {
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .pub-venue {
+            color: #2d5986;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+        
+        .contact-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .contact-item h4 {
+            color: #1a365d;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .contact-item p {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+        
+        .footer {
+            background: #1a365d;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+        
+        .footer p {
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .lab-identity h1 {
+                font-size: 2rem;
+            }
+            
+            .nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .pi-profile {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="rml-logo">
+                <div class="logo-circle">RML</div>
+                <div class="lab-identity">
+                    <h1>Reasoning with Machines AI Lab</h1>
+                    <p class="lab-tagline">Understanding AI's reasoning capabilities</p>
+                    <p class="oxford-affiliation">Oxford Internet Institute, University of Oxford</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <div class="nav-content">
+            <ul>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#pi">Principal Investigator</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="research" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Research Focus</h2>
+                <p class="section-subtitle">
+                    The RML Lab tackles one of AI's greatest challenges—understanding its reasoning capabilities through rigorous scientific inquiry.
+                </p>
+            </div>
+            
+            <div class="research-overview">
+                <p style="font-size: 1.15rem; color: #4a5568;">
+                    Our research program centers on LLM evaluation, AI safety, mechanistic interpretability, and human-LLM interaction. We combine mathematical rigor with empirical investigation to advance our understanding of how large language models process information, make decisions, and interact with humans in real-world contexts.
+                </p>
+            </div>
+            
+            <div class="research-areas">
+                <div class="research-card">
+                    <h3>LLM Evaluation</h3>
+                    <p>We develop robust evaluation methodologies for large language models, including comprehensive benchmarking across diverse domains and tasks, novel evaluation frameworks, and methods to assess reasoning capabilities in various contexts.</p>
+                </div>
+                
+                <div class="research-card">
+                    <h3>AI Safety</h3>
+                    <p>Our work focuses on AI safety mechanisms, including toxicity reduction approaches, constitutional AI methods, and understanding the neural mechanisms behind safety fine-tuning algorithms like Direct Preference Optimization (DPO).</p>
+                </div>
+                
+                <div class="research-card">
+                    <h3>Mechanistic Interpretability</h3>
+                    <p>We develop methods to understand the internal mechanisms of large language models, including sparse autoencoders, steering vectors, neuron-level analysis, and techniques to decode how these systems process and represent information.</p>
+                </div>
+                
+                <div class="research-card">
+                    <h3>Human-LLM Interaction</h3>
+                    <p>We conduct large-scale empirical studies examining how humans interact with AI systems for decision-making, including our landmark study of 1,300 participants exploring LLM use in medical self-diagnosis and healthcare applications.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="pi" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Principal Investigator</h2>
+            </div>
+            
+            <div class="pi-section">
+                <div class="pi-profile">
+                    <div class="pi-photo">[Photo Placeholder]</div>
+                    <div class="pi-info">
+                        <h3>Dr. Adam Mahdi</h3>
+                        <p class="pi-title">
+                            Lab Leader, Reasoning with Machines AI Lab<br>
+                            Departmental Research Lecturer & Director of Graduate Studies<br>
+                            Oxford Internet Institute, University of Oxford
+                        </p>
+                        
+                        <div class="pi-description">
+                            <p>Dr. Adam Mahdi leads the Reasoning with Machines AI Lab, focusing on one of AI's greatest challenges—understanding its reasoning capabilities. Drawing on his mathematical background, he explores mechanistic interpretability, AI evaluations, and human-LLM interaction through rigorous empirical research.</p>
+                            
+                            <p>His work includes groundbreaking studies on human-AI interaction, with the largest study of its kind recruiting nearly 1,300 participants to analyze how people use LLMs for personal decision-making. He leads collaborative projects funded by the Dieter Schwarz Foundation and Prolific, investigating AI's effectiveness in demonstrating socio-communicative competencies for medical applications.</p>
+                        </div>
+                        
+                        <p style="color: #4a5568;">
+                            <strong>Education:</strong> PhD and MSc in Applied Mathematics, Universitat Autònoma de Barcelona<br>
+                            <strong>Affiliations:</strong> Fellow, Wolfson College; Stipendiary Lecturer, Lady Margaret Hall<br>
+                            <strong>Contact:</strong> <a href="https://www.oii.ox.ac.uk/people/profiles/adam-mahdi/" style="color: #2d5986;">Oxford Profile</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="team" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Research Team</h2>
+                <p class="section-subtitle">
+                    Our interdisciplinary team combines expertise in machine learning, social data science, and AI safety.
+                </p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-photo">[Photo Placeholder]</div>
+                    <h4 class="member-name">Felix Krones</h4>
+                    <p class="member-role">DPhil Student</p>
+                    <p class="member-focus">LLMs, responsible AI, interpretability, mechanistic interpretability</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">[Photo Placeholder]</div>
+                    <h4 class="member-name">Djavan De Clercq</h4>
+                    <p class="member-role">DPhil Student</p>
+                    <p class="member-focus">Large language models, AI applications, policy analysis</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">[Photo Placeholder]</div>
+                    <h4 class="member-name">Andrew Bean</h4>
+                    <p class="member-role">DPhil Student</p>
+                    <p class="member-focus">Clinical AI applications, human-LLM interaction, medical AI evaluation</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">[Photo Placeholder]</div>
+                    <h4 class="member-name">Yushi Yang</h4>
+                    <p class="member-role">DPhil Student</p>
+                    <p class="member-focus">AI safety, mechanistic interpretability, toxicity reduction in LLMs</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">[Photo Placeholder]</div>
+                    <h4 class="member-name">Harry Mayne</h4>
+                    <p class="member-role">DPhil Student</p>
+                    <p class="member-focus">Language model interpretability, representation engineering, safety mechanisms</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">[Photo Placeholder]</div>
+                    <h4 class="member-name">Jessica Rodrigues</h4>
+                    <p class="member-role">DPhil Student</p>
+                    <p class="member-focus">AI evaluation methodologies, social data science applications</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">[Photo Placeholder]</div>
+                    <h4 class="member-name">Guy Parsons</h4>
+                    <p class="member-role">DPhil Student</p>
+                    <p class="member-focus">Healthcare AI, machine learning applications in clinical settings</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">[Photo Placeholder]</div>
+                    <h4 class="member-name">Karolina Korgul</h4>
+                    <p class="member-role">DPhil Student</p>
+                    <p class="member-focus">Linguistic analysis, AI reasoning evaluation, computational linguistics</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">[Photo Placeholder]</div>
+                    <h4 class="member-name">Basak Bozkurt</h4>
+                    <p class="member-role">DPhil Student</p>
+                    <p class="member-focus">AI applications, computational social science</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">[Photo Placeholder]</div>
+                    <h4 class="member-name">Sebastian Petric</h4>
+                    <p class="member-role">Visiting Policy Fellow (2024-2026)</p>
+                    <p class="member-focus">LLM and time-series approaches for predicting financial instabilities</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">[Photo Placeholder]</div>
+                    <h4 class="member-name">Ryan Kearns</h4>
+                    <p class="member-role">MSc Student (2024-2025)</p>
+                    <p class="member-focus">Machine learning, AI evaluation methodologies</p>
+                </div>
+            </div>
+            
+            <div class="past-members-section">
+                <h3>Past Members</h3>
+                <div class="past-members-grid">
+                    <div class="past-member">
+                        <div class="past-member-photo">[Photo Placeholder]</div>
+                        <h4 class="past-member-name">Tedi Yankov</h4>
+                        <p class="past-member-role">MSc SDS (2023-2024)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="collaborators-section">
+                <h4>Collaborators</h4>
+                <div class="collaborators-list">
+                    <span class="collaborator-tag">Lingyi Yang</span>
+                    <span class="collaborator-tag">Jude Khouja</span>
+                    <span class="collaborator-tag">Robert McCraith</span>
+                    <span class="collaborator-tag">Hannah Kirk</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="publications" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Recent Publications</h2>
+                <p class="section-subtitle">
+                    Our research contributions to LLM evaluation, AI safety, mechanistic interpretability, and human-LLM interaction.
+                </p>
+            </div>
+            
+            <div class="publications-list">
+                <div class="publication">
+                    <span class="pub-year">2025</span>
+                    <h4 class="pub-title">LINGOLY-TOO: Disentangling Memorisation from Reasoning with Linguistic Templatisation and Orthographic Obfuscation</h4>
+                    <p class="pub-authors">J Khouja, K Korgul, S Hellsten, L Yang, V Neacs, H Mayne, R Kearns, A Mahdi</p>
+                    <p class="pub-venue">arXiv preprint arXiv:2503.02972</p>
+                </div>
+                
+                <div class="publication">
+                    <span class="pub-year">2025</span>
+                    <h4 class="pub-title">Clinical knowledge in LLMs does not translate to human interactions</h4>
+                    <p class="pub-authors">AM Bean, R Payne, G Parsons, HR Kirk, J Ciro, R Mosquera, A Mahdi</p>
+                    <p class="pub-venue">arXiv preprint arXiv:2504.18919</p>
+                </div>
+                
+                <div class="publication">
+                    <span class="pub-year">2025</span>
+                    <h4 class="pub-title">Evaluating the role of 'Constitutions' for learning from AI feedback</h4>
+                    <p class="pub-authors">S Redgate, AM Bean, A Mahdi</p>
+                    <p class="pub-venue">arXiv preprint arXiv:2411.10168</p>
+                </div>
+                
+                <div class="publication">
+                    <span class="pub-year">2024</span>
+                    <h4 class="pub-title">Can sparse autoencoders be used to decompose and interpret steering vectors?</h4>
+                    <p class="pub-authors">H Mayne, Y Yang, A Mahdi</p>
+                    <p class="pub-venue">arXiv preprint arXiv:2411.08790</p>
+                </div>
+                
+                <div class="publication">
+                    <span class="pub-year">2024</span>
+                    <h4 class="pub-title">Beyond Toxic Neurons: A Mechanistic Analysis of DPO for Toxicity Reduction</h4>
+                    <p class="pub-authors">Y Yang, F Sondej, H Mayne, A Mahdi</p>
+                    <p class="pub-venue">arXiv preprint arXiv:2411.06424</p>
+                </div>
+                
+                <div class="publication">
+                    <span class="pub-year">2024</span>
+                    <h4 class="pub-title">Improving In-Context Learning with Small Language Model Ensembles</h4>
+                    <p class="pub-authors">MM Mojarradi, L Yang, R McCraith, A Mahdi</p>
+                    <p class="pub-venue">arXiv preprint arXiv:2410.21868</p>
+                </div>
+                
+                <div class="publication">
+                    <span class="pub-year">2024</span>
+                    <h4 class="pub-title">Combining Hough Transform and Deep Learning Approaches to Reconstruct ECG Signals From Printouts</h4>
+                    <p class="pub-authors">F Krones, B Walker, T Lyons, A Mahdi</p>
+                    <p class="pub-venue">arXiv preprint arXiv:2410.14185</p>
+                </div>
+                
+                <div class="publication">
+                    <span class="pub-year">2024</span>
+                    <h4 class="pub-title">HELP-Med: Human Evaluation of LLM Partnership in Medical Self-Assessment</h4>
+                    <p class="
