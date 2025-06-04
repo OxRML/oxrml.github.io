@@ -492,40 +492,133 @@
 
         /* ... (your existing CSS rules) ... */
 
-        .member-expandable-content {
-            margin-top: 1rem;
-            text-align: left; /* Adjust as needed, current team-member is text-align: center */
+        /* Styles for the hidden details within each team member card */
+        .member-full-details {
+            display: none !important; /* Ensure these are always hidden on the card */
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65); /* Semi-transparent background */
             display: none; /* Hidden by default */
-            overflow: hidden; /* Ensures smooth transition if you add CSS transitions later */
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.25s ease-in-out;
         }
 
-        .member-expandable-content.expanded {
-            display: block; /* Shown when .expanded class is added by JavaScript */
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
         }
 
-        .member-bio {
-            font-size: 0.9rem;
-            color: #4a5568; /* Matches .member-focus */
-            margin-bottom: 1rem;
-            line-height: 1.6; /* Matches .research-card p */
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            width: 90%;
+            max-width: 750px; /* Max width of modal */
+            position: relative;
+            text-align: left;
+            max-height: 85vh; /* Max height of modal */
+            overflow-y: auto; /* Enable scroll for long content */
+            display: flex; /* For layouting photo and text */
+            gap: 1.5rem; /* Space between photo area and text area */
+        }
+        
+        @media (max-width: 600px) {
+            .modal-content {
+                flex-direction: column; /* Stack photo and text on small screens */
+                padding: 1.5rem;
+            }
+            .modal-photo-area {
+                text-align: center; /* Center photo on small screens */
+            }
         }
 
-        .member-contact-links {
-            margin-bottom: 1rem;
+        .modal-photo-area {
+            flex: 0 0 150px; /* Fixed width for photo area */
         }
 
-        .member-contact-links a {
-            color: #2d5986; /* Main theme color for links */
+        .modal-photo-placeholder {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #e9ecef, #dee2e6); /* Slightly different gradient */
+            border-radius: 50%; /* Circular photo in modal */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #495057;
+            border: 2px solid #ced4da;
+            margin: 0 auto; /* Center if parent is wider */
+        }
+
+        .modal-text-area {
+            flex: 1; /* Takes remaining space */
+        }
+
+        .modal-close-button {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2.2rem;
+            font-weight: 300;
+            color: #6c757d;
+            cursor: pointer;
+            line-height: 1;
+            padding: 5px;
+        }
+
+        .modal-close-button:hover {
+            color: #343a40;
+        }
+
+        #modalMemberName {
+            font-size: 2rem; /* Slightly larger */
+            color: #1a365d; /* From .pi-info h3 */
+            margin-bottom: 0.5rem;
+            font-weight: 400; /* From .section-title */
+        }
+
+        #modalMemberRole {
+            color: #718096; /* From .pi-title */
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem; /* Slightly larger */
+        }
+
+        /* Re-use or adapt .member-bio and .member-contact-links from previous solution if needed */
+        /* These styles should generally work fine */
+        .member-bio { /* This class is used inside the modal now */
+            font-size: 0.95rem; /* Standardize bio font size */
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .member-contact-links a { /* This class is used inside the modal now */
+            color: #2d5986;
             text-decoration: none;
-            margin-right: 0.75rem;
-            font-size: 0.9rem;
+            margin-right: 1rem; /* More spacing */
+            font-size: 0.95rem;
+            display: inline-block; /* Better spacing */
+            margin-bottom: 0.5rem; /* Spacing for wrapped links */
         }
 
         .member-contact-links a:hover {
             text-decoration: underline;
         }
-
-        .expand-bio-button {
+        
+        /* Button on the card */
+        .view-details-button {
             background-color: #2d5986;
             color: white;
             border: none;
@@ -538,13 +631,11 @@
             transition: background-color 0.3s ease;
         }
 
-        .expand-bio-button:hover {
-            background-color: #1a365d; /* Darker shade on hover */
+        .view-details-button:hover {
+            background-color: #1a365d;
         }
 
-        /* Keep existing .team-member text-align: center if you want button centered */
-        /* If .member-expandable-content needs to be full width and left aligned,
-           you might need to adjust its parent or itself if padding/text-align conflicts arise */
+        /* ... (rest of your existing CSS rules) ... */
     </style>
 </head>
 <body>
@@ -618,7 +709,9 @@
             
             <div class="pi-section">
                 <div class="pi-profile">
-                    <div class="pi-photo">[Photo Placeholder]</div>
+                    <div class="pi-photo">
+                        <img src="img/members/adam_mahdi.webp" alt="Adam Mahdi" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">
+                    </div>
                     <div class="pi-info">
                         <h3>Dr. Adam Mahdi</h3>
                         <p class="pi-title">
@@ -658,24 +751,34 @@
                     <p class="member-role">DPhil Student</p>
                     <p class="member-focus">LLMs, responsible AI, interpretability, mechanistic interpretability</p>
 
-                    <div class="member-expandable-content">
+                    <div class="member-full-details">
                         <p class="member-bio">
-                            An example bio about Felix that's long enough that I can start to see how the text might wrap. Hi Felix!
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
                         </p>
                         <div class="member-contact-links">
-                            <a href="mailto:felix.krones@example.com">Email</a>
-                            <a href="https://www.linkedin.com/in/felixkrones" target="_blank">LinkedIn</a>
-                            <a href="https://example.com/felixkrones" target="_blank">Profile</a>
+                            <a href="">Email</a>
+                            <a href="" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                            <a href="" target="_blank" rel="noopener noreferrer">Website</a>
                         </div>
                     </div>
-                    <button class="expand-bio-button">Read More</button>
-                    </div>
+                </div>
                 
                 <div class="team-member">
                     <div class="member-photo">[Photo Placeholder]</div>
                     <h4 class="member-name">Djavan De Clercq</h4>
                     <p class="member-role">DPhil Student</p>
                     <p class="member-focus">Large language models, AI applications, policy analysis</p>
+
+                    <div class="member-full-details">
+                        <p class="member-bio">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                        </p>
+                        <div class="member-contact-links">
+                            <a href="">Email</a>
+                            <a href="" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                            <a href="" target="_blank" rel="noopener noreferrer">Website</a>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="team-member">
@@ -683,6 +786,17 @@
                     <h4 class="member-name">Andrew Bean</h4>
                     <p class="member-role">DPhil Student</p>
                     <p class="member-focus">Clinical AI applications, human-LLM interaction, medical AI evaluation</p>
+
+                    <div class="member-full-details">
+                        <p class="member-bio">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                        </p>
+                        <div class="member-contact-links">
+                            <a href="">Email</a>
+                            <a href="" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                            <a href="" target="_blank" rel="noopener noreferrer">Website</a>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="team-member">
@@ -690,6 +804,17 @@
                     <h4 class="member-name">Yushi Yang</h4>
                     <p class="member-role">DPhil Student</p>
                     <p class="member-focus">AI safety, mechanistic interpretability, toxicity reduction in LLMs</p>
+
+                    <div class="member-full-details">
+                        <p class="member-bio">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                        </p>
+                        <div class="member-contact-links">
+                            <a href="">Email</a>
+                            <a href="" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                            <a href="" target="_blank" rel="noopener noreferrer">Website</a>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="team-member">
@@ -697,6 +822,17 @@
                     <h4 class="member-name">Harry Mayne</h4>
                     <p class="member-role">DPhil Student</p>
                     <p class="member-focus">Language model interpretability, representation engineering, safety mechanisms</p>
+
+                    <div class="member-full-details">
+                        <p class="member-bio">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                        </p>
+                        <div class="member-contact-links">
+                            <a href="">Email</a>
+                            <a href="" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                            <a href="" target="_blank" rel="noopener noreferrer">Website</a>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="team-member">
@@ -704,6 +840,17 @@
                     <h4 class="member-name">Jessica Rodrigues</h4>
                     <p class="member-role">DPhil Student</p>
                     <p class="member-focus">AI evaluation methodologies, social data science applications</p>
+
+                    <div class="member-full-details">
+                        <p class="member-bio">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                        </p>
+                        <div class="member-contact-links">
+                            <a href="">Email</a>
+                            <a href="" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                            <a href="" target="_blank" rel="noopener noreferrer">Website</a>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="team-member">
@@ -711,6 +858,17 @@
                     <h4 class="member-name">Guy Parsons</h4>
                     <p class="member-role">DPhil Student</p>
                     <p class="member-focus">Healthcare AI, machine learning applications in clinical settings</p>
+
+                    <div class="member-full-details">
+                        <p class="member-bio">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                        </p>
+                        <div class="member-contact-links">
+                            <a href="">Email</a>
+                            <a href="" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                            <a href="" target="_blank" rel="noopener noreferrer">Website</a>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="team-member">
@@ -718,6 +876,17 @@
                     <h4 class="member-name">Karolina Korgul</h4>
                     <p class="member-role">DPhil Student</p>
                     <p class="member-focus">Linguistic analysis, AI reasoning evaluation, computational linguistics</p>
+
+                    <div class="member-full-details">
+                        <p class="member-bio">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                        </p>
+                        <div class="member-contact-links">
+                            <a href="">Email</a>
+                            <a href="" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                            <a href="" target="_blank" rel="noopener noreferrer">Website</a>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="team-member">
@@ -725,6 +894,17 @@
                     <h4 class="member-name">Basak Bozkurt</h4>
                     <p class="member-role">DPhil Student</p>
                     <p class="member-focus">AI applications, computational social science</p>
+
+                    <div class="member-full-details">
+                        <p class="member-bio">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                        </p>
+                        <div class="member-contact-links">
+                            <a href="">Email</a>
+                            <a href="" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                            <a href="" target="_blank" rel="noopener noreferrer">Website</a>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="team-member">
@@ -732,13 +912,37 @@
                     <h4 class="member-name">Sebastian Petric</h4>
                     <p class="member-role">Visiting Policy Fellow (2024-2026)</p>
                     <p class="member-focus">LLM and time-series approaches for predicting financial instabilities</p>
+
+                    <div class="member-full-details">
+                        <p class="member-bio">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                        </p>
+                        <div class="member-contact-links">
+                            <a href="">Email</a>
+                            <a href="" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                            <a href="" target="_blank" rel="noopener noreferrer">Website</a>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="team-member">
-                    <div class="member-photo">[Photo Placeholder]</div>
-                    <h4 class="member-name">Ryan Kearns</h4>
+                    <div class="member-photo">
+                        <img src="img/members/ryan_othniel_kearns.jpeg" alt="Ryan Kearns" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
+                    </div>
+                    <h4 class="member-name">Ryan Othniel Kearns</h4>
                     <p class="member-role">MSc Student (2024-2025)</p>
-                    <p class="member-focus">Machine learning, AI evaluation methodologies</p>
+                    <p class="member-focus">Reasoning in LLMs; Science of AI evaluations</p>
+
+                    <div class="member-full-details">
+                        <p class="member-bio">
+                            Ryan Othniel Kearns is an MSc and incoming DPhil student in the Reasoning with Machines AI Lab, generously supported by the Clarendon Scholarship. His research focuses on understanding reasoning in large language models (LLMs) and the science of AI evaluations. Previously, Ryan studied Philosophy (BAH) and Computer Science (BS) at Stanford University.
+                        </p>
+                        <div class="member-contact-links">
+                            <a href="mailto:ryan.kearns@oii.ox.ac.uk">Email</a>
+                            <a href="https://www.linkedin.com/in/ryanothnielkearns/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                            <a href="https://www.ryanothnielkearns.com/" target="_blank" rel="noopener noreferrer">Website</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -883,6 +1087,111 @@
                 });
             });
         });
+    </script>
+
+<div id="teamMemberModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close-button">&times;</span>
+            <div class="modal-photo-area">
+                 <div class="modal-photo-placeholder">[Photo Placeholder]</div>
+            </div>
+            <div class="modal-text-area">
+                <h3 id="modalMemberName">Member Name</h3>
+                <p id="modalMemberRole">Member Role</p>
+                <div id="modalMemberBio" class="member-bio">
+                    </div>
+                <div id="modalMemberContactLinks" class="member-contact-links">
+                    </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const modalOverlay = document.getElementById('teamMemberModal');
+        if (!modalOverlay) {
+            console.error("Modal overlay not found!");
+            return;
+        }
+        const modalCloseButton = modalOverlay.querySelector('.modal-close-button');
+        const modalMemberNameElem = document.getElementById('modalMemberName');
+        const modalMemberRoleElem = document.getElementById('modalMemberRole');
+        const modalMemberBioElem = document.getElementById('modalMemberBio');
+        const modalMemberContactLinksElem = document.getElementById('modalMemberContactLinks');
+        const modalPhotoPlaceholderElem = modalOverlay.querySelector('.modal-photo-placeholder');
+
+        // Make each .team-member card clickable (except if clicking a link inside)
+        const teamMemberDivs = document.querySelectorAll('.team-member');
+
+        teamMemberDivs.forEach(div => {
+            div.style.cursor = 'pointer';
+            div.addEventListener('click', function(event) {
+            // Prevent modal if clicking a link inside the card
+            if (event.target.tagName === 'A') return;
+                const teamMemberDiv = this.closest('.team-member');
+
+                // Get data from the team member card
+                const name = teamMemberDiv.querySelector('.member-name').textContent;
+                const role = teamMemberDiv.querySelector('.member-role').textContent;
+                
+                // Get photo content from the card (assuming it's text for now)
+                // If using <img>, you'd get the src attribute.
+                const cardPhotoContent = teamMemberDiv.querySelector('.member-photo').textContent; 
+
+                // Get hidden detailed content
+                const fullDetailsDiv = teamMemberDiv.querySelector('.member-full-details');
+                if (!fullDetailsDiv) {
+                    console.error("Full details div not found for this team member.", teamMemberDiv);
+                    return;
+                }
+                const bioHtml = fullDetailsDiv.querySelector('.member-bio').innerHTML;
+                const contactLinksHtml = fullDetailsDiv.querySelector('.member-contact-links').innerHTML;
+
+                // Populate modal
+                if(modalMemberNameElem) modalMemberNameElem.textContent = name;
+                if(modalMemberRoleElem) modalMemberRoleElem.textContent = role;
+                if(modalMemberBioElem) modalMemberBioElem.innerHTML = bioHtml;
+                if(modalMemberContactLinksElem) modalMemberContactLinksElem.innerHTML = contactLinksHtml;
+                if(modalPhotoPlaceholderElem) {
+                    // Check if there's a specific modal photo URL stored
+                    const modalPhotoUrlSpan = fullDetailsDiv.querySelector('.modal-photo-url');
+                    if (modalPhotoUrlSpan && modalPhotoUrlSpan.textContent) {
+                        // Example: if you store an actual image URL
+                        // modalPhotoPlaceholderElem.style.backgroundImage = `url(${modalPhotoUrlSpan.textContent})`;
+                        // modalPhotoPlaceholderElem.textContent = ''; // Clear placeholder text
+                        modalPhotoPlaceholderElem.textContent = cardPhotoContent; // Defaulting to card photo content for now
+                    } else {
+                        modalPhotoPlaceholderElem.textContent = cardPhotoContent; // Use card's photo placeholder text
+                    }
+                }
+                
+                // Show modal
+                modalOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scroll
+            });
+        });
+
+        // Close modal actions
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = ''; // Restore background scroll
+        }
+
+        if(modalCloseButton) modalCloseButton.addEventListener('click', closeModal);
+
+        modalOverlay.addEventListener('click', function(event) {
+            // Only close if clicked on the overlay itself, not the content
+            if (event.target === modalOverlay) {
+                closeModal();
+            }
+        });
+
+        // Optional: Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    });
     </script>
 </body>
 </html>
