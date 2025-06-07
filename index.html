@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reasoning with Machines AI Lab - University of Oxford</title>
-    <style>
-        * {
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Reasoning with Machines AI Lab - University of Oxford 
+  </title>
+  <style>
+   * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -635,447 +637,886 @@
             background-color: #1a365d;
         }
 
-        /* ... (rest of your existing CSS rules) ... */
-    </style>
-</head>
-<body>
-    <header class="header">
-        <div class="header-content">
-            <div class="rml-logo">
-                <div class="logo-circle" style="padding:0;">
-                    <img src="img/rml_logo.png" alt="RML Lab Logo" style="width:70px;height:70px;object-fit:cover;border-radius:50%;">
-                </div>
-                <div class="lab-identity">
-                    <h1>Reasoning with Machines AI Lab</h1>
-                    <p class="oxford-affiliation">University of Oxford</p>
-                </div>
-            </div>
-        </div>
-    </header>
+        .member-contact-links i {
+    font-size: 1.1rem;
+    margin: 0 8px;
+    color: #2d5986;
+    transition: color 0.2s;
+}
+.member-contact-links i:hover {
+    color: #1a365d;
+}
 
-    <nav class="nav">
-        <div class="nav-content">
-            <ul>
-                <li><a href="#research">Research</a></li>
-                <li><a href="#pi">Lab lead</a></li>
-                <li><a href="#team">Team</a></li>
-                <li><a href="#publications">Publications</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+/* ... (rest of your existing CSS rules) ... */
+  </style>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <header class="header">
+   <div class="header-content">
+    <div class="rml-logo">
+     <div class="logo-circle" style="padding:0;">
+      <img alt="RML Lab Logo" src="img/rml_logo.png" style="width:70px;height:70px;object-fit:cover;border-radius:50%;"/>
+     </div>
+     <div class="lab-identity">
+      <h1>
+       Reasoning with Machines AI Lab (RML)
+      </h1>
+      <p class="oxford-affiliation">
+       University of Oxford
+      </p>
+     </div>
+    </div>
+   </div>
+  </header>
+  <nav class="nav">
+   <div class="nav-content">
+    <ul>
+     <li>
+      <a href="#research">
+       Research
+      </a>
+     </li>
+     <li>
+      <a href="#pi">
+       Lab lead
+      </a>
+     </li>
+     <li>
+      <a href="#team">
+       Team
+      </a>
+     </li>
+     <li>
+      <a href="#publications">
+       Publications
+      </a>
+     </li>
+     <li>
+      <a href="#contact">
+       Contact
+      </a>
+     </li>
+    </ul>
+   </div>
+  </nav>
+  <main class="container">
+   <section class="section" id="research">
+    <div class="section-header">
+     <h2 class="section-title">
+      Research
+     </h2>
+     <p class="section-subtitle">
+      The RML Lab tackles one of AI's greatest challenges&mdash;understanding its reasoning capabilities through rigorous scientific inquiry.
+     </p>
+    </div>
+    <div class="research-overview">
+     <p style="font-size: 1.15rem; color: #4a5568;">
+      Our research program centers on LLM evaluation, AI safety, mechanistic interpretability, and human-LLM interaction. We combine mathematical rigor with empirical investigation to advance our understanding of how large language models process information, make decisions, and interact with humans in real-world contexts.
+     </p>
+    </div>
+    <div class="research-areas">
+     <div class="research-card">
+      <h3>
+       LLM Evaluation
+      </h3>
+      <p>
+       We develop robust evaluation methodologies for large language models, including comprehensive benchmarking across diverse domains and tasks, novel evaluation frameworks, and methods to assess reasoning capabilities in various contexts.
+      </p>
+     </div>
+     <div class="research-card">
+      <h3>
+       AI Safety
+      </h3>
+      <p>
+       Our work focuses on AI safety mechanisms, including toxicity reduction approaches, constitutional AI methods, and understanding the neural mechanisms behind safety fine-tuning algorithms like Direct Preference Optimization (DPO).
+      </p>
+     </div>
+     <div class="research-card">
+      <h3>
+       Mechanistic Interpretability
+      </h3>
+      <p>
+       We develop methods to understand the internal mechanisms of large language models, including sparse autoencoders, steering vectors, neuron-level analysis, and techniques to decode how these systems process and represent information.
+      </p>
+     </div>
+     <div class="research-card">
+      <h3>
+       Human-LLM Interaction
+      </h3>
+      <p>
+       We conduct large-scale empirical studies examining how humans interact with AI systems for decision-making, including our landmark study of 1,300 participants exploring LLM use in medical self-diagnosis and healthcare applications.
+      </p>
+     </div>
+    </div>
+   </section>
+   <section class="section" id="pi">
+    <div class="section-header">
+     <h2 class="section-title">
+      Lab lead
+     </h2>
+    </div>
+    <div class="pi-section">
+     <div class="pi-profile">
+      <div class="pi-photo">
+       <img alt="Adam Mahdi" src="img/members/adam_mahdi.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"/>
+      </div>
+      <div class="pi-info">
+       <h3>
+        Adam Mahdi
+       </h3>
+       <p class="pi-title">
+        Lab lead, Reasoning with Machines AI Lab (RML)
+        <br/>
+        University of Oxford
+       </p>
+       <div class="pi-description">
+        <p>
+         Dr Adam Mahdi leads the Reasoning with Machines AI Lab, focusing on one of AI's greatest challenges: understanding its reasoning capabilities. 
+                               The lab&rsquo;s research spans the science of evaluation for LLMs, mechanistic interpretability and human&ndash;computer interaction.
+        </p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section class="section" id="team">
+    <div class="section-header">
+     <h2 class="section-title">
+      Team
+     </h2>
+     <p class="section-subtitle">
+      Our interdisciplinary team combines expertise in machine learning, social data science, and AI safety.
+     </p>
+    </div>
+    <div class="team-grid">
+     <div class="team-member">
+      <div class="member-photo">
+       <img alt="Felix Krones" src="img/members/felix_krones.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
+      </div>
+      <h4 class="member-name">
+       Felix Krones
+      </h4>
+      <p class="member-role">DPhil Student</p>
+      <p class="member-focus">Multimodal AI, digital health</p>
 
-    <main class="container">
-        <section id="research" class="section">
-            <div class="section-header">
-                <h2 class="section-title">Research</h2>
-                <p class="section-subtitle">
-                    The RML Lab tackles one of AI's greatest challenges—understanding its reasoning capabilities through rigorous scientific inquiry.
-                </p>
-            </div>
-            
-            <div class="research-overview">
-                <p style="font-size: 1.15rem; color: #4a5568;">
-                    Our research program centers on LLM evaluation, AI safety, mechanistic interpretability, and human-LLM interaction. We combine mathematical rigor with empirical investigation to advance our understanding of how large language models process information, make decisions, and interact with humans in real-world contexts.
-                </p>
-            </div>
-            
-            <div class="research-areas">
-                <div class="research-card">
-                    <h3>LLM Evaluation</h3>
-                    <p>We develop robust evaluation methodologies for large language models, including comprehensive benchmarking across diverse domains and tasks, novel evaluation frameworks, and methods to assess reasoning capabilities in various contexts.</p>
-                </div>
-                
-                <div class="research-card">
-                    <h3>AI Safety</h3>
-                    <p>Our work focuses on AI safety mechanisms, including toxicity reduction approaches, constitutional AI methods, and understanding the neural mechanisms behind safety fine-tuning algorithms like Direct Preference Optimization (DPO).</p>
-                </div>
-                
-                <div class="research-card">
-                    <h3>Mechanistic Interpretability</h3>
-                    <p>We develop methods to understand the internal mechanisms of large language models, including sparse autoencoders, steering vectors, neuron-level analysis, and techniques to decode how these systems process and represent information.</p>
-                </div>
-                
-                <div class="research-card">
-                    <h3>Human-LLM Interaction</h3>
-                    <p>We conduct large-scale empirical studies examining how humans interact with AI systems for decision-making, including our landmark study of 1,300 participants exploring LLM use in medical self-diagnosis and healthcare applications.</p>
-                </div>
-            </div>
-        </section>
+     <div class="member-contact-links">
+       <a href="mailto:felix.krones@oii.ox.ac.uk" title="Email">
+        <i class="fas fa-envelope">
+        </i>
+       </a>
+       <a href="https://www.linkedin.com/in/felixkrones/?originalSubdomain=de" rel="noopener noreferrer" target="_blank">
+        <i class="fab fa-linkedin">
+        </i>
+       </a>
+       <a href="https://www.oii.ox.ac.uk/people/profiles/felix-krones/" rel="noopener noreferrer" target="_blank">
+        <i class="fas fa-globe">
+        </i>
+       </a>
+      </div>
 
-        <section id="pi" class="section">
-            <div class="section-header">
-                <h2 class="section-title">Lab lead</h2>
-            </div>
-            
-            <div class="pi-section">
-                <div class="pi-profile">
-                    <div class="pi-photo">
-                        <img src="img/members/adam_mahdi.jpeg" alt="Adam Mahdi" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">
-                    </div>
-                    <div class="pi-info">
-                        <h3>Adam Mahdi</h3>
-                        <p class="pi-title">
-                            Lab lead, Reasoning with Machines AI Lab (RML)<br>
-                            University of Oxford
-                        </p>
-                        
-                        <div class="pi-description">
-                            <p>Dr Adam Mahdi leads the Reasoning with Machines AI Lab, focusing on one of AI's greatest challenges: understanding its reasoning capabilities. 
-                               The lab’s research spans the science of evaluation for LLMs, mechanistic interpretability and human–computer interaction.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <div class="member-full-details">
+       <p class="member-bio">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+       </p>
+       <div class="member-contact-links">
+        <a href="" title="Email">
+         <i class="fas fa-envelope">
+         </i>
+        </a>
+        <a href="" rel="noopener noreferrer" target="_blank">
+         <i class="fab fa-linkedin">
+         </i>
+        </a>
+        <a href="" rel="noopener noreferrer" target="_blank">
+         <i class="fas fa-globe">
+         </i>
+        </a>
+       </div>
+      </div>
+     </div>
+     <div class="team-member">
+      <div class="member-photo">
+       <img alt="Djavan De Clerq" src="img/members/djavan.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
+      </div>
+      <h4 class="member-name">
+       Djavan De Clercq
+      </h4>
+      <p class="member-role">
+       DPhil Student
+      </p>
+      <p class="member-focus">
+       AI and food security, LLMs
+      </p>
 
-        <section id="team" class="section">
-            <div class="section-header">
-                <h2 class="section-title">Team</h2>
-                <p class="section-subtitle">
-                    Our interdisciplinary team combines expertise in machine learning, social data science, and AI safety.
-                </p>
-            </div>
-            
-            <div class="team-grid">
-                <div class="team-member">
-                    <div class="member-photo">
-                        <img src="img/members/felix_krones.png" alt="Felix Krones" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
-                    </div>
-                    <h4 class="member-name">Felix Krones</h4>
-                    <p class="member-role">DPhil Student</p>
-                    <p class="member-focus">Multimodal AI, Digital Health</p>
+     <div class="member-contact-links">
+       <a href="mailto:djavan.declercq@reuben.ox.ac.uk" title="Email">
+        <i class="fas fa-envelope">
+        </i>
+       </a>
+       <a href="https://www.linkedin.com/in/djavandeclercq/" rel="noopener noreferrer" target="_blank">
+        <i class="fab fa-linkedin">
+        </i>
+       </a>
+      </div>
 
-                    <div class="member-full-details">
-                        <p class="member-bio">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                        </p>
-                        <div class="member-contact-links">
-                            <a href="">Email</a>
-                            <a href="" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                            <a href="" target="_blank" rel="noopener noreferrer">Website</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="team-member">
-                    <div class="member-photo">
-                        <img src="img/members/djavan.png" alt="Djavan De Clerq" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
-                    </div>
-                    <h4 class="member-name">Djavan De Clercq</h4>
-                    <p class="member-role">DPhil Student</p>
-                    <p class="member-focus">AI and food security, LLMs</p>
+      <div class="member-full-details">
+       <p class="member-bio">
+        Djavan is a part-time DPhil student conducting research at the intersection of agriculture and climatic change. He is currently a consultant at McKinsey &amp; Company. Djavan has experience in engineering, data science, venture capital, consulting, teaching, and entrepreneurship, in China, Europe, and the United States.
 
-                    <div class="member-full-details">
-                        <p class="member-bio">
-Djavan is a part-time DPhil student conducting research at the intersection of agriculture and climatic change. He is currently a consultant at McKinsey & Company. Djavan has experience in engineering, data science, venture capital, consulting, teaching, and entrepreneurship, in China, Europe, and the United States.
+Djavan holds a PhD and an MSc from Tsinghua University in Environmental Science &amp; Engineering, an MEng from UC Berkeley in Industrial Engineering &amp; Operations Research, and a BA from Sciences Po Paris. He has published in journals such as Applied Energy, Renewable &amp; Sustainable Energy Reviews, and Bioresource Technology.
+       </p>
+       <div class="member-contact-links">
+        <a href="" title="Email">
+         <i class="fas fa-envelope">
+         </i>
+        </a>
+        <a href="" rel="noopener noreferrer" target="_blank">
+         <i class="fab fa-linkedin">
+         </i>
+        </a>
+        <a href="" rel="noopener noreferrer" target="_blank">
+         <i class="fas fa-globe">
+         </i>
+        </a>
+       </div>
+      </div>
+     </div>
+     <div class="team-member">
+      <div class="member-photo">
+       <img alt="Andrew M Bean" src="img/members/andrew_bean.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
+      </div>
+      <h4 class="member-name">
+       Andrew M. Bean
+      </h4>
+      <p class="member-role">
+       DPhil Student
+      </p>
+      <p class="member-focus">
+       LLM evaluations, human-LLM interaction
+      </p>
 
-Djavan holds a PhD and an MSc from Tsinghua University in Environmental Science & Engineering, an MEng from UC Berkeley in Industrial Engineering & Operations Research, and a BA from Sciences Po Paris. He has published in journals such as Applied Energy, Renewable & Sustainable Energy Reviews, and Bioresource Technology.
-                        </p>
-                        <div class="member-contact-links">
-                            <a href="">Email</a>
-                            <a href="" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                            <a href="" target="_blank" rel="noopener noreferrer">Website</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="team-member">
-                    <div class="member-photo">
-                        <img src="img/members/andrew_bean.jpeg" alt="Andrew M Bean" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
-                    </div>
-                    <h4 class="member-name">Andrew M. Bean</h4>
-                    <p class="member-role">DPhil Student</p>
-                    <p class="member-focus">LLM evaluations, human-LLM interaction</p>
-
-                    <div class="member-full-details">
-                        <p class="member-bio">
-                            Andrew is a DPhil student in Social Data Science at the OII. His research focuses on cooperative artificial intelligence. He studies potential types of human-AI cooperation, the nature of those interactions, and necessary developments to enable that cooperation. On the technical side, he has studied applied machine learning, especially reinforcement learning and natural language processing, for their applications to developing AI. </br> </br>
-
-Andrew holds a B.S. in Applied Mathematics from Yale University and an MSc in Social Data Science from the OII. He is a Clarendon Scholar and was previously a Thouron Prize winner at the University of Cambridge (Pembroke College).
-                        </p>
-                        <div class="member-contact-links">
-                            <a href="">Email</a>
-                            <a href="" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                            <a href="" target="_blank" rel="noopener noreferrer">Website</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="team-member">
-                    <div class="member-photo">
-                        <img src="img/members/yushi_y.png" alt="Yushi Yang" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
-                    </div>
-                    <h4 class="member-name">Yushi Yang</h4>
-                    <p class="member-role">DPhil Student</p>
-                    <p class="member-focus">AI safety, mechanistic interpretability in LLMs</p>
-
-                    <div class="member-full-details">
-                        <p class="member-bio">
-Yushi is a DPhil student in Social Data Science at the OII, and a data scientist. Her research focuses on interpretability methods to improve the safety of large language models.
+<div class="member-contact-links">
+       <a href="mailto:andrew.bean@oii.ox.ac.uk" title="Email">
+        <i class="fas fa-envelope">
+        </i>
+       </a>
+       <a href="https://www.linkedin.com/in/andrew-m-bean/?originalSubdomain=uk" rel="noopener noreferrer" target="_blank">
+        <i class="fab fa-linkedin">
+        </i>
+       </a>
+       <a href="https://am-bean.github.io/" rel="noopener noreferrer" target="_blank">
+        <i class="fas fa-globe">
+        </i>
+       </a>
+      </div>
+      
+      <div class="member-full-details">
+       <p class="member-bio">
+        Andrew is a DPhil student in Social Data Science at the OII. His research focuses on cooperative artificial intelligence. He studies potential types of human-AI cooperation, the nature of those interactions, and necessary developments to enable that cooperation. On the technical side, he has studied applied machine learning, especially reinforcement learning and natural language processing, for their applications to developing AI.
+        Andrew holds a B.S. in Applied Mathematics from Yale University and an MSc in Social Data Science from the OII. He is a Clarendon Scholar and was previously a Thouron Prize winner at the University of Cambridge (Pembroke College).
+       </p>
+       <div class="member-contact-links">
+        <a href="" title="Email">
+         <i class="fas fa-envelope">
+         </i>
+        </a>
+        <a href="" rel="noopener noreferrer" target="_blank">
+         <i class="fab fa-linkedin">
+         </i>
+        </a>
+        <a href="" rel="noopener noreferrer" target="_blank">
+         <i class="fas fa-globe">
+         </i>
+        </a>
+       </div>
+      </div>
+     </div>
+     <div class="team-member">
+      <div class="member-photo">
+       <img alt="Yushi Yang" src="img/members/yushi_y.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
+      </div>
+      <h4 class="member-name">
+       Yushi Yang
+      </h4>
+      <p class="member-role">
+       DPhil Student
+      </p>
+      <p class="member-focus">
+       AI safety, mechanistic interpretability in LLMs
+      </p>
+      <div class="member-contact-links">
+       <a href="" title="Email">
+        <i class="fas fa-envelope">
+        </i>
+       </a>
+       <a href="" rel="noopener noreferrer" target="_blank">
+        <i class="fab fa-linkedin">
+        </i>
+       </a>
+       <a href="" rel="noopener noreferrer" target="_blank">
+        <i class="fas fa-globe">
+        </i>
+       </a>
+      </div>
+      <div class="member-full-details">
+       <p class="member-bio">
+        Yushi is a DPhil student in Social Data Science at the OII, and a data scientist. Her research focuses on interpretability methods to improve the safety of large language models.
 
 Yushi holds an MSc in Statistical Science from the University of Oxford and an MSc in Artificial Intelligence from Imperial College London. Before that, she held a BSc in Mathematics, Operation Research, Statistics, and Economics from the University of Warwick. Prior to the DPhil, she interned with UNDP as a data analyst, at Oxford and Imperial College London as a machine learning researcher, and at a start-up as a data scientist.
 
-Yushi’s experience includes a range of data science projects, developing machine learning models to build privacy-preserving recommender systems, track brand sentiment in online news, and predict US gun violence diffusion rates. Her skillsets include Python, R, SQL, deep learning models, and AWS SageMaker
-                        </p>
-                        <div class="member-contact-links">
-                            <a href="">Email</a>
-                            <a href="" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                            <a href="" target="_blank" rel="noopener noreferrer">Website</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="team-member">
-                    <div class="member-photo">
-                        <img src="img/members/harry_mayne.jpeg" alt="Harry Mayne" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
-                    </div>
-                    <h4 class="member-name">Harry Mayne</h4>
-                    <p class="member-role">DPhil Student</p>
-                    <p class="member-focus">LLM interpretability, AI safety, representation engineering</p>
-
-                    <div class="member-full-details">
-                        <p class="member-bio">
-                            Harry's DPhil focuses on language model explainability and interpretability. His current research explores whether models can reliably explain their outputs in natural language, and what the implications are for broader human-computer interaction. Harry has previously worked on mechanistic interpretability problems and continues to contribute to this area.
-                        </p>
-                        <div class="member-contact-links">
-                            <a href="https://www.linkedin.com/in/harry-mayne-04aba7194" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                            <a href="https://www.harrymayne.com/" target="_blank" rel="noopener noreferrer">Website</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="team-member">
-                    <div class="member-photo">
-                        <img src="img/members/jessica_rodrigues.jpeg" alt="Jessica Rodrigues" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
-                    </div>
-                    <h4 class="member-name">Jessica Rodrigues</h4>
-                    <p class="member-role">DPhil Student</p>
-                    <p class="member-focus">knowledge graphs, metascience</p>
-
-                    <div class="member-full-details">
-                        <p class="member-bio">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                        </p>
-                        <div class="member-contact-links">
-                            <a href="">Email</a>
-                            <a href="" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                            <a href="" target="_blank" rel="noopener noreferrer">Website</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="team-member">
-                    <div class="member-photo">
-                        <img src="img/members/guy_parsons.jpeg" alt="Guy Parsons" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
-                    </div>
-                    <h4 class="member-name">Guy Parsons</h4>
-                    <p class="member-role">DPhil Student</p>
-                    <p class="member-focus">Healthcare AI, digital health</p>
-
-                    <div class="member-full-details">
-                        <p class="member-bio">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                        </p>
-                        <div class="member-contact-links">
-                            <a href="">Email</a>
-                            <a href="" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                            <a href="" target="_blank" rel="noopener noreferrer">Website</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="team-member">
-                    <div class="member-photo">
-                        <img src="img/members/karolina_k.png" alt="Karolina Korgul" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
-                    </div>
-                    <h4 class="member-name">Karolina Korgul</h4>
-                    <p class="member-role">DPhil Student</p>
-                    <p class="member-focus">AI safety, LLM-based agents</p>
-
-                    <div class="member-full-details">
-                        <p class="member-bio">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                        </p>
-                        <div class="member-contact-links">
-                            <a href="">Email</a>
-                            <a href="" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                            <a href="" target="_blank" rel="noopener noreferrer">Website</a>
-                        </div>
-                    </div>
-                </div>
-                   
-                                
-                <div class="team-member">
-                    <div class="member-photo">
-                        <img src="img/members/ryan_othniel_kearns.jpeg" alt="Ryan Kearns" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
-                    </div>
-                    <h4 class="member-name">Ryan Othniel Kearns</h4>
-                    <p class="member-role">MSc Student (2024-2025)</p>
-                    <p class="member-focus">Reasoning in LLMs; Science of AI evaluations</p>
-
-                    <div class="member-full-details">
-                        <p class="member-bio">
-                            Ryan Othniel Kearns is an MSc and incoming DPhil student in the Reasoning with Machines AI Lab, generously supported by the Clarendon Scholarship. His research focuses on understanding reasoning in large language models (LLMs) and the science of AI evaluations. Previously, Ryan studied Philosophy (BAH) and Computer Science (BS) at Stanford University.
-                        </p>
-                        <div class="member-contact-links">
-                            <a href="mailto:ryan.kearns@oii.ox.ac.uk">Email</a>
-                            <a href="https://www.linkedin.com/in/ryanothnielkearns/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                            <a href="https://www.ryanothnielkearns.com/" target="_blank" rel="noopener noreferrer">Website</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-member">
-                    <div class="member-photo">
-                        <img src="img/members/shreyansh_padarha.png" alt="Ryan Kearns" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
-                    </div>
-                    <h4 class="member-name">Shreyansh</h4>
-                    <p class="member-role">MSc Student (2024-2025)</p>
-                    <p class="member-focus">LLMs, knowledge distillations</p>
-
-                    <div class="member-full-details">
-                        <p class="member-bio">
-                            Shreyansh holds a BSc in Data Science and has experience working at startups, where he developed AI-driven solutions for film, TV production, and advertising. He has also conducted cross-functional research in Malaysia, where he developed clinical models for dental care. His research work also includes infusing computer vision in cattle domestication and opinion mining rhetoric of LLMs on social media.
+Yushi&rsquo;s experience includes a range of data science projects, developing machine learning models to build privacy-preserving recommender systems, track brand sentiment in online news, and predict US gun violence diffusion rates. Her skillsets include Python, R, SQL, deep learning models, and AWS SageMaker
+       </p>
+       <div class="member-contact-links">
+        <a href="" title="Email">
+         <i class="fas fa-envelope">
+         </i>
+        </a>
+        <a href="" rel="noopener noreferrer" target="_blank">
+         <i class="fab fa-linkedin">
+         </i>
+        </a>
+        <a href="" rel="noopener noreferrer" target="_blank">
+         <i class="fas fa-globe">
+         </i>
+        </a>
+       </div>
+      </div>
+     </div>
+     <div class="team-member">
+      <div class="member-photo">
+       <img alt="Harry Mayne" src="img/members/harry_mayne.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
+      </div>
+      <h4 class="member-name">
+       Harry Mayne
+      </h4>
+      <p class="member-role">
+       DPhil Student
+      </p>
+      <p class="member-focus">
+       LLM interpretability, AI safety, LLM evals
+      </p>
+      <div class="member-contact-links">
+       <a href="https://www.linkedin.com/in/harry-mayne-04aba7194" rel="noopener noreferrer" target="_blank">
+        <i class="fab fa-linkedin">
+        </i>
+       </a>
+       <a href="https://www.harrymayne.com/" rel="noopener noreferrer" target="_blank">
+        <i class="fas fa-globe">
+        </i>
+       </a>
+      </div>
+      <div class="member-full-details">
+       <p class="member-bio">
+        Harry's DPhil focuses on language model explainability and interpretability. His current research explores whether models can reliably explain their outputs in natural language, and what the implications are for broader human-computer interaction. Harry has previously worked on mechanistic interpretability problems and continues to contribute to this area.
+       </p>
+       <div class="member-contact-links">
+        <a href="https://www.linkedin.com/in/harry-mayne-04aba7194" rel="noopener noreferrer" target="_blank">
+         <i class="fab fa-linkedin">
+         </i>
+        </a>
+        <a href="https://www.harrymayne.com/" rel="noopener noreferrer" target="_blank">
+         <i class="fas fa-globe">
+         </i>
+        </a>
+       </div>
+      </div>
+     </div>
+     <div class="team-member">
+      <div class="member-photo">
+       <img alt="Jessica Rodrigues" src="img/members/jessica_rodrigues.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
+      </div>
+      <h4 class="member-name">
+       Jessica Rodrigues
+      </h4>
+      <p class="member-role">
+       DPhil Student
+      </p>
+      <p class="member-focus">
+       knowledge graphs, metascience
+      </p>
+      <div class="member-contact-links">
+       <a href="" title="Email">
+        <i class="fas fa-envelope">
+        </i>
+       </a>
+       <a href="" rel="noopener noreferrer" target="_blank">
+        <i class="fab fa-linkedin">
+        </i>
+       </a>
+       <a href="" rel="noopener noreferrer" target="_blank">
+        <i class="fas fa-globe">
+        </i>
+       </a>
+      </div>
+      <div class="member-full-details">
+       <p class="member-bio">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+       </p>
+       <div class="member-contact-links">
+        <a href="" title="Email">
+         <i class="fas fa-envelope">
+         </i>
+        </a>
+        <a href="" rel="noopener noreferrer" target="_blank">
+         <i class="fab fa-linkedin">
+         </i>
+        </a>
+        <a href="" rel="noopener noreferrer" target="_blank">
+         <i class="fas fa-globe">
+         </i>
+        </a>
+       </div>
+      </div>
+     </div>
+     <div class="team-member">
+      <div class="member-photo">
+       <img alt="Guy Parsons" src="img/members/guy_parsons.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
+      </div>
+      <h4 class="member-name">
+       Guy Parsons
+      </h4>
+      <p class="member-role">
+       DPhil Student
+      </p>
+      <p class="member-focus">
+       Healthcare AI, digital health
+      </p>
+      <div class="member-contact-links">
+       <a href="" title="Email">
+        <i class="fas fa-envelope">
+        </i>
+       </a>
+       <a href="" rel="noopener noreferrer" target="_blank">
+        <i class="fab fa-linkedin">
+        </i>
+       </a>
+       <a href="" rel="noopener noreferrer" target="_blank">
+        <i class="fas fa-globe">
+        </i>
+       </a>
+      </div>
+      <div class="member-full-details">
+       <p class="member-bio">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+       </p>
+       <div class="member-contact-links">
+        <a href="" title="Email">
+         <i class="fas fa-envelope">
+         </i>
+        </a>
+        <a href="" rel="noopener noreferrer" target="_blank">
+         <i class="fab fa-linkedin">
+         </i>
+        </a>
+        <a href="" rel="noopener noreferrer" target="_blank">
+         <i class="fas fa-globe">
+         </i>
+        </a>
+       </div>
+      </div>
+     </div>
+     <div class="team-member">
+      <div class="member-photo">
+       <img alt="Karolina Korgul" src="img/members/karolina_k.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
+      </div>
+      <h4 class="member-name">
+       Karolina Korgul
+      </h4>
+      <p class="member-role">
+       DPhil Student
+      </p>
+      <p class="member-focus">
+       AI safety, Agentic AI
+      </p>
+      <div class="member-contact-links">
+       <a href="" title="Email">
+        <i class="fas fa-envelope">
+        </i>
+       </a>
+       <a href="" rel="noopener noreferrer" target="_blank">
+        <i class="fab fa-linkedin">
+        </i>
+       </a>
+       <a href="" rel="noopener noreferrer" target="_blank">
+        <i class="fas fa-globe">
+        </i>
+       </a>
+      </div>
+      <div class="member-full-details">
+       <p class="member-bio">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+       </p>
+       <div class="member-contact-links">
+        <a href="" title="Email">
+         <i class="fas fa-envelope">
+         </i>
+        </a>
+        <a href="" rel="noopener noreferrer" target="_blank">
+         <i class="fab fa-linkedin">
+         </i>
+        </a>
+        <a href="" rel="noopener noreferrer" target="_blank">
+         <i class="fas fa-globe">
+         </i>
+        </a>
+       </div>
+      </div>
+     </div>
+     <div class="team-member">
+      <div class="member-photo">
+       <img alt="Ryan Kearns" src="img/members/ryan_othniel_kearns.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
+      </div>
+      <h4 class="member-name">
+       Ryan Othniel Kearns
+      </h4>
+      <p class="member-role">
+       MSc Student (2024-2025)
+      </p>
+      <p class="member-focus">
+       Reasoning in LLMs; Science of AI evaluations
+      </p>
+      <div class="member-contact-links">
+       <a href="mailto:ryan.kearns@oii.ox.ac.uk" title="Email">
+        <i class="fas fa-envelope">
+        </i>
+       </a>
+       <a href="https://www.linkedin.com/in/ryanothnielkearns/" rel="noopener noreferrer" target="_blank">
+        <i class="fab fa-linkedin">
+        </i>
+       </a>
+       <a href="https://www.ryanothnielkearns.com/" rel="noopener noreferrer" target="_blank">
+        <i class="fas fa-globe">
+        </i>
+       </a>
+      </div>
+      <div class="member-full-details">
+       <p class="member-bio">
+        Ryan Othniel Kearns is an MSc and incoming DPhil student in the Reasoning with Machines AI Lab, generously supported by the Clarendon Scholarship. His research focuses on understanding reasoning in large language models (LLMs) and the science of AI evaluations. Previously, Ryan studied Philosophy (BAH) and Computer Science (BS) at Stanford University.
+       </p>
+       <div class="member-contact-links">
+        <a href="mailto:ryan.kearns@oii.ox.ac.uk" title="Email">
+         <i class="fas fa-envelope">
+         </i>
+        </a>
+        <a href="https://www.linkedin.com/in/ryanothnielkearns/" rel="noopener noreferrer" target="_blank">
+         <i class="fab fa-linkedin">
+         </i>
+        </a>
+        <a href="https://www.ryanothnielkearns.com/" rel="noopener noreferrer" target="_blank">
+         <i class="fas fa-globe">
+         </i>
+        </a>
+       </div>
+      </div>
+     </div>
+     <div class="team-member">
+      <div class="member-photo">
+       <img alt="Ryan Kearns" src="img/members/shreyansh_padarha.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
+      </div>
+      <h4 class="member-name">
+       Shreyansh Padarha
+      </h4>
+      <p class="member-role">
+       MSc Student (2024-2025)
+      </p>
+      <p class="member-focus">
+       LLMs, knowledge distillations
+      </p>
+      <div class="member-contact-links">
+       <a href="mailto:ryan.kearns@oii.ox.ac.uk" title="Email">
+        <i class="fas fa-envelope">
+        </i>
+       </a>
+       <a href="" rel="noopener noreferrer" target="_blank">
+        <i class="fab fa-linkedin">
+        </i>
+       </a>
+       <a href="" rel="noopener noreferrer" target="_blank">
+        <i class="fas fa-globe">
+        </i>
+       </a>
+      </div>
+      <div class="member-full-details">
+       <p class="member-bio">
+        Shreyansh holds a BSc in Data Science and has experience working at startups, where he developed AI-driven solutions for film, TV production, and advertising. He has also conducted cross-functional research in Malaysia, where he developed clinical models for dental care. His research work also includes infusing computer vision in cattle domestication and opinion mining rhetoric of LLMs on social media.
                             Shreyansh is passionate about leveraging data-driven approaches to tackle pressing social issues, including biodiversity conservation, climate change mitigation, early medical detection, and extremism behaviour detection.
-                        </p>
-                        <div class="member-contact-links">
-                            <a href="mailto:ryan.kearns@oii.ox.ac.uk">Email</a>
-                            <a href="" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                            <a href="" target="_blank" rel="noopener noreferrer">Website</a>
-                        </div>
-                    </div>
-                </div>
+       </p>
+       <div class="member-contact-links">
+        <a href="mailto:ryan.kearns@oii.ox.ac.uk" title="Email">
+         <i class="fas fa-envelope">
+         </i>
+        </a>
+        <a href="" rel="noopener noreferrer" target="_blank">
+         <i class="fab fa-linkedin">
+         </i>
+        </a>
+        <a href="" rel="noopener noreferrer" target="_blank">
+         <i class="fas fa-globe">
+         </i>
+        </a>
+       </div>
+      </div>
+     </div>
+     <div class="team-member">
+      <div class="member-photo">
+       <img alt="Sebastian Petric" src="img/members/sebastian_petric.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
+      </div>
+      <h4 class="member-name">
+       Sebastian Petric
+      </h4>
+      <p class="member-role">
+       Visiting Policy Fellow (2024-2026)
+      </p>
+      <p class="member-focus">
+       LLMs and financial time series
+      </p>
+      <div class="member-contact-links">
+       <a href="" title="Email">
+        <i class="fas fa-envelope">
+        </i>
+       </a>
+       <a href="" rel="noopener noreferrer" target="_blank">
+        <i class="fab fa-linkedin">
+        </i>
+       </a>
+       <a href="" rel="noopener noreferrer" target="_blank">
+        <i class="fas fa-globe">
+        </i>
+       </a>
+      </div>
+      <div class="member-full-details">
+       <p class="member-bio">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+       </p>
+       <div class="member-contact-links">
+        <a href="" title="Email">
+         <i class="fas fa-envelope">
+         </i>
+        </a>
+        <a href="" rel="noopener noreferrer" target="_blank">
+         <i class="fab fa-linkedin">
+         </i>
+        </a>
+        <a href="" rel="noopener noreferrer" target="_blank">
+         <i class="fas fa-globe">
+         </i>
+        </a>
+       </div>
+      </div>
+     </div>
+    </div>
 
-
-                <div class="team-member">
-                    <div class="member-photo">
-                        <img src="img/members/sebastian_petric.jpg" alt="Sebastian Petric" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
-                    </div>
-                    <h4 class="member-name">Sebastian Petric</h4>
-                    <p class="member-role">Visiting Policy Fellow (2024-2026)</p>
-                    <p class="member-focus">LLMs and financial time series</p>
-
-                    <div class="member-full-details">
-                        <p class="member-bio">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                        </p>    
-                        <div class="member-contact-links">
-                            <a href="">Email</a>
-                            <a href="" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                            <a href="" target="_blank" rel="noopener noreferrer">Website</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            
-            
-            <div class="collaborators-section">
-                <h4>Collaborators</h4>
-                <div class="collaborators-list">
-                    <span class="collaborator-tag">Jude Khouja</span>
-                    <span class="collaborator-tag">Hannah Kirk</span>
-                    <span class="collaborator-tag">Lingyi Yang</span>
-                </div>
-            </div>
-        </section>
-
-        <section id="publications" class="section">
-            <div class="section-header">
-                <h2 class="section-title">Publications</h2>
-                <p class="section-subtitle">
-                    Our research contributions to LLM evaluation, AI safety, mechanistic interpretability, and human-LLM interaction.
-                </p>
-            </div>
-            
-            <div class="publications-list">
-                <div class="publication">
-                    <span class="pub-year">2025</span>
-                    <h4 class="pub-title">LINGOLY-TOO: Disentangling Memorisation from Reasoning with Linguistic Templatisation and Orthographic Obfuscation</h4>
-                    <p class="pub-authors">J Khouja, K Korgul, S Hellsten, L Yang, V Neacs, H Mayne, R Kearns, A Mahdi</p>
-                    <p class="pub-venue">arXiv preprint arXiv:2503.02972</p>
-                </div>
-                
-                <div class="publication">
-                    <span class="pub-year">2025</span>
-                    <h4 class="pub-title">Clinical knowledge in LLMs does not translate to human interactions</h4>
-                    <p class="pub-authors">AM Bean, R Payne, G Parsons, HR Kirk, J Ciro, R Mosquera, A Mahdi</p>
-                    <p class="pub-venue">arXiv preprint arXiv:2504.18919</p>
-                </div>
-                
-                <div class="publication">
-                    <span class="pub-year">2025</span>
-                    <h4 class="pub-title">Evaluating the role of 'Constitutions' for learning from AI feedback</h4>
-                    <p class="pub-authors">S Redgate, AM Bean, A Mahdi</p>
-                    <p class="pub-venue">arXiv preprint arXiv:2411.10168</p>
-                </div>
-                
-                <div class="publication">
-                    <span class="pub-year">2024</span>
-                    <h4 class="pub-title">Can sparse autoencoders be used to decompose and interpret steering vectors?</h4>
-                    <p class="pub-authors">H Mayne, Y Yang, A Mahdi</p>
-                    <p class="pub-venue">arXiv preprint arXiv:2411.08790</p>
-                </div>
-                
-                <div class="publication">
-                    <span class="pub-year">2024</span>
-                    <h4 class="pub-title">Beyond Toxic Neurons: A Mechanistic Analysis of DPO for Toxicity Reduction</h4>
-                    <p class="pub-authors">Y Yang, F Sondej, H Mayne, A Mahdi</p>
-                    <p class="pub-venue">arXiv preprint arXiv:2411.06424</p>
-                </div>
-                
-                <div class="publication">
-                    <span class="pub-year">2024</span>
-                    <h4 class="pub-title">Improving In-Context Learning with Small Language Model Ensembles</h4>
-                    <p class="pub-authors">MM Mojarradi, L Yang, R McCraith, A Mahdi</p>
-                    <p class="pub-venue">arXiv preprint arXiv:2410.21868</p>
-                </div>
-                
-                <div class="publication">
-                    <span class="pub-year">2024</span>
-                    <h4 class="pub-title">Combining Hough Transform and Deep Learning Approaches to Reconstruct ECG Signals From Printouts</h4>
-                    <p class="pub-authors">F Krones, B Walker, T Lyons, A Mahdi</p>
-                    <p class="pub-venue">arXiv preprint arXiv:2410.14185</p>
-                </div>
-                
-                <div class="publication">
-                    <span class="pub-year">2024</span>
-                    <h4 class="pub-title">HELP-Med: Human Evaluation of LLM Partnership in Medical Self-Assessment</h4>
-                    <p class="pub-authors"></p>
-                    <p class="pub-venue"></p>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="section">
-            <div class="section-header">
-                <h2 class="section-title">Contact</h2>
-                <p class="section-subtitle">
-                    For inquiries about research, collaboration, or joining the lab, please get in touch.
-                </p>
-            </div>
-            <div class="contact-section">
-                <div class="contact-grid">
-                    <div class="contact-item">
-                        <h4>Email</h4>
-                        <p><a href="mailto:adam.mahdi@oii.ox.ac.uk" style="color: #2d5986;">adam.mahdi@oii.ox.ac.uk</a></p>
-                    </div>
-                    <div class="contact-item">
-                        <h4>Address</h4>
-                        <p>Oxford Internet Institute<br>
-                        1 St Giles', Oxford OX1 3JS, United Kingdom</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <p>&copy; 2024 Reasoning with Machines AI Lab, Oxford University. All rights reserved.</p>
-    </footer>
-<script>
-        document.addEventListener('DOMContentLoaded', function() {
+    <div class="collaborators-section">
+     <h4>
+      Past Members
+     </h4>
+     <div class="collaborators-list">
+      <span class="collaborator-tag">
+       Tedi Yankov, MSc (2024) 
+      </span>
+      <span class="collaborator-tag">
+       Saskia Redgate, MSc (2024) 
+      </span>
+      <span class="collaborator-tag">
+       Mehdi Mojarradi, MSc (2024)
+      </span>
+      <span class="collaborator-tag">
+       Sneha Kotecha, MSc (2024)
+      </span>
+      <span class="collaborator-tag">
+       Harry Mayne, MSc (2023)
+      </span>
+      <span class="collaborator-tag">
+       Karolina Korgul, MSc (2023)
+      </span>
+      <span class="collaborator-tag">
+       Harry Roberts, MSc (2023)
+      </span>
+      <span class="collaborator-tag">
+       Kyati Khandelwal, MSc (2023)
+      </span>
+          </span>
+      <span class="collaborator-tag">
+       Andrew Bean, MSc (2022)
+      </span>
+      <span class="collaborator-tag">
+       Nathan Bailey, MSc (2022)
+      </span>
+      <span class="collaborator-tag">
+       Benedict Yeo, MSc (2022)
+      </span>
+      <span class="collaborator-tag">
+       Yuxuan Zhang, MSc (2022)
+      </span>
+    
+     </div>
+    </div>
+   </section>
+   <section class="section" id="publications">
+    <div class="section-header">
+     <h2 class="section-title">
+      Publications
+     </h2>
+     <p class="section-subtitle">
+      Our research contributions to LLM evaluation, AI safety, mechanistic interpretability, and human-LLM interaction.
+     </p>
+    </div>
+    <div class="publications-list">
+     <div class="publication">
+      <span class="pub-year">
+       2025
+      </span>
+      <h4 class="pub-title">
+       LINGOLY-TOO: Disentangling Memorisation from Reasoning with Linguistic Templatisation and Orthographic Obfuscation
+      </h4>
+      <p class="pub-authors">
+       J Khouja, K Korgul, S Hellsten, L Yang, V Neacs, H Mayne, R Kearns, A Mahdi
+      </p>
+      <p class="pub-venue">
+       arXiv preprint arXiv:2503.02972
+      </p>
+     </div>
+     <div class="publication">
+      <span class="pub-year">
+       2025
+      </span>
+      <h4 class="pub-title">
+       Clinical knowledge in LLMs does not translate to human interactions
+      </h4>
+      <p class="pub-authors">
+       AM Bean, R Payne, G Parsons, HR Kirk, J Ciro, R Mosquera, A Mahdi
+      </p>
+      <p class="pub-venue">
+       arXiv preprint arXiv:2504.18919
+      </p>
+     </div>
+     <div class="publication">
+      <span class="pub-year">
+       2025
+      </span>
+      <h4 class="pub-title">
+       Evaluating the role of 'Constitutions' for learning from AI feedback
+      </h4>
+      <p class="pub-authors">
+       S Redgate, AM Bean, A Mahdi
+      </p>
+      <p class="pub-venue">
+       arXiv preprint arXiv:2411.10168
+      </p>
+     </div>
+     <div class="publication">
+      <span class="pub-year">
+       2024
+      </span>
+      <h4 class="pub-title">
+       Can sparse autoencoders be used to decompose and interpret steering vectors?
+      </h4>
+      <p class="pub-authors">
+       H Mayne, Y Yang, A Mahdi
+      </p>
+      <p class="pub-venue">
+       arXiv preprint arXiv:2411.08790
+      </p>
+     </div>
+     <div class="publication">
+      <span class="pub-year">
+       2024
+      </span>
+      <h4 class="pub-title">
+       Beyond Toxic Neurons: A Mechanistic Analysis of DPO for Toxicity Reduction
+      </h4>
+      <p class="pub-authors">
+       Y Yang, F Sondej, H Mayne, A Mahdi
+      </p>
+      <p class="pub-venue">
+       arXiv preprint arXiv:2411.06424
+      </p>
+     </div>
+     <div class="publication">
+      <span class="pub-year">
+       2024
+      </span>
+      <h4 class="pub-title">
+       Improving In-Context Learning with Small Language Model Ensembles
+      </h4>
+      <p class="pub-authors">
+       MM Mojarradi, L Yang, R McCraith, A Mahdi
+      </p>
+      <p class="pub-venue">
+       arXiv preprint arXiv:2410.21868
+      </p>
+     </div>
+     <div class="publication">
+      <span class="pub-year">
+       2024
+      </span>
+      <h4 class="pub-title">
+       Combining Hough Transform and Deep Learning Approaches to Reconstruct ECG Signals From Printouts
+      </h4>
+      <p class="pub-authors">
+       F Krones, B Walker, T Lyons, A Mahdi
+      </p>
+      <p class="pub-venue">
+       arXiv preprint arXiv:2410.14185
+      </p>
+     </div>
+     <div class="publication">
+      <span class="pub-year">
+       2024
+      </span>
+      <h4 class="pub-title">
+       HELP-Med: Human Evaluation of LLM Partnership in Medical Self-Assessment
+      </h4>
+      <p class="pub-authors">
+      </p>
+      <p class="pub-venue">
+      </p>
+     </div>
+    </div>
+   </section>
+   <section class="section" id="contact">
+    <div class="section-header">
+     <h2 class="section-title">
+      Contact
+     </h2>
+     <p class="section-subtitle">
+      For inquiries about research, collaboration, or joining the lab, please get in touch.
+     </p>
+    </div>
+    <div class="contact-section">
+     <div class="contact-grid">
+      <div class="contact-item">
+       <h4>
+        Email
+       </h4>
+       <p>
+        <a href="mailto:adam.mahdi@oii.ox.ac.uk" style="color: #2d5986;">
+         adam.mahdi@oii.ox.ac.uk
+        </a>
+       </p>
+      </div>
+      <div class="contact-item">
+       <h4>
+        Address
+       </h4>
+       <p>
+        Oxford Internet Institute
+        <br/>
+        1 St Giles', Oxford OX1 3JS, United Kingdom
+       </p>
+      </div>
+     </div>
+    </div>
+   </section>
+  </main>
+  <footer class="footer">
+   <p>
+    &copy; 2024 Reasoning with Machines AI Lab, Oxford University. All rights reserved.
+   </p>
+  </footer>
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
             const expandButtons = document.querySelectorAll('.expand-bio-button');
 
             expandButtons.forEach(button => {
@@ -1100,26 +1541,33 @@ Yushi’s experience includes a range of data science projects, developing machi
                 });
             });
         });
-    </script>
-
-<div id="teamMemberModal" class="modal-overlay">
-        <div class="modal-content">
-            <span class="modal-close-button">&times;</span>
-            <div class="modal-photo-area">
-                 <div class="modal-photo-placeholder">[Photo Placeholder]</div>
-            </div>
-            <div class="modal-text-area">
-                <h3 id="modalMemberName">Member Name</h3>
-                <p id="modalMemberRole">Member Role</p>
-                <div id="modalMemberBio" class="member-bio">
-                    </div>
-                <div id="modalMemberContactLinks" class="member-contact-links">
-                    </div>
-            </div>
-        </div>
+  </script>
+  <div class="modal-overlay" id="teamMemberModal">
+   <div class="modal-content">
+    <span class="modal-close-button">
+     &times;
+    </span>
+    <div class="modal-photo-area">
+     <div class="modal-photo-placeholder">
+      [Photo Placeholder]
+     </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
+    <div class="modal-text-area">
+     <h3 id="modalMemberName">
+      Member Name
+     </h3>
+     <p id="modalMemberRole">
+      Member Role
+     </p>
+     <div class="member-bio" id="modalMemberBio">
+     </div>
+     <div class="member-contact-links" id="modalMemberContactLinks">
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
         const modalOverlay = document.getElementById('teamMemberModal');
         if (!modalOverlay) {
             console.error("Modal overlay not found!");
@@ -1213,6 +1661,6 @@ Yushi’s experience includes a range of data science projects, developing machi
             }
         });
     });
-    </script>
-</body>
+  </script>
+ </body>
 </html>
