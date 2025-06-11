@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Publications - Reasoning with Machines AI Lab
+  </title>
+  <style>
+   * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            background-color: #fdfdfd;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a365d 0%, #2d5986 100%);
+            color: white;
+            padding: 3rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .rml-logo {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .logo-circle {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.15);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 1px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .lab-identity h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .lab-tagline {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+        
+        .oxford-affiliation {
+            font-size: 1.4rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+        
+        .nav {
+            background: white;
+            padding: 0;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .nav ul {
+            list-style: none;
+            display: flex;
+            gap: 0;
+        }
+        
+        .nav li {
+            position: relative;
+        }
+        
+        .nav a {
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 1.25rem 1.5rem;
+            display: block;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .nav a:hover, .nav a.active {
+            color: #2d5986;
+            border-bottom-color: #2d5986;
+            background-color: #f8fafc;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section {
+            padding: 4rem 0;
+        }
+        
+        .section-header {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 2.25rem;
+            color: #1a365d;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #718096;
+            max-width: 800px;
+        }
+        
+        .research-overview {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 3rem;
+        }
+        
+        .research-areas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .research-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #2d5986;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .research-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .research-card h3 {
+            color: #1a365d;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .research-card p {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+        
+        .pi-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .pi-profile {
+            display: flex;
+            gap: 2.5rem;
+            align-items: flex-start;
+        }
+        
+        .pi-photo {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #718096;
+            flex-shrink: 0;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .pi-info h3 {
+            font-size: 1.8rem;
+            color: #1a365d;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .pi-title {
+            color: #718096;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+        
+        .pi-description {
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .team-member {
+            background: white;
+            padding: 1.0rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .member-photo {
+            width: 135px;
+            height: 135px;
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #718096;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .member-name {
+            font-size: 1.25rem;
+            color: #1a365d;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .member-role {
+            color: #718096;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .member-focus {
+            color: #4a5568;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .past-members-section {
+            background: #f8fafc;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            margin-top: 3rem;
+        }
+        
+        .past-members-section h3 {
+            color: #1a365d;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .past-members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .past-member {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        
+        .past-member-photo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #718096;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .past-member-name {
+            font-size: 1.1rem;
+            color: #1a365d;
+            margin-bottom: 0.25rem;
+            font-weight: 600;
+        }
+        
+        .past-member-role {
+            color: #718096;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+        
+        .collaborators-section {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .collaborators-section h4 {
+            color: #1a365d;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .collaborators-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .collaborator-tag {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            color: #4a5568;
+            font-size: 0.9rem;
+        }
+        
+        .publications-list {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+        
+        .publication {
+            padding: 2rem;
+            border-bottom: 1px solid #f1f5f9;
+            transition: background-color 0.2s;
+        }
+        
+        .publication:hover {
+            background-color: #f8fafc;
+        }
+        
+        .publication:last-child {
+            border-bottom: none;
+        }
+        
+        .pub-year {
+            display: inline-block;
+            background: #2d5986;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        
+        .pub-title {
+            font-size: 1.15rem;
+            color: #1a365d;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        
+        .pub-authors {
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .pub-venue {
+            color: #2d5986;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+        
+        .contact-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .contact-item h4 {
+            color: #1a365d;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .contact-item p {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+        
+        .footer {
+            background: #1a365d;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+        
+        .footer p {
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .lab-identity h1 {
+                font-size: 2rem;
+            }
+            
+            .nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .pi-profile {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+        }
+
+        /* ... (your existing CSS rules) ... */
+
+        /* Styles for the hidden details within each team member card */
+        .member-full-details {
+            display: none !important; /* Ensure these are always hidden on the card */
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65); /* Semi-transparent background */
+            display: none; /* Hidden by default */
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.25s ease-in-out;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            width: 90%;
+            max-width: 750px; /* Max width of modal */
+            position: relative;
+            text-align: left;
+            max-height: 85vh; /* Max height of modal */
+            overflow-y: auto; /* Enable scroll for long content */
+            display: flex; /* For layouting photo and text */
+            gap: 1.5rem; /* Space between photo area and text area */
+        }
+        
+        @media (max-width: 600px) {
+            .modal-content {
+                flex-direction: column; /* Stack photo and text on small screens */
+                padding: 1.5rem;
+            }
+            .modal-photo-area {
+                text-align: center; /* Center photo on small screens */
+            }
+        }
+
+        .modal-photo-area {
+            flex: 0 0 150px; /* Fixed width for photo area */
+        }
+
+        .modal-photo-placeholder {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #e9ecef, #dee2e6); /* Slightly different gradient */
+            border-radius: 50%; /* Circular photo in modal */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #495057;
+            border: 2px solid #ced4da;
+            margin: 0 auto; /* Center if parent is wider */
+        }
+
+        .modal-text-area {
+            flex: 1; /* Takes remaining space */
+        }
+
+        .modal-close-button {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2.2rem;
+            font-weight: 300;
+            color: #6c757d;
+            cursor: pointer;
+            line-height: 1;
+            padding: 5px;
+        }
+
+        .modal-close-button:hover {
+            color: #343a40;
+        }
+
+        #modalMemberName {
+            font-size: 2rem; /* Slightly larger */
+            color: #1a365d; /* From .pi-info h3 */
+            margin-bottom: 0.5rem;
+            font-weight: 400; /* From .section-title */
+        }
+
+        #modalMemberRole {
+            color: #718096; /* From .pi-title */
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem; /* Slightly larger */
+        }
+
+        /* Re-use or adapt .member-bio and .member-contact-links from previous solution if needed */
+        /* These styles should generally work fine */
+        .member-bio { /* This class is used inside the modal now */
+            font-size: 0.95rem; /* Standardize bio font size */
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .member-contact-links a { /* This class is used inside the modal now */
+            color: #2d5986;
+            text-decoration: none;
+            margin-right: 1rem; /* More spacing */
+            font-size: 0.95rem;
+            display: inline-block; /* Better spacing */
+            margin-bottom: 0.5rem; /* Spacing for wrapped links */
+        }
+
+        .member-contact-links a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Button on the card */
+        .view-details-button {
+            background-color: #2d5986;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .view-details-button:hover {
+            background-color: #1a365d;
+        }
+
+        .member-contact-links i {
+    font-size: 1.1rem;
+    margin: 0 8px;
+    color: #2d5986;
+    transition: color 0.2s;
+}
+.member-contact-links i:hover {
+    color: #1a365d;
+}
+
+/* ... (rest of your existing CSS rules) ... */
+  </style>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <header class="header">
+   <div class="header-content">
+    <div class="rml-logo">
+     <div class="logo-circle" style="padding:0;">
+      <img alt="RML Lab Logo" src="img/rml_logo.png" style="width:70px;height:70px;object-fit:cover;border-radius:50%;"/>
+     </div>
+     <div class="lab-identity">
+      <h1>
+       Reasoning with Machines AI Lab (RML)
+      </h1>
+      <p class="oxford-affiliation">
+       University of Oxford
+      </p>
+     </div>
+    </div>
+   </div>
+  </header>
+  <nav class="nav">
+   <div class="nav-content">
+    <ul>
+     <li>
+      <a href="index.html#research">
+       Research
+      </a>
+     </li>
+     <li>
+      <a href="index.html#pi">
+       Lab lead
+      </a>
+     </li>
+     <li>
+      <a href="index.html#team">
+       Team
+      </a>
+     </li>
+     <li>
+      <a href="publications.html">
+       Publications
+      </a>
+     </li>
+     <li>
+      <a href="index.html#contact">
+       Contact
+      </a>
+     </li>
+    </ul>
+   </div>
+  </nav>
+  <main class="container">
+   <section class="section" id="publications">
+    <div class="section-header">
+     <h2 class="section-title">
+      Recent Publications
+     </h2>
+
+    </div>
+
+            <div class="publications-list">
+
+        <div class="publication">
+        <span class="pub-year">
+            2025
+        </span>
+        <h4 class="pub-title">
+            Measuring what matters: Construct validity in large language model benchmarks
+        </h4>
+        <p class="pub-authors">
+        AM Bean, RO Kearns, A Romanou, FS Hafner, H Mayne, 
+        J Batzner, N Foroutan, C Schmitz, K Korgul, H Batra, O Deb, E Beharry, C Emde, T Foster, A Gausen,
+        M Grandury, J Khouja, S Han, V Hofmann, L Ibrahim, H Kim, HR Kirk, F Lin, L Luettgau, J Magomere, J Rystrøm, GKM Liu, 
+        A Sotnikova, Y Yang, Y Zhao, 
+        A Bibi, A Bosselut, R Clark, A Cohan, J Foerster, Y Gal, SA Hale, ID Raji, C Summerfield, PHS Torr, C Ududec, L Rocher, A Mahdi
+        </p>
+        <p class="pub-venue">
+          Forthcoming
+        </p>
+        </div>
+
+        <div class="publications-list">
+
+        <div class="publication">
+        <span class="pub-year">
+            2025
+        </span>
+        <h4 class="pub-title">
+            LINGOLY-TOO: Disentangling memorisation from reasoning with linguistic templatisation and orthographic obfuscation
+        </h4>
+        <p class="pub-authors">
+            J Khouja, K Korgul, S Hellsten, L Yang, V Neacs, H Mayne, R Kearns, A Bean, A Mahdi
+        </p>
+        <p class="pub-venue">
+            <a href="https://arxiv.org/abs/2503.02972" target="_blank" rel="noopener noreferrer">
+            arXiv:2503.02972
+            </a>
+        </p>
+        </div>
+
+        <div class="publication">
+        <span class="pub-year">
+            2025
+        </span>
+        <h4 class="pub-title">
+            Clinical knowledge in LLMs does not translate to human interactions
+        </h4>
+        <p class="pub-authors">
+            AM Bean, R Payne, G Parsons, HR Kirk, J Ciro, R Mosquera, S Hincapié Monsalve, AS Ekanayaka, L Tarassenko, L Rocher, A Mahdi
+        </p>
+        <p class="pub-venue">
+            <a href="https://arxiv.org/abs/2504.18919" target="_blank" rel="noopener noreferrer">
+            arXiv:2504.18919
+            </a>
+        </p>
+        </div>
+
+     <div class="publication">
+      <span class="pub-year">
+       2025
+      </span>
+      <h4 class="pub-title">
+       Evaluating the role of 'Constitutions' for learning from AI feedback
+      </h4>
+      <p class="pub-authors">
+       S Redgate, AM Bean, A Mahdi
+      </p>
+      <p class="pub-venue">
+       arXiv:2411.10168
+      </p>
+     </div>
+     <div class="publication">
+      <span class="pub-year">
+       2024
+      </span>
+      <h4 class="pub-title">
+       Can sparse autoencoders be used to decompose and interpret steering vectors?
+      </h4>
+      <p class="pub-authors">
+       H Mayne, Y Yang, A Mahdi
+      </p>
+      <p class="pub-venue">
+       arXiv:2411.08790
+      </p>
+     </div>
+     <div class="publication">
+      <span class="pub-year">
+       2024
+      </span>
+      <h4 class="pub-title">
+       Beyond toxic neurons: a mechanistic analysis of DPO for toxicity reduction
+      </h4>
+      <p class="pub-authors">
+       Y Yang, F Sondej, H Mayne, A Mahdi
+      </p>
+      <p class="pub-venue">
+       arXiv:2411.06424
+      </p>
+     </div>
+     <div class="publication">
+      <span class="pub-year">
+       2024
+      </span>
+      <h4 class="pub-title">
+       Improving in-context learning with small language model ensembles
+      </h4>
+      <p class="pub-authors">
+       MM Mojarradi, L Yang, R McCraith, A Mahdi
+      </p>
+      <p class="pub-venue">
+       arXiv:2410.21868
+      </p>
+     </div>
+     <div class="publication">
+      <span class="pub-year">
+       2024
+      </span>
+      <h4 class="pub-title">
+       Combining Hough transform and deep learning approaches to reconstruct ECG signals from printouts
+      </h4>
+      <p class="pub-authors">
+       F Krones, B Walker, T Lyons, A Mahdi
+      </p>
+      <p class="pub-venue">
+       arXiv:2410.14185
+      </p>
+     </div>
+
+
+    </div>
+   </section>
+   <section class="section" id="contact">
+    <div class="section-header">
+     <h2 class="section-title">
+      Contact
+     </h2>
+     <p class="section-subtitle">
+      For inquiries about research, collaboration, or joining the lab, please get in touch.
+     </p>
+    </div>
+    <div class="contact-section">
+     <div class="contact-grid">
+      <div class="contact-item">
+       <h4>
+        Email
+       </h4>
+       <p>
+        <a href="mailto:adam.mahdi@oii.ox.ac.uk" style="color: #2d5986;">
+         adam.mahdi@oii.ox.ac.uk
+        </a>
+       </p>
+      </div>
+      <div class="contact-item">
+       <h4>
+        Address
+       </h4>
+       <p>
+        Oxford Internet Institute
+        <br/>
+        1 St Giles', Oxford OX1 3JS, United Kingdom
+       </p>
+      </div>
+     </div>
+    </div>
+   </section>
+  </main>
+  <footer class="footer">
+   <p>
+    &copy; 2024 Reasoning with Machines AI Lab, Oxford University. All rights reserved.
+   </p>
+  </footer>
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
+            const expandButtons = document.querySelectorAll('.expand-bio-button');
+
+            expandButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Find the parent .team-member div
+                    const teamMember = this.closest('.team-member');
+                    if (!teamMember) return;
+
+                    // Find the expandable content within this team member
+                    const expandableContent = teamMember.querySelector('.member-expandable-content');
+                    if (!expandableContent) return;
+
+                    // Toggle the 'expanded' class which triggers CSS display change
+                    expandableContent.classList.toggle('expanded');
+
+                    // Update button text based on the state
+                    if (expandableContent.classList.contains('expanded')) {
+                        this.textContent = 'Read Less';
+                    } else {
+                        this.textContent = 'Read More';
+                    }
+                });
+            });
+        });
+  </script>
+  <div class="modal-overlay" id="teamMemberModal">
+   <div class="modal-content">
+    <span class="modal-close-button">
+     &times;
+    </span>
+    <div class="modal-photo-area">
+     <div class="modal-photo-placeholder">
+      [Photo Placeholder]
+     </div>
+    </div>
+    <div class="modal-text-area">
+     <h3 id="modalMemberName">
+      Member Name
+     </h3>
+     <p id="modalMemberRole">
+      Member Role
+     </p>
+     <div class="member-bio" id="modalMemberBio">
+     </div>
+     <div class="member-contact-links" id="modalMemberContactLinks">
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
+        const modalOverlay = document.getElementById('teamMemberModal');
+        if (!modalOverlay) {
+            console.error("Modal overlay not found!");
+            return;
+        }
+        const modalCloseButton = modalOverlay.querySelector('.modal-close-button');
+        const modalMemberNameElem = document.getElementById('modalMemberName');
+        const modalMemberRoleElem = document.getElementById('modalMemberRole');
+        const modalMemberBioElem = document.getElementById('modalMemberBio');
+        const modalMemberContactLinksElem = document.getElementById('modalMemberContactLinks');
+        const modalPhotoPlaceholderElem = modalOverlay.querySelector('.modal-photo-placeholder');
+
+        // Make each .team-member card clickable (except if clicking a link inside)
+        const teamMemberDivs = document.querySelectorAll('.team-member');
+
+        teamMemberDivs.forEach(div => {
+            div.style.cursor = 'pointer';
+            div.addEventListener('click', function(event) {
+            // Prevent modal if clicking a link inside the card
+            if (event.target.tagName === 'A') return;
+                const teamMemberDiv = this.closest('.team-member');
+
+                // Get data from the team member card
+                const name = teamMemberDiv.querySelector('.member-name').textContent;
+                const role = teamMemberDiv.querySelector('.member-role').textContent;
+                
+                // Get photo content from the card: prefer <img> if present, else use text content
+                const photoDiv = teamMemberDiv.querySelector('.member-photo');
+                const imgElem = photoDiv ? photoDiv.querySelector('img') : null;
+                // Store the card's photo content for fallback use later
+                let cardPhotoContent = '';
+                // Clear previous modal photo content
+                modalPhotoPlaceholderElem.innerHTML = '';
+                if (imgElem && imgElem.src) {
+                    // If there's an image, clone it and set correct styles
+                    const modalImg = document.createElement('img');
+                    modalImg.src = imgElem.src;
+                    modalImg.alt = imgElem.alt || name;
+                    modalImg.style.width = '100%';
+                    modalImg.style.height = '100%';
+                    modalImg.style.objectFit = 'cover';
+                    modalImg.style.borderRadius = '50%';
+                    modalPhotoPlaceholderElem.appendChild(modalImg);
+                    cardPhotoContent = ''; // No placeholder text if image is present
+                } else if (photoDiv) {
+                    // Otherwise, use the text content (e.g., [Photo Placeholder])
+                    modalPhotoPlaceholderElem.textContent = photoDiv.textContent;
+                    cardPhotoContent = photoDiv.textContent;
+                }
+
+                // Get hidden detailed content
+                const fullDetailsDiv = teamMemberDiv.querySelector('.member-full-details');
+                if (!fullDetailsDiv) {
+                    console.error("Full details div not found for this team member.", teamMemberDiv);
+                    return;
+                }
+                const bioHtml = fullDetailsDiv.querySelector('.member-bio').innerHTML;
+                const contactLinksHtml = fullDetailsDiv.querySelector('.member-contact-links').innerHTML;
+
+                // Populate modal
+                if(modalMemberNameElem) modalMemberNameElem.textContent = name;
+                if(modalMemberRoleElem) modalMemberRoleElem.textContent = role;
+                if(modalMemberBioElem) modalMemberBioElem.innerHTML = bioHtml;
+                if(modalMemberContactLinksElem) modalMemberContactLinksElem.innerHTML = contactLinksHtml;
+
+                // Show modal
+                modalOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scroll
+            });
+        });
+
+        // Close modal actions
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = ''; // Restore background scroll
+        }
+
+        if(modalCloseButton) modalCloseButton.addEventListener('click', closeModal);
+
+        modalOverlay.addEventListener('click', function(event) {
+            // Only close if clicked on the overlay itself, not the content
+            if (event.target === modalOverlay) {
+                closeModal();
+            }
+        });
+
+        // Optional: Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    });
+  </script>
+ </body>
+</html>
