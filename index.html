@@ -647,6 +647,51 @@
     color: #1a365d;
 }
 
+        .layout {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .main-content {
+            flex: 3;
+        }
+
+        .news-sidebar {
+            flex: 1;
+            background: #f7fafc;
+            padding: 1.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+        }
+
+        .news-sidebar h3 {
+            color: #1a365d;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .news-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .news-item {
+            margin-bottom: 1rem;
+        }
+
+        .news-date {
+            font-weight: 600;
+            color: #2d5986;
+            margin-right: 0.5rem;
+        }
+
+        @media (max-width: 1000px) {
+            .layout {
+                flex-direction: column;
+            }
+        }
+
 /* ... (rest of your existing CSS rules) ... */
   </style>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
@@ -700,7 +745,8 @@
     </ul>
    </div>
   </nav>
-  <main class="container">
+  <div class="layout">
+   <main class="container main-content">
    <section class="section" id="research">
     <div class="section-header">
      <h2 class="section-title">
@@ -1446,8 +1492,19 @@ Yushi&rsquo;s experience includes a range of data science projects, developing m
       </div>
      </div>
     </div>
-   </section>
-  </main>
+    </section>
+   </main>
+   <aside class="news-sidebar">
+    <h3>Recent News</h3>
+    <ul class="news-list">
+     <li class="news-item"><span class="news-date">2025</span>Measuring what matters: Construct validity in large language model benchmarks.</li>
+     <li class="news-item"><span class="news-date">2025</span>LINGOLY-TOO: Disentangling memorisation from reasoning with linguistic templatisation and orthographic obfuscation.</li>
+     <li class="news-item"><span class="news-date">2025</span>Clinical knowledge in LLMs does not translate to human interactions.</li>
+     <li class="news-item"><span class="news-date">2025</span>Evaluating the role of 'Constitutions' for learning from AI feedback.</li>
+     <li class="news-item"><span class="news-date">Dec 2024</span>OxRML at NeurIPS 2024.</li>
+    </ul>
+   </aside>
+  </div>
   <footer class="footer">
    <p>
     &copy; 2024 Reasoning with Machines AI Lab, Oxford University. All rights reserved.
