@@ -696,13 +696,26 @@
             padding-left: 1rem;
             font-size: 0.95rem;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
         }
 
-        .news-item::before {
+        .news-date {
+            display: inline-block;
+            position: relative;
+            background: #1a365d;
+            color: #fff;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 0.1rem 0.4rem;
+            margin-right: 0.5rem;
+            border-radius: 3px;
+            white-space: nowrap;
+        }
+
+        .news-date::before {
             content: "";
             position: absolute;
-            left: 0;
+            left: calc(-1.0rem + 1px);
             top: 50%;
             width: 8px;
             height: 8px;
@@ -712,20 +725,14 @@
             transition: transform 0.2s;
         }
 
-        .news-item:hover::before, .news-item:focus::before {
+        .news-item:hover .news-date::before, .news-item:focus .news-date::before {
             transform: translate(-50%, -50%) scale(1.5);
         }
 
-        .news-date {
-            display: inline-block;
-            background: #1a365d;
-            color: #fff;
-            font-weight: 500;
-            font-size: 0.95rem;
-            padding: 0.1rem 0.4rem;
-            margin-right: 0.5rem;
-            border-radius: 3px;
+        .news-text {
+            flex: 1;
         }
+
 
         @media (max-width: 1000px) {
             .layout {
@@ -1538,11 +1545,11 @@ Yushi&rsquo;s experience includes a range of data science projects, developing m
    <aside class="news-sidebar">
     <h3>Recent News</h3>
     <ul class="news-list">
-     <li class="news-item" tabindex="0"><span class="news-date">May 2025</span>Measuring what matters: Construct validity in large language model benchmarks.</li>
-     <li class="news-item" tabindex="0"><span class="news-date">Jan 2025</span>LINGOLY-TOO: Disentangling memorisation from reasoning with linguistic templatisation and orthographic obfuscation.</li>
-     <li class="news-item" tabindex="0"><span class="news-date">Dec 2024</span>Clinical knowledge in LLMs does not translate to human interactions.</li>
-     <li class="news-item" tabindex="0"><span class="news-date">Dec 2024</span>Evaluating the role of 'Constitutions' for learning from AI feedback.</li>
-     <li class="news-item" tabindex="0"><span class="news-date">Dec 2024</span>OxRML at NeurIPS 2024.</li>
+     <li class="news-item" tabindex="0"><span class="news-date">May 2025</span><span class="news-text">Measuring what matters: Construct validity in large language model benchmarks.</span></li>
+     <li class="news-item" tabindex="0"><span class="news-date">Jan 2025</span><span class="news-text">LINGOLY-TOO: Disentangling memorisation from reasoning with linguistic templatisation and orthographic obfuscation.</span></li>
+     <li class="news-item" tabindex="0"><span class="news-date">Dec 2024</span><span class="news-text">Clinical knowledge in LLMs does not translate to human interactions.</span></li>
+     <li class="news-item" tabindex="0"><span class="news-date">Dec 2024</span><span class="news-text">Evaluating the role of 'Constitutions' for learning from AI feedback.</span></li>
+     <li class="news-item" tabindex="0"><span class="news-date">Dec 2024</span><span class="news-text">OxRML at NeurIPS 2024.</span></li>
    </ul>
   </aside>
   </div>
