@@ -695,8 +695,18 @@
             position: relative;
             padding-left: 1rem;
             font-size: 0.95rem;
+        }
+
+        .news-header {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
+        }
+
+        .news-title {
+            color: #1a365d;
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-left: 0.5rem;
         }
 
         .news-date {
@@ -730,7 +740,8 @@
         }
 
         .news-text {
-            flex: 1;
+            display: block;
+            margin-top: 0.25rem;
         }
 
 
@@ -1545,11 +1556,41 @@ Yushi&rsquo;s experience includes a range of data science projects, developing m
    <aside class="news-sidebar">
     <h3>Recent News</h3>
     <ul class="news-list">
-     <li class="news-item" tabindex="0"><span class="news-date">May 2025</span><span class="news-text">Measuring what matters: Construct validity in large language model benchmarks.</span></li>
-     <li class="news-item" tabindex="0"><span class="news-date">Jan 2025</span><span class="news-text">LINGOLY-TOO: Disentangling memorisation from reasoning with linguistic templatisation and orthographic obfuscation.</span></li>
-     <li class="news-item" tabindex="0"><span class="news-date">Dec 2024</span><span class="news-text">Clinical knowledge in LLMs does not translate to human interactions.</span></li>
-     <li class="news-item" tabindex="0"><span class="news-date">Dec 2024</span><span class="news-text">Evaluating the role of 'Constitutions' for learning from AI feedback.</span></li>
-     <li class="news-item" tabindex="0"><span class="news-date">Dec 2024</span><span class="news-text">OxRML at NeurIPS 2024.</span></li>
+     <li class="news-item" tabindex="0">
+      <div class="news-header">
+       <span class="news-date">May 2025</span>
+       <span class="news-title">New paper</span>
+      </div>
+      <span class="news-text">Measuring what matters: Construct validity in large language model benchmarks.</span>
+     </li>
+     <li class="news-item" tabindex="0">
+      <div class="news-header">
+       <span class="news-date">Jan 2025</span>
+       <span class="news-title">New paper</span>
+      </div>
+      <span class="news-text">LINGOLY-TOO: Disentangling memorisation from reasoning with linguistic templatisation and orthographic obfuscation.</span>
+     </li>
+     <li class="news-item" tabindex="0">
+      <div class="news-header">
+       <span class="news-date">Dec 2024</span>
+       <span class="news-title">New paper</span>
+      </div>
+      <span class="news-text">Clinical knowledge in LLMs does not translate to human interactions.</span>
+     </li>
+     <li class="news-item" tabindex="0">
+      <div class="news-header">
+       <span class="news-date">Dec 2024</span>
+       <span class="news-title">New paper</span>
+      </div>
+      <span class="news-text">Evaluating the role of 'Constitutions' for learning from AI feedback.</span>
+     </li>
+     <li class="news-item" tabindex="0">
+      <div class="news-header">
+       <span class="news-date">Dec 2024</span>
+       <span class="news-title">NeurIPS 2024</span>
+      </div>
+      <span class="news-text">OxRML had 5 papers at NeurIPS.</span>
+     </li>
    </ul>
   </aside>
   </div>
