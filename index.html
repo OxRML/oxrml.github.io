@@ -647,6 +647,110 @@
     color: #1a365d;
 }
 
+        .layout {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .main-content {
+            flex: 3;
+        }
+
+        .news-sidebar {
+            flex: 1;
+            background: #f7fafc;
+            padding: 1.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            position: sticky;
+            top: 6rem;
+        }
+
+        .news-sidebar h3 {
+            color: #1a365d;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .news-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 0 1.5rem;
+            position: relative;
+        }
+
+        .news-list::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 2px;
+            background: #000;
+        }
+
+        .news-item {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: center;
+        }
+
+        .news-title {
+            color: #1a365d;
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-left: 0.5rem;
+        }
+
+        .news-date {
+            display: inline-block;
+            position: relative;
+            background: #1a365d;
+            color: #fff;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 0.1rem 0.4rem;
+            margin-right: 0.5rem;
+            border-radius: 3px;
+            white-space: nowrap;
+        }
+
+        .news-date::before {
+            content: "";
+            position: absolute;
+            left: calc(-1.0rem + 1px);
+            top: 50%;
+            width: 8px;
+            height: 8px;
+            background: #000;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 0.2s;
+        }
+
+        .news-item:hover .news-date::before, .news-item:focus .news-date::before {
+            transform: translate(-50%, -50%) scale(1.5);
+        }
+
+        .news-text {
+            display: block;
+            margin-top: 0.25rem;
+        }
+
+
+        @media (max-width: 1000px) {
+            .layout {
+                flex-direction: column;
+            }
+        }
+
 /* ... (rest of your existing CSS rules) ... */
   </style>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
@@ -700,7 +804,8 @@
     </ul>
    </div>
   </nav>
-  <main class="container">
+  <div class="layout">
+   <main class="container main-content">
    <section class="section" id="research">
     <div class="section-header">
      <h2 class="section-title">
@@ -1446,8 +1551,49 @@ Yushi&rsquo;s experience includes a range of data science projects, developing m
       </div>
      </div>
     </div>
-   </section>
-  </main>
+    </section>
+   </main>
+   <aside class="news-sidebar">
+    <h3>Recent News</h3>
+    <ul class="news-list">
+     <li class="news-item" tabindex="0">
+      <div class="news-header">
+       <span class="news-date">May 2025</span>
+       <span class="news-title">New paper!</span>
+      </div>
+      <span class="news-text">Measuring what matters: Construct validity in large language model benchmarks.</span>
+     </li>
+     <li class="news-item" tabindex="0">
+      <div class="news-header">
+       <span class="news-date">Jan 2025</span>
+       <span class="news-title">New paper!</span>
+      </div>
+      <span class="news-text">LINGOLY-TOO: Disentangling memorisation from reasoning with linguistic templatisation and orthographic obfuscation.</span>
+     </li>
+     <li class="news-item" tabindex="0">
+      <div class="news-header">
+       <span class="news-date">Dec 2024</span>
+       <span class="news-title">New paper!</span>
+      </div>
+      <span class="news-text">Clinical knowledge in LLMs does not translate to human interactions.</span>
+     </li>
+     <li class="news-item" tabindex="0">
+      <div class="news-header">
+       <span class="news-date">Dec 2024</span>
+       <span class="news-title">New paper!</span>
+      </div>
+      <span class="news-text">Evaluating the role of 'Constitutions' for learning from AI feedback.</span>
+     </li>
+     <li class="news-item" tabindex="0">
+      <div class="news-header">
+       <span class="news-date">Dec 2024</span>
+       <span class="news-title">OxRML @ NeurIPS 2024</span>
+      </div>
+      <span class="news-text">We presented five papers at NeurIPS 2024 and its constituent workshops.</span>
+     </li>
+   </ul>
+  </aside>
+  </div>
   <footer class="footer">
    <p>
     &copy; 2024 Reasoning with Machines AI Lab, Oxford University. All rights reserved.
