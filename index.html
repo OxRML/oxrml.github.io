@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>
-   Reasoning with Machines AI Lab - University of Oxford 
+   Reasoning with Machines Lab - University of Oxford 
   </title>
   <style>
    * {
@@ -43,8 +43,8 @@
         }
         
         .logo-circle {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             background: rgba(255,255,255,0.15);
             border: 2px solid rgba(255,255,255,0.3);
             border-radius: 50%;
@@ -58,10 +58,11 @@
         }
         
         .lab-identity h1 {
-            font-size: 2.5rem;
-            font-weight: 300;
+            font-size: 3.2rem;
+            font-weight: 400;
             letter-spacing: -0.5px;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.1rem;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
         
         .lab-tagline {
@@ -71,9 +72,11 @@
         }
         
         .oxford-affiliation {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             opacity: 0.8;
-            margin-top: 0.5rem;
+            font-weight: 300;
+            margin-top: 0.1rem;
+            line-height: 1.2;
         }
         
         .nav {
@@ -467,6 +470,22 @@
             opacity: 0.8;
         }
         
+        .admissions-link {
+            background: #2d5986 !important;
+            color: white !important;
+            padding: 0.75rem 1.5rem !important;
+            border-radius: 6px !important;
+            text-decoration: none !important;
+            font-weight: 500 !important;
+            transition: background 0.2s ease !important;
+            display: inline-block !important;
+        }
+        
+        .admissions-link:hover {
+            background: #1a365d !important;
+            color: white !important;
+        }
+        
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -637,15 +656,57 @@
             background-color: #1a365d;
         }
 
-        .member-contact-links i {
-    font-size: 1.1rem;
-    margin: 0 8px;
-    color: #2d5986;
-    transition: color 0.2s;
-}
-.member-contact-links i:hover {
-    color: #1a365d;
-}
+        /* ------ Social icon skeleton ------ */
+        .member-contact-links {
+            display: flex;
+            gap: 0.75rem;
+            padding: 0;
+            margin: 1rem 0 0 0;
+            list-style: none;
+            justify-content: center;
+        }
+
+        .member-contact-links a {
+            --accent: #2d5986;             /* Lab brand color */
+            width: 2.25rem;
+            height: 2.25rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: var(--accent);               /* glyph color */
+            border: 2px solid currentColor;
+            background: transparent;
+            transition: background-color .2s ease, color .2s ease, transform .2s ease;
+            text-decoration: none !important;
+            margin: 0;
+        }
+
+        .member-contact-links a i {
+            font-size: 1rem;
+            transition: inherit;
+        }
+
+        /* ------ Interactive states ------ */
+        .member-contact-links a:hover,
+        .member-contact-links a:focus-visible {
+            background: var(--accent);
+            color: #fff;                       /* colour inversion */
+            transform: scale(1.05);
+            outline: none;
+            text-decoration: none !important;
+        }
+
+        .member-contact-links a:active {
+            transform: scale(.97);
+        }
+
+        /* ------ Motion-safety ------ */
+        @media (prefers-reduced-motion: reduce) {
+            .member-contact-links a {
+                transition: none;
+            }
+        }
 
         .layout {
             display: flex;
@@ -760,11 +821,11 @@
    <div class="header-content">
     <div class="rml-logo">
      <div class="logo-circle" style="padding:0;">
-      <img alt="RML Lab Logo" src="img/rml_logo.png" style="width:70px;height:70px;object-fit:cover;border-radius:50%;"/>
+      <img alt="RML Lab Logo" src="img/rml_logo.png" style="width:90px;height:90px;object-fit:cover;border-radius:50%;" loading="eager"/>
      </div>
      <div class="lab-identity">
       <h1>
-       Reasoning with Machines AI Lab (RML)
+       Reasoning with Machines Lab (RML)
       </h1>
       <p class="oxford-affiliation">
        University of Oxford
@@ -782,13 +843,8 @@
       </a>
      </li>
      <li>
-      <a href="#team">
+      <a href="team.html">
        Team
-      </a>
-     </li>
-     <li>
-      <a href="publications.html">
-       Publications
       </a>
      </li>
      <li>
@@ -797,7 +853,17 @@
       </a>
      </li>
      <li>
-      <a href="#contact">
+      <a href="publications.html">
+       Publications
+      </a>
+     </li>
+     <li>
+      <a href="speakers.html">
+       Invited Speakers
+      </a>
+     </li>
+     <li>
+      <a href="contact.html">
        Contact
       </a>
      </li>
@@ -855,696 +921,6 @@
      </div>
     </div>
    </section>
-   <section class="section" id="team">
-    <div class="section-header">
-     <h2 class="section-title">
-      Team
-     </h2>
-    </div>
-    <div class="pi-section" style="margin-bottom: 3rem;">
-     <div class="pi-profile">
-      <div class="pi-photo">
-       <img alt="Adam Mahdi" src="img/members/adam_mahdi.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"/>
-      </div>
-      <div class="pi-info">
-       <h3>
-        Adam Mahdi
-       </h3>
-       <p class="pi-title">
-        Lab lead, Reasoning with Machines AI Lab (RML)
-        <br/>
-        University of Oxford
-       </p>
-       <div class="pi-description">
-        <p>
-         Dr Adam Mahdi leads the Reasoning with Machines AI Lab, focusing on one of AI's greatest challenges: understanding its reasoning capabilities. 
-                               The lab&rsquo;s research spans the science of evaluation for LLMs, mechanistic interpretability and human&ndash;computer interaction.
-        </p>
-       </div>
-      </div>
-     </div>
-    </div>
-    <div class="team-grid">
-     <div class="team-member">
-      <div class="member-photo">
-       <img alt="Felix Krones" src="img/members/felix_krones.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
-      </div>
-      <h4 class="member-name">
-       Felix Krones
-      </h4>
-      <p class="member-role">DPhil Student</p>
-      <p class="member-focus">Multimodal AI, digital health</p>
-
-     <div class="member-contact-links">
-       <a href="mailto:felix.krones@oii.ox.ac.uk" title="Email">
-        <i class="fas fa-envelope">
-        </i>
-       </a>
-       <a href="https://www.linkedin.com/in/felixkrones/?originalSubdomain=de" rel="noopener noreferrer" target="_blank">
-        <i class="fab fa-linkedin">
-        </i>
-       </a>
-       <a href="https://www.oii.ox.ac.uk/people/profiles/felix-krones/" rel="noopener noreferrer" target="_blank">
-        <i class="fas fa-globe">
-        </i>
-       </a>
-      </div>
-
-      <div class="member-full-details">
-       <p class="member-bio">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-       </p>
-       <div class="member-contact-links">
-        <a href="" title="Email">
-         <i class="fas fa-envelope">
-         </i>
-        </a>
-        <a href="" rel="noopener noreferrer" target="_blank">
-         <i class="fab fa-linkedin">
-         </i>
-        </a>
-        <a href="" rel="noopener noreferrer" target="_blank">
-         <i class="fas fa-globe">
-         </i>
-        </a>
-       </div>
-      </div>
-     </div>
-     <div class="team-member">
-      <div class="member-photo">
-       <img alt="Djavan De Clerq" src="img/members/djavan.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
-      </div>
-      <h4 class="member-name">
-       Djavan De Clercq
-      </h4>
-      <p class="member-role">
-       DPhil Student
-      </p>
-      <p class="member-focus">
-       AI and food security, LLMs
-      </p>
-
-     <div class="member-contact-links">
-       <a href="mailto:djavan.declercq@reuben.ox.ac.uk" title="Email">
-        <i class="fas fa-envelope">
-        </i>
-       </a>
-       <a href="https://www.linkedin.com/in/djavandeclercq/" rel="noopener noreferrer" target="_blank">
-        <i class="fab fa-linkedin">
-        </i>
-       </a>
-      </div>
-
-      <div class="member-full-details">
-       <p class="member-bio">
-        Djavan is a part-time DPhil student conducting research at the intersection of agriculture and climatic change. He is currently a consultant at McKinsey &amp; Company. Djavan has experience in engineering, data science, venture capital, consulting, teaching, and entrepreneurship, in China, Europe, and the United States.
-
-Djavan holds a PhD and an MSc from Tsinghua University in Environmental Science &amp; Engineering, an MEng from UC Berkeley in Industrial Engineering &amp; Operations Research, and a BA from Sciences Po Paris. He has published in journals such as Applied Energy, Renewable &amp; Sustainable Energy Reviews, and Bioresource Technology.
-       </p>
-       <div class="member-contact-links">
-        <a href="" title="Email">
-         <i class="fas fa-envelope">
-         </i>
-        </a>
-        <a href="" rel="noopener noreferrer" target="_blank">
-         <i class="fab fa-linkedin">
-         </i>
-        </a>
-        <a href="" rel="noopener noreferrer" target="_blank">
-         <i class="fas fa-globe">
-         </i>
-        </a>
-       </div>
-      </div>
-     </div>
-
-    <div class="team-member">
-      <div class="member-photo">
-       <img alt="Andrew M Bean" src="img/members/andrew_bean.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
-      </div>
-      <h4 class="member-name">
-       Andrew M. Bean
-      </h4>
-      <p class="member-role">
-       DPhil Student
-      </p>
-      <p class="member-focus">
-       LLM evaluations, human-LLM interaction
-      </p>
-
-        <div class="member-contact-links">
-        <a href="mailto:andrew.bean@oii.ox.ac.uk" title="Email">
-            <i class="fas fa-envelope">
-            </i>
-        </a>
-        <a href="https://www.linkedin.com/in/andrew-m-bean/?originalSubdomain=uk" rel="noopener noreferrer" target="_blank">
-            <i class="fab fa-linkedin">
-            </i>
-        </a>
-        <a href="https://am-bean.github.io/" rel="noopener noreferrer" target="_blank">
-            <i class="fas fa-globe">
-            </i>
-        </a>
-        </div>
-      
-        <div class="member-full-details">
-        <p class="member-bio">
-            Andrew is a DPhil student in Social Data Science at the OII. His research focuses on cooperative artificial intelligence. He studies potential types of human-AI cooperation, the nature of those interactions, and necessary developments to enable that cooperation. On the technical side, he has studied applied machine learning, especially reinforcement learning and natural language processing, for their applications to developing AI.
-            Andrew holds a B.S. in Applied Mathematics from Yale University and an MSc in Social Data Science from the OII. He is a Clarendon Scholar and was previously a Thouron Prize winner at the University of Cambridge (Pembroke College).
-        </p>
-        <div class="member-contact-links">
-            <a href="" title="Email">
-            <i class="fas fa-envelope">
-            </i>
-            </a>
-            <a href="" rel="noopener noreferrer" target="_blank">
-            <i class="fab fa-linkedin">
-            </i>
-            </a>
-            <a href="" rel="noopener noreferrer" target="_blank">
-            <i class="fas fa-globe">
-            </i>
-            </a>
-        </div>
-        </div>
-    </div>
-
-
-    <div class="team-member">
-      <div class="member-photo">
-       <img alt="Yushi Yang" src="img/members/yushi_y.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
-      </div>
-      <h4 class="member-name">
-       Yushi Yang
-      </h4>
-      <p class="member-role">
-       DPhil Student
-      </p>
-      <p class="member-focus">
-       AI safety, mechanistic interpretability
-      </p>
-      <div class="member-contact-links">
-       <a href="" title="Email">
-        <i class="fas fa-envelope">
-        </i>
-       </a>
-       <a href="" rel="noopener noreferrer" target="_blank">
-        <i class="fab fa-linkedin">
-        </i>
-       </a>
-       <a href="" rel="noopener noreferrer" target="_blank">
-        <i class="fas fa-globe">
-        </i>
-       </a>
-      </div>
-      <div class="member-full-details">
-       <p class="member-bio">
-        Yushi is a DPhil student in Social Data Science at the OII, and a data scientist. Her research focuses on interpretability methods to improve the safety of large language models.
-
-Yushi holds an MSc in Statistical Science from the University of Oxford and an MSc in Artificial Intelligence from Imperial College London. Before that, she held a BSc in Mathematics, Operation Research, Statistics, and Economics from the University of Warwick. Prior to the DPhil, she interned with UNDP as a data analyst, at Oxford and Imperial College London as a machine learning researcher, and at a start-up as a data scientist.
-
-Yushi&rsquo;s experience includes a range of data science projects, developing machine learning models to build privacy-preserving recommender systems, track brand sentiment in online news, and predict US gun violence diffusion rates. Her skillsets include Python, R, SQL, deep learning models, and AWS SageMaker
-       </p>
-       <div class="member-contact-links">
-        <a href="" title="Email">
-         <i class="fas fa-envelope">
-         </i>
-        </a>
-        <a href="" rel="noopener noreferrer" target="_blank">
-         <i class="fab fa-linkedin">
-         </i>
-        </a>
-        <a href="" rel="noopener noreferrer" target="_blank">
-         <i class="fas fa-globe">
-         </i>
-        </a>
-       </div>
-      </div>
-    </div>
-    
-    <div class="team-member">
-      <div class="member-photo">
-       <img alt="Harry Mayne" src="img/members/harry_mayne.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
-      </div>
-      <h4 class="member-name">
-       Harry Mayne
-      </h4>
-      <p class="member-role">
-       DPhil Student
-      </p>
-      <p class="member-focus">
-       LLM interpretability, AI safety, LLM evals
-      </p>
-      <div class="member-contact-links">
-       <a href="https://www.linkedin.com/in/harry-mayne-04aba7194" rel="noopener noreferrer" target="_blank">
-        <i class="fab fa-linkedin">
-        </i>
-       </a>
-       <a href="https://www.harrymayne.com/" rel="noopener noreferrer" target="_blank">
-        <i class="fas fa-globe">
-        </i>
-       </a>
-      </div>
-      <div class="member-full-details">
-       <p class="member-bio">
-        Harry's DPhil focuses on language model explainability and interpretability. His current research explores whether models can reliably explain their outputs in natural language, and what the implications are for broader human-computer interaction. Harry has previously worked on mechanistic interpretability problems and continues to contribute to this area.
-       </p>
-       <div class="member-contact-links">
-        <a href="https://www.linkedin.com/in/harry-mayne-04aba7194" rel="noopener noreferrer" target="_blank">
-         <i class="fab fa-linkedin">
-         </i>
-        </a>
-        <a href="https://www.harrymayne.com/" rel="noopener noreferrer" target="_blank">
-         <i class="fas fa-globe">
-         </i>
-        </a>
-       </div>
-      </div>
-    </div>
-
-    <div class="team-member">
-      <div class="member-photo">
-       <img alt="Jessica Rodrigues" src="img/members/jessica_rodrigues.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
-      </div>
-      <h4 class="member-name">
-       Jessica Rodrigues
-      </h4>
-      <p class="member-role">
-       DPhil Student
-      </p>
-      <p class="member-focus">
-       knowledge graphs, metascience
-      </p>
-      <div class="member-contact-links">
-       <a href="" title="Email">
-        <i class="fas fa-envelope">
-        </i>
-       </a>
-       <a href="" rel="noopener noreferrer" target="_blank">
-        <i class="fab fa-linkedin">
-        </i>
-       </a>
-       <a href="" rel="noopener noreferrer" target="_blank">
-        <i class="fas fa-globe">
-        </i>
-       </a>
-      </div>
-      <div class="member-full-details">
-       <p class="member-bio">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-       </p>
-       <div class="member-contact-links">
-        <a href="" title="Email">
-         <i class="fas fa-envelope">
-         </i>
-        </a>
-        <a href="" rel="noopener noreferrer" target="_blank">
-         <i class="fab fa-linkedin">
-         </i>
-        </a>
-        <a href="" rel="noopener noreferrer" target="_blank">
-         <i class="fas fa-globe">
-         </i>
-        </a>
-       </div>
-      </div>
-    </div>
-
-    <div class="team-member">
-      <div class="member-photo">
-       <img alt="Guy Parsons" src="img/members/guy_parsons.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
-      </div>
-      <h4 class="member-name">
-       Guy Parsons
-      </h4>
-      <p class="member-role">
-       DPhil Student
-      </p>
-      <p class="member-focus">
-       Healthcare AI, digital health
-      </p>
-      <div class="member-contact-links">
-       <a href="" title="Email">
-        <i class="fas fa-envelope">
-        </i>
-       </a>
-       <a href="" rel="noopener noreferrer" target="_blank">
-        <i class="fab fa-linkedin">
-        </i>
-       </a>
-       <a href="" rel="noopener noreferrer" target="_blank">
-        <i class="fas fa-globe">
-        </i>
-       </a>
-      </div>
-      <div class="member-full-details">
-       <p class="member-bio">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-       </p>
-       <div class="member-contact-links">
-        <a href="" title="Email">
-         <i class="fas fa-envelope">
-         </i>
-        </a>
-        <a href="" rel="noopener noreferrer" target="_blank">
-         <i class="fab fa-linkedin">
-         </i>
-        </a>
-        <a href="" rel="noopener noreferrer" target="_blank">
-         <i class="fas fa-globe">
-         </i>
-        </a>
-       </div>
-      </div>
-    </div>
-
-    <div class="team-member">
-      <div class="member-photo">
-       <img alt="Karolina Korgul" src="img/members/karolina_k.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
-      </div>
-      <h4 class="member-name">
-       Karolina Korgul
-      </h4>
-      <p class="member-role">
-       DPhil Student
-      </p>
-      <p class="member-focus">
-       AI safety, Agentic AI
-      </p>
-      <div class="member-contact-links">
-       <a href="" title="Email">
-        <i class="fas fa-envelope">
-        </i>
-       </a>
-       <a href="" rel="noopener noreferrer" target="_blank">
-        <i class="fab fa-linkedin">
-        </i>
-       </a>
-       <a href="" rel="noopener noreferrer" target="_blank">
-        <i class="fas fa-globe">
-        </i>
-       </a>
-      </div>
-      <div class="member-full-details">
-       <p class="member-bio">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-       </p>
-       <div class="member-contact-links">
-        <a href="" title="Email">
-         <i class="fas fa-envelope">
-         </i>
-        </a>
-        <a href="" rel="noopener noreferrer" target="_blank">
-         <i class="fab fa-linkedin">
-         </i>
-        </a>
-        <a href="" rel="noopener noreferrer" target="_blank">
-         <i class="fas fa-globe">
-         </i>
-        </a>
-       </div>
-      </div>
-     </div>
-     <div class="team-member">
-      <div class="member-photo">
-       <img alt="Ryan Kearns" src="img/members/ryan_othniel_kearns.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
-      </div>
-      <h4 class="member-name">
-       Ryan Othniel Kearns
-      </h4>
-      <p class="member-role">
-       MSc Student (2024-2025)
-      </p>
-      <p class="member-focus">
-       Reasoning in LLMs; LLM evals
-      </p>
-      <div class="member-contact-links">
-       <a href="mailto:ryan.kearns@oii.ox.ac.uk" title="Email">
-        <i class="fas fa-envelope">
-        </i>
-       </a>
-       <a href="https://www.linkedin.com/in/ryanothnielkearns/" rel="noopener noreferrer" target="_blank">
-        <i class="fab fa-linkedin">
-        </i>
-       </a>
-       <a href="https://www.ryanothnielkearns.com/" rel="noopener noreferrer" target="_blank">
-        <i class="fas fa-globe">
-        </i>
-       </a>
-      </div>
-      <div class="member-full-details">
-       <p class="member-bio">
-        Ryan Othniel Kearns is an MSc and incoming DPhil student in the Reasoning with Machines AI Lab, generously supported by the Clarendon Scholarship. His research focuses on understanding reasoning in large language models (LLMs) and the science of AI evaluations. Previously, Ryan studied Philosophy (BAH) and Computer Science (BS) at Stanford University.
-       </p>
-       <div class="member-contact-links">
-        <a href="mailto:ryan.kearns@oii.ox.ac.uk" title="Email">
-         <i class="fas fa-envelope">
-         </i>
-        </a>
-        <a href="https://www.linkedin.com/in/ryanothnielkearns/" rel="noopener noreferrer" target="_blank">
-         <i class="fab fa-linkedin">
-         </i>
-        </a>
-        <a href="https://www.ryanothnielkearns.com/" rel="noopener noreferrer" target="_blank">
-         <i class="fas fa-globe">
-         </i>
-        </a>
-       </div>
-      </div>
-     </div>
-     <div class="team-member">
-      <div class="member-photo">
-       <img alt="Ryan Kearns" src="img/members/shreyansh_padarha.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
-      </div>
-      <h4 class="member-name">
-       Shreyansh Padarha
-      </h4>
-      <p class="member-role">
-       MSc Student (2024-2025)
-      </p>
-      <p class="member-focus">
-       LLMs, knowledge distillations
-      </p>
-      <div class="member-contact-links">
-       <a href="mailto:ryan.kearns@oii.ox.ac.uk" title="Email">
-        <i class="fas fa-envelope">
-        </i>
-       </a>
-       <a href="" rel="noopener noreferrer" target="_blank">
-        <i class="fab fa-linkedin">
-        </i>
-       </a>
-       <a href="" rel="noopener noreferrer" target="_blank">
-        <i class="fas fa-globe">
-        </i>
-       </a>
-      </div>
-      <div class="member-full-details">
-       <p class="member-bio">
-        Shreyansh holds a BSc in Data Science and has experience working at startups, where he developed AI-driven solutions for film, TV production, and advertising. He has also conducted cross-functional research in Malaysia, where he developed clinical models for dental care. His research work also includes infusing computer vision in cattle domestication and opinion mining rhetoric of LLMs on social media.
-                            Shreyansh is passionate about leveraging data-driven approaches to tackle pressing social issues, including biodiversity conservation, climate change mitigation, early medical detection, and extremism behaviour detection.
-       </p>
-       <div class="member-contact-links">
-        <a href="mailto:ryan.kearns@oii.ox.ac.uk" title="Email">
-         <i class="fas fa-envelope">
-         </i>
-        </a>
-        <a href="" rel="noopener noreferrer" target="_blank">
-         <i class="fab fa-linkedin">
-         </i>
-        </a>
-        <a href="" rel="noopener noreferrer" target="_blank">
-         <i class="fas fa-globe">
-         </i>
-        </a>
-       </div>
-      </div>
-     </div>
-
-
-    
-
-    <div class="team-member">
-      <div class="member-photo">
-       <img alt="Matteo Larrode" src="img/members/matteo.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
-      </div>
-      <h4 class="member-name">
-        Mattéo Larrodé
-      </h4>
-      <p class="member-role">
-       MSc Student (2024-2025)
-      </p>
-      <p class="member-focus">
-       LLMs, social data science
-      </p>
-      <div class="member-contact-links">
-       <a href="" title="Email">
-        <i class="fas fa-envelope">
-        </i>
-       </a>
-       <a href="" rel="noopener noreferrer" target="_blank">
-        <i class="fab fa-linkedin">
-        </i>
-       </a>
-       <a href="" rel="noopener noreferrer" target="_blank">
-        <i class="fas fa-globe">
-        </i>
-       </a>
-      </div>
-      <div class="member-full-details">
-       <p class="member-bio">
-         Mattéo holds a BSc in Philosophy, Politics and Economics with Social Data Science from UCL. He has worked as a data scientist for the British Red Cross and is interested in using data science and open-source solutions for humanitarian decision-making.
-       </p>
-       <div class="member-contact-links">
-        <a href="" title="Email">
-         <i class="fas fa-envelope">
-         </i>
-        </a>
-        <a href="" rel="noopener noreferrer" target="_blank">
-         <i class="fab fa-linkedin">
-         </i>
-        </a>
-        <a href="" rel="noopener noreferrer" target="_blank">
-         <i class="fas fa-globe">
-         </i>
-        </a>
-       </div>
-      </div>
-    </div>
-
-     <div class="team-member">
-      <div class="member-photo">
-       <img alt="Sebastian Petric" src="img/members/sebastian_petric.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
-      </div>
-      <h4 class="member-name">
-       Sebastian Petric
-      </h4>
-      <p class="member-role">
-       Visiting Policy Fellow (2024-2026)
-      </p>
-      <p class="member-focus">
-       LLMs and financial time series
-      </p>
-      <div class="member-contact-links">
-       <a href="" title="Email">
-        <i class="fas fa-envelope">
-        </i>
-       </a>
-       <a href="" rel="noopener noreferrer" target="_blank">
-        <i class="fab fa-linkedin">
-        </i>
-       </a>
-       <a href="" rel="noopener noreferrer" target="_blank">
-        <i class="fas fa-globe">
-        </i>
-       </a>
-      </div>
-      <div class="member-full-details">
-       <p class="member-bio">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-       </p>
-       <div class="member-contact-links">
-        <a href="" title="Email">
-         <i class="fas fa-envelope">
-         </i>
-        </a>
-        <a href="" rel="noopener noreferrer" target="_blank">
-         <i class="fab fa-linkedin">
-         </i>
-        </a>
-        <a href="" rel="noopener noreferrer" target="_blank">
-         <i class="fas fa-globe">
-         </i>
-        </a>
-       </div>
-      </div>
-     </div>
-
-
-</div>
-
-
-
-    <div class="collaborators-section">
-     <h4>
-      Alumni and Past Members
-     </h4>
-     <div class="collaborators-list">
-      <span class="collaborator-tag">
-       Tedi Yankov, MSc (2024) 
-      </span>
-      <span class="collaborator-tag">
-       Saskia Redgate, MSc (2024) 
-      </span>
-      <span class="collaborator-tag">
-       Mehdi Mojarradi, MSc (2024)
-      </span>
-      <span class="collaborator-tag">
-       Sneha Kotecha, MSc (2024)
-      </span>
-      <span class="collaborator-tag">
-       Harry Mayne, MSc (2023)
-      </span>
-      <span class="collaborator-tag">
-       Karolina Korgul, MSc (2023)
-      </span>
-      <span class="collaborator-tag">
-       Harry Roberts, MSc (2023)
-      </span>
-      <span class="collaborator-tag">
-       Kyati Khandelwal, MSc (2023)
-      </span>
-          </span>
-      <span class="collaborator-tag">
-       Andrew Bean, MSc (2022)
-      </span>
-      <span class="collaborator-tag">
-       Nathan Bailey, MSc (2022)
-      </span>
-      <span class="collaborator-tag">
-       Benedict Yeo, MSc (2022)
-      </span>
-      <span class="collaborator-tag">
-       Yuxuan Zhang, MSc (2022)
-      </span>
-    
-     </div>
-    </div>
-   </section>
-   <section class="section" id="contact">
-    <div class="section-header">
-     <h2 class="section-title">
-      Contact
-     </h2>
-     <p class="section-subtitle">
-      For inquiries about research, collaboration, or joining the lab, please get in touch.
-     </p>
-    </div>
-    <div class="contact-section">
-     <div class="contact-grid">
-      <div class="contact-item">
-       <h4>
-        Email
-       </h4>
-       <p>
-        <a href="mailto:adam.mahdi@oii.ox.ac.uk" style="color: #2d5986;">
-         adam.mahdi@oii.ox.ac.uk
-        </a>
-       </p>
-      </div>
-      <div class="contact-item">
-       <h4>
-        Address
-       </h4>
-       <p>
-        Oxford Internet Institute
-        <br/>
-        1 St Giles', Oxford OX1 3JS, United Kingdom
-       </p>
-      </div>
-     </div>
-    </div>
-    </section>
   </main>
   <aside class="news-sidebar">
    <h3>Recent news</h3>
@@ -1555,7 +931,7 @@ Yushi&rsquo;s experience includes a range of data science projects, developing m
  </div>
   <footer class="footer">
    <p>
-    &copy; 2024 Reasoning with Machines AI Lab, Oxford University. All rights reserved.
+    &copy; 2025 Reasoning with Machines Lab, Oxford University. All rights reserved.
    </p>
   </footer>
   <script>
@@ -1748,6 +1124,183 @@ Yushi&rsquo;s experience includes a range of data science projects, developing m
                 }
             });
     });
+  </script>
+  <script>
+    // Load and display team members from JSON file
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('team.json')
+            .then(response => response.json())
+            .then(data => {
+                const teamGrid = document.getElementById('team-grid');
+                const alumniList = document.getElementById('alumni-list');
+                
+                if (!teamGrid || !alumniList) {
+                    console.error('Team grid or alumni list elements not found');
+                    return;
+                }
+                
+                // Generate current students
+                data.currentStudents.forEach(member => {
+                    const memberDiv = document.createElement('div');
+                    memberDiv.className = 'team-member';
+                    
+                    // Generate contact links for card (only if they exist)
+                    let cardContactLinks = '';
+                    if (member.links.email) {
+                        cardContactLinks += `<a href="mailto:${member.links.email}" aria-label="Email ${member.name}"><i class="fas fa-envelope"></i></a>`;
+                    }
+                    if (member.links.linkedin) {
+                        cardContactLinks += `<a href="${member.links.linkedin}" rel="noopener noreferrer" target="_blank" aria-label="${member.name} LinkedIn"><i class="fab fa-linkedin"></i></a>`;
+                    }
+                    if (member.links.website) {
+                        cardContactLinks += `<a href="${member.links.website}" rel="noopener noreferrer" target="_blank" aria-label="${member.name} Website"><i class="fas fa-globe"></i></a>`;
+                    }
+                    if (member.links.twitter) {
+                        cardContactLinks += `<a href="${member.links.twitter}" rel="noopener noreferrer" target="_blank" aria-label="${member.name} Twitter"><i class="fab fa-twitter"></i></a>`;
+                    }
+                    if (member.links.github) {
+                        cardContactLinks += `<a href="${member.links.github}" rel="noopener noreferrer" target="_blank" aria-label="${member.name} GitHub"><i class="fab fa-github"></i></a>`;
+                    }
+                    
+                    // Generate contact links for modal (same as card)
+                    let modalContactLinks = cardContactLinks;
+                    
+                    memberDiv.innerHTML = `
+                        <div class="member-photo">
+                            <img alt="${member.name}" src="${member.photo}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
+                        </div>
+                        <h4 class="member-name">${member.name}</h4>
+                        <p class="member-role">${member.role}</p>
+                        <p class="member-focus">${member.focus}</p>
+                        
+                        ${cardContactLinks ? `<div class="member-contact-links">${cardContactLinks}</div>` : ''}
+                        
+                        <div class="member-full-details">
+                            <p class="member-bio">${member.longBio.replace(/\n/g, '<br><br>')}</p>
+                            ${modalContactLinks ? `<div class="member-contact-links">${modalContactLinks}</div>` : ''}
+                        </div>
+                    `;
+                    
+                    teamGrid.appendChild(memberDiv);
+                });
+                
+                // Generate alumni
+                data.alumni.forEach(alum => {
+                    const alumSpan = document.createElement('span');
+                    alumSpan.className = 'collaborator-tag';
+                    alumSpan.textContent = `${alum.name}, ${alum.role}`;
+                    alumniList.appendChild(alumSpan);
+                });
+                
+                // Re-initialize modal functionality for dynamically created elements
+                initializeTeamMemberModals();
+            })
+            .catch(error => {
+                console.error('Error loading team data:', error);
+                // Fallback content if team data fails to load
+                const teamGrid = document.getElementById('team-grid');
+                if (teamGrid) {
+                    teamGrid.innerHTML = '<div class="team-member"><p>Unable to load team information at this time.</p></div>';
+                }
+            });
+    });
+    
+    // Function to initialize modal functionality (extracted from existing code)
+    function initializeTeamMemberModals() {
+        const modalOverlay = document.getElementById('teamMemberModal');
+        if (!modalOverlay) {
+            console.error("Modal overlay not found!");
+            return;
+        }
+        const modalCloseButton = modalOverlay.querySelector('.modal-close-button');
+        const modalMemberNameElem = document.getElementById('modalMemberName');
+        const modalMemberRoleElem = document.getElementById('modalMemberRole');
+        const modalMemberBioElem = document.getElementById('modalMemberBio');
+        const modalMemberContactLinksElem = document.getElementById('modalMemberContactLinks');
+        const modalPhotoPlaceholderElem = modalOverlay.querySelector('.modal-photo-placeholder');
+
+        // Make each .team-member card clickable (except if clicking a link inside)
+        const teamMemberDivs = document.querySelectorAll('.team-member');
+
+        teamMemberDivs.forEach(div => {
+            div.style.cursor = 'pointer';
+            div.addEventListener('click', function(event) {
+            // Prevent modal if clicking a link inside the card
+            if (event.target.tagName === 'A' || event.target.tagName === 'I') return;
+                const teamMemberDiv = this.closest('.team-member');
+
+                // Get data from the team member card
+                const name = teamMemberDiv.querySelector('.member-name').textContent;
+                const role = teamMemberDiv.querySelector('.member-role').textContent;
+                
+                // Get photo content from the card: prefer <img> if present, else use text content
+                const photoDiv = teamMemberDiv.querySelector('.member-photo');
+                const imgElem = photoDiv ? photoDiv.querySelector('img') : null;
+                // Store the card's photo content for fallback use later
+                let cardPhotoContent = '';
+                // Clear previous modal photo content
+                modalPhotoPlaceholderElem.innerHTML = '';
+                if (imgElem && imgElem.src) {
+                    // If there's an image, clone it and set correct styles
+                    const modalImg = document.createElement('img');
+                    modalImg.src = imgElem.src;
+                    modalImg.alt = imgElem.alt || name;
+                    modalImg.style.width = '100%';
+                    modalImg.style.height = '100%';
+                    modalImg.style.objectFit = 'cover';
+                    modalImg.style.borderRadius = '50%';
+                    modalPhotoPlaceholderElem.appendChild(modalImg);
+                    cardPhotoContent = ''; // No placeholder text if image is present
+                } else if (photoDiv) {
+                    // Otherwise, use the text content (e.g., [Photo Placeholder])
+                    modalPhotoPlaceholderElem.textContent = photoDiv.textContent;
+                    cardPhotoContent = photoDiv.textContent;
+                }
+
+                // Get hidden detailed content
+                const fullDetailsDiv = teamMemberDiv.querySelector('.member-full-details');
+                if (!fullDetailsDiv) {
+                    console.error("Full details div not found for this team member.", teamMemberDiv);
+                    return;
+                }
+                const bioHtml = fullDetailsDiv.querySelector('.member-bio').innerHTML;
+                const contactLinksDiv = fullDetailsDiv.querySelector('.member-contact-links');
+                const contactLinksHtml = contactLinksDiv ? contactLinksDiv.innerHTML : '';
+
+                // Populate modal
+                if(modalMemberNameElem) modalMemberNameElem.textContent = name;
+                if(modalMemberRoleElem) modalMemberRoleElem.textContent = role;
+                if(modalMemberBioElem) modalMemberBioElem.innerHTML = bioHtml;
+                if(modalMemberContactLinksElem) modalMemberContactLinksElem.innerHTML = contactLinksHtml;
+
+                // Show modal
+                modalOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scroll
+            });
+        });
+
+        // Close modal actions
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = ''; // Restore background scroll
+        }
+
+        if(modalCloseButton) modalCloseButton.addEventListener('click', closeModal);
+
+        modalOverlay.addEventListener('click', function(event) {
+            // Only close if clicked on the overlay itself, not the content
+            if (event.target === modalOverlay) {
+                closeModal();
+            }
+        });
+
+        // Optional: Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    }
   </script>
  </body>
 </html>

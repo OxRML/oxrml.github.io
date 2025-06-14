@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>
-   News - Reasoning with Machines Lab
+   Contact - Reasoning with Machines AI Lab
   </title>
   <style>
    * {
@@ -149,80 +149,30 @@
             max-width: 800px;
         }
         
-        .news-list {
-            background: transparent;
-        }
-        
-        .news-photos {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .news-photo {
-            max-width: 300px;
-            width: 100%;
-            height: auto;
-            border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        .news-item-full {
-            padding: 1.75rem 2rem;
-            margin-bottom: 1.5rem;
+        .contact-section {
             background: white;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
-            transition: all 0.2s ease;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-        }
-        
-        .news-item-full:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            border-color: #cbd5e0;
-        }
-        
-        .news-item-full:last-child {
-            margin-bottom: 0;
-        }
-        
-        .news-date-full {
-            display: inline-block;
-            background: #2d5986;
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-        }
-        
-        .news-title-full {
-            font-size: 1.25rem;
-            color: #1a365d;
-            margin-bottom: 0.75rem;
-            font-weight: 600;
-            line-height: 1.4;
-        }
-        
-        .news-text-full {
-            color: #4a5568;
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        .news-category {
-            display: inline-block;
-            background: #f8fafc;
-            color: #2d5986;
-            padding: 0.2rem 0.6rem;
+            padding: 3rem;
             border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            margin-left: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             border: 1px solid #e2e8f0;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .contact-item h4 {
+            color: #1a365d;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .contact-item p {
+            color: #4a5568;
+            line-height: 1.6;
         }
         
         .footer {
@@ -235,6 +185,22 @@
         
         .footer p {
             opacity: 0.8;
+        }
+        
+        .admissions-link {
+            background: #2d5986 !important;
+            color: white !important;
+            padding: 0.75rem 1.5rem !important;
+            border-radius: 6px !important;
+            text-decoration: none !important;
+            font-weight: 500 !important;
+            transition: background 0.2s ease !important;
+            display: inline-block !important;
+        }
+        
+        .admissions-link:hover {
+            background: #1a365d !important;
+            color: white !important;
         }
         
         @media (max-width: 768px) {
@@ -291,7 +257,7 @@
       </a>
      </li>
      <li>
-      <a href="news.html" class="active">
+      <a href="news.html">
        News
       </a>
      </li>
@@ -306,7 +272,7 @@
       </a>
      </li>
      <li>
-      <a href="contact.html">
+      <a href="contact.html" class="active">
        Contact
       </a>
      </li>
@@ -314,17 +280,70 @@
    </div>
   </nav>
   <main class="container">
-   <section class="section" id="news">
+   <section class="section" id="contact">
     <div class="section-header">
      <h2 class="section-title">
-      News
+      Contact
      </h2>
      <p class="section-subtitle">
-      Stay updated with the latest news and announcements from the Reasoning with Machines Lab.
+      For inquiries about research, collaboration, or joining the lab, please get in touch.
      </p>
     </div>
-    <div class="news-list" id="all-news-list">
-     <!-- All news items will be loaded dynamically -->
+    <div class="contact-section">
+     <div class="contact-grid">
+      <div class="contact-item">
+       <h4>
+        Email
+       </h4>
+       <p>
+        <a href="mailto:adam.mahdi@oii.ox.ac.uk" style="color: #2d5986;">
+         adam.mahdi@oii.ox.ac.uk
+        </a>
+       </p>
+      </div>
+      <div class="contact-item">
+       <h4>
+        Address
+       </h4>
+       <p>
+        Oxford Internet Institute
+        <br/>
+        1 St Giles', Oxford OX1 3JS, United Kingdom
+       </p>
+      </div>
+     </div>
+    </div>
+   </section>
+   
+   <section class="section" id="admissions">
+    <div class="section-header">
+     <h2 class="section-title">
+      Join the Lab
+     </h2>
+     <p class="section-subtitle">
+      We welcome applications from motivated students.
+     </p>
+    </div>
+    <div class="contact-section">
+     <h3 style="color: #1a365d; margin-bottom: 1rem; font-size: 1.3rem;">Graduate Programs</h3>
+     <p style="margin-bottom: 1.5rem;">
+      We accept students through Oxford Internet Institute graduate programs. Applications are typically due in early January for September entry.
+     </p>
+     <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+      <a href="https://www.oii.ox.ac.uk/study/msc-in-social-data-science/" 
+         target="_blank" rel="noopener noreferrer"
+         class="admissions-link">
+       MSc Social Data Science
+      </a>
+      <a href="https://www.oii.ox.ac.uk/study/dphil-in-social-data-science/" 
+         target="_blank" rel="noopener noreferrer"
+         class="admissions-link">
+       DPhil Social Data Science
+      </a>
+     </div>
+     <p style="font-size: 0.95rem; color: #4a5568;">
+      For inquiries about research opportunities, please contact us using the information above.
+     </p>
     </div>
    </section>
   </main>
@@ -333,57 +352,5 @@
     &copy; 2025 Reasoning with Machines Lab, Oxford University. All rights reserved.
    </p>
   </footer>
-  <script>
-    // Load and display all news from JSON file
-    document.addEventListener('DOMContentLoaded', function() {
-        fetch('news.json')
-            .then(response => response.json())
-            .then(data => {
-                const newsList = document.getElementById('all-news-list');
-                if (!newsList) {
-                    console.error('News list element not found');
-                    return;
-                }
-                
-                // Sort news by date (newest first)
-                const sortedNews = data.news
-                    .sort((a, b) => new Date(b.date) - new Date(a.date));
-                
-                // Generate HTML for each news item
-                sortedNews.forEach(newsItem => {
-                    const newsDiv = document.createElement('div');
-                    newsDiv.className = 'news-item-full';
-                    
-                    // Generate photos HTML if they exist
-                    let photosHtml = '';
-                    if (newsItem.photos && newsItem.photos.length > 0) {
-                        photosHtml = `
-                            <div class="news-photos">
-                                ${newsItem.photos.map(photo => `<img src="${photo}" alt="${newsItem.title}" class="news-photo" loading="lazy">`).join('')}
-                            </div>
-                        `;
-                    }
-                    
-                    newsDiv.innerHTML = `
-                        <span class="news-date-full">${newsItem.displayDate}</span>
-                        ${newsItem.category ? `<span class="news-category">${newsItem.category}</span>` : ''}
-                        <h3 class="news-title-full">${newsItem.title}</h3>
-                        <p class="news-text-full">${newsItem.text}</p>
-                        ${photosHtml}
-                    `;
-                    
-                    newsList.appendChild(newsDiv);
-                });
-            })
-            .catch(error => {
-                console.error('Error loading news:', error);
-                // Fallback content if news fails to load
-                const newsList = document.getElementById('all-news-list');
-                if (newsList) {
-                    newsList.innerHTML = '<div class="news-item-full"><p class="news-text-full">Unable to load news at this time.</p></div>';
-                }
-            });
-    });
-  </script>
  </body>
 </html>
