@@ -1,0 +1,258 @@
+{
+  "currentStudents": [
+    {
+      "id": "felix_krones",
+      "name": "Felix Krones",
+      "role": "DPhil Student",
+      "focus": "Multimodal AI, digital health",
+      "photo": "img/members/felix_krones.png",
+      "shortBio": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+      "longBio": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+      "links": {
+        "email": "felix.krones@oii.ox.ac.uk",
+        "linkedin": "https://www.linkedin.com/in/felixkrones/?originalSubdomain=de",
+        "website": "https://www.oii.ox.ac.uk/people/profiles/felix-krones/",
+        "twitter": "",
+        "github": ""
+      }
+    },
+    {
+      "id": "djavan_declercq",
+      "name": "Djavan De Clercq",
+      "role": "DPhil Student",
+      "focus": "AI and food security, LLMs",
+      "photo": "img/members/djavan.png",
+      "shortBio": "Djavan is a part-time DPhil student conducting research at the intersection of agriculture and climatic change. He is currently a consultant at McKinsey & Company. Djavan has experience in engineering, data science, venture capital, consulting, teaching, and entrepreneurship, in China, Europe, and the United States.\n\nDjavan holds a PhD and an MSc from Tsinghua University in Environmental Science & Engineering, an MEng from UC Berkeley in Industrial Engineering & Operations Research, and a BA from Sciences Po Paris. He has published in journals such as Applied Energy, Renewable & Sustainable Energy Reviews, and Bioresource Technology.",
+      "longBio": "Djavan is a part-time DPhil student conducting research at the intersection of agriculture and climatic change. He is currently a consultant at McKinsey & Company. Djavan has experience in engineering, data science, venture capital, consulting, teaching, and entrepreneurship, in China, Europe, and the United States.\n\nDjavan holds a PhD and an MSc from Tsinghua University in Environmental Science & Engineering, an MEng from UC Berkeley in Industrial Engineering & Operations Research, and a BA from Sciences Po Paris. He has published in journals such as Applied Energy, Renewable & Sustainable Energy Reviews, and Bioresource Technology.",
+      "links": {
+        "email": "djavan.declercq@reuben.ox.ac.uk",
+        "linkedin": "https://www.linkedin.com/in/djavandeclercq/",
+        "website": "",
+        "twitter": "",
+        "github": ""
+      }
+    },
+    {
+      "id": "andrew_bean",
+      "name": "Andrew M. Bean",
+      "role": "DPhil Student",
+      "focus": "LLM evaluations, human-LLM interaction",
+      "photo": "img/members/andrew_bean.jpeg",
+      "shortBio": "Andrew is a DPhil student in Social Data Science at the OII. His research focuses on cooperative artificial intelligence. He studies potential types of human-AI cooperation, the nature of those interactions, and necessary developments to enable that cooperation. On the technical side, he has studied applied machine learning, especially reinforcement learning and natural language processing, for their applications to developing AI.\nAndrew holds a B.S. in Applied Mathematics from Yale University and an MSc in Social Data Science from the OII. He is a Clarendon Scholar and was previously a Thouron Prize winner at the University of Cambridge (Pembroke College).",
+      "longBio": "Andrew is a DPhil student in Social Data Science at the OII. His research focuses on cooperative artificial intelligence. He studies potential types of human-AI cooperation, the nature of those interactions, and necessary developments to enable that cooperation. On the technical side, he has studied applied machine learning, especially reinforcement learning and natural language processing, for their applications to developing AI.\nAndrew holds a B.S. in Applied Mathematics from Yale University and an MSc in Social Data Science from the OII. He is a Clarendon Scholar and was previously a Thouron Prize winner at the University of Cambridge (Pembroke College).",
+      "links": {
+        "email": "andrew.bean@oii.ox.ac.uk",
+        "linkedin": "https://www.linkedin.com/in/andrew-m-bean/?originalSubdomain=uk",
+        "website": "https://am-bean.github.io/",
+        "twitter": "",
+        "github": ""
+      }
+    },
+    {
+      "id": "yushi_yang",
+      "name": "Yushi Yang",
+      "role": "DPhil Student",
+      "focus": "AI safety, mechanistic interpretability",
+      "photo": "img/members/yushi_y.png",
+      "shortBio": "Yushi is a DPhil student in Social Data Science at the OII, and a data scientist. Her research focuses on interpretability methods to improve the safety of large language models.\n\nYushi holds an MSc in Statistical Science from the University of Oxford and an MSc in Artificial Intelligence from Imperial College London. Before that, she held a BSc in Mathematics, Operation Research, Statistics, and Economics from the University of Warwick. Prior to the DPhil, she interned with UNDP as a data analyst, at Oxford and Imperial College London as a machine learning researcher, and at a start-up as a data scientist.\n\nYushi's experience includes a range of data science projects, developing machine learning models to build privacy-preserving recommender systems, track brand sentiment in online news, and predict US gun violence diffusion rates. Her skillsets include Python, R, SQL, deep learning models, and AWS SageMaker",
+      "longBio": "Yushi is a DPhil student in Social Data Science at the OII, and a data scientist. Her research focuses on interpretability methods to improve the safety of large language models.\n\nYushi holds an MSc in Statistical Science from the University of Oxford and an MSc in Artificial Intelligence from Imperial College London. Before that, she held a BSc in Mathematics, Operation Research, Statistics, and Economics from the University of Warwick. Prior to the DPhil, she interned with UNDP as a data analyst, at Oxford and Imperial College London as a machine learning researcher, and at a start-up as a data scientist.\n\nYushi's experience includes a range of data science projects, developing machine learning models to build privacy-preserving recommender systems, track brand sentiment in online news, and predict US gun violence diffusion rates. Her skillsets include Python, R, SQL, deep learning models, and AWS SageMaker",
+      "links": {
+        "email": "yushi.yang@oii.ox.ac.uk",
+        "linkedin": "",
+        "website": "",
+        "twitter": "",
+        "github": ""
+      }
+    },
+    {
+      "id": "harry_mayne",
+      "name": "Harry Mayne",
+      "role": "DPhil Student",
+      "focus": "LLM interpretability, AI safety, LLM evals",
+      "photo": "img/members/harry_mayne.jpeg",
+      "shortBio": "Harry's DPhil focuses on language model explainability and interpretability. His current research explores whether models can reliably explain their outputs in natural language, and what the implications are for broader human-computer interaction. Harry has previously worked on mechanistic interpretability problems and continues to contribute to this area.",
+      "longBio": "Harry's DPhil focuses on language model explainability and interpretability. His current research explores whether models can reliably explain their outputs in natural language, and what the implications are for broader human-computer interaction. Harry has previously worked on mechanistic interpretability problems and continues to contribute to this area.",
+      "links": {
+        "email": "harry.mayne@oii.ox.ac.uk",
+        "linkedin": "https://www.linkedin.com/in/harry-mayne-04aba7194",
+        "website": "https://www.harrymayne.com/",
+        "twitter": "",
+        "github": ""
+      }
+    },
+    {
+      "id": "jessica_rodrigues",
+      "name": "Jessica Rodrigues",
+      "role": "DPhil Student",
+      "focus": "knowledge graphs, metascience",
+      "photo": "img/members/jessica_rodrigues.jpeg",
+      "shortBio": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+      "longBio": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+      "links": {
+        "email": "jessica.rodrigues@oii.ox.ac.uk",
+        "linkedin": "",
+        "website": "",
+        "twitter": "",
+        "github": ""
+      }
+    },
+    {
+      "id": "guy_parsons",
+      "name": "Guy Parsons",
+      "role": "DPhil Student",
+      "focus": "Healthcare AI, digital health",
+      "photo": "img/members/guy_parsons.jpeg",
+      "shortBio": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+      "longBio": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+      "links": {
+        "email": "guy.parsons@oii.ox.ac.uk",
+        "linkedin": "",
+        "website": "",
+        "twitter": "",
+        "github": ""
+      }
+    },
+    {
+      "id": "karolina_korgul",
+      "name": "Karolina Korgul",
+      "role": "DPhil Student",
+      "focus": "AI safety, Agentic AI",
+      "photo": "img/members/karolina_k.png",
+      "shortBio": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+      "longBio": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+      "links": {
+        "email": "karolina.korgul@oii.ox.ac.uk",
+        "linkedin": "",
+        "website": "",
+        "twitter": "",
+        "github": ""
+      }
+    },
+    {
+      "id": "ryan_kearns",
+      "name": "Ryan Othniel Kearns",
+      "role": "MSc Student (2024-2025)",
+      "focus": "Reasoning in LLMs; LLM evals",
+      "photo": "img/members/ryan_othniel_kearns.jpeg",
+      "shortBio": "Ryan Othniel Kearns is an MSc and incoming DPhil student in the Reasoning with Machines AI Lab, generously supported by the Clarendon Scholarship. His research focuses on understanding reasoning in large language models (LLMs) and the science of AI evaluations. Previously, Ryan studied Philosophy (BAH) and Computer Science (BS) at Stanford University.",
+      "longBio": "Ryan Othniel Kearns is an MSc and incoming DPhil student in the Reasoning with Machines AI Lab, generously supported by the Clarendon Scholarship. His research focuses on understanding reasoning in large language models (LLMs) and the science of AI evaluations. Previously, Ryan studied Philosophy (BAH) and Computer Science (BS) at Stanford University.",
+      "links": {
+        "email": "ryan.kearns@oii.ox.ac.uk",
+        "linkedin": "https://www.linkedin.com/in/ryanothnielkearns/",
+        "website": "https://www.ryanothnielkearns.com/",
+        "twitter": "",
+        "github": ""
+      }
+    },
+    {
+      "id": "shreyansh_padarha",
+      "name": "Shreyansh Padarha",
+      "role": "MSc Student (2024-2025)",
+      "focus": "LLMs, knowledge distillations",
+      "photo": "img/members/shreyansh_padarha.png",
+      "shortBio": "Shreyansh holds a BSc in Data Science and has experience working at startups, where he developed AI-driven solutions for film, TV production, and advertising. He has also conducted cross-functional research in Malaysia, where he developed clinical models for dental care. His research work also includes infusing computer vision in cattle domestication and opinion mining rhetoric of LLMs on social media.\nShreyansh is passionate about leveraging data-driven approaches to tackle pressing social issues, including biodiversity conservation, climate change mitigation, early medical detection, and extremism behaviour detection.",
+      "longBio": "Shreyansh holds a BSc in Data Science and has experience working at startups, where he developed AI-driven solutions for film, TV production, and advertising. He has also conducted cross-functional research in Malaysia, where he developed clinical models for dental care. His research work also includes infusing computer vision in cattle domestication and opinion mining rhetoric of LLMs on social media.\nShreyansh is passionate about leveraging data-driven approaches to tackle pressing social issues, including biodiversity conservation, climate change mitigation, early medical detection, and extremism behaviour detection.",
+      "links": {
+        "email": "shreyansh.padarha@oii.ox.ac.uk",
+        "linkedin": "",
+        "website": "",
+        "twitter": "",
+        "github": ""
+      }
+    },
+    {
+      "id": "matteo_larrode",
+      "name": "Mattéo Larrodé",
+      "role": "MSc Student (2024-2025)",
+      "focus": "LLMs, social data science",
+      "photo": "img/members/matteo.jpg",
+      "shortBio": "Mattéo holds a BSc in Philosophy, Politics and Economics with Social Data Science from UCL. He has worked as a data scientist for the British Red Cross and is interested in using data science and open-source solutions for humanitarian decision-making.",
+      "longBio": "Mattéo holds a BSc in Philosophy, Politics and Economics with Social Data Science from UCL. He has worked as a data scientist for the British Red Cross and is interested in using data science and open-source solutions for humanitarian decision-making.",
+      "links": {
+        "email": "matteo.larrode@oii.ox.ac.uk",
+        "linkedin": "",
+        "website": "",
+        "twitter": "",
+        "github": ""
+      }
+    },
+    {
+      "id": "sebastian_petric",
+      "name": "Sebastian Petric",
+      "role": "Visiting Policy Fellow (2024-2026)",
+      "focus": "LLMs and financial time series",
+      "photo": "img/members/sebastian_petric.jpg",
+      "shortBio": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+      "longBio": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+      "links": {
+        "email": "sebastian.petric@oii.ox.ac.uk",
+        "linkedin": "",
+        "website": "",
+        "twitter": "",
+        "github": ""
+      }
+    }
+  ],
+  "alumni": [
+    {
+      "name": "Tedi Yankov",
+      "role": "MSc (2024)",
+      "category": "alumni"
+    },
+    {
+      "name": "Saskia Redgate",
+      "role": "MSc (2024)",
+      "category": "alumni"
+    },
+    {
+      "name": "Mehdi Mojarradi",
+      "role": "MSc (2024)",
+      "category": "alumni"
+    },
+    {
+      "name": "Sneha Kotecha",
+      "role": "MSc (2024)",
+      "category": "alumni"
+    },
+    {
+      "name": "Harry Mayne",
+      "role": "MSc (2023)",
+      "category": "alumni"
+    },
+    {
+      "name": "Karolina Korgul",
+      "role": "MSc (2023)",
+      "category": "alumni"
+    },
+    {
+      "name": "Henry Roberts",
+      "role": "MSc (2023)",
+      "category": "alumni"
+    },
+    {
+      "name": "Kyati Khandelwal",
+      "role": "MSc (2023)",
+      "category": "alumni"
+    },
+    {
+      "name": "Andrew Bean",
+      "role": "MSc (2022)",
+      "category": "alumni"
+    },
+    {
+      "name": "Nathan Bailey",
+      "role": "MSc (2022)",
+      "category": "alumni"
+    },
+    {
+      "name": "Benedict Yeo",
+      "role": "MSc (2022)",
+      "category": "alumni"
+    },
+    {
+      "name": "Yuxuan Zhang",
+      "role": "MSc (2022)",
+      "category": "alumni"
+    }
+  ]
+}

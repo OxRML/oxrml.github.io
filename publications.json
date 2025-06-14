@@ -1,0 +1,148 @@
+{
+  "publications": [
+    {
+      "id": "1",
+      "date": "2025-05-01",
+      "displayDate": "May 2025",
+      "title": "Measuring what matters: Construct validity in large language model benchmarks",
+      "authors": "AM Bean, RO Kearns, A Romanou, FS Hafner, H Mayne, J Batzner, N Foroutan, C Schmitz, K Korgul, H Batra, O Deb, E Beharry, C Emde, T Foster, A Gausen, M Grandury, J Khouja, S Han, V Hofmann, L Ibrahim, H Kim, HR Kirk, F Lin, L Luettgau, J Magomere, J Rystrøm, GKM Liu, A Sotnikova, Y Yang, Y Zhao, A Bibi, A Bosselut, R Clark, A Cohan, J Foerster, Y Gal, SA Hale, ID Raji, C Summerfield, PHS Torr, C Ududec, L Rocher, A Mahdi",
+      "labMembers": ["AM Bean", "RO Kearns", "H Mayne", "K Korgul", "Y Yang", "A Mahdi"],
+      "venue": "Under review",
+      "abstract": "",
+      "links": {
+        "arxiv": "",
+        "code": "",
+        "huggingface": "",
+        "pdf": ""
+      }
+    },
+    {
+      "id": "2",
+      "date": "2025-01-01",
+      "displayDate": "Jan 2025",
+      "title": "LINGOLY-TOO: Disentangling memorisation from reasoning with linguistic templatisation and orthographic obfuscation",
+      "authors": "J Khouja, K Korgul, S Hellsten, L Yang, V Neacs, H Mayne, R Kearns, A Bean, A Mahdi",
+      "labMembers": ["K Korgul", "H Mayne", "R Kearns", "A Bean", "A Mahdi"],
+      "venue": "Under review",
+      "abstract": "",
+      "links": {
+        "arxiv": "https://arxiv.org/abs/2503.02972",
+        "code": "",
+        "huggingface": "",
+        "pdf": ""
+      }
+    },
+    {
+      "id": "3",
+      "date": "2024-12-15",
+      "displayDate": "Dec 2024",
+      "title": "Clinical knowledge in LLMs does not translate to human interactions",
+      "authors": "AM Bean, R Payne, G Parsons, HR Kirk, J Ciro, R Mosquera, S Hincapié Monsalve, AS Ekanayaka, L Tarassenko, L Rocher, A Mahdi",
+      "labMembers": ["AM Bean", "G Parsons", "A Mahdi"],
+      "venue": "Under review",
+      "abstract": "",
+      "links": {
+        "arxiv": "https://arxiv.org/abs/2504.18919",
+        "code": "",
+        "huggingface": "",
+        "pdf": ""
+      }
+    },
+    {
+      "id": "4",
+      "date": "2024-12-10",
+      "displayDate": "Dec 2024",
+      "title": "Evaluating the role of 'Constitutions' for learning from AI feedback",
+      "authors": "S Redgate, AM Bean, A Mahdi",
+      "labMembers": ["S Redgate", "AM Bean", "A Mahdi"],
+      "venue": "Preprint",
+      "abstract": "",
+      "links": {
+        "arxiv": "https://arxiv.org/abs/2411.10168",
+        "code": "",
+        "huggingface": "",
+        "pdf": ""
+      }
+    },
+    {
+      "id": "5",
+      "date": "2024-11-20",
+      "displayDate": "Nov 2024",
+      "title": "Can sparse autoencoders be used to decompose and interpret steering vectors?",
+      "authors": "H Mayne, Y Yang, A Mahdi",
+      "labMembers": ["H Mayne", "Y Yang", "A Mahdi"],
+      "venue": "MINT @ NeurIPS 2024, InterpretableAI @ NeurIPS 2024",
+      "abstract": "",
+      "links": {
+        "arxiv": "https://arxiv.org/abs/2411.08790",
+        "code": "",
+        "huggingface": "",
+        "pdf": ""
+      }
+    },
+    {
+      "id": "6",
+      "date": "2024-11-15",
+      "displayDate": "Nov 2024",
+      "title": "Beyond toxic neurons: a mechanistic analysis of DPO for toxicity reduction",
+      "authors": "Y Yang, F Sondej, H Mayne, A Mahdi",
+      "labMembers": ["Y Yang", "H Mayne", "A Mahdi"],
+      "venue": "MINT @ NeurIPS 2024, InterpretableAI @ NeurIPS 2024",
+      "abstract": "",
+      "links": {
+        "arxiv": "https://arxiv.org/abs/2411.06424",
+        "code": "https://github.com/HarryMayne/SV_interpretability",
+        "huggingface": "",
+        "pdf": ""
+      }
+    },
+    {
+      "id": "7",
+      "date": "2024-10-25",
+      "displayDate": "Oct 2024",
+      "title": "Improving in-context learning with small language model ensembles",
+      "authors": "MM Mojarradi, L Yang, R McCraith, A Mahdi",
+      "labMembers": ["MM Mojarradi", "A Mahdi"],
+      "venue": "Preprint",
+      "abstract": "",
+      "links": {
+        "arxiv": "https://arxiv.org/abs/2410.21868",
+        "code": "",
+        "huggingface": "",
+        "pdf": ""
+      }
+    },
+    {
+      "id": "8",
+      "date": "2024-10-18",
+      "displayDate": "Oct 2024",
+      "title": "Combining Hough transform and deep learning approaches to reconstruct ECG signals from printouts",
+      "authors": "F Krones, B Walker, T Lyons, A Mahdi",
+      "labMembers": ["F Krones", "A Mahdi"],
+      "venue": "Under review",
+      "abstract": "",
+      "links": {
+        "arxiv": "https://arxiv.org/abs/2410.14185",
+        "code": "",
+        "huggingface": "",
+        "pdf": ""
+      }
+    },
+    {
+      "id": "9",
+      "date": "2024-10-31",
+      "displayDate": "Oct 2024",
+      "title": "LINGOLY: A Benchmark of Olympiad-Level Linguistic Reasoning Puzzles in Low-Resource and Extinct Languages",
+      "authors": "AM Bean, S Hellsten, H Mayne, J Magomere, EA Chi, R Chi, SA Hale, HR Kirk",
+      "labMembers": ["AM Bean", "H Mayne"],
+      "venue": "NeurIPS 2024 (Oral)",
+      "abstract": "",
+      "links": {
+        "arxiv": "https://arxiv.org/abs/2406.06196",
+        "code": "https://github.com/am-bean/lingOly",
+        "huggingface": "https://huggingface.co/datasets/ambean/lingOly",
+        "pdf": ""
+      }
+    }
+  ]
+}
