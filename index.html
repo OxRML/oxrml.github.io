@@ -797,6 +797,11 @@
       </a>
      </li>
      <li>
+      <a href="news.html">
+       News
+      </a>
+     </li>
+     <li>
       <a href="#contact">
        Contact
       </a>
@@ -1555,42 +1560,8 @@ Yushi&rsquo;s experience includes a range of data science projects, developing m
   </main>
   <aside class="news-sidebar">
    <h3>Recent news</h3>
-   <ul class="news-list">
-    <li class="news-item" tabindex="0">
-     <div class="news-header">
-      <span class="news-date">May 2025</span>
-      <span class="news-title">New paper!</span>
-     </div>
-     <span class="news-text">Measuring what matters: Construct validity in large language model benchmarks.</span>
-    </li>
-    <li class="news-item" tabindex="0">
-     <div class="news-header">
-      <span class="news-date">Jan 2025</span>
-      <span class="news-title">New paper!</span>
-     </div>
-     <span class="news-text">LINGOLY-TOO: Disentangling memorisation from reasoning with linguistic templatisation and orthographic obfuscation.</span>
-    </li>
-    <li class="news-item" tabindex="0">
-     <div class="news-header">
-      <span class="news-date">Dec 2024</span>
-      <span class="news-title">OxRML @ NeurIPS 2024</span>
-     </div>
-     <span class="news-text">We presented five papers at NeurIPS 2024 and its constituent workshops.</span>
-    </li>
-    <li class="news-item" tabindex="0">
-     <div class="news-header">
-      <span class="news-date">Dec 2024</span>
-      <span class="news-title">New paper!</span>
-     </div>
-     <span class="news-text">Clinical knowledge in LLMs does not translate to human interactions.</span>
-    </li>
-    <li class="news-item" tabindex="0">
-     <div class="news-header">
-      <span class="news-date">Dec 2024</span>
-      <span class="news-title">New paper!</span>
-     </div>
-     <span class="news-text">Evaluating the role of 'Constitutions' for learning from AI feedback.</span>
-    </li>
+   <ul class="news-list" id="news-list">
+    <!-- News items will be loaded dynamically -->
    </ul>
   </aside>
  </div>
@@ -1744,6 +1715,50 @@ Yushi&rsquo;s experience includes a range of data science projects, developing m
                 closeModal();
             }
         });
+    });
+  </script>
+  <script>
+    // Load and display news from JSON file
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('news.json')
+            .then(response => response.json())
+            .then(data => {
+                const newsList = document.getElementById('news-list');
+                if (!newsList) {
+                    console.error('News list element not found');
+                    return;
+                }
+                
+                // Sort news by date (newest first) and take only top 5
+                const sortedNews = data.news
+                    .sort((a, b) => new Date(b.date) - new Date(a.date))
+                    .slice(0, 5);
+                
+                // Generate HTML for each news item
+                sortedNews.forEach(newsItem => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'news-item';
+                    listItem.tabIndex = 0;
+                    
+                    listItem.innerHTML = `
+                        <div class="news-header">
+                            <span class="news-date">${newsItem.displayDate}</span>
+                            <span class="news-title">${newsItem.title}</span>
+                        </div>
+                        <span class="news-text">${newsItem.text}</span>
+                    `;
+                    
+                    newsList.appendChild(listItem);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading news:', error);
+                // Fallback content if news fails to load
+                const newsList = document.getElementById('news-list');
+                if (newsList) {
+                    newsList.innerHTML = '<li class="news-item">Unable to load news at this time.</li>';
+                }
+            });
     });
   </script>
  </body>
