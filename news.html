@@ -258,6 +258,7 @@
         }
   </style>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <link rel="preload" href="img/rml_logo.png" as="image"/>
  </head>
  <body>
   <header class="header">
@@ -359,7 +360,7 @@
                     if (newsItem.photos && newsItem.photos.length > 0) {
                         photosHtml = `
                             <div class="news-photos">
-                                ${newsItem.photos.map(photo => `<img src="${photo}" alt="${newsItem.title}" class="news-photo" loading="lazy">`).join('')}
+                                ${newsItem.photos.map(photo => `<img src="${photo}" alt="${newsItem.title}" class="news-photo" loading="eager">`).join('')}
                             </div>
                         `;
                     }
