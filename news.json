@@ -5,19 +5,11 @@
       "date": "2025-05-01",
       "displayDate": "May 2025", 
       "title": "New paper!",
-      "text": "??.",
-      "category": "pub"
-    },
-    {
-      "id": "1",
-      "date": "2025-05-01",
-      "displayDate": "May 2025", 
-      "title": "New paper!",
       "text": "Measuring what matters: Construct validity in large language model benchmarks.",
       "category": "publication"
     },
     {
-      "id": "2", 
+      "id": "5", 
       "date": "2025-01-01",
       "displayDate": "Jan 2025",
       "title": "New paper!",
@@ -25,7 +17,7 @@
       "category": "publication"
     },
     {
-      "id": "3",
+      "id": "4",
       "date": "2024-12-15",
       "displayDate": "Dec 2024",
       "title": "OxRML @ NeurIPS 2024",
@@ -34,7 +26,7 @@
       "photos": ["img/news/neurips_2024.jpeg"]
     },
     {
-      "id": "6",
+      "id": "3",
       "date": "2024-07-21",
       "displayDate": "Jul 2024",
       "title": "OxRML @ ICML 2024",
@@ -43,7 +35,7 @@
       "photos": ["img/news/icml_2024.jpeg"]
     },
     {
-      "id": "4",
+      "id": "2",
       "date": "2024-12-10",
       "displayDate": "Dec 2024", 
       "title": "New paper!",
@@ -51,7 +43,7 @@
       "category": "publication"
     },
     {
-      "id": "5",
+      "id": "1",
       "date": "2024-12-05",
       "displayDate": "Dec 2024",
       "title": "New paper!",
