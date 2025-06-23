@@ -1,6 +1,14 @@
 {
   "news": [
     {
+      "id": "6",
+      "date": "2025-05-01",
+      "displayDate": "May 2025", 
+      "title": "New paper!",
+      "text": "??.",
+      "category": "pub"
+    },
+    {
       "id": "1",
       "date": "2025-05-01",
       "displayDate": "May 2025", 
