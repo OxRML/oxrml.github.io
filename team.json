@@ -132,7 +132,7 @@
       "id": "ryan_kearns",
       "name": "Ryan Othniel Kearns",
       "role": "MSc Student (2024-2025)",
-      "focus": "Reasoning in LLMs; LLM evals",
+      "focus": "science of evals, reasoning in LLMs",
       "photo": "img/members/ryan_othniel_kearns.jpeg",
       "shortBio": "Ryan Othniel Kearns is an MSc and incoming DPhil student in the Reasoning with Machines AI Lab, generously supported by the Clarendon Scholarship. His research focuses on understanding reasoning in large language models (LLMs) and the science of AI evaluations. Previously, Ryan studied Philosophy (BAH) and Computer Science (BS) at Stanford University.",
       "longBio": "Ryan Othniel Kearns is an MSc and incoming DPhil student in the Reasoning with Machines AI Lab, generously supported by the Clarendon Scholarship. His research focuses on understanding reasoning in large language models (LLMs) and the science of AI evaluations. Previously, Ryan studied Philosophy (BAH) and Computer Science (BS) at Stanford University.",
@@ -140,8 +140,8 @@
         "email": "ryan.kearns@oii.ox.ac.uk",
         "linkedin": "https://www.linkedin.com/in/ryanothnielkearns/",
         "website": "https://www.ryanothnielkearns.com/",
-        "twitter": "",
-        "github": ""
+        "twitter": "https://x.com/RyanOthKearns",
+        "github": "https://github.com/RyanOthnielKearns/"
       }
     },
     {
