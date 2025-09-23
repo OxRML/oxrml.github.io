@@ -44,7 +44,7 @@
       "longBio": "Andrew is a DPhil student in Social Data Science at the OII. His research focuses on cooperative artificial intelligence. He studies potential types of human-AI cooperation, the nature of those interactions, and necessary developments to enable that cooperation. On the technical side, he has studied applied machine learning, especially reinforcement learning and natural language processing, for their applications to developing AI.\nAndrew holds a B.S. in Applied Mathematics from Yale University and an MSc in Social Data Science from the OII. He is a Clarendon Scholar and was previously a Thouron Prize winner at the University of Cambridge (Pembroke College).",
       "links": {
         "email": "andrew.bean@oii.ox.ac.uk",
-        "linkedin": "https://www.linkedin.com/in/andrew-m-bean/?originalSubdomain=uk",
+        "linkedin": "https://www.linkedin.com/in/andrew-m-bean/",
         "website": "https://am-bean.github.io/",
         "twitter": "https://x.com/andrew_m_bean",
         "github": "https://github.com/am-bean",
@@ -72,7 +72,7 @@
       "id": "harry_mayne",
       "name": "Harry Mayne",
       "role": "DPhil Student",
-      "focus": "LLM interpretability, AI safety, LLM evals",
+      "focus": "LLM interpretability, AI safety, LLM evaluations",
       "photo": "img/members/harry_mayne.jpeg",
       "shortBio": "Harry's DPhil focuses on language model explainability and interpretability. His current research explores whether models can reliably explain their outputs in natural language, and what the implications are for broader human-computer interaction. Harry has previously worked on mechanistic interpretability problems and continues to contribute to this area.",
       "longBio": "Harry's DPhil focuses on language model explainability and interpretability. His current research explores whether models can reliably explain their outputs in natural language, and what the implications are for broader human-computer interaction. Harry has previously worked on mechanistic interpretability problems and continues to contribute to this area.",
@@ -142,7 +142,7 @@
       "focus": "Science of evals, reasoning in LLMs",
       "photo": "img/members/ryan_othniel_kearns.jpeg",
       "shortBio": "Ryan Othniel Kearns is a DPhil student in the Reasoning with Machines Lab, generously supported by the Clarendon Scholarship. His research focuses on understanding reasoning in large language models (LLMs) and the science of AI evaluations. Previously, Ryan studied Philosophy (BAH) and Computer Science (BS) at Stanford University and Social Data Science (MSc) at the University of Oxford.",
-      "longBio": "Ryan Othniel Kearns is a DPhil student in the Reasoning with Machines Lab, generously supported by the Clarendon Scholarship. His research focuses on understanding reasoning in large language models (LLMs) and the science of AI evaluations. Previously, Ryan studied Philosophy (BAH) and Computer Science (BS) at Stanford University and Social Data Science (MSc) at the University of Oxford.",
+      "longBio": "Ryan Othniel Kearns is a DPhil student in the Reasoning with Machines Lab and a research fellow with the Oxford Human-Centered AI Lab. His research focuses on understanding reasoning in large language models (LLMs) and the science of AI evaluations. Previously, Ryan studied Philosophy (BAH) and Computer Science (BS) at Stanford University and Social Data Science (MSc) at the University of Oxford.\nRyan's research is supported by a Clarendon Scholarship and a Cosmos Fellowship.",
       "links": {
         "email": "ryan.kearns@oii.ox.ac.uk",
         "linkedin": "https://www.linkedin.com/in/ryanothnielkearns/",
