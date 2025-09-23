@@ -641,7 +641,10 @@
                     if (member.links.github) {
                         cardContactLinks += `<a href="${member.links.github}" rel="noopener noreferrer" target="_blank" aria-label="${member.name} GitHub"><i class="fab fa-github"></i></a>`;
                     }
-                    
+                    if (member.links.scholar) {
+                        cardContactLinks += `<a href="${member.links.scholar}" rel="noopener noreferrer" target="_blank" aria-label="${member.name} Google Scholar"><i class="fas fa-graduation-cap"></i></a>`;
+                    }
+
                     // Generate contact links for modal (same as card)
                     let modalContactLinks = cardContactLinks;
                     
