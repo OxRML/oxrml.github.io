@@ -131,7 +131,7 @@
     {
       "id": "ryan_kearns",
       "name": "Ryan Othniel Kearns",
-      "role": "MSc Student (2024-2025)",
+      "role": "DPhil Student",
       "focus": "science of evals, reasoning in LLMs",
       "photo": "img/members/ryan_othniel_kearns.jpeg",
       "shortBio": "Ryan Othniel Kearns is a DPhil student in the Reasoning with Machines Lab, generously supported by the Clarendon Scholarship. His research focuses on understanding reasoning in large language models (LLMs) and the science of AI evaluations. Previously, Ryan studied Philosophy (BAH) and Computer Science (BS) at Stanford University and Social Data Science (MSc) at the University of Oxford.",
@@ -147,29 +147,13 @@
     {
       "id": "shreyansh_padarha",
       "name": "Shreyansh Padarha",
-      "role": "MSc Student (2024-2025)",
+      "role": "Research Assistant (2025)",
       "focus": "LLMs, knowledge distillations",
       "photo": "img/members/shreyansh_padarha.png",
       "shortBio": "Shreyansh holds a BSc in Data Science and has experience working at startups, where he developed AI-driven solutions for film, TV production, and advertising. He has also conducted cross-functional research in Malaysia, where he developed clinical models for dental care. His research work also includes infusing computer vision in cattle domestication and opinion mining rhetoric of LLMs on social media.\nShreyansh is passionate about leveraging data-driven approaches to tackle pressing social issues, including biodiversity conservation, climate change mitigation, early medical detection, and extremism behaviour detection.",
       "longBio": "Shreyansh holds a BSc in Data Science and has experience working at startups, where he developed AI-driven solutions for film, TV production, and advertising. He has also conducted cross-functional research in Malaysia, where he developed clinical models for dental care. His research work also includes infusing computer vision in cattle domestication and opinion mining rhetoric of LLMs on social media.\nShreyansh is passionate about leveraging data-driven approaches to tackle pressing social issues, including biodiversity conservation, climate change mitigation, early medical detection, and extremism behaviour detection.",
       "links": {
         "email": "shreyansh.padarha@oii.ox.ac.uk",
-        "linkedin": "",
-        "website": "",
-        "twitter": "",
-        "github": ""
-      }
-    },
-    {
-      "id": "matteo_larrode",
-      "name": "Mattéo Larrodé",
-      "role": "MSc Student (2024-2025)",
-      "focus": "LLMs, social data science",
-      "photo": "img/members/matteo.jpg",
-      "shortBio": "Mattéo holds a BSc in Philosophy, Politics and Economics with Social Data Science from UCL. He has worked as a data scientist for the British Red Cross and is interested in using data science and open-source solutions for humanitarian decision-making.",
-      "longBio": "Mattéo holds a BSc in Philosophy, Politics and Economics with Social Data Science from UCL. He has worked as a data scientist for the British Red Cross and is interested in using data science and open-source solutions for humanitarian decision-making.",
-      "links": {
-        "email": "matteo.larrode@oii.ox.ac.uk",
         "linkedin": "",
         "website": "",
         "twitter": "",
@@ -194,6 +178,21 @@
     }
   ],
   "alumni": [
+    {
+      "name": "Shreyansh Padarha",
+      "role": "MSc (2025)",
+      "category": "alumni"
+    },
+    {
+      "name": "Ryan Othniel Kearns",
+      "role": "MSc (2025)",
+      "category": "alumni"
+    },
+    {
+      "name": "Mattéo Larrodé",
+      "role": "MSc (2025)",
+      "category": "alumni"
+    },
     {
       "name": "Tedi Yankov",
       "role": "MSc (2024)",
