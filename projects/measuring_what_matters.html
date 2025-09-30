@@ -11,7 +11,7 @@
       --muted:#6b7280;      /* secondary text */
       --link:#002147;       /* links */
       --bg:#ffffff;         /* page bg */
-      --card:#f8fafc;       /* section bg */
+      --card:#ffffff;       /* section bg */
       --border:#e5e7eb;     /* borders */
       --accent:#0f172a;     /* headings */
       --maxw: 920px;
@@ -76,15 +76,28 @@
     </header>
 
     <main>
-      <section id="abstract" class="abstract" aria-labelledby="abstract-h">
-        <h2 id="abstract-h">Abstract</h2>
-        <p>
-            Evaluating large language models (LLMs) is crucial for both assessing their capabilities and identifying safety or robustness issues prior to deployment. Reliably measuring abstract and complex phenomena such as 'safety' and 'robustness' requires strong <i>construct validity</i>, that is, having measures that represent what matters to the phenomenon. With a team of 29 expert reviewers, we conduct a systematic review of 445 LLM benchmarks from leading conferences in natural language processing and machine learning. Across the reviewed articles, we find patterns related to the measured phenomena, tasks, and scoring metrics which undermine the validity of the resulting claims. To address these shortcomings, we provide eight key recommendations and detailed actionable guidance to researchers and practitioners in developing LLM benchmarks.
-        </p>
-      </section>
+        <section id="abstract" class="abstract" aria-labelledby="abstract-h">
+            <h2 id="abstract-h">Abstract</h2>
+            <p>
+                Evaluating large language models (LLMs) is crucial for both assessing their capabilities and identifying safety or robustness issues prior to deployment. Reliably measuring abstract and complex phenomena such as 'safety' and 'robustness' requires strong <i>construct validity</i>, that is, having measures that represent what matters to the phenomenon. With a team of 29 expert reviewers, we conduct a systematic review of 445 LLM benchmarks from leading conferences in natural language processing and machine learning. Across the reviewed articles, we find patterns related to the measured phenomena, tasks, and scoring metrics which undermine the validity of the resulting claims. To address these shortcomings, we provide eight key recommendations and detailed actionable guidance to researchers and practitioners in developing LLM benchmarks.
+            </p>
+        </section>
+
+        <section id="diagram" class="diagram" aria-labelledby="diagram-h">
+            <h2 id="diagram-h">Results</h2>
+            <div class="iframe-wrapper">
+                <img src="../img/assets/benchmark_review_results_overview.png" />
+            </div>
+            <p><b>Summary of reviewed articles.</b> (A) Three most common categories of benchmark phenomena, grouped into general capabilities, general applications, and specific applications. (B) Number of articles by publication year and number which discuss the construct validity of their benchmark.</p>
+
+            <div class="iframe-wrapper">
+                <iframe src="benchmark_sankey.html"></iframe>
+            </div>
+            <p><b>Key codebook results.</b> The distribution of codebook responses on selected items. In each column, the options are ordered from most to least preferred for high construct validity. The shaded area indicates the benchmarks that follow the best practices for all five items.</p>
+        </section>
 
       <section id="recommendations" class="recs" aria-labelledby="recs-h">
-        <h2 id="recs-h">Recommendations</h2>
+        <h2 id="recs-h">Construct validity checklist</h2>
 
         <div class="recs-grid">
             <!-- Recommendation 1 -->
@@ -256,6 +269,27 @@
 
         <style>
         /* scoped styles */
+        .iframe-wrapper {
+            display: flex;
+            justify-content: center;  /* centers horizontally */
+            margin: 0 0;           /* optional spacing above/below */
+        }
+
+        .iframe-wrapper iframe {
+            width: 100%;               /* adjust as needed (e.g. 100%, 60ch, etc.) */
+            max-width: 900px;         /* keeps it from stretching too wide */
+            height: 400px;            /* adjust to your content */
+            border: none;             /* cleaner look */
+        }
+
+        .iframe-wrapper img {
+            width: 80%;               /* adjust as needed (e.g. 100%, 60ch, etc.) */
+            max-width: 900px;         /* keeps it from stretching too wide */
+            height: 100%;            /* adjust to your content */
+            border: none;             /* cleaner look */
+        }
+
+
         .rec-title{
             display: inline-flex;              /* lay out icon + text on one line */
             align-items: center;
@@ -335,7 +369,7 @@
     </main>
 
     <footer>
-      © 2025 <!-- Your group or institution --> · Last updated <!-- date -->
+      © 2025 Reasoning with Machines Lab, University of Oxford.
     </footer>
   </div>
 
