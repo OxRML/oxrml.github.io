@@ -90,7 +90,7 @@
             <!-- Recommendation 1 -->
             <fieldset class="rec">
             
-            <h4 class="rec-title"><img src="../img/assets/checklist-icon.svg" alt="" class="icon" /> Define the phenomenon</h4>
+            <h4 class="rec-title">Define the phenomenon</h4>
             <ul class="checklist">
                 <li>
                 <input id="rec1-1" type="checkbox" />
@@ -256,6 +256,21 @@
 
         <style>
         /* scoped styles */
+        .rec-title{
+            display: inline-flex;              /* lay out icon + text on one line */
+            align-items: center;
+            gap: .5rem;                        /* space between icon and text */
+            padding: 0 .5rem;                  /* keep the title inside the fieldset border */
+        }
+
+        .rec-title::before {
+            content: "";
+            display: inline-block;             /* participate in layout (no overlay) */
+            inline-size: 1.1em;
+            block-size: 1.1em;
+            background: url("../img/assets/checklist-icon.svg") no-repeat center/contain;
+        }
+
         .recs { margin-top: 1rem }
         .recs .recs-grid {
             display: grid;
