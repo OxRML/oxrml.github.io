@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title><!-- Paper Title — replace me --></title>
+  <meta name="description" content="Academic paper landing page" />
+  <style>
+    :root{
+      --ink:#1f2937;        /* text */
+      --muted:#6b7280;      /* secondary text */
+      --link:#002147;       /* links */
+      --bg:#ffffff;         /* page bg */
+      --card:#f8fafc;       /* section bg */
+      --border:#e5e7eb;     /* borders */
+      --accent:#0f172a;     /* headings */
+      --maxw: 920px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:16px/1.7 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,Apple Color Emoji,Segoe UI Emoji}
+    a{color:var(--link);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:var(--maxw);margin:0 auto;padding:2.5rem 1.25rem}
+    header{padding-bottom:1rem;border-bottom:1px solid var(--border)}
+    h1{font-size:clamp(1.9rem,3.8vw,2.6rem);line-height:1.2;margin:0 0 .5rem;color:var(--accent);font-weight:650;letter-spacing:-.01em}
+    .meta{display:flex;flex-direction:column;gap:.5rem;margin:.75rem 0 0}
+    .authors{font-size:1.02rem}
+    .affils{color:var(--muted);font-size:.98rem}
+    .badges{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.25rem}
+    .badge{display:inline-block;font-size:.8rem;background:var(--card);border:1px solid var(--border);padding:.15rem .5rem;border-radius:.4rem;color:var(--muted)}
+    main{display:grid;gap:1.25rem;margin-top:1.5rem}
+    section{background:var(--card);border:1px solid var(--border);border-radius:.6rem;padding:1rem 1.25rem}
+    section h2{margin:.25rem 0 .25rem;font-size:1.25rem;color:var(--accent)}
+    .abstract{background:#d8ebff;border-color:#f5e6c8}
+    .keywords{color:var(--muted);font-size:.95rem;margin-top:.5rem}
+    .toc{font-size:.95rem;color:var(--muted)}
+    .toc a{margin-right:1rem}
+    code,pre,textarea{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
+    .bibtex{background:#0b1020;color:#e5e7eb;border-radius:.6rem;border:1px solid #111827;padding:0}
+    .bibtex header{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;border:0;border-bottom:1px solid #1f2937}
+    .bibtex h3{margin:0;font-size:1rem;color:#e5e7eb}
+    .copy-btn{appearance:none;border:1px solid #334155;background:#111827;color:#e5e7eb;border-radius:.4rem;padding:.4rem .6rem;font-size:.85rem;cursor:pointer}
+    .copy-btn:hover{background:#0b1324}
+    .bibtex textarea{width:100%;min-height:180px;border:0;margin:0;padding:1rem;background:transparent;color:inherit;resize:vertical}
+    footer{margin-top:2rem;color:var(--muted);font-size:.9rem;text-align:center}
+    @media (prefers-color-scheme: dark){
+      :root{--bg:#0b0f14;--ink:#e5e7eb;--muted:#94a3b8;--card:#0f172a;--border:#1f2937;--accent:#f3f4f6;--link:#60a5fa}
+      .abstract{background:#0f1320;border-color:#1c2440}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Measuring what Matters: Construct Validity in Large Language Model Benchmarks</h1>
+
+      <div class="meta">
+        <div class="authors">
+          <!-- Replace with authors; use superscripts to tie to affiliations -->
+          Alice Smith<sup>1</sup>, Bob Chen<sup>2</sup>, Carla Rossi<sup>1,3</sup>
+        </div>
+        <div class="affils">
+          <!-- Replace with affiliations -->
+          <sup>1</sup> Department of Computer Science, University A &nbsp;·&nbsp;
+          <sup>2</sup> Institute of AI, University B &nbsp;·&nbsp;
+          <sup>3</sup> Research Lab C
+        </div>
+        <div class="badges">
+          <!-- Optional quick links -->
+          <a class="badge" href="#" aria-label="PDF">PDF</a>
+          <a class="badge" href="#" aria-label="arXiv">arXiv</a>
+          <a class="badge" href="#" aria-label="Code">Code</a>
+          <span class="badge">Preprint — 2025</span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="abstract" class="abstract" aria-labelledby="abstract-h">
+        <h2 id="abstract-h">Abstract</h2>
+        <p>
+            Evaluating large language models (LLMs) is crucial for both assessing their capabilities and identifying safety or robustness issues prior to deployment. Reliably measuring abstract and complex phenomena such as 'safety' and 'robustness' requires strong <i>construct validity</i>, that is, having measures that represent what matters to the phenomenon. With a team of 29 expert reviewers, we conduct a systematic review of 445 LLM benchmarks from leading conferences in natural language processing and machine learning. Across the reviewed articles, we find patterns related to the measured phenomena, tasks, and scoring metrics which undermine the validity of the resulting claims. To address these shortcomings, we provide eight key recommendations and detailed actionable guidance to researchers and practitioners in developing LLM benchmarks.
+        </p>
+      </section>
+
+      <section id="recommendations" class="recs" aria-labelledby="recs-h">
+        <h2 id="recs-h">Recommendations</h2>
+
+        <div class="recs-grid">
+            <!-- Recommendation 1 -->
+            <fieldset class="rec">
+            
+            <h4 class="rec-title"><img src="../img/assets/checklist-icon.svg" alt="" class="icon" /> Define the phenomenon</h4>
+            <ul class="checklist">
+                <li>
+                <input id="rec1-1" type="checkbox" />
+                <label for="rec1-1">Provide a precise and operational definition for the phenomenon being measured</label>
+                </li>
+                <li>
+                <input id="rec1-2" type="checkbox" />
+                <label for="rec1-2">Specify the scope of the phenomenon being covered and acknowledge any excluded aspects</label>
+                </li>
+                <li>
+                <input id="rec1-3" type="checkbox" />
+                <label for="rec1-3">Identify if the phenomenon has sub-components and ensure they are measured separately</label>
+                </li>
+            </ul>
+            </fieldset>
+
+            <!-- Recommendation 2 -->
+            <fieldset class="rec">
+            <h4 class="rec-title">Measure only the phenomenon</h4>
+            <ul class="checklist">
+                <li>
+                <input id="rec2-1" type="checkbox" />
+                <label for="rec2-1">Control for unrelated tasks that may affect the results</label>
+                </li>
+                <li>
+                <input id="rec2-2" type="checkbox" />
+                <label for="rec2-2">Assess the impact of format constraints on model performance</label>
+                </li>
+                <li>
+                <input id="rec2-3" type="checkbox" />
+                <label for="rec2-3">Validate any automated output parsing techniques for accuracy, consistency and bias</label>
+                </li>
+            </ul>
+            </fieldset>
+
+            <!-- Recommendation 3 -->
+            <fieldset class="rec">
+            <h4 class="rec-title">Construct a representative dataset for the task</h4>
+            <ul class="checklist">
+                <li>
+                <input id="rec3-1" type="checkbox" />
+                <label for="rec3-1">Employ sampling strategies to ensure task items are representative of the overall task space</label>
+                </li>
+                <li>
+                <input id="rec3-2" type="checkbox" />
+                <label for="rec3-2">Verify the quality and relevance of all task items especially for large or automatically generated datasets</label>
+                </li>
+                <li>
+                <input id="rec3-3" type="checkbox" />
+                <label for="rec3-3">Include task items that test known LLM sensitivities (e.g. input permutations or variations)</label>
+                </li>
+            </ul>
+            </fieldset>
+
+            <!-- Recommendation 4 -->
+            <fieldset class="rec">
+            <h4 class="rec-title">Acknowledge limitations of reusing datasets</h4>
+            <ul class="checklist">
+                <li>
+                <input id="rec4-1" type="checkbox" />
+                <label for="rec4-1">Document whether the benchmark adapts a previous dataset or benchmark</label>
+                </li>
+                <li>
+                <input id="rec4-2" type="checkbox" />
+                <label for="rec4-2">If so, analyse and report the relevant strengths and limitations of the adapted prior work</label>
+                </li>
+                <li>
+                <input id="rec4-3" type="checkbox" />
+                <label for="rec4-3">If so, report and compare performance on the new benchmark against the original</label>
+                </li>
+                <li>
+                <input id="rec4-4" type="checkbox" />
+                <label for="rec4-4">Explain modifications to reused datasets and how they improve construct validity</label>
+                </li>
+            </ul>
+            </fieldset>
+
+            <!-- Recommendation 5 -->
+            <fieldset class="rec">
+            <h4 class="rec-title">Prepare for contamination</h4>
+            <ul class="checklist">
+                <li>
+                <input id="rec5-1" type="checkbox" />
+                <label for="rec5-1">Implement tests to detect data contamination and apply them to the benchmark</label>
+                </li>
+                <li>
+                <input id="rec5-2" type="checkbox" />
+                <label for="rec5-2">Maintain a held-out set of task items to facilitate ongoing, uncontaminated evaluation</label>
+                </li>
+                <li>
+                <input id="rec5-3" type="checkbox" />
+                <label for="rec5-3">Investigate the potential pre-exposure of benchmark source materials or similar data in common LLM training corpora</label>
+                </li>
+            </ul>
+            </fieldset>
+
+            <!-- Recommendation 6 -->
+            <fieldset class="rec">
+            <h4 class="rec-title">Use statistical methods to compare models</h4>
+            <ul class="checklist">
+                <li>
+                <input id="rec6-1" type="checkbox" />
+                <label for="rec6-1">Report the benchmark's sample size and justify its statistical power</label>
+                </li>
+                <li>
+                <input id="rec6-2" type="checkbox" />
+                <label for="rec6-2">Report uncertainty estimates for all primary scores to enable robust model comparisons</label>
+                </li>
+                <li>
+                <input id="rec6-3" type="checkbox" />
+                <label for="rec6-3">If using human raters, describe their demographics and mitigate potential demographic biases in rater recruitment and instructions</label>
+                </li>
+                <li>
+                <input id="rec6-4" type="checkbox" />
+                <label for="rec6-4">Use metrics that capture the inherent variability of any subjective labels, without relying on single-point aggregation or exact matching</label>
+                </li>
+            </ul>
+            </fieldset>
+
+            <!-- Recommendation 7 -->
+            <fieldset class="rec">
+            <h4 class="rec-title">Conduct an error analysis</h4>
+            <ul class="checklist">
+                <li>
+                <input id="rec7-1" type="checkbox" />
+                <label for="rec7-1">Conduct a qualitative and quantitative analysis of common failure modes</label>
+                </li>
+                <li>
+                <input id="rec7-2" type="checkbox" />
+                <label for="rec7-2">Investigate whether failure modes correlate with non-targeted phenomena (confounders) rather than the intended construct</label>
+                </li>
+                <li>
+                <input id="rec7-3" type="checkbox" />
+                <label for="rec7-3">If so, identify and discuss any potential scoring biases revealed in the error analysis</label>
+                </li>
+            </ul>
+            </fieldset>
+
+            <!-- Recommendation 8 -->
+            <fieldset class="rec">
+            <h4 class="rec-title">Justify construct validity</h4>
+            <ul class="checklist">
+                <li>
+                <input id="rec8-1" type="checkbox" />
+                <label for="rec8-1">Justify the relevance of the benchmark for the phenomenon with real-world applications</label>
+                </li>
+                <li>
+                <input id="rec8-2" type="checkbox" />
+                <label for="rec8-2">Provide a clear rationale for the choice of tasks and metrics, connected to the operational definition of the phenomenon</label>
+                </li>
+                <li>
+                <input id="rec8-3" type="checkbox" />
+                <label for="rec8-3">Compare similarities and differences between the benchmark and existing evaluations of similar phenomena</label>
+                </li>
+                <li>
+                <input id="rec8-4" type="checkbox" />
+                <label for="rec8-4">Discuss the limitations and design trade-offs of the benchmark concerning construct validity</label>
+                </li>
+            </ul>
+            </fieldset>
+        </div>
+        </section>
+
+        <style>
+        /* scoped styles */
+        .recs { margin-top: 1rem }
+        .recs .recs-grid {
+            display: grid;
+            /* grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); */
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        .recs .rec {
+            border: 1px solid #e5e7eb;
+            border-radius: .6rem;
+            padding: .75rem .9rem 1rem;
+            background: #f8fafc;
+        }
+        .recs .rec-title {
+            font-weight: 600;
+            color: #1f2937;
+            margin: 0 0 .5rem;
+            padding: 0;
+        }
+        .recs .checklist {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: .4rem;
+        }
+        .recs .checklist li {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: start;
+            gap: .5rem;
+        }
+        .recs input[type="checkbox"] {
+            inline-size: 1rem;
+            block-size: 1rem;
+            margin-top: .2rem;
+            accent-color: #1d4ed8; /* safe in modern browsers; ignored otherwise */
+        }
+        @media (prefers-color-scheme: dark){
+            .recs .rec { background:#0f172a; border-color:#1f2937 }
+            .recs .rec-title { color:#e5e7eb }
+        }
+</style>
+
+      <section class="bibtex" aria-labelledby="bibtex-h">
+        <header>
+          <h3 id="bibtex-h">BibTeX</h3>
+          <button class="copy-btn" type="button" id="copyBib">Copy</button>
+        </header>
+        <textarea id="bibtexBox" readonly>
+@inproceedings{lastName2025paper,
+  title     = {Your Paper Title},
+  author    = {First A. Author and Second B. Author and Third C. Author},
+  booktitle = {Proceedings of …},
+  year      = {2025},
+  url       = {https://example.org/paper},
+  doi       = {10.0000/example.doi}
+}
+        </textarea>
+      </section>
+    </main>
+
+    <footer>
+      © 2025 <!-- Your group or institution --> · Last updated <!-- date -->
+    </footer>
+  </div>
+
+  <script>
+    // Copy BibTeX helper
+    (function(){
+      const btn = document.getElementById('copyBib');
+      const box = document.getElementById('bibtexBox');
+      if(btn && box){
+        btn.addEventListener('click', async () => {
+          try{
+            await navigator.clipboard.writeText(box.value);
+            btn.textContent = 'Copied!';
+            setTimeout(()=> btn.textContent = 'Copy', 1200);
+          }catch(e){
+            // Fallback selection method
+            box.select(); document.execCommand('copy');
+            btn.textContent = 'Copied!';
+            setTimeout(()=> btn.textContent = 'Copy', 1200);
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
