@@ -484,9 +484,13 @@ url={https://openreview.net/forum?id=mdA5lVvNcU}
         const expanded = btn.getAttribute('aria-expanded') === 'true';
         setState(!expanded);
       });
-      // initialize collapsed
-      block.style.maxHeight = '0px';
-      setState(false);
+      // initialize expanded by default without animation
+      const prevTransition = block.style.transition;
+      block.style.transition = 'none';
+      setState(true);
+      // force reflow then restore transition so subsequent toggles animate
+      void block.offsetHeight;
+      block.style.transition = prevTransition;
     })();
 
     // Paper details show/hide toggle (Abstract, Results, Checklist)
@@ -494,26 +498,67 @@ url={https://openreview.net/forum?id=mdA5lVvNcU}
       const btn = document.getElementById('toggleDetails');
       const block = document.getElementById('paperDetails');
       if(!btn || !block) return;
-      function setState(expanded){
+
+      function setAria(expanded){
         btn.setAttribute('aria-expanded', String(expanded));
         btn.textContent = expanded ? 'Hide paper details' : 'Show paper details';
-        if(expanded){
-          block.classList.add('is-open');
-          // let the content define height
-          const target = block.scrollHeight;
-          block.style.maxHeight = target + 'px';
-        }else{
-          block.style.maxHeight = '0px';
-          block.classList.remove('is-open');
-        }
       }
+
+      function openInstant(){
+        block.classList.add('is-open');
+        block.style.maxHeight = 'none';
+        setAria(true);
+      }
+
+      function openAnimated(){
+        block.classList.add('is-open');
+        // start from current height, then expand to content and then release to auto
+        const target = block.scrollHeight;
+        block.style.maxHeight = target + 'px';
+        const onEnd = () => {
+          block.style.maxHeight = 'none';
+          block.removeEventListener('transitionend', onEnd);
+        };
+        block.addEventListener('transitionend', onEnd);
+        setAria(true);
+      }
+
+      function closeAnimated(){
+        // if currently auto, set to pixel height first to enable transition to 0
+        if(getComputedStyle(block).maxHeight === 'none'){
+          block.style.maxHeight = block.scrollHeight + 'px';
+          // force reflow
+          void block.offsetHeight;
+        }
+        block.style.maxHeight = '0px';
+        block.classList.remove('is-open');
+        setAria(false);
+      }
+
       btn.addEventListener('click', () => {
         const expanded = btn.getAttribute('aria-expanded') === 'true';
-        setState(!expanded);
+        if(expanded){
+          closeAnimated();
+        }else{
+          openAnimated();
+        }
       });
-      // initialize collapsed
-      block.style.maxHeight = '0px';
-      setState(false);
+
+      // initialize fully expanded without animation, then keep it stable after media load
+      const prevTransition = block.style.transition;
+      block.style.transition = 'none';
+      openInstant();
+      void block.offsetHeight;
+      block.style.transition = prevTransition;
+      // ensure full height after images/iframes load
+      window.addEventListener('load', () => {
+        if(btn.getAttribute('aria-expanded') === 'true'){
+          block.style.transition = 'none';
+          block.style.maxHeight = 'none';
+          void block.offsetHeight;
+          block.style.transition = prevTransition;
+        }
+      });
     })();
   </script>
 </body>
