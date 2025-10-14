@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title><!-- Paper Title — replace me --></title>
+  <title>Measuring what Matters</title>
   <meta name="description" content="Academic paper landing page" />
   <style>
     :root{
@@ -56,23 +56,52 @@
 
       <div class="meta">
         <div class="authors">
-          <!-- Replace with authors; use superscripts to tie to affiliations -->
-          Alice Smith<sup>1</sup>, Bob Chen<sup>2</sup>, Carla Rossi<sup>1,3</sup>
-        </div>
-        <div class="affils">
-          <!-- Replace with affiliations -->
-          <sup>1</sup> Department of Computer Science, University A &nbsp;·&nbsp;
-          <sup>2</sup> Institute of AI, University B &nbsp;·&nbsp;
-          <sup>3</sup> Research Lab C
-        </div>
+        <!-- Authors; use superscripts to tie to affiliations -->
+        Andrew M. Bean<sup>1</sup>, Ryan Othniel Kearns<sup>1</sup>, Angelika Romanou<sup>2</sup>, 
+        Franziska Sofia Hafner<sup>1</sup>, Harry Mayne<sup>1</sup>, 
+        Jan Batzner<sup>3,4</sup>, Negar Foroutan<sup>2</sup>, Chris Schmitz<sup>5</sup>, 
+        Karolina Korgul<sup>1</sup>, Hunar Batra<sup>1</sup>, 
+        Oishi Deb<sup>1</sup>, Emma Beharry<sup>6</sup>, Cornelius Emde<sup>1</sup>, Thom Foster<sup>1</sup>, Anna Gausen<sup>7</sup>, 
+        María Grandury<sup>8,9</sup>, Simeng Han<sup>10</sup>, Valentin Hofmann<sup>11,12</sup>, Lujain Ibrahim<sup>1</sup>, 
+        Jude Khouja<sup>1</sup>, Hazel Kim<sup>1</sup>, Hannah Rose Kirk<sup>1,7</sup>, Fangru Lin<sup>1</sup>, 
+        Gabrielle Kaili-May Liu<sup>10</sup>, Lennart Luettgau<sup>7</sup>, Jabez Magomere<sup>1</sup>, Jonathan Rystrøm<sup>1</sup>, 
+        Anna Sotnikova<sup>2</sup>, Yushi Yang<sup>1</sup>, Yilun Zhao<sup>10</sup>, 
+        Adel Bibi<sup>1</sup>, Antoine Bosselut<sup>2</sup>, Ronald Clark<sup>1</sup>, Arman Cohan<sup>10</sup>, Jakob Foerster<sup>1</sup>, 
+        Yarin Gal<sup>1,7</sup>, Scott A. Hale<sup>1,13</sup>, Inioluwa Deborah Raji<sup>14</sup>, Chris Summerfield<sup>1,7</sup>, 
+        Philip H.S. Torr<sup>1</sup>, Cozmin Ududec<sup>7</sup>, Luc Rocher<sup>1</sup>, Adam Mahdi<sup>1*</sup>
+      </div>
+
+      <div class="affils">
+        <!-- Affiliations -->
+        <sup>1</sup> University of Oxford &nbsp;·&nbsp;
+        <sup>2</sup> EPFL &nbsp;·&nbsp;
+        <sup>3</sup> Weizenbaum Institute Berlin &nbsp;·&nbsp;
+        <sup>4</sup> Technical University Munich &nbsp;·&nbsp;
+        <sup>5</sup> Centre for Digital Governance, Hertie School &nbsp;·&nbsp;
+        <sup>6</sup> Stanford University &nbsp;·&nbsp;
+        <sup>7</sup> UK AI Security Institute &nbsp;·&nbsp;
+        <sup>8</sup> SomosNLP &nbsp;·&nbsp;
+        <sup>9</sup> Universidad Politécnica de Madrid &nbsp;·&nbsp;
+        <sup>10</sup> Yale University &nbsp;·&nbsp;
+        <sup>11</sup> Allen Institute for AI &nbsp;·&nbsp;
+        <sup>12</sup> University of Washington &nbsp;·&nbsp;
+        <sup>13</sup> Meedan &nbsp;·&nbsp;
+        <sup>14</sup> UC Berkeley
+      </div>
         <div class="badges">
           <!-- Optional quick links -->
-          <a class="badge" href="#" aria-label="PDF">PDF</a>
-          <a class="badge" href="#" aria-label="arXiv">arXiv</a>
-          <a class="badge" href="#" aria-label="Code">Code</a>
-          <span class="badge">Preprint — 2025</span>
+          <a class="badge" href="#" aria-label="PDF" target="_blank">PDF</a>
+          <a class="badge" href="#" aria-label="arXiv" target="_blank">arXiv</a>
+          <a class="badge" href="https://openreview.net/forum?id=mdA5lVvNcU#discussion" aria-label="OpenReview" target="_blank">OpenReview</a>
+          <a class="badge" href="#bibtex-h" aria-label="Citation">Citation</a>
         </div>
       </div>
+      <br>
+      <section id="highlight">
+        <span class="rec-title">
+          <strong>Is your benchmark valid?</strong> Compare your benchmark to our <a href="construct_validity_checklist.html" target="_blank" style="color: #C15548; font-weight: bold">Construct Validity Checklist!</a>
+        </span>
+      </section>
     </header>
 
     <main>
@@ -81,6 +110,13 @@
             <p>
                 Evaluating large language models (LLMs) is crucial for both assessing their capabilities and identifying safety or robustness issues prior to deployment. Reliably measuring abstract and complex phenomena such as 'safety' and 'robustness' requires strong <i>construct validity</i>, that is, having measures that represent what matters to the phenomenon. With a team of 29 expert reviewers, we conduct a systematic review of 445 LLM benchmarks from leading conferences in natural language processing and machine learning. Across the reviewed articles, we find patterns related to the measured phenomena, tasks, and scoring metrics which undermine the validity of the resulting claims. To address these shortcomings, we provide eight key recommendations and detailed actionable guidance to researchers and practitioners in developing LLM benchmarks.
             </p>
+        </section>
+
+        <section id="review-process" class="review-process" aria-labelledby="review-process-h">
+            <div class="iframe-wrapper">
+                <img src="../img/assets/review-process.png" />
+            </div>
+            <p><b>Systematic review process.</b> (A) Identification and screening from relevant proceedings. (B) In-depth review and annotation of included benchmarks. A phenomenon is operationalised via a task, scored with a metric, to support a claim about this phenomenon. (C) Synthesis of best practices.</p>
         </section>
 
         <section id="diagram" class="diagram" aria-labelledby="diagram-h">
@@ -356,13 +392,13 @@
           <button class="copy-btn" type="button" id="copyBib">Copy</button>
         </header>
         <textarea id="bibtexBox" readonly>
-@inproceedings{lastName2025paper,
-  title     = {Your Paper Title},
-  author    = {First A. Author and Second B. Author and Third C. Author},
-  booktitle = {Proceedings of …},
-  year      = {2025},
-  url       = {https://example.org/paper},
-  doi       = {10.0000/example.doi}
+@inproceedings{
+bean2025measuring,
+title={Measuring what Matters: Construct Validity in Large Language Model Benchmarks},
+author={Andrew M. Bean and Ryan Othniel Kearns and Angelika Romanou and Franziska Sofia Hafner and Harry Mayne and Jan Batzner and Negar Foroutan and Chris Schmitz and Karolina Korgul and Hunar Batra and Oishi Deb and Emma Beharry and Cornelius Emde and Thomas Foster and Anna Gausen and Mar{\'\i}a Grandury and Simeng Han and Valentin Hofmann and Lujain Ibrahim and Hazel Kim and Hannah Rose Kirk and Fangru Lin and Gabrielle Kaili-May Liu and Lennart Luettgau and Jabez Magomere and Jonathan Rystr{\o}m and Anna Sotnikova and Yushi Yang and Yilun Zhao and Adel Bibi and Antoine Bosselut and Ronald Clark and Arman Cohan and Jakob Nicolaus Foerster and Yarin Gal and Scott A. Hale and Inioluwa Deborah Raji and Christopher Summerfield and Philip Torr and Cozmin Ududec and Luc Rocher and Adam Mahdi},
+booktitle={The Thirty-ninth Annual Conference on Neural Information Processing Systems Datasets and Benchmarks Track},
+year={2025},
+url={https://openreview.net/forum?id=mdA5lVvNcU}
 }
         </textarea>
       </section>
