@@ -49,13 +49,23 @@
     .toggle-authors{appearance:none;border:0;background:none;color:var(--link);cursor:pointer;padding:0}
     .toggle-authors:hover{text-decoration:underline}
     /* collapsible styles no longer used */
-    /* ensure highlight tagline wraps as one inline block, not flex-split */
-    #highlight .rec-title{display:inline;padding:0;gap:0}
+    /* highlight tagline: make visually distinct */
+    #highlight .rec-title{
+      display:block;align-items:center;gap:.5rem;
+      padding:.25rem .5rem;border-radius:.4rem;
+      background:#fdecea;border:1px solid #f5c2c7;
+    }
     /* spacing between collapsible paper sections */
     #paperDetails > section + section{margin-top:1rem}
     @media (prefers-color-scheme: dark){
       :root{--bg:#0b0f14;--ink:#e5e7eb;--muted:#94a3b8;--card:#0f172a;--border:#1f2937;--accent:#f3f4f6;--link:#60a5fa}
       header h4 a{color:#ffffff !important}
+      /* dark mode styling for highlight tagline */
+      #highlight .rec-title{
+        background:#2a1214; /* deep muted red for contrast on dark */
+        border-color:#7a2e34;
+        color:var(--ink);
+      }
     }
   </style>
 </head>
@@ -76,15 +86,15 @@
       </div>
       <br>
       <section id="highlight">
-        <p style="padding-top:0;padding-bottom:.4rem;margin:0">LLM benchmarks are essential for tracking progress and ensuring safety in AI. But <strong>most benchmarks don't <i>measure what matters</i></strong>.</p>
+        <p style="padding-top:0;padding-bottom:.4rem;margin:0">LLM benchmarks are essential for tracking progress and ensuring safety in AI, but <strong>most benchmarks don't <i>measure what matters</i></strong>.</p>
 
-        <p style="padding-top:0;padding-bottom:.4rem;margin:0">We reviewed 445 LLM benchmarks from the proceedings of top AI conferences and found many measurement challenges: benchmarks provide vague definitions for their target phenomenon, or test auxiliary tasks, or omit statistical testing, and so on.</p>
+        <p style="padding-top:0;padding-bottom:.4rem;margin:0">We reviewed 445 LLM benchmarks from the proceedings of top AI conferences. We found many measurement challenges, including vague definitions for target phenomena or an absence of statistical tests. We consider these challenges to the <i>construct validity</i> of LLM benchmarks: many benchmarks are not valid measurements of their intended targets.</p>
 
         <!-- We consider these failures with the <i>construct validity</i> of large language model benchmarks: the quality of benchmarks to measure the real-world phenomenon that matters.  -->
         
-        <p style="padding-top:0;padding-bottom:.4rem;margin:0">We built a taxonomy of these failures and translated them into an operational checklist for future benchmark authors.</p>
+        <p style="padding-top:0;padding-bottom:.4rem;margin:0">We built a taxonomy of these failures and translated them into an operational checklist to help future benchmark authors demonstrate construct validity.</p>
         <span class="rec-title">
-          <strong>Is your benchmark valid?</strong> Compare your benchmark with our <a href="checklist.html" style="color: #C15548; font-weight: bold">Construct Validity Checklist!</a>
+          <strong>Does your benchmark measure up?</strong> Compare against our <a href="checklist.html" style="color: #C15548; font-weight: bold">Construct Validity Checklist</a>.
         </span>
       </section>
     </header>
@@ -337,7 +347,7 @@
             content: "";
             display: inline-block;             /* participate in layout (no overlay) */
             inline-size: 1.1em;
-            block-size: 1.1em;
+            block-size: 1.0em;
             background: url("../img/assets/checklist-icon.svg") no-repeat center/contain;
         }
 
