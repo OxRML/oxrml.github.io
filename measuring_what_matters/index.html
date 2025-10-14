@@ -117,7 +117,7 @@
       <section id="highlight">
         <p style="padding-top:0;padding-bottom:.4rem;margin:0">We reviewed the construct validity of 445 LLM benchmarks from the proceedings of top AI conferences.</p>
         
-        <p style="padding-top:0;padding-bottom:.4rem;margin:0">We found that, for many reasons, <strong>most benchmarks don't <i>measure what matters</i></strong>. They provide vague definitions for their target phenomenon, or they test auxiliary tasks, or they omit statistical tests, and so on.</p>
+        <p style="padding-top:0;padding-bottom:.4rem;margin:0">We found that, for many reasons, <strong>most benchmarks don't <i>measure what matters</i></strong>. Some provide vague definitions for their target phenomenon, some test auxiliary tasks, some omit statistical tests, and so on.</p>
         <p style="padding-top:0;padding-bottom:.4rem;margin:0">We built a taxonomy of these failures and translated them into an operational checklist for future benchmark authors.</p>
         <span class="rec-title">
           <strong>Is your benchmark valid?</strong> Compare your benchmark with our <a href="construct_validity_checklist.html" target="_blank" style="color: #C15548; font-weight: bold">Construct Validity Checklist!</a>
@@ -137,6 +137,10 @@
         </section>
 
         <section id="review-process" class="review-process" aria-labelledby="review-process-h">
+            <h2 id="methods-h">Methods</h2>
+            <p>We conducted a systematic review, as illustrated below. Our corpus consisted of 46,114 articles drawn from the proceedings of ICML, ICLR and NeurIPS (accessed via proceedings websites)  between 2018 and 2024, and from ACL, NAACL and EMNLP between 2020 and 2024 (accessed via ACL Anthology).</p>
+
+            <p>We identified and selected articles whose titles or abstracts contained the keywords 'benchmark' and either 'LLM' or 'language model.' Then, we conducted a series of manual and automated filtering steps, including GPT-4o mini in consultation with human experts, to result in 445 articles included for final review.</p>
             <div class="iframe-wrapper">
                 <img src="../img/assets/review-process.png" />
             </div>
@@ -145,6 +149,8 @@
 
         <section id="diagram" class="diagram" aria-labelledby="diagram-h">
             <h2 id="diagram-h">Results</h2>
+
+            <p>The reviewing process resulted in a dataset containing responses to 21 question items on 445 benchmark articles, annotated by 29 experts in the areas of NLP and machine learning.</p>
             <div class="iframe-wrapper">
                 <img src="../img/assets/benchmark_review_results_overview.png" />
             </div>
@@ -156,10 +162,14 @@
             <p><b>Key codebook results.</b> The distribution of codebook responses on selected items. In each column, the options are ordered from most to least preferred for high construct validity. The shaded area indicates the benchmarks that follow the best practices for all five items.</p>
         </section>
 
-      <!-- <section id="recommendations" class="recs" aria-labelledby="recs-h">
+      <section id="recommendations" class="recs" aria-labelledby="recs-h">
         <h2 id="recs-h">Construct validity checklist</h2>
 
-        <div class="recs-grid">
+        <p>Informed by our systematic review, we provide eight recommendations to ensure the construct validity of your benchmark.</p>
+
+        <p>See our interactable checklist, including PDF and LaTeX versions, on <a href="construct_validity_checklist.html" target="_blank" style="color: #C15548; font-weight: bold">this page</a>.</p>
+
+        <!-- <div class="recs-grid">
             <fieldset class="rec">
             
             <h4 class="rec-title">Define the phenomenon</h4>
@@ -316,8 +326,8 @@
                 </li>
             </ul>
             </fieldset>
-        </div>
-        </section> -->
+        </div> -->
+        </section>
         </div>
 
         <style>
