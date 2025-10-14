@@ -51,9 +51,12 @@
     .score-card .legend{display:flex;flex-direction:column}
     .score-card .legend .count{font-weight:650;color:var(--accent)}
     .score-card .legend .hint{color:var(--muted);font-size:.92rem}
+    .score-card .clear-btn{appearance:none;border:1px solid var(--border);background:var(--card);color:var(--ink);border-radius:.4rem;padding:.4rem .6rem;font-size:.85rem;cursor:pointer;margin-left:auto}
+    .score-card .clear-btn:hover{background:#f3f4f6}
     @media (prefers-color-scheme: dark){
       :root{--bg:#0b0f14;--ink:#e5e7eb;--muted:#94a3b8;--card:#0f172a;--border:#1f2937;--accent:#f3f4f6;--link:#60a5fa}
       .abstract{background:#0f1320;border-color:#1c2440}
+      .score-card .clear-btn:hover{background:#111827}
     }
   </style>
 </head>
@@ -77,6 +80,7 @@
               <div class="count" id="progressCount">0/0 complete</div>
               <div class="hint">Tick items in the checklist below</div>
             </div>
+            <button id="clearChecklist" class="clear-btn" type="button" aria-label="Clear all checked items">Clear all</button>
           </div>
       </section>
       <!-- <div class="badges">
@@ -415,6 +419,16 @@
       inputs.forEach(i => i.addEventListener('change', () => { save(); update(); }));
       restore();
       update();
+
+      // Clear all button
+      const clearBtn = document.getElementById('clearChecklist');
+      if(clearBtn){
+        clearBtn.addEventListener('click', () => {
+          inputs.forEach(i => { i.checked = false; });
+          try{ localStorage.removeItem(STORAGE_KEY); }catch(_e){}
+          update();
+        });
+      }
     })();
   </script>
 </body>
