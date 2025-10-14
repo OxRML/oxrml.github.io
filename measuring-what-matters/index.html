@@ -67,7 +67,7 @@
 
       <div class="meta">
         <div class="badges">
-          <!-- <a class="badge" href="checklist.html" aria-label="Checklist">Construct Validity Checklist</a>
+          <!-- <a class="badge" href="checklist.html" aria-label="Checklist">Compare your benchmark with our Construct Validity Checklist</a>
           &nbsp;·&nbsp; -->
           <a class="badge" aria-label="arXiv">Read on arXiv</a>
           <!-- <a class="badge" href="https://openreview.net/forum?id=mdA5lVvNcU#discussion" aria-label="OpenReview" target="_blank">OpenReview</a> -->
@@ -76,9 +76,12 @@
       </div>
       <br>
       <section id="highlight">
-        <p style="padding-top:0;padding-bottom:.4rem;margin:0">We reviewed the construct validity of 445 LLM benchmarks from the proceedings of top AI conferences.</p>
+        <p style="padding-top:0;padding-bottom:.4rem;margin:0">LLM benchmarks are essential for tracking progress and ensuring safety in AI. But <strong>most benchmarks don't <i>measure what matters</i></strong>.</p>
+
+        <p style="padding-top:0;padding-bottom:.4rem;margin:0">We reviewed 445 LLM benchmarks from the proceedings of top AI conferences and found many measurement challenges: benchmarks provide vague definitions for their target phenomenon, or test auxiliary tasks, or omit statistical testing, and so on.</p>
+
+        <!-- We consider these failures with the <i>construct validity</i> of large language model benchmarks: the quality of benchmarks to measure the real-world phenomenon that matters.  -->
         
-        <p style="padding-top:0;padding-bottom:.4rem;margin:0">We found that, for many reasons, <strong>most benchmarks don't <i>measure what matters</i></strong>. Some provide vague definitions for their target phenomenon, some test auxiliary tasks, some omit statistical tests, and so on.</p>
         <p style="padding-top:0;padding-bottom:.4rem;margin:0">We built a taxonomy of these failures and translated them into an operational checklist for future benchmark authors.</p>
         <span class="rec-title">
           <strong>Is your benchmark valid?</strong> Compare your benchmark with our <a href="checklist.html" style="color: #C15548; font-weight: bold">Construct Validity Checklist!</a>
@@ -97,9 +100,9 @@
 
         <section id="review-process" class="review-process" aria-labelledby="review-process-h">
             <h2 id="methods-h">Methods</h2>
-            <p>We conducted a systematic review, as illustrated below. Our corpus consisted of 46,114 articles drawn from the proceedings of ICML, ICLR and NeurIPS (accessed via proceedings websites)  between 2018 and 2024, and from ACL, NAACL and EMNLP between 2020 and 2024 (accessed via ACL Anthology).</p>
+            <p>We conducted a systematic review, as illustrated below. We began with 46,114 articles drawn from the proceedings of ICML, ICLR and NeurIPS (accessed via proceedings websites)  between 2018 and 2024, and from ACL, NAACL and EMNLP between 2020 and 2024 (accessed via ACL Anthology).</p>
 
-            <p>We identified and selected articles whose titles or abstracts contained the keywords 'benchmark' and either 'LLM' or 'language model.' Then, we conducted a series of manual and automated filtering steps, including GPT-4o mini in consultation with human experts, to result in 445 articles included for final review.</p>
+            <p>We identified and selected articles whose titles or abstracts contained the keywords 'benchmark' and either 'LLM' or 'language model.' Then, we conducted a series of manual and automated filtering steps to select 445 articles included for final review.</p>
             <div class="iframe-wrapper">
                 <img src="../img/assets/review-process.png" />
             </div>
@@ -109,7 +112,7 @@
         <section id="diagram" class="diagram" aria-labelledby="diagram-h">
             <h2 id="diagram-h">Results</h2>
 
-            <p>The reviewing process resulted in a dataset containing responses to 21 question items on 445 benchmark articles, annotated by 29 experts in the areas of NLP and machine learning.</p>
+            <p>We reviewed each benchmark article with a twenty-one item questionnaire. Twenty-nine experts in NLP and ML contributed to this effort.</p>
             <div class="iframe-wrapper">
                 <img src="../img/assets/benchmark_review_results_overview.png" />
             </div>
