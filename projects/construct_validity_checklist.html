@@ -381,6 +381,27 @@
 
       const labelEl = ring.querySelector('text');
 
+      const STORAGE_KEY = 'cv_checklist_checked_v1';
+
+      function save(){
+        try{
+          const checkedIds = inputs.filter(i => i.checked).map(i => i.id).filter(Boolean);
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(checkedIds));
+        }catch(_e){/* ignore storage errors */}
+      }
+
+      function restore(){
+        try{
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if(!raw) return;
+          const ids = JSON.parse(raw);
+          if(Array.isArray(ids)){
+            const set = new Set(ids);
+            inputs.forEach(i => { if(i.id && set.has(i.id)) i.checked = true; });
+          }
+        }catch(_e){/* ignore parse/storage errors */}
+      }
+
       function update(){
         const checked = inputs.filter(i => i.checked).length;
         const ratio = total ? checked / total : 0;
@@ -391,7 +412,8 @@
         countEl.textContent = `${text} complete`;
       }
 
-      inputs.forEach(i => i.addEventListener('change', update));
+      inputs.forEach(i => i.addEventListener('change', () => { save(); update(); }));
+      restore();
       update();
     })();
   </script>
