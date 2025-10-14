@@ -1,0 +1,80 @@
+\section{Construct Validity Checklist}
+
+\textbf{Define the phenomenon}
+\begin{itemize}[leftmargin=25pt, label=\scriptsize$\square$]
+        \item Provide a precise and operational definition for the phenomenon being measured
+        \item Specify the scope of the phenomenon being covered and acknowledge any excluded aspects
+        \item Identify if the phenomenon has sub-components and ensure they are measured separately
+    \end{itemize}
+
+\textbf{Measure only the phenomenon}
+\begin{itemize}[leftmargin=25pt, label=\scriptsize$\square$]
+    \item Control for unrelated tasks that may affect the results
+%\item If the benchmark has a strict output format, model performance is compared with and without format constraints.
+\item Assess the impact of format constraints on model performance
+%\item If the benchmark uses automated techniques to parse answers, they are tested for bias and accuracy across different models.
+\item Validate any automated output parsing techniques for accuracy, consistency and bias
+
+\end{itemize}
+
+\textbf{Construct a representative dataset for the task}
+\begin{itemize}[leftmargin=25pt, label=\scriptsize$\square$]
+    \item Employ sampling strategies to ensure task items are representative of the overall task space
+ %\item Checks are performed to ensure that the task items are high quality and related to the phenomenon (especially if the benchmark is large).
+ \item Verify the quality and relevance of all task items, especially for large or automatically generated datasets
+ %\item The selection of task items has been tailored for testing LLMs (e.g. including both easy and difficult tasks by human standards, including small syntactic perturbations of task items).
+ \item Include task items that test known LLM sensitivities (e.g. input permutations or variations)
+\end{itemize}
+
+\textbf{Acknowledge limitations of reusing datasets}
+\begin{itemize}[leftmargin=25pt, label=\scriptsize$\square$]
+    \item Document whether the benchmark adapts a previous dataset or benchmark
+    %\item If so, the authors provide a clear analysis of the previous work describing strengths and limitations of the benchmark.
+    \item If so, analyse and report the relevant strengths and limitations of the adapted prior work
+    %\item If so, results on the original benchmark are included and compared to.
+    \item If so, report and compare performance on the new benchmark against the original
+    %\item Any differences from the original dataset are justified and explained in the context of construct validity.
+    %\item Articulate the rationale when modifying a reused dataset, identifying improvements to construct validity
+    \item Explain modifications to reused datasets and how they improve construct validity
+\end{itemize}
+
+\textbf{Prepare for contamination}
+\begin{itemize}[leftmargin=25pt, label=\scriptsize$\square$]
+    \item Implement tests to detect data contamination and apply them to the benchmark
+    %\item Held-out task items are available (e.g. via a private test set, or generating new questions).
+    \item Maintain a held-out set of task items to facilitate ongoing, uncontaminated evaluation
+    %\item The authors conduct an analysis of data exposure prior to the benchmark creation.
+    \item Investigate the potential pre-exposure of benchmark source materials or similar data in common LLM training corpora
+\end{itemize}
+
+\textbf{Use statistical methods to compare models}
+\begin{itemize}[leftmargin=25pt, label=\scriptsize$\square$]
+     \item Report the benchmark's sample size and justify its statistical power
+     %\item Uncertainty estimates are provided for the main scores, and are narrow enough to meaningfully compare relevant models.
+     \item Report uncertainty estimates for all primary scores to enable robust model comparisons
+     %\item If human raters are used, the recruitment accounts for demographic biases which may be relevant to the preferences they report.
+     \item If using human raters, describe their demographics and mitigate potential demographic biases in rater recruitment and instructions
+    %\item If the benchmark uses subjective measures of performance, the distribution of labels is reported and accounted for in the scoring.
+    \item Use metrics that capture the inherent variability of any subjective labels, without relying on single-point aggregation or exact matching.
+\end{itemize}
+
+\textbf{Conduct an error analysis}
+\begin{itemize}[leftmargin=25pt, label=\scriptsize$\square$]
+    \item Conduct a qualitative and quantitative analysis of common failure modes
+    %\item There are no patterns of failures which relate to non-targeted phenomena.
+    \item Investigate whether failure modes correlate with non-targeted phenomena (confounders) rather than the intended construct
+    %\item If so, potential biases in the scoring are discussed.
+    \item If so, identify and discuss any potential scoring biases revealed in the error analysis
+    %\item Experiments or recommendations are made to improve model scores on the benchmark.
+    \item Conduct experiments or propose new directions to improve model scores on the benchmark
+\end{itemize}
+
+\textbf{Justify construct validity}
+\begin{itemize}[leftmargin=25pt, label=\scriptsize$\square$]
+    \item Justify the relevance of the benchmark for the phenomenon with real-world applications
+    %\item The authors explain why the task and metric were chosen to measure the target phenomenon.
+    \item Provide a clear rationale for the choice of tasks and metrics, connected to the operational definition of the phenomenon
+    %\item The benchmark is compared to other benchmarks of similar phenomena, with a discussion of similarities and differences.
+    \item Compare similarities and differences between the benchmark and existing evaluations of similar phenomena
+    \item Discuss the limitations and design trade-offs of the benchmark concerning construct validity
+\end{itemize}
