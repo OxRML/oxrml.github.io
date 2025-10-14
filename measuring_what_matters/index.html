@@ -63,7 +63,7 @@
       <div class="meta">
         <div class="meta-toggle">
           <strong>Oxford Reasoning with Machines Lab</strong>
-          <button id="toggleAuthors" class="toggle-authors" type="button" aria-expanded="false" aria-controls="authorsBlock">Show authors</button>
+          <button id="toggleAuthors" class="toggle-authors" type="button" aria-expanded="false" aria-controls="authorsBlock" style="color: #C15548; font-weight: bold">Show authors</button>
         </div>
 
         <div id="authorsBlock" class="collapsible">
@@ -106,18 +106,25 @@
           <a class="badge" href="#" aria-label="PDF" target="_blank">PDF</a>
           <a class="badge" href="#" aria-label="arXiv" target="_blank">arXiv</a>
           <a class="badge" href="https://openreview.net/forum?id=mdA5lVvNcU#discussion" aria-label="OpenReview" target="_blank">OpenReview</a>
-          <a class="badge" href="#bibtex-h" aria-label="Citation">Citation</a>
+          <a class="badge" href="#bibtex-h" aria-label="Citation">Cite</a>
         </div>
       </div>
       <br>
       <section id="highlight">
+        <p style="padding-top:0;padding-bottom:.4rem;margin:0">We reviewed the construct validity of 445 LLM benchmarks from the proceedings of top AI conferences.</p>
+        
+        <p style="padding-top:0;padding-bottom:.4rem;margin:0">We found that <strong>most benchmarks don't <i>measure what matters</i></strong>: they provide vague definitions for their target phenomenon, or they test auxiliary tasks, or they fail to use proper sampling methods or statistical tests.</p>
+        <p style="padding-top:0;padding-bottom:.4rem;margin:0">We built a taxonomy of these failures, and translated them into an operational checklist for future benchmark authors.</p>
         <span class="rec-title">
-          <strong>Is your benchmark valid?</strong> Compare your benchmark to our <a href="construct_validity_checklist.html" target="_blank" style="color: #C15548; font-weight: bold">Construct Validity Checklist!</a>
+          <strong>Is your benchmark valid?</strong> Compare your benchmark with our <a href="construct_validity_checklist.html" target="_blank" style="color: #C15548; font-weight: bold">Construct Validity Checklist!</a>
         </span>
       </section>
     </header>
 
     <main>
+        <div><button id="toggleDetails" class="toggle-authors" type="button" aria-expanded="false" aria-controls="paperDetails" style="color: #C15548; font-weight: bold">Show paper details</button>
+        </div>
+        <div id="paperDetails" class="collapsible">
         <section id="abstract" class="abstract" aria-labelledby="abstract-h">
             <h2 id="abstract-h">Abstract</h2>
             <p>
@@ -315,6 +322,7 @@
             </fieldset>
         </div>
         </section>
+        </div>
 
         <style>
         /* scoped styles */
@@ -443,6 +451,18 @@ url={https://openreview.net/forum?id=mdA5lVvNcU}
       }
     })();
 
+    // Autosize BibTeX box to show full content by default
+    (function(){
+      const box = document.getElementById('bibtexBox');
+      if(!box) return;
+      function resize(){
+        box.style.height = 'auto';
+        box.style.height = box.scrollHeight + 'px';
+      }
+      resize();
+      window.addEventListener('resize', resize);
+    })();
+
     // Authors show/hide toggle
     (function(){
       const btn = document.getElementById('toggleAuthors');
@@ -458,6 +478,33 @@ url={https://openreview.net/forum?id=mdA5lVvNcU}
           block.style.maxHeight = target + 'px';
         }else{
           // collapse
+          block.style.maxHeight = '0px';
+          block.classList.remove('is-open');
+        }
+      }
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        setState(!expanded);
+      });
+      // initialize collapsed
+      block.style.maxHeight = '0px';
+      setState(false);
+    })();
+
+    // Paper details show/hide toggle (Abstract, Results, Checklist)
+    (function(){
+      const btn = document.getElementById('toggleDetails');
+      const block = document.getElementById('paperDetails');
+      if(!btn || !block) return;
+      function setState(expanded){
+        btn.setAttribute('aria-expanded', String(expanded));
+        btn.textContent = expanded ? 'Hide paper details' : 'Show paper details';
+        if(expanded){
+          block.classList.add('is-open');
+          // let the content define height
+          const target = block.scrollHeight;
+          block.style.maxHeight = target + 'px';
+        }else{
           block.style.maxHeight = '0px';
           block.classList.remove('is-open');
         }
