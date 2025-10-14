@@ -72,13 +72,11 @@
 
           <div id="progress" class="score-card" aria-live="polite">
             <svg class="ring" viewBox="0 0 120 120" role="img" aria-label="Checklist progress">
-              <circle cx="60" cy="60" r="52" stroke="var(--border)" stroke-width="8" fill="none"/>
-              <circle id="progressArc" cx="60" cy="60" r="52" stroke="#C15548" stroke-width="8" fill="none" stroke-linecap="round" transform="rotate(-90 60 60)" stroke-dasharray="327" stroke-dashoffset="327"/>
-              <text x="60" y="58" text-anchor="middle" dominant-baseline="central">0/0</text>
-              <text class="sub" x="60" y="78" text-anchor="middle" dominant-baseline="central">complete</text>
+              <circle cx="60" cy="60" r="48" stroke="var(--border)" stroke-width="8" fill="none"/>
+              <circle id="progressArc" cx="60" cy="60" r="48" stroke="#C15548" stroke-width="8" fill="none" stroke-linecap="round" transform="rotate(-90 60 60)" stroke-dasharray="302" stroke-dashoffset="302"/>
             </svg>
             <div class="legend">
-              <div class="count" id="progressCount">0/0 complete</div>
+              <div class="count" id="progressCount">0/0 valid</div>
               <div class="hint">Tick items in the checklist below</div>
             </div>
             <button id="clearChecklist" class="clear-btn" type="button" aria-label="Clear all checked items">Clear all</button>
@@ -379,7 +377,7 @@
       const ring = document.querySelector('#progress .ring');
       if(!arc || !countEl || !ring) return;
 
-      const dashTotal = parseFloat(arc.getAttribute('stroke-dasharray')) || 327;
+      const dashTotal = parseFloat(arc.getAttribute('stroke-dasharray')) || 302;
 
       const inputs = Array.from(document.querySelectorAll('#recommendations .checklist input[type="checkbox"]'));
       const total = inputs.length;
@@ -413,8 +411,7 @@
         const offset = dashTotal * (1 - ratio);
         arc.setAttribute('stroke-dashoffset', String(offset));
         const text = `${checked}/${total}`;
-        if(labelEl) labelEl.textContent = text;
-        countEl.textContent = `${text} complete`;
+        countEl.textContent = `${text} valid`;
       }
 
       inputs.forEach(i => i.addEventListener('change', () => { save(); update(); }));
