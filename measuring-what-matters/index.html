@@ -124,7 +124,18 @@
       <section id="recommendations" class="recs" aria-labelledby="recs-h">
         <h2 id="recs-h">Construct validity checklist</h2>
 
-        <p>Informed by our systematic review, we provide eight recommendations to ensure the construct validity of your benchmark.</p>
+        <p>Informed by our systematic review, we provide eight recommendations to ensure the construct validity of your benchmark:</p>
+
+        <ul class="icon-list">
+            <li>Define the phenomenon</li>
+            <li>Measure only the phenomenon</li>
+            <li>Construct a representative dataset for the task</li>
+            <li>Acknowledge limitations of reusing datasets</li>
+            <li>Prepare for contamination</li>
+            <li>Use statistical methods to compare models</li>
+            <li>Conduct an error analysis</li>
+            <li>Justify construct validity</li>
+        </ul>
 
         <p>See our interactable checklist, including PDF and LaTeX versions, on <a href="checklist.html" style="color: #C15548; font-weight: bold">this page</a>.</p>
 
@@ -345,6 +356,15 @@
             color: #1f2937;
             margin: 0 0 .5rem;
             padding: 0;
+        }
+        /* icon list styling like rec-title */
+        #recommendations .icon-list { list-style: none; margin: .25rem 0 0; padding: 0; padding-left: 1.5rem; display: grid; gap: .4rem; }
+        #recommendations .icon-list li { position: relative; }
+        #recommendations .icon-list li::before {
+            content: "";
+            position: absolute; left: -1.5rem; top: 0.3rem;
+            inline-size: 1.1em; block-size: 1.1em;
+            background: url("../img/assets/checklist-icon.svg") no-repeat center/contain;
         }
         .recs .checklist {
             list-style: none;
