@@ -48,8 +48,7 @@
     .meta-toggle{display:flex;align-items:baseline;gap:.75rem}
     .toggle-authors{appearance:none;border:0;background:none;color:var(--link);cursor:pointer;padding:0}
     .toggle-authors:hover{text-decoration:underline}
-    .collapsible{overflow:hidden;max-height:0;opacity:0;transition:max-height .3s ease,opacity .3s ease}
-    .collapsible.is-open{opacity:1}
+    /* collapsible styles no longer used */
     /* ensure highlight tagline wraps as one inline block, not flex-split */
     #highlight .rec-title{display:inline;padding:0;gap:0}
     /* spacing between collapsible paper sections */
@@ -88,9 +87,7 @@
     </header>
 
     <main>
-        <div><button id="toggleDetails" class="toggle-authors" type="button" aria-expanded="false" aria-controls="paperDetails" style="color: #C15548; font-weight: bold">Show paper details</button>
-        </div>
-        <div id="paperDetails" class="collapsible">
+        <div id="paperDetails">
         <section id="abstract" class="abstract" aria-labelledby="abstract-h">
             <h2 id="abstract-h">Abstract</h2>
             <p>
@@ -376,11 +373,7 @@
 </style>
 
 
-<div class="meta-toggle">
-  <button id="toggleAuthors" class="toggle-authors" type="button" aria-expanded="false" aria-controls="authorsBlock" style="color: #C15548; font-weight: bold">Show authors</button>
-</div>
-
-<div id="authorsBlock" class="collapsible">
+<div id="authorsBlock">
   <div class="authors">
   <!-- Authors; use superscripts to tie to affiliations -->
   Andrew M. Bean<sup>1</sup>, Ryan Othniel Kearns<sup>1</sup>, Angelika Romanou<sup>2</sup>, 
@@ -461,105 +454,7 @@ url={https://openreview.net/forum?id=mdA5lVvNcU}
 
     // BibTeX box uses fixed height with scroll; autosize removed by request
 
-    // Authors show/hide toggle
-    (function(){
-      const btn = document.getElementById('toggleAuthors');
-      const block = document.getElementById('authorsBlock');
-      if(!btn || !block) return;
-      function setState(expanded){
-        btn.setAttribute('aria-expanded', String(expanded));
-        btn.textContent = expanded ? 'Hide authors' : 'Show authors';
-        if(expanded){
-          block.classList.add('is-open');
-          // set to auto height smoothly
-          const target = block.scrollHeight;
-          block.style.maxHeight = target + 'px';
-        }else{
-          // collapse
-          block.style.maxHeight = '0px';
-          block.classList.remove('is-open');
-        }
-      }
-      btn.addEventListener('click', () => {
-        const expanded = btn.getAttribute('aria-expanded') === 'true';
-        setState(!expanded);
-      });
-      // initialize expanded by default without animation
-      const prevTransition = block.style.transition;
-      block.style.transition = 'none';
-      setState(true);
-      // force reflow then restore transition so subsequent toggles animate
-      void block.offsetHeight;
-      block.style.transition = prevTransition;
-    })();
-
-    // Paper details show/hide toggle (Abstract, Results, Checklist)
-    (function(){
-      const btn = document.getElementById('toggleDetails');
-      const block = document.getElementById('paperDetails');
-      if(!btn || !block) return;
-
-      function setAria(expanded){
-        btn.setAttribute('aria-expanded', String(expanded));
-        btn.textContent = expanded ? 'Hide paper details' : 'Show paper details';
-      }
-
-      function openInstant(){
-        block.classList.add('is-open');
-        block.style.maxHeight = 'none';
-        setAria(true);
-      }
-
-      function openAnimated(){
-        block.classList.add('is-open');
-        // start from current height, then expand to content and then release to auto
-        const target = block.scrollHeight;
-        block.style.maxHeight = target + 'px';
-        const onEnd = () => {
-          block.style.maxHeight = 'none';
-          block.removeEventListener('transitionend', onEnd);
-        };
-        block.addEventListener('transitionend', onEnd);
-        setAria(true);
-      }
-
-      function closeAnimated(){
-        // if currently auto, set to pixel height first to enable transition to 0
-        if(getComputedStyle(block).maxHeight === 'none'){
-          block.style.maxHeight = block.scrollHeight + 'px';
-          // force reflow
-          void block.offsetHeight;
-        }
-        block.style.maxHeight = '0px';
-        block.classList.remove('is-open');
-        setAria(false);
-      }
-
-      btn.addEventListener('click', () => {
-        const expanded = btn.getAttribute('aria-expanded') === 'true';
-        if(expanded){
-          closeAnimated();
-        }else{
-          openAnimated();
-        }
-      });
-
-      // initialize fully expanded without animation, then keep it stable after media load
-      const prevTransition = block.style.transition;
-      block.style.transition = 'none';
-      openInstant();
-      void block.offsetHeight;
-      block.style.transition = prevTransition;
-      // ensure full height after images/iframes load
-      window.addEventListener('load', () => {
-        if(btn.getAttribute('aria-expanded') === 'true'){
-          block.style.transition = 'none';
-          block.style.maxHeight = 'none';
-          void block.offsetHeight;
-          block.style.transition = prevTransition;
-        }
-      });
-    })();
+    // Authors and paper details toggles removed; content always visible
   </script>
 </body>
 </html>
