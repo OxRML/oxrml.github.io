@@ -49,6 +49,8 @@
     .toggle-authors:hover{text-decoration:underline}
     .collapsible{overflow:hidden;max-height:0;opacity:0;transition:max-height .3s ease,opacity .3s ease}
     .collapsible.is-open{opacity:1}
+    /* ensure highlight tagline wraps as one inline block, not flex-split */
+    #highlight .rec-title{display:inline;padding:0;gap:0}
     @media (prefers-color-scheme: dark){
       :root{--bg:#0b0f14;--ink:#e5e7eb;--muted:#94a3b8;--card:#0f172a;--border:#1f2937;--accent:#f3f4f6;--link:#60a5fa}
       .abstract{background:#0f1320;border-color:#1c2440}
@@ -113,8 +115,8 @@
       <section id="highlight">
         <p style="padding-top:0;padding-bottom:.4rem;margin:0">We reviewed the construct validity of 445 LLM benchmarks from the proceedings of top AI conferences.</p>
         
-        <p style="padding-top:0;padding-bottom:.4rem;margin:0">We found that <strong>most benchmarks don't <i>measure what matters</i></strong>: they provide vague definitions for their target phenomenon, or they test auxiliary tasks, or they fail to use proper sampling methods or statistical tests.</p>
-        <p style="padding-top:0;padding-bottom:.4rem;margin:0">We built a taxonomy of these failures, and translated them into an operational checklist for future benchmark authors.</p>
+        <p style="padding-top:0;padding-bottom:.4rem;margin:0">We found that <strong>most benchmarks don't <i>measure what matters</i></strong>: they provide vague definitions for their target phenomenon, or they test auxiliary tasks, or they omit statistical tests.</p>
+        <p style="padding-top:0;padding-bottom:.4rem;margin:0">We built a taxonomy of these failures and translated them into an operational checklist for future benchmark authors.</p>
         <span class="rec-title">
           <strong>Is your benchmark valid?</strong> Compare your benchmark with our <a href="construct_validity_checklist.html" target="_blank" style="color: #C15548; font-weight: bold">Construct Validity Checklist!</a>
         </span>
