@@ -43,6 +43,14 @@
     .copy-btn:hover{background:#0b1324}
     .bibtex textarea{width:100%;min-height:180px;border:0;margin:0;padding:1rem;background:transparent;color:inherit;resize:vertical}
     footer{margin-top:2rem;color:var(--muted);font-size:.9rem;text-align:center}
+    /* progress styles */
+    .score-card{display:flex;align-items:center;gap:1rem;margin-top:.5rem}
+    .score-card .ring{inline-size:96px;block-size:96px}
+    .score-card .ring text{font-size:.9rem;fill:var(--ink);font-weight:600}
+    .score-card .ring .sub{font-size:.62rem;font-weight:500;fill:var(--muted)}
+    .score-card .legend{display:flex;flex-direction:column}
+    .score-card .legend .count{font-weight:650;color:var(--accent)}
+    .score-card .legend .hint{color:var(--muted);font-size:.92rem}
     @media (prefers-color-scheme: dark){
       :root{--bg:#0b0f14;--ink:#e5e7eb;--muted:#94a3b8;--card:#0f172a;--border:#1f2937;--accent:#f3f4f6;--link:#60a5fa}
       .abstract{background:#0f1320;border-color:#1c2440}
@@ -58,7 +66,18 @@
 
           <p>Download a <a href="construct_validity_checklist.pdf" target="_blank" style="color: #C15548; font-weight: bold">PDF version</a> of the checklist, or the <a href="construct_validity_checklist_latex.txt" target="_blank" style="color: #C15548; font-weight: bold">LaTeX code</a> for use in your paper.</p>
 
-          <p>TODO add script to score!</p>
+          <div id="progress" class="score-card" aria-live="polite">
+            <svg class="ring" viewBox="0 0 120 120" role="img" aria-label="Checklist progress">
+              <circle cx="60" cy="60" r="52" stroke="var(--border)" stroke-width="8" fill="none"/>
+              <circle id="progressArc" cx="60" cy="60" r="52" stroke="#C15548" stroke-width="8" fill="none" stroke-linecap="round" transform="rotate(-90 60 60)" stroke-dasharray="327" stroke-dashoffset="327"/>
+              <text x="60" y="58" text-anchor="middle" dominant-baseline="central">0/0</text>
+              <text class="sub" x="60" y="78" text-anchor="middle" dominant-baseline="central">complete</text>
+            </svg>
+            <div class="legend">
+              <div class="count" id="progressCount">0/0 complete</div>
+              <div class="hint">Tick items in the checklist below</div>
+            </div>
+          </div>
       </section>
       <!-- <div class="badges">
           <a class="badge" href="#" aria-label="PDF" target="_blank">PDF</a>
@@ -346,6 +365,34 @@
           }
         });
       }
+    })();
+
+    // Checklist scoring + circular progress
+    (function(){
+      const arc = document.getElementById('progressArc');
+      const countEl = document.getElementById('progressCount');
+      const ring = document.querySelector('#progress .ring');
+      if(!arc || !countEl || !ring) return;
+
+      const dashTotal = parseFloat(arc.getAttribute('stroke-dasharray')) || 327;
+
+      const inputs = Array.from(document.querySelectorAll('#recommendations .checklist input[type="checkbox"]'));
+      const total = inputs.length;
+
+      const labelEl = ring.querySelector('text');
+
+      function update(){
+        const checked = inputs.filter(i => i.checked).length;
+        const ratio = total ? checked / total : 0;
+        const offset = dashTotal * (1 - ratio);
+        arc.setAttribute('stroke-dashoffset', String(offset));
+        const text = `${checked}/${total}`;
+        if(labelEl) labelEl.textContent = text;
+        countEl.textContent = `${text} complete`;
+      }
+
+      inputs.forEach(i => i.addEventListener('change', update));
+      update();
     })();
   </script>
 </body>
