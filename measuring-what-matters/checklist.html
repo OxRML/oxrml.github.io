@@ -74,7 +74,7 @@
               <circle id="progressArc" cx="60" cy="60" r="48" stroke="#C15548" stroke-width="8" fill="none" stroke-linecap="round" transform="rotate(-90 60 60)" stroke-dasharray="302" stroke-dashoffset="302"/>
             </svg>
             <div class="legend">
-              <div class="count" id="progressCount">0/0 valid</div>
+              <div class="count" id="progressCount">0/0</div>
               <div class="hint">Tick items in the checklist below</div>
             </div>
             <button id="clearChecklist" class="clear-btn" type="button" aria-label="Clear all checked items">Clear all</button>
@@ -409,7 +409,7 @@
         const offset = dashTotal * (1 - ratio);
         arc.setAttribute('stroke-dashoffset', String(offset));
         const text = `${checked}/${total}`;
-        countEl.textContent = `${text} valid`;
+        countEl.textContent = `${text}`;
       }
 
       inputs.forEach(i => i.addEventListener('change', () => { save(); update(); }));
