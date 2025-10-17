@@ -74,15 +74,16 @@
     <header>
       <a class="back-btn" href="https://oxrml.com" rel="noopener noreferrer" aria-label="Back to oxrml.com">← Reasoning with Machines Lab</a>
       <h1>Measuring what Matters: Construct Validity in Large Language Model Benchmarks</h1>
-      <h4 style="margin:0"><a href="https://neurips.cc/Conferences/2025" target="_blank" style="color: black"><i>NeurIPS 2025 Datasets and Benchmarks Track</i></a></h4>
+      <h4 style="margin:0; display:flex; align-items:center; gap:.5rem;">
+        <img src="../img/assets/NeurIPS-logo.svg" style="height:1.2em; vertical-align:middle; display:inline-block; margin-right:.4rem;" />
+        <a href="https://neurips.cc/Conferences/2025" target="_blank" style="color: black"><i>NeurIPS 2025 Datasets and Benchmarks Track</i></a>
+      </h4>
 
       <div class="meta">
         <div class="badges">
-          <!-- <a class="badge" href="checklist.html" aria-label="Checklist">Compare your benchmark with our Construct Validity Checklist</a>
-          &nbsp;·&nbsp; -->
-          <a class="badge" aria-label="arXiv">Read on arXiv</a>
-          <!-- <a class="badge" href="https://openreview.net/forum?id=mdA5lVvNcU#discussion" aria-label="OpenReview" target="_blank">OpenReview</a> -->
-          <!-- <a class="badge" href="#bibtex" aria-label="Citation">Jump to citation</a> -->
+          <a class="badge" aria-label="arXiv"><img src="../img/assets/arxiv.svg" style="height:1.2em; vertical-align:middle; display:inline-block; margin-right:.4rem;">arXiv</a>
+          <a class="badge" href="https://huggingface.co/datasets/ambean/construct-validity-review" aria-label="Hugging Face" target="_blank"><img src="../img/assets/hf.svg" style="height:1.2em; vertical-align:middle; display:inline-block; margin-right:.4rem;">Hugging Face</a>
+          <a class="badge" href="checklist.html" aria-label="Checklist"><img src="../img/assets/checklist-icon.svg" style="height:1.2em; vertical-align:middle; display:inline-block; margin-right:.4rem;">Checklist</a>
         </div>
       </div>
       <br>
@@ -90,8 +91,6 @@
         <p style="padding-top:0;padding-bottom:.4rem;margin:0">LLM benchmarks are essential for tracking progress and ensuring safety in AI, but <strong>most benchmarks don't <i>measure what matters</i></strong>.</p>
 
         <p style="padding-top:0;padding-bottom:.4rem;margin:0">We reviewed 445 LLM benchmarks from the proceedings of top AI conferences. We found many measurement challenges, including vague definitions for target phenomena or an absence of statistical tests. We consider these challenges to the <i>construct validity</i> of LLM benchmarks: many benchmarks are not valid measurements of their intended targets.</p>
-
-        <!-- We consider these failures with the <i>construct validity</i> of large language model benchmarks: the quality of benchmarks to measure the real-world phenomenon that matters.  -->
         
         <p style="padding-top:0;padding-bottom:.4rem;margin:0">We built a taxonomy of these failures and translated them into an operational checklist to help future benchmark authors demonstrate construct validity.</p>
         <span class="rec-title">
@@ -102,12 +101,6 @@
 
     <main>
         <div id="paperDetails">
-        <section id="abstract" class="abstract" aria-labelledby="abstract-h">
-            <h2 id="abstract-h">Abstract</h2>
-            <p>
-                Evaluating large language models (LLMs) is crucial for both assessing their capabilities and identifying safety or robustness issues prior to deployment. Reliably measuring abstract and complex phenomena such as 'safety' and 'robustness' requires strong <i>construct validity</i>, that is, having measures that represent what matters to the phenomenon. With a team of 29 expert reviewers, we conduct a systematic review of 445 LLM benchmarks from leading conferences in natural language processing and machine learning. Across the reviewed articles, we find patterns related to the measured phenomena, tasks, and scoring metrics which undermine the validity of the resulting claims. To address these shortcomings, we provide eight key recommendations and detailed actionable guidance to researchers and practitioners in developing LLM benchmarks.
-            </p>
-        </section>
 
         <section id="review-process" class="review-process" aria-labelledby="review-process-h">
             <h2 id="methods-h">Methods</h2>
