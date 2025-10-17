@@ -8,7 +8,13 @@
 \usepackage{setspace}
 
 \setlength{\parindent}{0pt}
-\setlist[itemize]{itemsep=0pt, topsep=2pt, parsep=0pt, partopsep=0pt, label=\scriptsize$\square$}
+
+% Counter + macro to produce unique AcroForm checkbox names for each item
+\newcounter{cbctr}
+\newcommand{\cb}{\stepcounter{cbctr}\CheckBox[name=cb\thecbctr,width=1.1em,height=1.1em]{}}
+
+% Use the checkbox macro as the item label
+\setlist[itemize]{itemsep=0pt, topsep=2pt, parsep=0pt, partopsep=0pt, label=\cb}
 \setlength{\leftmargini}{25pt}
 
 \begin{document}
@@ -19,14 +25,14 @@
 
 \singlespacing
 
+\begin{Form} % start the PDF form so \CheckBox fields are active
+
 This checklist follows the recommendations made in the paper:
 \begin{quote}
     \textbf{\textit{Measuring what Matters: Construct Validity in Large Language Model Benchmarks}} \\
     NeurIPS 2025 Datasets \& Benchmarks \\
     \url{https://openreview.net/pdf?id=mdA5lVvNcU}
 \end{quote}
-
-\vspace{1em}
 
 \textbf{Define the phenomenon}
 \begin{itemize}
@@ -88,5 +94,6 @@ This checklist follows the recommendations made in the paper:
     \item Discuss the limitations and design trade-offs of the benchmark concerning construct validity
 \end{itemize}
 
+\end{Form}
 
 \end{document}
