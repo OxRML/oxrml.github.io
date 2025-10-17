@@ -1,4 +1,26 @@
-\section{Construct Validity Checklist}
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\pagestyle{empty}
+
+\section*{Construct Validity Checklist}
+
+This checklist follows the recommendations made in the paper:
+\begin{quote}
+    \textbf{\textit{Measuring what Matters:\\Construct Validity in Large Language Model Benchmarks}} \\
+    NeurIPS 2025 Datasets \& Benchmarks \\
+    \url{https://openreview.net/pdf?id=mdA5lVvNcU}
+\end{quote}
+
+\vspace{1em}
 
 \textbf{Define the phenomenon}
 \begin{itemize}[leftmargin=25pt, label=\scriptsize$\square$]
@@ -59,3 +81,5 @@
     \item Compare similarities and differences between the benchmark and existing evaluations of similar phenomena
     \item Discuss the limitations and design trade-offs of the benchmark concerning construct validity
 \end{itemize}
+
+\end{document}
