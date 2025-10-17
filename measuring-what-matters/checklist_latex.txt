@@ -4,8 +4,12 @@
 \usepackage{amssymb}
 \usepackage{enumitem}
 \usepackage{hyperref}
+\usepackage{lipsum}
+\usepackage{setspace}
 
 \setlength{\parindent}{0pt}
+\setlist[itemize]{itemsep=0pt, topsep=2pt, parsep=0pt, partopsep=0pt, label=\scriptsize$\square$}
+\setlength{\leftmargini}{25pt}
 
 \begin{document}
 
@@ -13,9 +17,11 @@
 
 \section*{Construct Validity Checklist}
 
+\singlespacing
+
 This checklist follows the recommendations made in the paper:
 \begin{quote}
-    \textbf{\textit{Measuring what Matters:\\Construct Validity in Large Language Model Benchmarks}} \\
+    \textbf{\textit{Measuring what Matters: Construct Validity in Large Language Model Benchmarks}} \\
     NeurIPS 2025 Datasets \& Benchmarks \\
     \url{https://openreview.net/pdf?id=mdA5lVvNcU}
 \end{quote}
@@ -23,28 +29,28 @@ This checklist follows the recommendations made in the paper:
 \vspace{1em}
 
 \textbf{Define the phenomenon}
-\begin{itemize}[leftmargin=25pt, label=\scriptsize$\square$]
+\begin{itemize}
         \item Provide a precise and operational definition for the phenomenon being measured
         \item Specify the scope of the phenomenon being covered and acknowledge any excluded aspects
         \item Identify if the phenomenon has sub-components and ensure they are measured separately
 \end{itemize}
 
 \textbf{Measure only the phenomenon}
-\begin{itemize}[leftmargin=25pt, label=\scriptsize$\square$]
+\begin{itemize}
     \item Control for unrelated tasks that may affect the results
     \item Assess the impact of format constraints on model performance
     \item Validate any automated output parsing techniques for accuracy, consistency and bias
 \end{itemize}
 
 \textbf{Construct a representative dataset for the task}
-\begin{itemize}[leftmargin=25pt, label=\scriptsize$\square$]
+\begin{itemize}
     \item Employ sampling strategies to ensure task items are representative of the overall task space
     \item Verify the quality and relevance of all task items, especially for large or automatically generated datasets
     \item Include task items that test known LLM sensitivities (e.g. input permutations or variations)
 \end{itemize}
 
 \textbf{Acknowledge limitations of reusing datasets}
-\begin{itemize}[leftmargin=25pt, label=\scriptsize$\square$]
+\begin{itemize}
     \item Document whether the benchmark adapts a previous dataset or benchmark
     \item If so, analyse and report the relevant strengths and limitations of the adapted prior work
     \item If so, report and compare performance on the new benchmark against the original
@@ -52,14 +58,14 @@ This checklist follows the recommendations made in the paper:
 \end{itemize}
 
 \textbf{Prepare for contamination}
-\begin{itemize}[leftmargin=25pt, label=\scriptsize$\square$]
+\begin{itemize}
     \item Implement tests to detect data contamination and apply them to the benchmark
     \item Maintain a held-out set of task items to facilitate ongoing, uncontaminated evaluation
     \item Investigate the potential pre-exposure of benchmark source materials or similar data in common LLM training corpora
 \end{itemize}
 
 \textbf{Use statistical methods to compare models}
-\begin{itemize}[leftmargin=25pt, label=\scriptsize$\square$]
+\begin{itemize}
     \item Report the benchmark's sample size and justify its statistical power
     \item Report uncertainty estimates for all primary scores to enable robust model comparisons
     \item If using human raters, describe their demographics and mitigate potential demographic biases in rater recruitment and instructions
@@ -67,7 +73,7 @@ This checklist follows the recommendations made in the paper:
 \end{itemize}
 
 \textbf{Conduct an error analysis}
-\begin{itemize}[leftmargin=25pt, label=\scriptsize$\square$]
+\begin{itemize}
     \item Conduct a qualitative and quantitative analysis of common failure modes
     \item Investigate whether failure modes correlate with non-targeted phenomena (confounders) rather than the intended construct
     \item If so, identify and discuss any potential scoring biases revealed in the error analysis
@@ -75,11 +81,12 @@ This checklist follows the recommendations made in the paper:
 \end{itemize}
 
 \textbf{Justify construct validity}
-\begin{itemize}[leftmargin=25pt, label=\scriptsize$\square$]
+\begin{itemize}
     \item Justify the relevance of the benchmark for the phenomenon with real-world applications
     \item Provide a clear rationale for the choice of tasks and metrics, connected to the operational definition of the phenomenon
     \item Compare similarities and differences between the benchmark and existing evaluations of similar phenomena
     \item Discuss the limitations and design trade-offs of the benchmark concerning construct validity
 \end{itemize}
+
 
 \end{document}
