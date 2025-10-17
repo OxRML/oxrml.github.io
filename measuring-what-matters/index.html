@@ -72,6 +72,7 @@
 <body>
   <div class="container">
     <header>
+      <a class="back-btn" href="https://oxrml.com" rel="noopener noreferrer" aria-label="Back to oxrml.com">← Reasoning with Machines Lab</a>
       <h1>Measuring what Matters: Construct Validity in Large Language Model Benchmarks</h1>
       <h4 style="margin:0"><a href="https://neurips.cc/Conferences/2025" target="_blank" style="color: black"><i>NeurIPS 2025 Datasets and Benchmarks Track</i></a></h4>
 
@@ -314,6 +315,31 @@
         </div>
 
         <style>
+        /* subtle back button above header */
+        .back-btn{
+          display: inline-flex;
+          align-items: center;
+          gap: .5rem;
+          font-size: .95rem;
+          color: var(--muted);
+          background: transparent;
+          border: 1px solid transparent;
+          padding: .35rem .6rem;
+          border-radius: .5rem;
+          text-decoration: none;
+          margin-bottom: .75rem;
+        }
+        .back-btn:hover{
+          color: var(--link);
+          background: rgba(2,6,23,0.03);
+          border-color: var(--border);
+          text-decoration: none;
+        }
+        @media (prefers-color-scheme: dark){
+          .back-btn{ color: var(--muted); }
+          .back-btn:hover{ background: rgba(255,255,255,0.02); }
+        }
+        
         /* scoped styles */
         .iframe-wrapper {
             display: flex;
