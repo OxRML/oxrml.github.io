@@ -378,6 +378,7 @@
       const dashTotal = parseFloat(arc.getAttribute('stroke-dasharray')) || 302;
 
       const inputs = Array.from(document.querySelectorAll('#recommendations .checklist input[type="checkbox"]'));
+      const PARAM_KEY = 'state';
       const total = inputs.length;
 
       const labelEl = ring.querySelector('text');
@@ -403,6 +404,33 @@
         }catch(_e){/* ignore parse/storage errors */}
       }
 
+      // --- Encode/decode helpers for compact state in URL ---
+      function encodeState() {
+        let bits = 0n;
+        inputs.forEach((i, idx) => {
+          if (i.checked) bits |= (1n << BigInt(idx));
+        });
+        return bits.toString(36);
+      }
+
+      function decodeState(str) {
+        try {
+          const bits = BigInt('0x' + BigInt(parseInt(str, 36)).toString(16));
+          inputs.forEach((i, idx) => {
+            i.checked = !!(bits & (1n << BigInt(idx)));
+          });
+        } catch (e) {
+          console.warn('Invalid state parameter');
+        }
+      }
+
+      function updateURL() {
+        const encoded = encodeState();
+        const url = new URL(window.location);
+        url.searchParams.set(PARAM_KEY, encoded);
+        history.replaceState(null, '', url);
+      }
+
       function update(){
         const checked = inputs.filter(i => i.checked).length;
         const ratio = total ? checked / total : 0;
@@ -410,10 +438,19 @@
         arc.setAttribute('stroke-dashoffset', String(offset));
         const text = `${checked}/${total}`;
         countEl.textContent = `${text}`;
+        updateURL();
       }
 
       inputs.forEach(i => i.addEventListener('change', () => { save(); update(); }));
-      restore();
+
+      // --- Initialization: check for state param ---
+      const params = new URLSearchParams(window.location.search);
+      const stateParam = params.get(PARAM_KEY);
+      if (stateParam) {
+        decodeState(stateParam);
+      } else {
+        restore();
+      }
       update();
 
       // Clear all button
@@ -422,6 +459,9 @@
         clearBtn.addEventListener('click', () => {
           inputs.forEach(i => { i.checked = false; });
           try{ localStorage.removeItem(STORAGE_KEY); }catch(_e){}
+          const url = new URL(window.location);
+          url.searchParams.delete(PARAM_KEY);
+          history.replaceState(null, '', url);
           update();
         });
       }
