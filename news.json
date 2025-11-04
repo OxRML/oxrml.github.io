@@ -2,11 +2,20 @@
   "news": [
     {
       "id": "6",
-      "date": "2025-05-01",
-      "displayDate": "May 2025", 
+      "date": "2025-11-04",
+      "displayDate": "November 2025", 
       "title": "New paper!",
-      "text": "Measuring what matters: Construct validity in large language model benchmarks.",
+      "text": "'Measuring what matters: Construct validity in large language model benchmarks.' will be presented at the NeurIPS 2025 Datasets and Benchmarks Track.",
       "category": "publication"
+    },
+    {
+      "id": "6",
+      "date": "2025-11-04",
+      "displayDate": "November 2025", 
+      "title": "OxRML @ EMNLP 2025",
+      "text": "We presented two papers at EMNLP 2025: 'How Does DPO Reduce Toxicity? A Mechanistic Neuron-Level Analysis' and 'LLMs Don't Know Their Own Decision Boundaries: The Unreliability of Self-Generated Counterfactual Explanations.'",
+      "category": "conference",
+      "photos": ["img/news/emnlp_2025.png"]
     },
     {
       "id": "5", 
