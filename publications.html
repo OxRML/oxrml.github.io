@@ -493,6 +493,14 @@
             background: #6d28d9;
         }
 
+        .pub-link-blog {
+            background: #2563eb;
+        }
+
+        .pub-link-blog:hover {
+            background: #1d4ed8;
+        }
+
         .lab-member {
             font-weight: 700;
         }
@@ -971,7 +979,8 @@
                         'arxiv': { label: 'arXiv', class: 'pub-link-arxiv' },
                         'code': { label: 'Code', class: 'pub-link-code' },
                         'huggingface': { label: 'HuggingFace', class: 'pub-link-huggingface' },
-                        'pdf': { label: 'PDF', class: 'pub-link-pdf' }
+                        'pdf': { label: 'PDF', class: 'pub-link-pdf' },
+                        'blog': { label: 'Blog', class: 'pub-link-blog' }
                     };
                     
                     Object.entries(linkTypes).forEach(([key, config]) => {

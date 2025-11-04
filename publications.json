@@ -2,18 +2,68 @@
   "publications": [
     {
       "id": "1",
-      "date": "2025-05-01",
-      "displayDate": "May 2025",
+      "date": "2025-11-04",
+      "displayDate": "November 2025",
       "title": "Measuring what matters: Construct validity in large language model benchmarks",
       "authors": "AM Bean, RO Kearns, A Romanou, FS Hafner, H Mayne, J Batzner, N Foroutan, C Schmitz, K Korgul, H Batra, O Deb, E Beharry, C Emde, T Foster, A Gausen, M Grandury, J Khouja, S Han, V Hofmann, L Ibrahim, H Kim, HR Kirk, F Lin, L Luettgau, J Magomere, J Rystrøm, GKM Liu, A Sotnikova, Y Yang, Y Zhao, A Bibi, A Bosselut, R Clark, A Cohan, J Foerster, Y Gal, SA Hale, ID Raji, C Summerfield, PHS Torr, C Ududec, L Rocher, A Mahdi",
       "labMembers": ["AM Bean", "RO Kearns", "H Mayne", "K Korgul", "Y Yang", "A Mahdi"],
-      "venue": "Under review",
+      "venue": "NeurIPS 2025 Datasets and Benchmarks Track",
+      "abstract": "",
+      "links": {
+        "arxiv": "",
+        "code": "",
+        "huggingface": "https://huggingface.co/datasets/ambean/construct-validity-review",
+        "pdf": "https://openreview.net/pdf?id=mdA5lVvNcU"
+      }
+    },
+    {
+      "id": "dpo_toxicity",
+      "date": "2025-11-01",
+      "displayDate": "November 2025",
+      "title": "How Does DPO Reduce Toxicity? A Mechanistic Neuron-Level Analysis",
+      "authors": "Y Yang, F Sondej, H Mayne, A Lee, A Mahdi",
+      "labMembers": ["Y Yang", "H Mayne", "A Mahdi"],
+      "venue": "EMNLP 2025",
       "abstract": "",
       "links": {
         "arxiv": "",
         "code": "",
         "huggingface": "",
-        "pdf": ""
+        "pdf": "https://aclanthology.org/2025.emnlp-main.1501/",
+        "blog": ""
+      }
+    },
+    {
+      "id": "decision_boundaries",
+      "date": "2025-09-11",
+      "displayDate": "September 2025",
+      "title": "LLMs Don't Know Their Own Decision Boundaries: The Unreliability of Self-Generated Counterfactual Explanations",
+      "authors": "H Mayne, RO Kearns, Y Yang, AM Bean, E Delaney, C Russel, A Mahdi",
+      "labMembers": ["H Mayne", "RO Kearns", "Y Yang", "AM Bean", "A Mahdi"],
+      "venue": "EMNLP 2025",
+      "abstract": "",
+      "links": {
+        "arxiv": "https://arxiv.org/abs/2509.09396",
+        "code": "https://github.com/HarryMayne/SCEs",
+        "huggingface": "",
+        "pdf": "",
+        "blog": "https://www.lesswrong.com/posts/YydYPCsZJJEwnCMe7/llms-don-t-know-their-own-decision-boundaries-why-is-this"
+      }
+    },
+    {
+      "id": "multimodal_healthcare",
+      "date": "2025-01-01",
+      "displayDate": "February 2025",
+      "title": "Review of multimodal machine learning approaches in healthcare",
+      "authors": "F Krones, U Marikkar, G Parsons, A Szmul, A Mahdi",
+      "labMembers": ["F Krones", "G Parsons", "A Mahdi"],
+      "venue": "Information Fusion",
+      "abstract": "",
+      "links": {
+        "arxiv": "https://arxiv.org/abs/2402.02460",
+        "code": "",
+        "huggingface": "",
+        "pdf": "https://www.sciencedirect.com/science/article/pii/S1566253524004688"
       }
     },
     {
@@ -39,7 +89,7 @@
       "title": "Clinical knowledge in LLMs does not translate to human interactions",
       "authors": "AM Bean, R Payne, G Parsons, HR Kirk, J Ciro, R Mosquera, S Hincapié Monsalve, AS Ekanayaka, L Tarassenko, L Rocher, A Mahdi",
       "labMembers": ["AM Bean", "G Parsons", "A Mahdi"],
-      "venue": "Under review",
+      "venue": "Nature Medicine",
       "abstract": "",
       "links": {
         "arxiv": "https://arxiv.org/abs/2504.18919",
