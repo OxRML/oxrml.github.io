@@ -18,14 +18,6 @@
       "photos": ["img/news/emnlp_2025.png"]
     },
     {
-      "id": "5", 
-      "date": "2025-01-01",
-      "displayDate": "Jan 2025",
-      "title": "New paper!",
-      "text": "LINGOLY-TOO: Disentangling memorisation from reasoning with linguistic templatisation and orthographic obfuscation.",
-      "category": "publication"
-    },
-    {
       "id": "4",
       "date": "2024-12-15",
       "displayDate": "Dec 2024",
