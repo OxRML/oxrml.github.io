@@ -1,0 +1,397 @@
+:root {
+    --bg: #ffffff;
+    --header-bg: var(--bg);
+    --text: #000000;
+    --muted: #6b7280;
+    --accent: #000000; /* black accent for light mode */
+    --card-bg: #ffffff;
+    --card-border: #e5e7eb;
+    --overlay-bg: rgba(0,0,0,0.65);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #1e1e1e;
+        --header-bg: #1f1f1f;
+        --text: #ffffff;
+        --muted: #9ca3af;
+        --accent: #ffffff; /* white accent for dark mode */
+        --card-bg: #212121;
+        --card-border: #434343;
+        --overlay-bg: rgba(0,0,0,0.75);
+    }
+}
+
+/* Global resets (keeps your existing layout rules) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 1.7;
+    color: var(--text);
+    background-color: var(--bg);
+}
+
+/* Header and nav now use neutral black/white theme */
+.header {
+    background: var(--header-bg);
+    background-color: var(--header-bg);
+    color: var(--text);
+    padding: 1rem 0;
+    box-shadow: 0 2px 18px rgba(0,0,0,0.06);
+    border-bottom: 1px solid var(--card-border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+
+
+.header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    justify-content: space-between;
+}
+
+.rml-logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Lab logo image placeholder (user will replace src with their square image);
+   the image will automatically invert in dark mode so the user can provide a single light image if desired. */
+.lab-logo-img {
+    width: 60px;
+    height: 60px;
+    flex: 0 0 60px; /* do not grow or shrink */
+    object-fit: cover;
+    display: block;
+    /* border: 2px solid var(--card-border); */
+}
+
+/* In dark mode invert the image so a light logo becomes visible on dark bg.
+   If the user provides two images, they can remove this rule later. */
+/* @media (prefers-color-scheme: dark) {
+    .lab-logo-img {
+        filter: invert(1) hue-rotate(180deg);
+        background: linear-gradient(180deg, #111, #1a1a1a);
+        border-color: var(--card-border);
+    }
+} */
+
+.lab-identity {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* vertically center h1 + affiliation */
+    gap: 0.15rem;
+}
+
+.lab-identity h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    /* margin-bottom: -0.5rem; */
+    font-family: system-ui, sans-serif;
+    color: var(--text);
+    line-height: 1.15;
+}
+
+.lab-identity .oxford-affiliation {
+    margin-top: 0;
+}
+
+.lab-tagline {
+    font-size: 1.0rem;
+    opacity: 0.9;
+    font-style: italic;
+    color: var(--muted);
+}
+
+.oxford-affiliation {
+    font-size: 1.1rem;
+    opacity: 0.8;
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--muted);
+}
+
+/* Nav moved into header; use a compact horizontal menu */
+.nav {
+    background: transparent;
+    padding: 0;
+    border-bottom: none;
+    position: static;
+    z-index: 100;
+}
+
+.nav-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    gap: 0;
+}
+
+
+
+.nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.75rem 1rem;
+    display: block;
+    transition: all 0.2s;
+    border-bottom: 3px solid transparent;
+    border-radius: 6px;
+}
+
+.nav a:hover, .nav a.active {
+    color: var(--accent);
+    background-color: rgba(0,0,0,0.04);
+    border-bottom-color: transparent;
+}
+
+/* Footer neutral colors */
+.footer {
+    background: var(--bg);
+    color: var(--muted);
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 3rem;
+    border-top: 1px solid var(--card-border);
+}
+
+/* Cards and panels */
+.research-overview,
+.research-card,
+.pi-section,
+.past-members-section,
+.collaborators-section,
+.publications-list,
+.contact-section,
+.news-sidebar,
+.member-photo,
+.team-member,
+.past-member,
+.modal-content {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--text);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.section {
+    padding: 4rem 0;
+}
+
+.section-header {
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-size: 2.25rem;
+    font-weight: 400;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    max-width: 800px;
+}
+
+.research-overview {
+    padding: 3rem;
+    padding-top: 1rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 3rem;
+}
+
+.research-areas {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.research-card {
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid var(--accent);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Modal overlay uses variable */
+.modal-overlay {
+    background: var(--overlay-bg);
+}
+
+/* small adjustments for responsive layout preserved below */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+    }
+
+    .lab-identity {
+        align-items: center;
+        text-align: center;
+    }
+
+    .lab-identity h1 {
+        font-size: 1.6rem;
+    }
+
+    .nav ul {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .rml-logo {
+        justify-content: center;
+    }
+}
+
+        .member-contact-links a:hover,
+        .member-contact-links a:focus-visible {
+            background: var(--accent);
+            color: #fff;                       /* colour inversion */
+            transform: scale(1.05);
+            outline: none;
+            text-decoration: none !important;
+        }
+
+        .member-contact-links a:active {
+            transform: scale(.97);
+        }
+
+        /* ------ Motion-safety ------ */
+        @media (prefers-reduced-motion: reduce) {
+            .member-contact-links a {
+                transition: none;
+            }
+        }
+
+        .layout {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .main-content {
+            flex: 3;
+        }
+
+        .news-sidebar {
+            flex: 1;
+            background: #f7fafc;
+            padding: 1.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            position: sticky;
+            top: 6rem;
+        }
+
+        .news-sidebar h3 {
+            color: #1a365d;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .news-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 0 1.5rem;
+            position: relative;
+        }
+
+        .news-list::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 2px;
+            background: #000;
+        }
+
+        .news-item {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: center;
+        }
+
+        .news-title {
+            color: #1a365d;
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-left: 0.5rem;
+        }
+
+        .news-date {
+            display: inline-block;
+            position: relative;
+            background: #1a365d;
+            color: #fff;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 0.1rem 0.4rem;
+            margin-right: 0.5rem;
+            border-radius: 3px;
+            white-space: nowrap;
+        }
+
+        .news-date::before {
+            content: "";
+            position: absolute;
+            left: calc(-1.0rem + 1px);
+            top: 50%;
+            width: 8px;
+            height: 8px;
+            background: #000;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 0.2s;
+        }
+
+        .news-item:hover .news-date::before, .news-item:focus .news-date::before {
+            transform: translate(-50%, -50%) scale(1.5);
+        }
+
+        .news-text {
+            display: block;
+            margin-top: 0.25rem;
+        }
+
+
+        @media (max-width: 1000px) {
+            .layout {
+                flex-direction: column;
+            }
+        }
