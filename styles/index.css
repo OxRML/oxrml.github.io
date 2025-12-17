@@ -284,6 +284,11 @@ body {
     }
 }
 
+.lab-description a {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
         .member-contact-links a:hover,
         .member-contact-links a:focus-visible {
             background: var(--accent);
