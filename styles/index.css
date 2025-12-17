@@ -29,6 +29,18 @@
     box-sizing: border-box;
 }
 
+/* Ensure that header link does not highlight or change color */
+.rml-logo,
+.rml-logo a,
+.rml-logo a:link,
+.rml-logo a:visited,
+.rml-logo a:hover,
+.rml-logo a:active,
+.rml-logo a:focus {
+    text-decoration: none;
+    color: inherit;
+}
+
 body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     line-height: 1.7;
@@ -61,7 +73,7 @@ body {
     justify-content: space-between;
 }
 
-.rml-logo {
+.rml-logo a {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -267,7 +279,7 @@ body {
         flex-wrap: wrap;
     }
 
-    .rml-logo {
+    .rml-logo a {
         justify-content: center;
     }
 }
