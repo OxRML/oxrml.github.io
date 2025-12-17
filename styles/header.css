@@ -99,6 +99,10 @@
     gap: 1.5rem;
 }
 
+.lab-identity {
+    text-align: left;
+}
+
 .lab-tagline {
     font-size: 1rem;
     opacity: 0.9;
@@ -120,4 +124,51 @@
 
 .nav li {
     position: relative;
+}
+
+@media (max-width: 1210px) {
+    .lab-identity {
+        display: none;
+    }
+}
+
+/* adjustments for mobile view */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+    }
+
+    .rml-logo img {
+        display: none;
+    }
+
+    .lab-identity {
+        display: inline;
+        justify-content: center;
+    }
+
+    .lab-identity h1,
+    .lab-identity p {
+        text-align: center;
+    }
+
+    .lab-identity h1 {
+        font-size: 1.3rem;
+    }
+
+    .nav ul {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nav li a {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.25rem;
+    }
+
+    .rml-logo a {
+        justify-content: center;
+    }
 }
