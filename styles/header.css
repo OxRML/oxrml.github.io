@@ -75,14 +75,14 @@
 }
 
 .header {
-            background: #002147;
-            color: white;
-            padding: 0 0 0.5rem 1rem;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+        background: #002147;
+        color: white;
+        padding: 1rem 0;
+        box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
 
 .header-content {
     max-width: 1400px;
