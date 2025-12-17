@@ -20,108 +20,6 @@
             background-color: #fdfdfd;
         }
 
-        .header {
-            background: #002147;
-            color: white;
-            padding: 3rem 0;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-        }
-        
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-        
-        .rml-logo {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-        
-        .logo-circle {
-            width: 100px;
-            height: 100px;
-            background: rgba(255,255,255,0.15);
-            border: 2px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 18px;
-            letter-spacing: 1px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .lab-identity h1 {
-            font-size: 3.2rem;
-            font-weight: 400;
-            letter-spacing: -0.5px;
-            margin-bottom: 0.1rem;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        }
-        
-        .lab-tagline {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            font-style: italic;
-        }
-        
-        .oxford-affiliation {
-            font-size: 1.3rem;
-            opacity: 0.8;
-            font-weight: 300;
-            margin-top: 0.1rem;
-            line-height: 1.2;
-        }
-        
-        .nav {
-            background: white;
-            padding: 0;
-            border-bottom: 1px solid #e2e8f0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        
-        .nav-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        .nav ul {
-            list-style: none;
-            display: flex;
-            gap: 0;
-        }
-        
-        .nav li {
-            position: relative;
-        }
-        
-        .nav a {
-            color: #4a5568;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            padding: 1.25rem 1.5rem;
-            display: block;
-            transition: all 0.3s;
-            border-bottom: 3px solid transparent;
-        }
-        
-        .nav a:hover, .nav a.active {
-            color: #2d5986;
-            border-bottom-color: #2d5986;
-            background-color: #f8fafc;
-        }
-        
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -725,53 +623,38 @@
 
 /* ... (rest of your existing CSS rules) ... */
   </style>
+  <link href="styles/header.css" rel="stylesheet"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
  </head>
  <body>
-  <header class="header">
-   <div class="header-content">
-     <div class="lab-identity">
-      <h1>
-       Reasoning with Machines Lab
-      </h1>
-      <p class="oxford-affiliation">
-       University of Oxford
-      </p>
-     </div>
-    </div>
-   </div>
-  </header>
-  <nav class="nav">
-   <div class="nav-content">
-    <ul>
-     <li>
-      <a href="index.html">
-       Research
-      </a>
-     </li>
-     <li>
-      <a href="team.html">
-       Team
-      </a>
-     </li>
-     <li>
-      <a href="publications.html" class="active">
-       Publications
-      </a>
-     </li>
-     <li>
-      <a href="news.html">
-       News
-      </a>
-     </li>
-     <li>
-      <a href="contact.html">
-       Contact
-      </a>
-     </li>
-    </ul>
-   </div>
-  </nav>
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" aria-label="Reasoning with Machines Lab Home">
+            <div class="rml-logo">
+                <img
+                    src="img/assets/rml_logo_light.jpg"
+                    alt="Reasoning with Machines Lab logo"
+                    class="lab-logo-img"
+                />
+                <div class="lab-identity" style="text-align:left;">
+                    <h1>Reasoning with Machines Lab</h1>
+                    <p class="oxford-affiliation">University of Oxford</p>
+                </div>
+            </div>
+            </a>
+            <nav class="nav" aria-label="Primary">
+                <div class="nav-content">
+                    <ul>
+                    <li><a href="index.html">Research</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="publications.html" class="active">Publications</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
   <main class="container">
    <section class="section" id="publications">
     <div class="section-header">
