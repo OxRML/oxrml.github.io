@@ -6,16 +6,18 @@
       "displayDate": "November 2025", 
       "title": "New paper!",
       "text": "'Measuring what matters: Construct validity in large language model benchmarks.' will be presented at the NeurIPS 2025 Datasets and Benchmarks Track.",
-      "category": "publication"
+      "category": "publication",
+      "featured": true
     },
     {
-      "id": "6",
+      "id": "5",
       "date": "2025-11-04",
       "displayDate": "November 2025", 
       "title": "OxRML @ EMNLP 2025",
       "text": "We presented two papers at EMNLP 2025: 'How Does DPO Reduce Toxicity? A Mechanistic Neuron-Level Analysis' and 'LLMs Don't Know Their Own Decision Boundaries: The Unreliability of Self-Generated Counterfactual Explanations.'",
       "category": "conference",
-      "photos": ["img/news/emnlp_2025.png"]
+      "photos": ["img/news/emnlp_2025.png"],
+      "featured": true
     },
     {
       "id": "4",
@@ -24,7 +26,8 @@
       "title": "OxRML @ NeurIPS 2024",
       "text": "We presented five papers at NeurIPS 2024 and its constituent workshops.",
       "category": "conference",
-      "photos": ["img/news/neurips_2024.jpeg"]
+      "photos": ["img/news/neurips_2024.jpeg"],
+      "featured": false
     },
     {
       "id": "3",
@@ -33,7 +36,8 @@
       "title": "OxRML @ ICML 2024",
       "text": "Team members presented research and attended workshops at ICML 2024 in Vienna, Austria.",
       "category": "conference",
-      "photos": ["img/news/icml_2024.jpeg"]
+      "photos": ["img/news/icml_2024.jpeg"],
+      "featured": false
     },
     {
       "id": "2",
@@ -41,7 +45,8 @@
       "displayDate": "Dec 2024", 
       "title": "New paper!",
       "text": "Clinical knowledge in LLMs does not translate to human interactions.",
-      "category": "publication"
+      "category": "publication",
+      "featured": false
     },
     {
       "id": "1",
@@ -49,7 +54,8 @@
       "displayDate": "Dec 2024",
       "title": "New paper!",
       "text": "Evaluating the role of 'Constitutions' for learning from AI feedback.",
-      "category": "publication"
+      "category": "publication",
+      "featured": false
     }
   ]
 }

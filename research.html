@@ -1,0 +1,441 @@
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Reasoning with Machines Lab</title>
+    <link href="styles/index.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+    <link href="img/assets/rml_logo_black.jpg" rel="icon" type="image/x-icon"/>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="rml-logo">
+                <picture>
+                    <!-- Dark mode logo -->
+                    <source
+                        srcset="img/assets/rml_logo_white.jpg"
+                        media="(prefers-color-scheme: dark)"
+                    />
+
+                    <!-- Light mode / default logo -->
+                    <img
+                        src="img/assets/rml_logo_black.jpg"
+                        alt="Reasoning with Machines Lab logo"
+                        class="lab-logo-img"
+                    />
+                </picture>
+                <div class="lab-identity" style="text-align:left;">
+                    <h1>Reasoning with Machines Lab</h1>
+                    <p class="oxford-affiliation">University of Oxford</p>
+                </div>
+            </div>
+            <nav class="nav" aria-label="Primary">
+                <div class="nav-content">
+                    <ul>
+                    <li><a href="index.html" class="active">Research</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="publications.html">Publications</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+  <div class="layout">
+   <main class="container main-content">
+   <section class="section" id="research">
+    <div class="research-overview">
+        <h2 class="section-title">Research</h2>
+     <p style="font-size: 1.15rem">
+      Our research program centers on AI evaluation, safety, and human-AI interaction and collaboration. We combine mathematical rigour with empirical investigation to advance our understanding of how large language models process information, solve tasks, and interact with humans in real-world contexts.
+     </p>
+    </div>
+    <div class="research-areas">
+     <div class="research-card">
+      <h3>
+       Benchmarks and Evaluation
+      </h3>
+      <p>
+       We study the science of LLM evaluation, utilising systematic reviews and statistical modelling to ground and quantify the measurement validity of LLM benchmarks. We develop novel evaluation settings and frameworks for assessing the limits of LLM reasoning capabilities in adversarial domains, including low-resource language and interactive scenarios.
+      </p>
+     </div>
+     <div class="research-card">
+      <h3>
+       Agentic AI for Science
+      </h3>
+      <p>
+       We develop agentic AI systems that automate and augment key steps of the scientific process, including literature discovery, evidence synthesis, hypothesis generation, and decision support. A core focus is on building reliable, transparent and domain-grounded agents for real-world scientific and policy-relevant applications.
+      </p>
+     </div>
+     <div class="research-card">
+      <h3>
+       AI Safety
+      </h3>
+      <p>
+       We study the risks that advanced AI may pose to society, focusing on evaluating harms, developing technical solutions, and strengthening AI governance. Our work spans the spectrum of harms, from research on language model bias and toxicity to misalignment in agentic systems.
+      </p>
+     </div>
+     <div class="research-card">
+      <h3>
+       Human-AI Interaction
+      </h3>
+      <p>
+       We conduct large-scale empirical studies examining how humans interact with AI systems for decision-making, including our landmark study of 1,300 participants exploring LLM use in medical self-diagnosis and healthcare applications.
+      </p>
+     </div>
+    </div>
+   </section>
+  </main>
+ </div>
+  <footer class="footer">
+   <p>
+    &copy; 2025 Reasoning with Machines Lab, Oxford University. All rights reserved.
+   </p>
+  </footer>
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
+            const expandButtons = document.querySelectorAll('.expand-bio-button');
+
+            expandButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Find the parent .team-member div
+                    const teamMember = this.closest('.team-member');
+                    if (!teamMember) return;
+
+                    // Find the expandable content within this team member
+                    const expandableContent = teamMember.querySelector('.member-expandable-content');
+                    if (!expandableContent) return;
+
+                    // Toggle the 'expanded' class which triggers CSS display change
+                    expandableContent.classList.toggle('expanded');
+
+                    // Update button text based on the state
+                    if (expandableContent.classList.contains('expanded')) {
+                        this.textContent = 'Read Less';
+                    } else {
+                        this.textContent = 'Read More';
+                    }
+                });
+            });
+        });
+  </script>
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
+        const modalOverlay = document.getElementById('teamMemberModal');
+        if (!modalOverlay) {
+            console.error("Modal overlay not found!");
+            return;
+        }
+        const modalCloseButton = modalOverlay.querySelector('.modal-close-button');
+        const modalMemberNameElem = document.getElementById('modalMemberName');
+        const modalMemberRoleElem = document.getElementById('modalMemberRole');
+        const modalMemberBioElem = document.getElementById('modalMemberBio');
+        const modalMemberContactLinksElem = document.getElementById('modalMemberContactLinks');
+        const modalPhotoPlaceholderElem = modalOverlay.querySelector('.modal-photo-placeholder');
+
+        // Make each .team-member card clickable (except if clicking a link inside)
+        const teamMemberDivs = document.querySelectorAll('.team-member');
+
+        teamMemberDivs.forEach(div => {
+            div.style.cursor = 'pointer';
+            div.addEventListener('click', function(event) {
+            // Prevent modal if clicking a link inside the card
+            if (event.target.tagName === 'A') return;
+                const teamMemberDiv = this.closest('.team-member');
+
+                // Get data from the team member card
+                const name = teamMemberDiv.querySelector('.member-name').textContent;
+                const role = teamMemberDiv.querySelector('.member-role').textContent;
+                
+                // Get photo content from the card: prefer <img> if present, else use text content
+                const photoDiv = teamMemberDiv.querySelector('.member-photo');
+                const imgElem = photoDiv ? photoDiv.querySelector('img') : null;
+                // Store the card's photo content for fallback use later
+                let cardPhotoContent = '';
+                // Clear previous modal photo content
+                modalPhotoPlaceholderElem.innerHTML = '';
+                if (imgElem && imgElem.src) {
+                    // If there's an image, clone it and set correct styles
+                    const modalImg = document.createElement('img');
+                    modalImg.src = imgElem.src;
+                    modalImg.alt = imgElem.alt || name;
+                    modalImg.style.width = '100%';
+                    modalImg.style.height = '100%';
+                    modalImg.style.objectFit = 'cover';
+                    modalImg.style.borderRadius = '50%';
+                    modalPhotoPlaceholderElem.appendChild(modalImg);
+                    cardPhotoContent = ''; // No placeholder text if image is present
+                } else if (photoDiv) {
+                    // Otherwise, use the text content (e.g., [Photo Placeholder])
+                    modalPhotoPlaceholderElem.textContent = photoDiv.textContent;
+                    cardPhotoContent = photoDiv.textContent;
+                }
+
+                // Get hidden detailed content
+                const fullDetailsDiv = teamMemberDiv.querySelector('.member-full-details');
+                if (!fullDetailsDiv) {
+                    console.error("Full details div not found for this team member.", teamMemberDiv);
+                    return;
+                }
+                const bioHtml = fullDetailsDiv.querySelector('.member-bio').innerHTML;
+                const contactLinksHtml = fullDetailsDiv.querySelector('.member-contact-links').innerHTML;
+
+                // Populate modal
+                if(modalMemberNameElem) modalMemberNameElem.textContent = name;
+                if(modalMemberRoleElem) modalMemberRoleElem.textContent = role;
+                if(modalMemberBioElem) modalMemberBioElem.innerHTML = bioHtml;
+                if(modalMemberContactLinksElem) modalMemberContactLinksElem.innerHTML = contactLinksHtml;
+
+                // Show modal
+                modalOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scroll
+            });
+        });
+
+        // Close modal actions
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = ''; // Restore background scroll
+        }
+
+        if(modalCloseButton) modalCloseButton.addEventListener('click', closeModal);
+
+        modalOverlay.addEventListener('click', function(event) {
+            // Only close if clicked on the overlay itself, not the content
+            if (event.target === modalOverlay) {
+                closeModal();
+            }
+        });
+
+        // Optional: Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    });
+  </script>
+  <script>
+    // Load and display news from JSON file
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('news.json')
+            .then(response => response.json())
+            .then(data => {
+                const newsList = document.getElementById('news-list');
+                if (!newsList) {
+                    console.error('News list element not found');
+                    return;
+                }
+                
+                // Sort news by date (newest first) and take only top 5
+                const sortedNews = data.news
+                    .sort((a, b) => new Date(b.date) - new Date(a.date))
+                    .slice(0, 5);
+                
+                // Generate HTML for each news item
+                sortedNews.forEach(newsItem => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'news-item';
+                    listItem.tabIndex = 0;
+                    
+                    listItem.innerHTML = `
+                        <div class="news-header">
+                            <span class="news-date">${newsItem.displayDate}</span>
+                            <span class="news-title">${newsItem.title}</span>
+                        </div>
+                        <span class="news-text">${newsItem.text}</span>
+                    `;
+                    
+                    newsList.appendChild(listItem);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading news:', error);
+                // Fallback content if news fails to load
+                const newsList = document.getElementById('news-list');
+                if (newsList) {
+                    newsList.innerHTML = '<li class="news-item">Unable to load news at this time.</li>';
+                }
+            });
+    });
+  </script>
+  <script>
+    // Load and display team members from JSON file
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('team.json')
+            .then(response => response.json())
+            .then(data => {
+                const teamGrid = document.getElementById('team-grid');
+                const alumniList = document.getElementById('alumni-list');
+                
+                if (!teamGrid || !alumniList) {
+                    console.error('Team grid or alumni list elements not found');
+                    return;
+                }
+                
+                // Generate current students
+                data.currentStudents.forEach(member => {
+                    const memberDiv = document.createElement('div');
+                    memberDiv.className = 'team-member';
+                    
+                    // Generate contact links for card (only if they exist)
+                    let cardContactLinks = '';
+                    if (member.links.email) {
+                        cardContactLinks += `<a href="mailto:${member.links.email}" aria-label="Email ${member.name}"><i class="fas fa-envelope"></i></a>`;
+                    }
+                    if (member.links.linkedin) {
+                        cardContactLinks += `<a href="${member.links.linkedin}" rel="noopener noreferrer" target="_blank" aria-label="${member.name} LinkedIn"><i class="fab fa-linkedin"></i></a>`;
+                    }
+                    if (member.links.website) {
+                        cardContactLinks += `<a href="${member.links.website}" rel="noopener noreferrer" target="_blank" aria-label="${member.name} Website"><i class="fas fa-globe"></i></a>`;
+                    }
+                    if (member.links.twitter) {
+                        cardContactLinks += `<a href="${member.links.twitter}" rel="noopener noreferrer" target="_blank" aria-label="${member.name} Twitter"><i class="fab fa-twitter"></i></a>`;
+                    }
+                    if (member.links.github) {
+                        cardContactLinks += `<a href="${member.links.github}" rel="noopener noreferrer" target="_blank" aria-label="${member.name} GitHub"><i class="fab fa-github"></i></a>`;
+                    }
+                    
+                    // Generate contact links for modal (same as card)
+                    let modalContactLinks = cardContactLinks;
+                    
+                    memberDiv.innerHTML = `
+                        <div class="member-photo">
+                            <img alt="${member.name}" src="${member.photo}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
+                        </div>
+                        <h4 class="member-name">${member.name}</h4>
+                        <p class="member-role">${member.role}</p>
+                        <p class="member-focus">${member.focus}</p>
+                        
+                        ${cardContactLinks ? `<div class="member-contact-links">${cardContactLinks}</div>` : ''}
+                        
+                        <div class="member-full-details">
+                            <p class="member-bio">${member.longBio.replace(/\n/g, '<br><br>')}</p>
+                            ${modalContactLinks ? `<div class="member-contact-links">${modalContactLinks}</div>` : ''}
+                        </div>
+                    `;
+                    
+                    teamGrid.appendChild(memberDiv);
+                });
+                
+                // Generate alumni
+                data.alumni.forEach(alum => {
+                    const alumSpan = document.createElement('span');
+                    alumSpan.className = 'collaborator-tag';
+                    alumSpan.textContent = `${alum.name}, ${alum.role}`;
+                    alumniList.appendChild(alumSpan);
+                });
+                
+                // Re-initialize modal functionality for dynamically created elements
+                initializeTeamMemberModals();
+            })
+            .catch(error => {
+                console.error('Error loading team data:', error);
+                // Fallback content if team data fails to load
+                const teamGrid = document.getElementById('team-grid');
+                if (teamGrid) {
+                    teamGrid.innerHTML = '<div class="team-member"><p>Unable to load team information at this time.</p></div>';
+                }
+            });
+    });
+    
+    // Function to initialize modal functionality (extracted from existing code)
+    function initializeTeamMemberModals() {
+        const modalOverlay = document.getElementById('teamMemberModal');
+        if (!modalOverlay) {
+            console.error("Modal overlay not found!");
+            return;
+        }
+        const modalCloseButton = modalOverlay.querySelector('.modal-close-button');
+        const modalMemberNameElem = document.getElementById('modalMemberName');
+        const modalMemberRoleElem = document.getElementById('modalMemberRole');
+        const modalMemberBioElem = document.getElementById('modalMemberBio');
+        const modalMemberContactLinksElem = document.getElementById('modalMemberContactLinks');
+        const modalPhotoPlaceholderElem = modalOverlay.querySelector('.modal-photo-placeholder');
+
+        // Make each .team-member card clickable (except if clicking a link inside)
+        const teamMemberDivs = document.querySelectorAll('.team-member');
+
+        teamMemberDivs.forEach(div => {
+            div.style.cursor = 'pointer';
+            div.addEventListener('click', function(event) {
+            // Prevent modal if clicking a link inside the card
+            if (event.target.tagName === 'A' || event.target.tagName === 'I') return;
+                const teamMemberDiv = this.closest('.team-member');
+
+                // Get data from the team member card
+                const name = teamMemberDiv.querySelector('.member-name').textContent;
+                const role = teamMemberDiv.querySelector('.member-role').textContent;
+                
+                // Get photo content from the card: prefer <img> if present, else use text content
+                const photoDiv = teamMemberDiv.querySelector('.member-photo');
+                const imgElem = photoDiv ? photoDiv.querySelector('img') : null;
+                // Store the card's photo content for fallback use later
+                let cardPhotoContent = '';
+                // Clear previous modal photo content
+                modalPhotoPlaceholderElem.innerHTML = '';
+                if (imgElem && imgElem.src) {
+                    // If there's an image, clone it and set correct styles
+                    const modalImg = document.createElement('img');
+                    modalImg.src = imgElem.src;
+                    modalImg.alt = imgElem.alt || name;
+                    modalImg.style.width = '100%';
+                    modalImg.style.height = '100%';
+                    modalImg.style.objectFit = 'cover';
+                    modalImg.style.borderRadius = '50%';
+                    modalPhotoPlaceholderElem.appendChild(modalImg);
+                    cardPhotoContent = ''; // No placeholder text if image is present
+                } else if (photoDiv) {
+                    // Otherwise, use the text content (e.g., [Photo Placeholder])
+                    modalPhotoPlaceholderElem.textContent = photoDiv.textContent;
+                    cardPhotoContent = photoDiv.textContent;
+                }
+
+                // Get hidden detailed content
+                const fullDetailsDiv = teamMemberDiv.querySelector('.member-full-details');
+                if (!fullDetailsDiv) {
+                    console.error("Full details div not found for this team member.", teamMemberDiv);
+                    return;
+                }
+                const bioHtml = fullDetailsDiv.querySelector('.member-bio').innerHTML;
+                const contactLinksDiv = fullDetailsDiv.querySelector('.member-contact-links');
+                const contactLinksHtml = contactLinksDiv ? contactLinksDiv.innerHTML : '';
+
+                // Populate modal
+                if(modalMemberNameElem) modalMemberNameElem.textContent = name;
+                if(modalMemberRoleElem) modalMemberRoleElem.textContent = role;
+                if(modalMemberBioElem) modalMemberBioElem.innerHTML = bioHtml;
+                if(modalMemberContactLinksElem) modalMemberContactLinksElem.innerHTML = contactLinksHtml;
+
+                // Show modal
+                modalOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scroll
+            });
+        });
+
+        // Close modal actions
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = ''; // Restore background scroll
+        }
+
+        if(modalCloseButton) modalCloseButton.addEventListener('click', closeModal);
+
+        modalOverlay.addEventListener('click', function(event) {
+            // Only close if clicked on the overlay itself, not the content
+            if (event.target === modalOverlay) {
+                closeModal();
+            }
+        });
+
+        // Optional: Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    }
+  </script>
+ </body>
+</html>
