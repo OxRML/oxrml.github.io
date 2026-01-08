@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>
-   Contact - Reasoning with Machines AI Lab
+   Research - Reasoning with Machines Lab
   </title>
   <style>
    * {
@@ -12,67 +12,83 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             line-height: 1.7;
             color: #2c3e50;
             background-color: #fdfdfd;
         }
-        
+
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
         }
-        
+
         .section {
             padding: 4rem 0;
         }
-        
+
         .section-header {
             margin-bottom: 3rem;
         }
-        
+
         .section-title {
             font-size: 2.25rem;
             color: #1a365d;
             margin-bottom: 1rem;
             font-weight: 400;
         }
-        
+
         .section-subtitle {
             font-size: 1.1rem;
             color: #718096;
             max-width: 800px;
         }
-        
-        .contact-section {
+
+        .research-overview {
             background: white;
             padding: 3rem;
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             border: 1px solid #e2e8f0;
+            margin-bottom: 3rem;
         }
-        
-        .contact-grid {
+
+        .research-areas {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
         }
-        
-        .contact-item h4 {
+
+        .research-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #2d5986;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .research-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .research-card h3 {
             color: #1a365d;
             margin-bottom: 1rem;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 600;
         }
-        
-        .contact-item p {
+
+        .research-card p {
             color: #4a5568;
             line-height: 1.6;
         }
-        
+
         .footer {
             background: #1a365d;
             color: white;
@@ -80,44 +96,32 @@
             padding: 2rem 0;
             margin-top: 4rem;
         }
-        
+
         .footer p {
             opacity: 0.8;
         }
-        
-        .admissions-link {
-            background: #2d5986 !important;
-            color: white !important;
-            padding: 0.75rem 1.5rem !important;
-            border-radius: 6px !important;
-            text-decoration: none !important;
-            font-weight: 500 !important;
-            transition: background 0.2s ease !important;
-            display: inline-block !important;
-        }
-        
-        .admissions-link:hover {
-            background: #1a365d !important;
-            color: white !important;
-        }
-        
+
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
                 text-align: center;
             }
-            
+
             .lab-identity h1 {
                 font-size: 2rem;
             }
-            
+
             .nav ul {
                 flex-wrap: wrap;
                 justify-content: center;
             }
-            
+
             .section {
                 padding: 3rem 0;
+            }
+
+            .research-areas {
+                grid-template-columns: 1fr;
             }
         }
   </style>
@@ -135,7 +139,7 @@
                     alt="Reasoning with Machines Lab logo"
                     class="lab-logo-img"
                 />
-                <div class="lab-identity" style="text-align:left;">
+                <div class="lab-identity">
                     <h1>Reasoning with Machines Lab</h1>
                     <p class="oxford-affiliation">University of Oxford</p>
                 </div>
@@ -145,81 +149,61 @@
                 <div class="nav-content">
                     <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="research.html">Research</a></li>
+                    <li><a href="research.html" class="active">Research</a></li>
                     <li><a href="team.html">Team</a></li>
                     <li><a href="publications.html">Publications</a></li>
                     <li><a href="news.html">News</a></li>
-                    <li><a href="contact.html" class="active">Contact</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
             </nav>
         </div>
     </header>
   <main class="container">
-   <section class="section" id="contact">
+   <section class="section" id="research">
     <div class="section-header">
      <h2 class="section-title">
-      Contact
+      Research
      </h2>
-     <p class="section-subtitle">
-      For inquiries about research, collaboration, or joining the lab, please get in touch.
+    </div>
+    <div class="research-overview">
+     <p style="font-size: 1.15rem; color: #4a5568;">
+      Our research program centers on AI evaluation, safety, and human-AI interaction and collaboration. We combine mathematical rigour with empirical investigation to advance our understanding of how large language models process information, solve tasks, and interact with humans in real-world contexts.
      </p>
     </div>
-    <div class="contact-section">
-     <div class="contact-grid">
-      <div class="contact-item">
-       <h4>
-        Email
-       </h4>
-       <p>
-        <a href="mailto:adam.mahdi@oii.ox.ac.uk" style="color: #2d5986;">
-         adam.mahdi@oii.ox.ac.uk
-        </a>
-       </p>
-      </div>
-      <div class="contact-item">
-       <h4>
-        Address
-       </h4>
-       <p>
-        Oxford Internet Institute
-        <br/>
-        1 St Giles', Oxford OX1 3JS, United Kingdom
-       </p>
-      </div>
+    <div class="research-areas">
+     <div class="research-card">
+      <h3>
+       Benchmarks and Evaluation
+      </h3>
+      <p>
+       We study the science of LLM evaluation, utilising systematic reviews and statistical modelling to ground and quantify the measurement validity of LLM benchmarks. We develop novel evaluation settings and frameworks for assessing the limits of LLM reasoning capabilities in adversarial domains, including low-resource language and interactive scenarios.
+      </p>
      </div>
-    </div>
-   </section>
-   
-   <section class="section" id="admissions">
-    <div class="section-header">
-     <h2 class="section-title">
-      Join the Lab
-     </h2>
-     <p class="section-subtitle">
-      We welcome applications from motivated students.
-     </p>
-    </div>
-    <div class="contact-section">
-     <h3 style="color: #1a365d; margin-bottom: 1rem; font-size: 1.3rem;">Graduate Programs</h3>
-     <p style="margin-bottom: 1.5rem;">
-      We accept students through Oxford Internet Institute graduate programs. Applications are typically due in early January for September entry.
-     </p>
-     <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
-      <a href="https://www.oii.ox.ac.uk/study/msc-in-social-data-science/" 
-         target="_blank" rel="noopener noreferrer"
-         class="admissions-link">
-       MSc Social Data Science
-      </a>
-      <a href="https://www.oii.ox.ac.uk/study/dphil-in-social-data-science/" 
-         target="_blank" rel="noopener noreferrer"
-         class="admissions-link">
-       DPhil Social Data Science
-      </a>
+     <div class="research-card">
+      <h3>
+       Agentic AI for Science
+      </h3>
+      <p>
+       We develop agentic AI systems that automate and augment key steps of the scientific process, including literature discovery, evidence synthesis, hypothesis generation, and decision support. A core focus is on building reliable, transparent and domain-grounded agents for real-world scientific and policy-relevant applications.
+      </p>
      </div>
-     <p style="font-size: 0.95rem; color: #4a5568;">
-      For inquiries about research opportunities, please contact us using the information above.
-     </p>
+     <div class="research-card">
+      <h3>
+       AI Safety
+      </h3>
+      <p>
+       We study the risks that advanced AI may pose to society, focusing on evaluating harms, developing technical solutions, and strengthening AI governance. Our work spans the spectrum of harms, from research on language model bias and toxicity to misalignment in agentic systems.
+      </p>
+     </div>
+     <div class="research-card">
+      <h3>
+       Human-AI Interaction
+      </h3>
+      <p>
+       We conduct large-scale empirical studies examining how humans interact with AI systems for decision-making, including our landmark study of 1,300 participants exploring LLM use in medical self-diagnosis and healthcare applications.
+      </p>
+     </div>
     </div>
    </section>
   </main>

@@ -30,6 +30,10 @@
             padding: 4rem 0;
         }
 
+        #landing {
+            padding-bottom: 0;
+        }
+
         .section-header {
             margin-bottom: 3rem;
         }
@@ -45,6 +49,26 @@
             font-size: 1.1rem;
             color: #718096;
             max-width: 800px;
+        }
+
+        .oii-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            background: white;
+            color: #2d5986;
+            text-decoration: none;
+            border: 2px solid #2d5986;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .oii-link:hover {
+            background: #2d5986;
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(45, 89, 134, 0.2);
         }
 
         .research-overview {
@@ -632,6 +656,27 @@
             margin-bottom: 1rem;
         }
 
+        .group-photo-container {
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .group-photo-placeholder {
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #718096;
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
         .news-list {
             list-style: none;
             padding: 0;
@@ -726,7 +771,7 @@
                     alt="Reasoning with Machines Lab logo"
                     class="lab-logo-img"
                 />
-                <div class="lab-identity">
+                <div class="lab-identity" style="text-align:left;">
                     <h1>Reasoning with Machines Lab</h1>
                     <p class="oxford-affiliation">University of Oxford</p>
                 </div>
@@ -735,7 +780,8 @@
             <nav class="nav" aria-label="Primary">
                 <div class="nav-content">
                     <ul>
-                    <li><a href="index.html" class="active">Research</a></li>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="research.html">Research</a></li>
                     <li><a href="team.html">Team</a></li>
                     <li><a href="publications.html">Publications</a></li>
                     <li><a href="news.html">News</a></li>
@@ -745,62 +791,32 @@
             </nav>
         </div>
     </header>
-  <div class="layout">
-   <main class="container main-content">
-   <section class="section" id="research">
+  <div class="container">
+   <section class="section" id="landing">
     <div class="section-header">
      <h2 class="section-title">
-      Research
+      Welcome to the Reasoning with Machines Lab
      </h2>
-    </div>
-    <div class="research-overview">
-     <p style="font-size: 1.15rem; color: #4a5568;">
-      Our research program centers on AI evaluation, safety, and human-AI interaction and collaboration. We combine mathematical rigour with empirical investigation to advance our understanding of how large language models process information, solve tasks, and interact with humans in real-world contexts.
+     <p class="section-subtitle">
+      We conduct research on AI evaluation, safety, and human-AI interaction to advance our understanding of how large language models reason, solve complex problems, and collaborate with humans.
      </p>
-    </div>
-    <div class="research-areas">
-     <div class="research-card">
-      <h3>
-       Benchmarks and Evaluation
-      </h3>
-      <p>
-       We study the science of LLM evaluation, utilising systematic reviews and statistical modelling to ground and quantify the measurement validity of LLM benchmarks. We develop novel evaluation settings and frameworks for assessing the limits of LLM reasoning capabilities in adversarial domains, including low-resource language and interactive scenarios.
-      </p>
-     </div>
-     <div class="research-card">
-      <h3>
-       Agentic AI for Science
-      </h3>
-      <p>
-       We develop agentic AI systems that automate and augment key steps of the scientific process, including literature discovery, evidence synthesis, hypothesis generation, and decision support. A core focus is on building reliable, transparent and domain-grounded agents for real-world scientific and policy-relevant applications.
-      </p>
-     </div>
-     <div class="research-card">
-      <h3>
-       AI Safety
-      </h3>
-      <p>
-       We study the risks that advanced AI may pose to society, focusing on evaluating harms, developing technical solutions, and strengthening AI governance. Our work spans the spectrum of harms, from research on language model bias and toxicity to misalignment in agentic systems.
-      </p>
-     </div>
-     <div class="research-card">
-      <h3>
-       Human-AI Interaction
-      </h3>
-      <p>
-       We conduct large-scale empirical studies examining how humans interact with AI systems for decision-making, including our landmark study of 1,300 participants exploring LLM use in medical self-diagnosis and healthcare applications.
-      </p>
-     </div>
+     <p class="section-subtitle" style="margin-top: 1.5rem;">
+      We are part of the Oxford Internet Institute, an interdisciplinary research and teaching department at the University of Oxford.
+     </p>
+     <a href="https://www.oii.ox.ac.uk/" target="_blank" rel="noopener noreferrer" class="oii-link">
+      Visit the Oxford Internet Institute →
+     </a>
     </div>
    </section>
-  </main>
-  <aside class="news-sidebar">
-   <h3>Recent news</h3>
-   <ul class="news-list" id="news-list">
-    <!-- News items will be loaded dynamically -->
-   </ul>
-  </aside>
- </div>
+  </div>
+  <div class="container">
+   <section class="section" id="news-section">
+    <h3 style="color: #1a365d; margin-bottom: 2rem; font-size: 1.8rem;">Recent news</h3>
+    <ul class="news-list" id="news-list" style="list-style: none; padding: 0; margin: 0;">
+     <!-- News items will be loaded dynamically -->
+    </ul>
+   </section>
+  </div>
   <footer class="footer">
    <p>
     &copy; 2025 Reasoning with Machines Lab, Oxford University. All rights reserved.
