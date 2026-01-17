@@ -47,7 +47,7 @@
 .nav-content {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 var(--horizontal-padding);
 }
 
 .nav ul {
@@ -87,7 +87,7 @@
 .header-content {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 var(--horizontal-padding);
     display: flex;
     align-items: center;
     gap: 2rem;
@@ -101,6 +101,10 @@
 
 .lab-identity {
     text-align: left;
+}
+
+.lab-identity h1 {
+    font-size: 1.8rem;
 }
 
 .lab-tagline {
@@ -119,7 +123,7 @@
 .nav-content {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 var(--horizontal-padding);
 }
 
 .nav li {
