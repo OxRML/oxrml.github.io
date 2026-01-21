@@ -43,3 +43,21 @@ body {
     color: #718096;
     max-width: 800px;
 }
+
+@media (max-width: 1000px) {
+    :root {
+        --horizontal-padding: 4rem;
+    }
+    html {
+        font-size: 95%;
+    }
+}
+
+@media (max-width: 600px) {
+    :root {
+        --horizontal-padding: 1.5rem;
+    }
+    html {
+        font-size: 90%;
+    }
+}
