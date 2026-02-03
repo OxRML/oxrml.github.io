@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>
+        Contact - Reasoning with Machines AI Lab
+    </title>
+    <link href="styles/common.css" rel="stylesheet" />
+    <style>
+        .contact-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-item h4 {
+            color: #1a365d;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .contact-item p {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .footer {
+            background: #1a365d;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer p {
+            opacity: 0.8;
+        }
+
+        .admissions-link {
+            background: #2d5986 !important;
+            color: white !important;
+            padding: 0.75rem 1.5rem !important;
+            border-radius: 6px !important;
+            text-decoration: none !important;
+            font-weight: 500 !important;
+            transition: background 0.2s ease !important;
+            display: inline-block !important;
+        }
+
+        .admissions-link:hover {
+            background: #1a365d !important;
+            color: white !important;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .lab-identity h1 {
+                font-size: 2rem;
+            }
+
+            .nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .section {
+                padding: 3rem 0;
+            }
+        }
+    </style>
+    <link href="styles/header.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+    <link href="img/assets/rml_logo_dark.jpg" rel="icon" type="image/x-icon" />
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" aria-label="Reasoning with Machines Lab Home">
+                <div class="rml-logo">
+                    <img src="img/assets/rml_logo_light.jpg" alt="Reasoning with Machines Lab logo"
+                        class="lab-logo-img" />
+
+                </div>
+            </a>
+            <nav class="nav" aria-label="Primary">
+                <div class="nav-content">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="research.html">Research</a></li>
+                        <li><a href="team.html">Team</a></li>
+                        <li><a href="publications.html">Publications</a></li>
+                        <li><a href="news.html">News</a></li>
+                        <li><a href="contact.html" class="active">Contact</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <section class="section" id="contact">
+            <div class="section-header">
+                <h2 class="section-title">
+                    Contact
+                </h2>
+                <p class="section-subtitle">
+                    For inquiries about research, collaboration, or joining the lab, please get in touch.
+                </p>
+            </div>
+            <div class="contact-section">
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <h4>
+                            Email
+                        </h4>
+                        <p>
+                            <a href="mailto:adam.mahdi@oii.ox.ac.uk" style="color: #2d5986;">
+                                adam.mahdi@oii.ox.ac.uk
+                            </a>
+                        </p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>
+                            Address
+                        </h4>
+                        <p>
+                            Oxford Internet Institute
+                            <br />
+                            1 St Giles', Oxford OX1 3JS, United Kingdom
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="admissions">
+            <div class="section-header">
+                <h2 class="section-title">
+                    Join the Lab
+                </h2>
+                <p class="section-subtitle">
+                    We welcome applications from motivated students.
+                </p>
+            </div>
+            <div class="contact-section">
+                <h3 style="color: #1a365d; margin-bottom: 1rem; font-size: 1.3rem;">Graduate Programs</h3>
+                <p style="margin-bottom: 1.5rem;">
+                    We accept students through Oxford Internet Institute graduate programs. Applications are typically
+                    due in early January for September entry.
+                </p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                    <a href="https://www.oii.ox.ac.uk/study/msc-in-social-data-science/" target="_blank"
+                        rel="noopener noreferrer" class="admissions-link">
+                        MSc Social Data Science
+                    </a>
+                    <a href="https://www.oii.ox.ac.uk/study/dphil-in-social-data-science/" target="_blank"
+                        rel="noopener noreferrer" class="admissions-link">
+                        DPhil Social Data Science
+                    </a>
+                </div>
+                <p style="font-size: 0.95rem; color: #4a5568;">
+                    For inquiries about research opportunities, please contact us using the information above.
+                </p>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>
+            &copy; 2025 Reasoning with Machines Lab, Oxford University. All rights reserved.
+        </p>
+    </footer>
+</body>
+
+</html>

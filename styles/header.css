@@ -1,0 +1,178 @@
+:root {
+    --text: #ffffff;
+    --muted: #9ca3af;
+    --accent: #ffffff; /* white accent for dark backgrounds */
+}
+
+/* Ensure that header link does not highlight or change color */
+.rml-logo,
+.rml-logo a,
+.rml-logo a:link,
+.rml-logo a:visited,
+.rml-logo a:hover,
+.rml-logo a:active,
+.rml-logo a:focus {
+    text-decoration: none;
+    color: var(--text);
+}
+
+.header a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.rml-logo a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.lab-logo-img {
+    width: 120px;
+    height: 120px;
+    flex: 0 0 120px; /* do not grow or shrink */
+    object-fit: cover;
+    display: block;
+}
+
+/* Nav moved into header; use a compact horizontal menu */
+.nav {
+    background: transparent;
+    padding: 0;
+    border-bottom: none;
+    position: static;
+    z-index: 100;
+}
+
+.nav-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--horizontal-padding);
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    gap: 0;
+}
+
+.nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.75rem 1rem;
+    display: block;
+    transition: all 0.2s;
+    border-bottom: 3px solid transparent;
+    border-radius: 6px;
+}
+
+.nav a:hover, .nav a.active {
+    color: var(--accent);
+    background-color: rgba(0,0,0,0.04);
+    border-bottom-color: transparent;
+}
+
+.header {
+        background: #002147;
+        color: white;
+        padding: 1rem 0;
+        box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+.header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--horizontal-padding);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.rml-logo {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.lab-identity {
+    text-align: left;
+}
+
+.lab-identity h1 {
+    font-size: 1.8rem;
+}
+
+.lab-tagline {
+    font-size: 1rem;
+    opacity: 0.9;
+    font-style: italic;
+}
+
+.oxford-affiliation {
+    font-size: 1.1rem;
+    opacity: 0.8;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.nav-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--horizontal-padding);
+}
+
+.nav li {
+    position: relative;
+}
+
+@media (max-width: 1210px) {
+    .lab-identity {
+        display: none;
+    }
+}
+
+/* adjustments for mobile view */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+    }
+
+    .rml-logo img {
+        display: none;
+    }
+
+    .lab-identity {
+        display: inline;
+        justify-content: center;
+    }
+
+    .lab-identity h1,
+    .lab-identity p {
+        text-align: center;
+    }
+
+    .lab-identity h1 {
+        font-size: 1.3rem;
+    }
+
+    .nav ul {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nav li a {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.22rem;
+    }
+
+    .rml-logo a {
+        justify-content: center;
+    }
+}

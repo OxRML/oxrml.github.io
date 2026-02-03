@@ -1,0 +1,266 @@
+{
+  "currentStudents": [
+    {
+      "id": "felix_krones",
+      "name": "Felix Krones",
+      "role": "DPhil Student",
+      "focus": "Multimodal AI, digital health",
+      "photo": "img/members/felix_krones.png",
+      "shortBio": "Felix is a DPhil student at the OII with an MSc in Industrial Engineering and Management, and has over 2 years of work experience as analytics consultant at McKinsey & Company.",
+      "longBio": "Felix is a DPhil student at the OII with an MSc in Industrial Engineering and Management, and has over 2 years of work experience as analytics consultant at McKinsey & Company.",
+      "links": {
+        "email": "felix.krones@oii.ox.ac.uk",
+        "linkedin": "https://www.linkedin.com/in/felixkrones/?originalSubdomain=de",
+        "website": "https://www.oii.ox.ac.uk/people/profiles/felix-krones/",
+        "twitter": "",
+        "github": "",
+        "scholar": "https://scholar.google.com/citations?user=tX8UpusAAAAJ&hl=en&oi=ao"
+      }
+    },
+    {
+      "id": "djavan_declercq",
+      "name": "Djavan De Clercq",
+      "role": "DPhil Student",
+      "focus": "AI and food security, LLMs",
+      "photo": "img/members/djavan.png",
+      "shortBio": "Djavan is a part-time DPhil student conducting research at the intersection of agriculture and climatic change. He is currently a consultant at McKinsey & Company. Djavan has experience in engineering, data science, venture capital, consulting, teaching, and entrepreneurship, in China, Europe, and the United States.\nDjavan holds a PhD and an MSc from Tsinghua University in Environmental Science & Engineering, an MEng from UC Berkeley in Industrial Engineering & Operations Research, and a BA from Sciences Po Paris. He has published in journals such as Applied Energy, Renewable & Sustainable Energy Reviews, and Bioresource Technology.",
+      "longBio": "Djavan is a part-time DPhil student conducting research at the intersection of agriculture and climatic change. He is currently a consultant at McKinsey & Company. Djavan has experience in engineering, data science, venture capital, consulting, teaching, and entrepreneurship, in China, Europe, and the United States.\nDjavan holds a PhD and an MSc from Tsinghua University in Environmental Science & Engineering, an MEng from UC Berkeley in Industrial Engineering & Operations Research, and a BA from Sciences Po Paris. He has published in journals such as Applied Energy, Renewable & Sustainable Energy Reviews, and Bioresource Technology.",
+      "links": {
+        "email": "djavan.declercq@reuben.ox.ac.uk",
+        "linkedin": "https://www.linkedin.com/in/djavandeclercq/",
+        "website": "",
+        "twitter": "",
+        "github": "",
+        "scholar": ""
+      }
+    },
+    {
+      "id": "andrew_bean",
+      "name": "Andrew M. Bean",
+      "role": "DPhil Student",
+      "focus": "LLM evaluations, human-LLM interaction",
+      "photo": "img/members/andrew_bean.jpeg",
+      "shortBio": "Andrew is a DPhil student in Social Data Science at the OII. His research focuses on cooperative artificial intelligence. He studies potential types of human-AI cooperation, the nature of those interactions, and necessary developments to enable that cooperation. On the technical side, he has studied applied machine learning, especially reinforcement learning and natural language processing, for their applications to developing AI.\nAndrew holds a B.S. in Applied Mathematics from Yale University and an MSc in Social Data Science from the OII. He is a Clarendon Scholar and was previously a Thouron Prize winner at the University of Cambridge (Pembroke College).",
+      "longBio": "Andrew is a DPhil student in Social Data Science at the OII. His research focuses on cooperative artificial intelligence. He studies potential types of human-AI cooperation, the nature of those interactions, and necessary developments to enable that cooperation. On the technical side, he has studied applied machine learning, especially reinforcement learning and natural language processing, for their applications to developing AI.\nAndrew holds a B.S. in Applied Mathematics from Yale University and an MSc in Social Data Science from the OII. He is a Clarendon Scholar and was previously a Thouron Prize winner at the University of Cambridge (Pembroke College).",
+      "links": {
+        "email": "andrew.bean@oii.ox.ac.uk",
+        "linkedin": "https://www.linkedin.com/in/andrew-m-bean/",
+        "website": "https://am-bean.github.io/",
+        "twitter": "https://x.com/andrew_m_bean",
+        "github": "https://github.com/am-bean",
+        "scholar": "https://scholar.google.com/citations?user=JWI5RDoAAAAJ"
+      }
+    },
+    {
+      "id": "yushi_yang",
+      "name": "Yushi Yang",
+      "role": "DPhil Student",
+      "focus": "AI safety, mechanistic interpretability",
+      "photo": "img/members/yushi_y.png",
+      "shortBio": "Yushi is a DPhil student in Social Data Science at the OII, and a data scientist. Her research focuses on interpretability methods to improve the safety of large language models.",
+      "longBio": "Yushi is a DPhil student in Social Data Science at the OII, and a data scientist. Her research focuses on interpretability methods to improve the safety of large language models.\nYushi holds an MSc in Statistical Science from the University of Oxford and an MSc in Artificial Intelligence from Imperial College London. Before that, she held a BSc in Mathematics, Operation Research, Statistics, and Economics from the University of Warwick. Prior to the DPhil, she interned with UNDP as a data analyst, at Oxford and Imperial College London as a machine learning researcher, and at a start-up as a data scientist.\nYushi's experience includes a range of data science projects, developing machine learning models to build privacy-preserving recommender systems, track brand sentiment in online news, and predict US gun violence diffusion rates. Her skillsets include Python, R, SQL, deep learning models, and AWS SageMaker",
+      "links": {
+        "email": "yushi.yang@oii.ox.ac.uk",
+        "linkedin": "https://www.linkedin.com/in/yushiyang514/",
+        "website": "",
+        "twitter": "",
+        "github": "",
+        "scholar": "https://scholar.google.com/citations?user=9PnIwnYAAAAJ"
+      }
+    },
+    {
+      "id": "harry_mayne",
+      "name": "Harry Mayne",
+      "role": "DPhil Student",
+      "focus": "LLM interpretability, AI safety, LLM evaluations",
+      "photo": "img/members/harry_mayne.jpeg",
+      "shortBio": "Harry's DPhil focuses on language model explainability and interpretability. His current research explores whether models can reliably explain their outputs in natural language, and what the implications are for broader human-computer interaction. Harry has previously worked on mechanistic interpretability problems and continues to contribute to this area.",
+      "longBio": "Harry's DPhil focuses on language model explainability and interpretability. His current research explores whether models can reliably explain their outputs in natural language, and what the implications are for broader human-computer interaction. Harry has previously worked on mechanistic interpretability problems and continues to contribute to this area.",
+      "links": {
+        "email": "harry.mayne@oii.ox.ac.uk",
+        "linkedin": "https://www.linkedin.com/in/harry-mayne-04aba7194",
+        "website": "https://www.harrymayne.com/",
+        "twitter": "https://x.com/HarryMayne5",
+        "github": "https://github.com/HarryMayne",
+        "scholar": "https://scholar.google.com/citations?user=XdD4wp4AAAAJ"
+      }
+    },
+    {
+      "id": "jessica_rodrigues",
+      "name": "Jessica Rodrigues",
+      "role": "DPhil Student",
+      "focus": "Knowledge graphs, metascience",
+      "photo": "img/members/jessica_rodrigues.jpeg",
+      "shortBio": "Jessica is a DPhil student in Social Data Science, researching the societal impact of research using NLP and knowledge graphs. She holds an MSc in Computer Science and works as a Lead Data Scientist.",
+      "longBio": "Jessica is studying part-time for a DPhil in Social Data Science. Her research lies at the intersection of Natural Language Processing (NLP), Scientific AI, and Metascience. Through her project Flowmetrics, she proposes a new generation of research metrics that conceptualise societal impact as a dynamic semantic flow—traced and modelled using large language models and knowledge graphs.\nFlowmetrics builds on the lineage of bibliometrics, scientometrics, webometrics, and altmetrics, but for the first time introduces AI-driven techniques to infer how research disseminates, engages audiences, and produces real-world outcomes. Using NLP methods and structured ontologies, the project extracts and classifies signals of impact across platforms and represents them as evolving trajectories within a knowledge graph.\nAlongside her research, Jessica works full-time for Springer Nature as a Lead Data Scientist, where she develops machine learning systems for peer review, research integrity, and editorial decision support. She has also worked across a range of industries in data science roles and holds an MSc in Computer Science with a research focus on Machine Learning and NLP.",
+      "links": {
+        "email": "jessica.rodrigues@oii.ox.ac.uk",
+        "linkedin": "https://www.linkedin.com/in/jessica-rodrigues-silva/",
+        "website": "",
+        "twitter": "",
+        "github": ""
+      }
+    },
+    {
+      "id": "guy_parsons",
+      "name": "Guy Parsons",
+      "role": "DPhil Student",
+      "focus": "Healthcare AI, digital health",
+      "photo": "img/members/guy_parsons.png",
+      "shortBio": "Guy is an academic clinician in Intensive Care and previously the Clinical Lead of a Health AI products business at Deloitte. He currently works across LMIC settings developing digital health ecosystems with Governments/NGOs/private-public partnerships. He has considerable experience in bringing AI-based Software-as-a-Medical-Device products to market and the associated regulation and governance involved. He holds an MBBS (Clinical Medicine), BSc (Medical Sciences), and Masters degree (History of Medicine) from University College London, an MBA and multiple postgraduate medical qualifications including specialist training in clinical safety for novel technologies. He is interested in the development of AI-enabled healthcare systems, their human-AI interactions, and their trustworthiness, governance, and equity.",
+      "longBio": "Guy is an academic clinician in Intensive Care and previously the Clinical Lead of a Health AI products business at Deloitte. He currently works across LMIC settings developing digital health ecosystems with Governments/NGOs/private-public partnerships. He has considerable experience in bringing AI-based Software-as-a-Medical-Device products to market and the associated regulation and governance involved. He holds an MBBS (Clinical Medicine), BSc (Medical Sciences), and Masters degree (History of Medicine) from University College London, an MBA and multiple postgraduate medical qualifications including specialist training in clinical safety for novel technologies. He is interested in the development of AI-enabled healthcare systems, their human-AI interactions, and their trustworthiness, governance, and equity.",
+      "links": {
+        "email": "guy.parsons@oii.ox.ac.uk",
+        "linkedin": "https://www.linkedin.com/in/drguyparsons/",
+        "website": "",
+        "twitter": "",
+        "github": "",
+        "scholar": ""
+      }
+    },
+    {
+      "id": "karolina_korgul",
+      "name": "Karolina Korgul",
+      "role": "DPhil Student",
+      "focus": "AI safety, agentic AI",
+      "photo": "img/members/karolina_k.png",
+      "shortBio": "Karolina is a DPhil student in Social Data Science and a Clarendon Scholar at the OII. Her research focuses on developing GenAI-based solution for the healthcare field and evaluating the quality of current implementations. She is also particularly interested in how AI development shapes the global labour market and human behaviour, collaborating with the Polish Economic Institute to evaluate its impact on these areas.",
+      "longBio": "Karolina is a DPhil student in Social Data Science and a Clarendon Scholar at the OII. Her research focuses on developing GenAI-based solution for the healthcare field and evaluating the quality of current implementations. She is also particularly interested in how AI development shapes the global labour market and human behaviour, collaborating with the Polish Economic Institute to evaluate its impact on these areas.\nAlongside her doctoral research, Karolina works as a Technical Account Manager at Google Cloud, specialising in GenAI solutions.\nKarolina holds degrees from the University of Oxford (MSc) and the University of Warsaw (BSc), with an exchange stay at the University of Lisbon.",
+      "links": {
+        "email": "karolina.korgul@oii.ox.ac.uk",
+        "linkedin": "",
+        "website": "",
+        "twitter": "",
+        "github": "",
+        "scholar": "https://scholar.google.com/citations?hl=en&user=utwvtyEAAAAJ"
+      }
+    },
+    {
+      "id": "ryan_kearns",
+      "name": "Ryan Othniel Kearns",
+      "role": "DPhil Student",
+      "focus": "Science of evals, reasoning in LLMs",
+      "photo": "img/members/ryan_othniel_kearns.jpeg",
+      "shortBio": "Ryan Othniel Kearns is a DPhil student in the Reasoning with Machines Lab, generously supported by the Clarendon Scholarship. His research focuses on understanding reasoning in large language models (LLMs) and the science of AI evaluations. Previously, Ryan studied Philosophy (BAH) and Computer Science (BS) at Stanford University and Social Data Science (MSc) at the University of Oxford.",
+      "longBio": "Ryan Othniel Kearns is a DPhil student in the Reasoning with Machines Lab and a research fellow with the Oxford Human-Centered AI Lab. His research focuses on understanding reasoning in large language models (LLMs) and the science of AI evaluations. Previously, Ryan studied Philosophy (BAH) and Computer Science (BS) at Stanford University and Social Data Science (MSc) at the University of Oxford.\nRyan's research is supported by a Clarendon Scholarship and a Cosmos Fellowship.",
+      "links": {
+        "email": "ryan.kearns@oii.ox.ac.uk",
+        "linkedin": "https://www.linkedin.com/in/ryanothnielkearns/",
+        "website": "https://ryanothnielkearns.github.io/",
+        "twitter": "https://x.com/RyanOthKearns",
+        "github": "https://github.com/RyanOthnielKearns/",
+        "scholar": "https://scholar.google.com/citations?user=O3dq-xkAAAAJ"
+      }
+    },
+    {
+      "id": "shreyansh_padarha",
+      "name": "Shreyansh Padarha",
+      "role": "Research Assistant (2025)",
+      "focus": "LLMs, knowledge distillations",
+      "photo": "img/members/shreyansh_padarha.png",
+      "shortBio": "Shreyansh holds a BSc in Data Science and has experience working at startups, where he developed AI-driven solutions for film, TV production, and advertising. He has also conducted cross-functional research in Malaysia, where he developed clinical models for dental care. His research work also includes infusing computer vision in cattle domestication and opinion mining rhetoric of LLMs on social media.\nShreyansh is passionate about leveraging data-driven approaches to tackle pressing social issues, including biodiversity conservation, climate change mitigation, early medical detection, and extremism behaviour detection.",
+      "longBio": "Shreyansh holds a BSc in Data Science and has experience working at startups, where he developed AI-driven solutions for film, TV production, and advertising. He has also conducted cross-functional research in Malaysia, where he developed clinical models for dental care. His research work also includes infusing computer vision in cattle domestication and opinion mining rhetoric of LLMs on social media.\nShreyansh is passionate about leveraging data-driven approaches to tackle pressing social issues, including biodiversity conservation, climate change mitigation, early medical detection, and extremism behaviour detection.",
+      "links": {
+        "email": "shreyansh.padarha@oii.ox.ac.uk",
+        "linkedin": "https://www.linkedin.com/in/shreyansh-padarha/",
+        "website": "",
+        "twitter": "",
+        "github": "",
+        "scholar": "https://scholar.google.com/citations?hl=en&user=b0aneOsAAAAJ"
+      }
+    },
+    {
+      "id": "sebastian_petric",
+      "name": "Sebastian Petric",
+      "role": "Visiting Policy Fellow (2024-2026)",
+      "focus": "LLMs and financial time series",
+      "photo": "img/members/sebastian_petric.jpg",
+      "shortBio": "Sebastian Petric began his career in emerging market asset management, which heightened his awareness of the diverse factors influencing returns and risks. This experience guided him towards multi-asset class investing and capital market research, where he developed a passion for data science and machine learning.\nAs a future-focused leader and a Visiting Policy Fellow at the Oxford Internet Institute, he is equipped with extensive knowledge and expertise in innovative technologies. He strives to make a difference through his roles in advisory and advocacy, and he aims to influence through knowledge sharing via his publications.\nAlongside his thought leadership, he is committed to actively contributing to and empowering communities in their efforts to address economic, social, and environmental challenges.",
+      "longBio": "Sebastian Petric began his career in emerging market asset management, which heightened his awareness of the diverse factors influencing returns and risks. This experience guided him towards multi-asset class investing and capital market research, where he developed a passion for data science and machine learning.\nAs a future-focused leader and a Visiting Policy Fellow at the Oxford Internet Institute, he is equipped with extensive knowledge and expertise in innovative technologies. He strives to make a difference through his roles in advisory and advocacy, and he aims to influence through knowledge sharing via his publications.\nAlongside his thought leadership, he is committed to actively contributing to and empowering communities in their efforts to address economic, social, and environmental challenges.",
+      "links": {
+        "email": "sebastian.petric@oii.ox.ac.uk",
+        "linkedin": "https://www.linkedin.com/in/sebastian-petric-1204/",
+        "website": "https://www.sebastianpetric.com/",
+        "twitter": "",
+        "github": ""
+      }
+    }
+  ],
+  "alumni": [
+    {
+      "name": "Shreyansh Padarha",
+      "role": "MSc (2025)",
+      "category": "alumni"
+    },
+    {
+      "name": "Ryan Othniel Kearns",
+      "role": "MSc (2025)",
+      "category": "alumni"
+    },
+    {
+      "name": "Mattéo Larrodé",
+      "role": "MSc (2025)",
+      "category": "alumni"
+    },
+    {
+      "name": "Tedi Yankov",
+      "role": "MSc (2024)",
+      "category": "alumni"
+    },
+    {
+      "name": "Saskia Redgate",
+      "role": "MSc (2024)",
+      "category": "alumni"
+    },
+    {
+      "name": "Mehdi Mojarradi",
+      "role": "MSc (2024)",
+      "category": "alumni"
+    },
+    {
+      "name": "Sneha Kotecha",
+      "role": "MSc (2024)",
+      "category": "alumni"
+    },
+    {
+      "name": "Harry Mayne",
+      "role": "MSc (2023)",
+      "category": "alumni"
+    },
+    {
+      "name": "Karolina Korgul",
+      "role": "MSc (2023)",
+      "category": "alumni"
+    },
+    {
+      "name": "Henry Roberts",
+      "role": "MSc (2023)",
+      "category": "alumni"
+    },
+    {
+      "name": "Kyati Khandelwal",
+      "role": "MSc (2023)",
+      "category": "alumni"
+    },
+    {
+      "name": "Andrew Bean",
+      "role": "MSc (2022)",
+      "category": "alumni"
+    },
+    {
+      "name": "Nathan Bailey",
+      "role": "MSc (2022)",
+      "category": "alumni"
+    },
+    {
+      "name": "Benedict Yeo",
+      "role": "MSc (2022)",
+      "category": "alumni"
+    },
+    {
+      "name": "Yuxuan Zhang",
+      "role": "MSc (2022)",
+      "category": "alumni"
+    }
+  ]
+}

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>
+        Team - Reasoning with Machines Lab
+    </title>
+    <link href="styles/common.css" rel="stylesheet" />
+    <style>
+        .pi-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 3rem;
+        }
+
+        .pi-profile {
+            display: flex;
+            gap: 2.5rem;
+            align-items: flex-start;
+        }
+
+        .pi-photo {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #718096;
+            flex-shrink: 0;
+            border: 2px solid #e2e8f0;
+        }
+
+        .pi-info h3 {
+            font-size: 1.8rem;
+            color: #1a365d;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .pi-title {
+            color: #718096;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .pi-description {
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .team-member {
+            background: white;
+            padding: 1.0rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .member-photo {
+            width: 135px;
+            height: 135px;
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #718096;
+            border: 2px solid #e2e8f0;
+        }
+
+        .member-name {
+            font-size: 1.25rem;
+            color: #1a365d;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .member-role {
+            color: #718096;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .member-focus {
+            color: #4a5568;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .member-full-details {
+            display: none !important;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.25s ease-in-out;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 750px;
+            position: relative;
+            text-align: left;
+            max-height: 85vh;
+            overflow-y: auto;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .modal-content {
+                flex-direction: column;
+                padding: 1.5rem;
+            }
+
+            .modal-photo-area {
+                text-align: center;
+            }
+        }
+
+        .modal-photo-area {
+            flex: 0 0 150px;
+        }
+
+        .modal-photo-placeholder {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #e9ecef, #dee2e6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #495057;
+            border: 2px solid #ced4da;
+            margin: 0 auto;
+        }
+
+        .modal-text-area {
+            flex: 1;
+        }
+
+        .modal-close-button {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2.2rem;
+            font-weight: 300;
+            color: #6c757d;
+            cursor: pointer;
+            line-height: 1;
+            padding: 5px;
+        }
+
+        .modal-close-button:hover {
+            color: #343a40;
+        }
+
+        #modalMemberName {
+            font-size: 2rem;
+            color: #1a365d;
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+
+        #modalMemberRole {
+            color: #718096;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .member-bio {
+            font-size: 0.95rem;
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        /* ------ Social icon skeleton ------ */
+        .member-contact-links {
+            display: flex;
+            gap: 0.75rem;
+            padding: 0;
+            margin: 1rem 0 0 0;
+            list-style: none;
+            justify-content: center;
+        }
+
+        .member-contact-links a {
+            --accent: #2d5986;
+            width: 2.25rem;
+            height: 2.25rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: var(--accent);
+            border: 2px solid currentColor;
+            background: transparent;
+            transition: background-color .2s ease, color .2s ease, transform .2s ease;
+            text-decoration: none !important;
+            margin: 0;
+        }
+
+        .member-contact-links a i {
+            font-size: 1rem;
+            transition: inherit;
+        }
+
+        .member-contact-links a:hover,
+        .member-contact-links a:focus-visible {
+            background: var(--accent);
+            color: #fff;
+            transform: scale(1.05);
+            outline: none;
+            text-decoration: none !important;
+        }
+
+        .member-contact-links a:active {
+            transform: scale(.97);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .member-contact-links a {
+                transition: none;
+            }
+        }
+
+        .collaborators-section {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .collaborators-section h4 {
+            color: #1a365d;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .collaborators-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .collaborator-tag {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            color: #4a5568;
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            background: #1a365d;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer p {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .lab-identity h1 {
+                font-size: 2rem;
+            }
+
+            .nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .pi-profile {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .section {
+                padding: 3rem 0;
+            }
+        }
+    </style>
+    <link href="styles/header.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+    <link rel="preload" href="img/members/adam_mahdi.jpeg" as="image" />
+    <link href="img/assets/rml_logo_dark.jpg" rel="icon" type="image/x-icon" />
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" aria-label="Reasoning with Machines Lab Home">
+                <div class="rml-logo">
+                    <img src="img/assets/rml_logo_light.jpg" alt="Reasoning with Machines Lab logo"
+                        class="lab-logo-img" />
+
+                </div>
+            </a>
+            <nav class="nav" aria-label="Primary">
+                <div class="nav-content">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="research.html">Research</a></li>
+                        <li><a href="team.html" class="active">Team</a></li>
+                        <li><a href="publications.html">Publications</a></li>
+                        <li><a href="news.html">News</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <section class="section" id="team">
+            <div class="section-header">
+                <h2 class="section-title">
+                    Team
+                </h2>
+            </div>
+            <div class="pi-section">
+                <div class="pi-profile">
+                    <div class="pi-photo">
+                        <img alt="Adam Mahdi" src="img/members/adam_mahdi.jpeg"
+                            style="width:100%;height:100%;object-fit:cover;border-radius:12px;" loading="eager" />
+                    </div>
+                    <div class="pi-info">
+                        <h3>
+                            Adam Mahdi
+                        </h3>
+                        <p class="pi-title">
+                            Lab lead, Reasoning with Machines Lab
+                            <br />
+                            University of Oxford
+                        </p>
+                        <div class="pi-description">
+                            <p>
+                                Professor Adam Mahdi leads the Reasoning with Machines Lab.
+                                The lab's research spans the science of evaluation for LLMs, AI safety, mechanistic
+                                interpretability and human-LLM interaction.
+                            </p>
+                            <div class="member-contact-links" style="justify-content:flex-start">
+                                <a href="mailto:adam.mahdi@oii.ox.ac.uk" aria-label="Email Adam Mahdi"><i
+                                        class="fas fa-envelope"></i></a>
+                                <a href="https://scholar.google.com/citations?user=jUDSqzEAAAAJ"
+                                    rel="noopener noreferrer" target="_blank" aria-label="$Adam Mahdi Google Scholar"><i
+                                        class="fas fa-graduation-cap"></i></a>
+                                <a href="https://www.linkedin.com/in/adam-mahdi/" rel="noopener noreferrer"
+                                    target="_blank" aria-label="$Adam Mahdi LinkedIn"><i
+                                        class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="team-grid" id="team-grid">
+                <!-- Team members will be loaded dynamically -->
+            </div>
+
+            <div class="collaborators-section">
+                <h4>
+                    Alumni and Past Members
+                </h4>
+                <div class="collaborators-list" id="alumni-list">
+                    <!-- Alumni will be loaded dynamically -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal-overlay" id="teamMemberModal">
+        <div class="modal-content">
+            <span class="modal-close-button">
+                &times;
+            </span>
+            <div class="modal-photo-area">
+                <div class="modal-photo-placeholder">
+                    [Photo Placeholder]
+                </div>
+            </div>
+            <div class="modal-text-area">
+                <h3 id="modalMemberName">
+                    Member Name
+                </h3>
+                <p id="modalMemberRole">
+                    Member Role
+                </p>
+                <div class="member-bio" id="modalMemberBio">
+                </div>
+                <div class="member-contact-links" id="modalMemberContactLinks">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>
+            &copy; 2025 Reasoning with Machines Lab, Oxford University. All rights reserved.
+        </p>
+    </footer>
+
+    <script>
+        // Load and display team members from JSON file
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('team.json')
+                .then(response => response.json())
+                .then(data => {
+                    const teamGrid = document.getElementById('team-grid');
+                    const alumniList = document.getElementById('alumni-list');
+
+                    if (!teamGrid || !alumniList) {
+                        console.error('Team grid or alumni list elements not found');
+                        return;
+                    }
+
+                    // Generate current students
+                    data.currentStudents.forEach(member => {
+                        const memberDiv = document.createElement('div');
+                        memberDiv.className = 'team-member';
+
+                        // Generate contact links for card (only if they exist)
+                        let cardContactLinks = '';
+                        if (member.links.email) {
+                            cardContactLinks += `<a href="mailto:${member.links.email}" aria-label="Email ${member.name}"><i class="fas fa-envelope"></i></a>`;
+                        }
+                        if (member.links.website) {
+                            cardContactLinks += `<a href="${member.links.website}" rel="noopener noreferrer" target="_blank" aria-label="${member.name} Website"><i class="fas fa-globe"></i></a>`;
+                        }
+                        if (member.links.scholar) {
+                            cardContactLinks += `<a href="${member.links.scholar}" rel="noopener noreferrer" target="_blank" aria-label="${member.name} Google Scholar"><i class="fas fa-graduation-cap"></i></a>`;
+                        }
+                        if (member.links.linkedin) {
+                            cardContactLinks += `<a href="${member.links.linkedin}" rel="noopener noreferrer" target="_blank" aria-label="${member.name} LinkedIn"><i class="fab fa-linkedin"></i></a>`;
+                        }
+                        if (member.links.twitter) {
+                            cardContactLinks += `<a href="${member.links.twitter}" rel="noopener noreferrer" target="_blank" aria-label="${member.name} Twitter"><i class="fab fa-twitter"></i></a>`;
+                        }
+                        if (member.links.github) {
+                            cardContactLinks += `<a href="${member.links.github}" rel="noopener noreferrer" target="_blank" aria-label="${member.name} GitHub"><i class="fab fa-github"></i></a>`;
+                        }
+
+                        // Generate contact links for modal (same as card)
+                        let modalContactLinks = cardContactLinks;
+
+                        memberDiv.innerHTML = `
+                        <div class="member-photo">
+                            <img alt="${member.name}" src="${member.photo}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" loading="eager"/>
+                        </div>
+                        <h4 class="member-name">${member.name}</h4>
+                        <p class="member-role">${member.role}</p>
+                        <p class="member-focus">${member.focus}</p>
+                        
+                        ${cardContactLinks ? `<div class="member-contact-links">${cardContactLinks}</div>` : ''}
+                        
+                        <div class="member-full-details">
+                            <p class="member-bio">${member.longBio.replace(/\n/g, '<br><br>')}</p>
+                            ${modalContactLinks ? `<div class="member-contact-links">${modalContactLinks}</div>` : ''}
+                        </div>
+                    `;
+
+                        teamGrid.appendChild(memberDiv);
+                    });
+
+                    // Generate alumni
+                    data.alumni.forEach(alum => {
+                        const alumSpan = document.createElement('span');
+                        alumSpan.className = 'collaborator-tag';
+                        alumSpan.textContent = `${alum.name}, ${alum.role}`;
+                        alumniList.appendChild(alumSpan);
+                    });
+
+                    // Re-initialize modal functionality for dynamically created elements
+                    initializeTeamMemberModals();
+                })
+                .catch(error => {
+                    console.error('Error loading team data:', error);
+                    // Fallback content if team data fails to load
+                    const teamGrid = document.getElementById('team-grid');
+                    if (teamGrid) {
+                        teamGrid.innerHTML = '<div class="team-member"><p>Unable to load team information at this time.</p></div>';
+                    }
+                });
+        });
+
+        // Function to initialize modal functionality
+        function initializeTeamMemberModals() {
+            const modalOverlay = document.getElementById('teamMemberModal');
+            if (!modalOverlay) {
+                console.error("Modal overlay not found!");
+                return;
+            }
+            const modalCloseButton = modalOverlay.querySelector('.modal-close-button');
+            const modalMemberNameElem = document.getElementById('modalMemberName');
+            const modalMemberRoleElem = document.getElementById('modalMemberRole');
+            const modalMemberBioElem = document.getElementById('modalMemberBio');
+            const modalMemberContactLinksElem = document.getElementById('modalMemberContactLinks');
+            const modalPhotoPlaceholderElem = modalOverlay.querySelector('.modal-photo-placeholder');
+
+            // Make each .team-member card clickable (except if clicking a link inside)
+            const teamMemberDivs = document.querySelectorAll('.team-member');
+
+            teamMemberDivs.forEach(div => {
+                div.style.cursor = 'pointer';
+                div.addEventListener('click', function (event) {
+                    // Prevent modal if clicking a link inside the card
+                    if (event.target.tagName === 'A' || event.target.tagName === 'I') return;
+                    const teamMemberDiv = this.closest('.team-member');
+
+                    // Get data from the team member card
+                    const name = teamMemberDiv.querySelector('.member-name').textContent;
+                    const role = teamMemberDiv.querySelector('.member-role').textContent;
+
+                    // Get photo content from the card: prefer <img> if present, else use text content
+                    const photoDiv = teamMemberDiv.querySelector('.member-photo');
+                    const imgElem = photoDiv ? photoDiv.querySelector('img') : null;
+                    // Store the card's photo content for fallback use later
+                    let cardPhotoContent = '';
+                    // Clear previous modal photo content
+                    modalPhotoPlaceholderElem.innerHTML = '';
+                    if (imgElem && imgElem.src) {
+                        // If there's an image, clone it and set correct styles
+                        const modalImg = document.createElement('img');
+                        modalImg.src = imgElem.src;
+                        modalImg.alt = imgElem.alt || name;
+                        modalImg.style.width = '100%';
+                        modalImg.style.height = '100%';
+                        modalImg.style.objectFit = 'cover';
+                        modalImg.style.borderRadius = '50%';
+                        modalPhotoPlaceholderElem.appendChild(modalImg);
+                        cardPhotoContent = ''; // No placeholder text if image is present
+                    } else if (photoDiv) {
+                        // Otherwise, use the text content (e.g., [Photo Placeholder])
+                        modalPhotoPlaceholderElem.textContent = photoDiv.textContent;
+                        cardPhotoContent = photoDiv.textContent;
+                    }
+
+                    // Get hidden detailed content
+                    const fullDetailsDiv = teamMemberDiv.querySelector('.member-full-details');
+                    if (!fullDetailsDiv) {
+                        console.error("Full details div not found for this team member.", teamMemberDiv);
+                        return;
+                    }
+                    const bioHtml = fullDetailsDiv.querySelector('.member-bio').innerHTML;
+                    const contactLinksDiv = fullDetailsDiv.querySelector('.member-contact-links');
+                    const contactLinksHtml = contactLinksDiv ? contactLinksDiv.innerHTML : '';
+
+                    // Populate modal
+                    if (modalMemberNameElem) modalMemberNameElem.textContent = name;
+                    if (modalMemberRoleElem) modalMemberRoleElem.textContent = role;
+                    if (modalMemberBioElem) modalMemberBioElem.innerHTML = bioHtml;
+                    if (modalMemberContactLinksElem) modalMemberContactLinksElem.innerHTML = contactLinksHtml;
+
+                    // Show modal
+                    modalOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Prevent background scroll
+                });
+            });
+
+            // Close modal actions
+            function closeModal() {
+                modalOverlay.classList.remove('active');
+                document.body.style.overflow = ''; // Restore background scroll
+            }
+
+            if (modalCloseButton) modalCloseButton.addEventListener('click', closeModal);
+
+            modalOverlay.addEventListener('click', function (event) {
+                // Only close if clicked on the overlay itself, not the content
+                if (event.target === modalOverlay) {
+                    closeModal();
+                }
+            });
+
+            // Optional: Close modal with Escape key
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

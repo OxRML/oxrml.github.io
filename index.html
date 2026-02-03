@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Reasoning with Machines Lab
+  </title>
+  <link href="styles/common.css" rel="stylesheet"/>
+  <style>
+   #landing {
+            padding-bottom: 0;
+        }
+
+        .oii-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            background: white;
+            color: #2d5986;
+            text-decoration: none;
+            border: 2px solid #2d5986;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .oii-link:hover {
+            background: #2d5986;
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(45, 89, 134, 0.2);
+        }
+
+        .research-overview {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 3rem;
+        }
+
+        .research-areas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .research-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #2d5986;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .research-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .research-card h3 {
+            color: #1a365d;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .research-card p {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .pi-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .pi-profile {
+            display: flex;
+            gap: 2.5rem;
+            align-items: flex-start;
+        }
+
+        .pi-photo {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #718096;
+            flex-shrink: 0;
+            border: 2px solid #e2e8f0;
+        }
+
+        .pi-info h3 {
+            font-size: 1.8rem;
+            color: #1a365d;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .pi-title {
+            color: #718096;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .pi-description {
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .team-member {
+            background: white;
+            padding: 1.0rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .member-photo {
+            width: 135px;
+            height: 135px;
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #718096;
+            border: 2px solid #e2e8f0;
+        }
+
+        .member-name {
+            font-size: 1.25rem;
+            color: #1a365d;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .member-role {
+            color: #718096;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .member-focus {
+            color: #4a5568;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .past-members-section {
+            background: #f8fafc;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            margin-top: 3rem;
+        }
+
+        .past-members-section h3 {
+            color: #1a365d;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .past-members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .past-member {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .past-member-photo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #718096;
+            border: 2px solid #e2e8f0;
+        }
+
+        .past-member-name {
+            font-size: 1.1rem;
+            color: #1a365d;
+            margin-bottom: 0.25rem;
+            font-weight: 600;
+        }
+
+        .past-member-role {
+            color: #718096;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        .collaborators-section {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .collaborators-section h4 {
+            color: #1a365d;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .collaborators-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .collaborator-tag {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            color: #4a5568;
+            font-size: 0.9rem;
+        }
+
+        .publications-list {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+
+        .publication {
+            padding: 2rem;
+            border-bottom: 1px solid #f1f5f9;
+            transition: background-color 0.2s;
+        }
+
+        .publication:hover {
+            background-color: #f8fafc;
+        }
+
+        .publication:last-child {
+            border-bottom: none;
+        }
+
+        .pub-year {
+            display: inline-block;
+            background: #2d5986;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .pub-title {
+            font-size: 1.15rem;
+            color: #1a365d;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .pub-authors {
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .pub-venue {
+            color: #2d5986;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        .contact-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-item h4 {
+            color: #1a365d;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .contact-item p {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .footer {
+            background: #1a365d;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer p {
+            opacity: 0.8;
+        }
+
+        .admissions-link {
+            background: #2d5986 !important;
+            color: white !important;
+            padding: 0.75rem 1.5rem !important;
+            border-radius: 6px !important;
+            text-decoration: none !important;
+            font-weight: 500 !important;
+            transition: background 0.2s ease !important;
+            display: inline-block !important;
+        }
+
+        .admissions-link:hover {
+            background: #1a365d !important;
+            color: white !important;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .lab-identity h1 {
+                font-size: 2rem;
+            }
+
+            .nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .pi-profile {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .section {
+                padding: 3rem 0;
+            }
+        }
+
+        /* ... (your existing CSS rules) ... */
+
+        /* Styles for the hidden details within each team member card */
+        .member-full-details {
+            display: none !important; /* Ensure these are always hidden on the card */
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65); /* Semi-transparent background */
+            display: none; /* Hidden by default */
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.25s ease-in-out;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            width: 90%;
+            max-width: 750px; /* Max width of modal */
+            position: relative;
+            text-align: left;
+            max-height: 85vh; /* Max height of modal */
+            overflow-y: auto; /* Enable scroll for long content */
+            display: flex; /* For layouting photo and text */
+            gap: 1.5rem; /* Space between photo area and text area */
+        }
+
+        @media (max-width: 600px) {
+            .modal-content {
+                flex-direction: column; /* Stack photo and text on small screens */
+                padding: 1.5rem;
+            }
+            .modal-photo-area {
+                text-align: center; /* Center photo on small screens */
+            }
+        }
+
+        .modal-photo-area {
+            flex: 0 0 150px; /* Fixed width for photo area */
+        }
+
+        .modal-photo-placeholder {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #e9ecef, #dee2e6); /* Slightly different gradient */
+            border-radius: 50%; /* Circular photo in modal */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #495057;
+            border: 2px solid #ced4da;
+            margin: 0 auto; /* Center if parent is wider */
+        }
+
+        .modal-text-area {
+            flex: 1; /* Takes remaining space */
+        }
+
+        .modal-close-button {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2.2rem;
+            font-weight: 300;
+            color: #6c757d;
+            cursor: pointer;
+            line-height: 1;
+            padding: 5px;
+        }
+
+        .modal-close-button:hover {
+            color: #343a40;
+        }
+
+        #modalMemberName {
+            font-size: 2rem; /* Slightly larger */
+            color: #1a365d; /* From .pi-info h3 */
+            margin-bottom: 0.5rem;
+            font-weight: 400; /* From .section-title */
+        }
+
+        #modalMemberRole {
+            color: #718096; /* From .pi-title */
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem; /* Slightly larger */
+        }
+
+        /* Re-use or adapt .member-bio and .member-contact-links from previous solution if needed */
+        /* These styles should generally work fine */
+        .member-bio { /* This class is used inside the modal now */
+            font-size: 0.95rem; /* Standardize bio font size */
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .member-contact-links a { /* This class is used inside the modal now */
+            color: #2d5986;
+            text-decoration: none;
+            margin-right: 1rem; /* More spacing */
+            font-size: 0.95rem;
+            display: inline-block; /* Better spacing */
+            margin-bottom: 0.5rem; /* Spacing for wrapped links */
+        }
+
+        .member-contact-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Button on the card */
+        .view-details-button {
+            background-color: #2d5986;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .view-details-button:hover {
+            background-color: #1a365d;
+        }
+
+        /* ------ Social icon skeleton ------ */
+        .member-contact-links {
+            display: flex;
+            gap: 0.75rem;
+            padding: 0;
+            margin: 1rem 0 0 0;
+            list-style: none;
+            justify-content: center;
+        }
+
+        .member-contact-links a {
+            --accent: #2d5986;             /* Lab brand color */
+            width: 2.25rem;
+            height: 2.25rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: var(--accent);               /* glyph color */
+            border: 2px solid currentColor;
+            background: transparent;
+            transition: background-color .2s ease, color .2s ease, transform .2s ease;
+            text-decoration: none !important;
+            margin: 0;
+        }
+
+        .member-contact-links a i {
+            font-size: 1rem;
+            transition: inherit;
+        }
+
+        /* ------ Interactive states ------ */
+        .member-contact-links a:hover,
+        .member-contact-links a:focus-visible {
+            background: var(--accent);
+            color: #fff;                       /* colour inversion */
+            transform: scale(1.05);
+            outline: none;
+            text-decoration: none !important;
+        }
+
+        .member-contact-links a:active {
+            transform: scale(.97);
+        }
+
+        /* ------ Motion-safety ------ */
+        @media (prefers-reduced-motion: reduce) {
+            .member-contact-links a {
+                transition: none;
+            }
+        }
+
+        .layout {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .main-content {
+            flex: 3;
+        }
+
+        .news-sidebar {
+            flex: 1;
+            background: #f7fafc;
+            padding: 1.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            position: sticky;
+            top: 6rem;
+        }
+
+        .news-sidebar h3 {
+            color: #1a365d;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .group-photo-container {
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .group-photo-placeholder {
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #718096;
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .news-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 0 1.5rem;
+            position: relative;
+        }
+
+        .news-list::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 2px;
+            background: #000;
+        }
+
+        .news-item {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: center;
+        }
+
+        .news-title {
+            color: #1a365d;
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-left: 0.5rem;
+        }
+
+        .news-date {
+            display: inline-block;
+            position: relative;
+            background: #1a365d;
+            color: #fff;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 0.1rem 0.4rem;
+            margin-right: 0.5rem;
+            border-radius: 3px;
+            white-space: nowrap;
+        }
+
+        .news-date::before {
+            content: "";
+            position: absolute;
+            left: calc(-1.0rem + 1px);
+            top: 50%;
+            width: 8px;
+            height: 8px;
+            background: #000;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 0.2s;
+        }
+
+        .news-item:hover .news-date::before, .news-item:focus .news-date::before {
+            transform: translate(-50%, -50%) scale(1.5);
+        }
+
+        .news-text {
+            display: block;
+            margin-top: 0.25rem;
+        }
+
+
+        @media (max-width: 1000px) {
+            .layout {
+                flex-direction: column;
+            }
+        }
+
+/* ... (rest of your existing CSS rules) ... */
+  </style>
+    <link href="styles/header.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+    <link href="img/assets/rml_logo_dark.jpg" rel="icon" type="image/x-icon"/>
+ </head>
+ <body>
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" aria-label="Reasoning with Machines Lab Home">
+            <div class="rml-logo">
+                <img
+                    src="img/assets/rml_logo_light.jpg"
+                    alt="Reasoning with Machines Lab logo"
+                    class="lab-logo-img"
+                />
+
+            </div>
+            </a>
+            <nav class="nav" aria-label="Primary">
+                <div class="nav-content">
+                    <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="publications.html">Publications</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+  <div class="container">
+   <section class="section" id="landing">
+    <div class="section-header">
+     <h2 class="section-title">
+      Welcome to the Reasoning with Machines Lab
+     </h2>
+     <p class="section-subtitle">
+      We conduct research on AI evaluation, safety, and human-AI interaction to advance our understanding of how large language models reason, solve complex problems, and collaborate with humans.
+     </p>
+    </div>
+   </section>
+  </div>
+  <div class="container">
+   <section class="section" id="news-section">
+    <h3 style="color: #1a365d; margin-bottom: 2rem; font-size: 1.8rem;">Recent news</h3>
+    <ul class="news-list" id="news-list" style="list-style: none; padding: 0; margin: 0;">
+     <!-- News items will be loaded dynamically -->
+    </ul>
+   </section>
+  </div>
+  <footer class="footer">
+   <p>
+    &copy; 2025 Reasoning with Machines Lab, Oxford University. All rights reserved.
+   </p>
+  </footer>
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
+            const expandButtons = document.querySelectorAll('.expand-bio-button');
+
+            expandButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Find the parent .team-member div
+                    const teamMember = this.closest('.team-member');
+                    if (!teamMember) return;
+
+                    // Find the expandable content within this team member
+                    const expandableContent = teamMember.querySelector('.member-expandable-content');
+                    if (!expandableContent) return;
+
+                    // Toggle the 'expanded' class which triggers CSS display change
+                    expandableContent.classList.toggle('expanded');
+
+                    // Update button text based on the state
+                    if (expandableContent.classList.contains('expanded')) {
+                        this.textContent = 'Read Less';
+                    } else {
+                        this.textContent = 'Read More';
+                    }
+                });
+            });
+        });
+  </script>
+  <div class="modal-overlay" id="teamMemberModal">
+   <div class="modal-content">
+    <span class="modal-close-button">
+     &times;
+    </span>
+    <div class="modal-photo-area">
+     <div class="modal-photo-placeholder">
+      [Photo Placeholder]
+     </div>
+    </div>
+    <div class="modal-text-area">
+     <h3 id="modalMemberName">
+      Member Name
+     </h3>
+     <p id="modalMemberRole">
+      Member Role
+     </p>
+     <div class="member-bio" id="modalMemberBio">
+     </div>
+     <div class="member-contact-links" id="modalMemberContactLinks">
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
+        const modalOverlay = document.getElementById('teamMemberModal');
+        if (!modalOverlay) {
+            console.error("Modal overlay not found!");
+            return;
+        }
+        const modalCloseButton = modalOverlay.querySelector('.modal-close-button');
+        const modalMemberNameElem = document.getElementById('modalMemberName');
+        const modalMemberRoleElem = document.getElementById('modalMemberRole');
+        const modalMemberBioElem = document.getElementById('modalMemberBio');
+        const modalMemberContactLinksElem = document.getElementById('modalMemberContactLinks');
+        const modalPhotoPlaceholderElem = modalOverlay.querySelector('.modal-photo-placeholder');
+
+        // Make each .team-member card clickable (except if clicking a link inside)
+        const teamMemberDivs = document.querySelectorAll('.team-member');
+
+        teamMemberDivs.forEach(div => {
+            div.style.cursor = 'pointer';
+            div.addEventListener('click', function(event) {
+            // Prevent modal if clicking a link inside the card
+            if (event.target.tagName === 'A') return;
+                const teamMemberDiv = this.closest('.team-member');
+
+                // Get data from the team member card
+                const name = teamMemberDiv.querySelector('.member-name').textContent;
+                const role = teamMemberDiv.querySelector('.member-role').textContent;
+
+                // Get photo content from the card: prefer <img> if present, else use text content
+                const photoDiv = teamMemberDiv.querySelector('.member-photo');
+                const imgElem = photoDiv ? photoDiv.querySelector('img') : null;
+                // Store the card's photo content for fallback use later
+                let cardPhotoContent = '';
+                // Clear previous modal photo content
+                modalPhotoPlaceholderElem.innerHTML = '';
+                if (imgElem && imgElem.src) {
+                    // If there's an image, clone it and set correct styles
+                    const modalImg = document.createElement('img');
+                    modalImg.src = imgElem.src;
+                    modalImg.alt = imgElem.alt || name;
+                    modalImg.style.width = '100%';
+                    modalImg.style.height = '100%';
+                    modalImg.style.objectFit = 'cover';
+                    modalImg.style.borderRadius = '50%';
+                    modalPhotoPlaceholderElem.appendChild(modalImg);
+                    cardPhotoContent = ''; // No placeholder text if image is present
+                } else if (photoDiv) {
+                    // Otherwise, use the text content (e.g., [Photo Placeholder])
+                    modalPhotoPlaceholderElem.textContent = photoDiv.textContent;
+                    cardPhotoContent = photoDiv.textContent;
+                }
+
+                // Get hidden detailed content
+                const fullDetailsDiv = teamMemberDiv.querySelector('.member-full-details');
+                if (!fullDetailsDiv) {
+                    console.error("Full details div not found for this team member.", teamMemberDiv);
+                    return;
+                }
+                const bioHtml = fullDetailsDiv.querySelector('.member-bio').innerHTML;
+                const contactLinksHtml = fullDetailsDiv.querySelector('.member-contact-links').innerHTML;
+
+                // Populate modal
+                if(modalMemberNameElem) modalMemberNameElem.textContent = name;
+                if(modalMemberRoleElem) modalMemberRoleElem.textContent = role;
+                if(modalMemberBioElem) modalMemberBioElem.innerHTML = bioHtml;
+                if(modalMemberContactLinksElem) modalMemberContactLinksElem.innerHTML = contactLinksHtml;
+
+                // Show modal
+                modalOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scroll
+            });
+        });
+
+        // Close modal actions
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = ''; // Restore background scroll
+        }
+
+        if(modalCloseButton) modalCloseButton.addEventListener('click', closeModal);
+
+        modalOverlay.addEventListener('click', function(event) {
+            // Only close if clicked on the overlay itself, not the content
+            if (event.target === modalOverlay) {
+                closeModal();
+            }
+        });
+
+        // Optional: Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    });
+  </script>
+  <script>
+    // Load and display news from JSON file
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('news.json')
+            .then(response => response.json())
+            .then(data => {
+                const newsList = document.getElementById('news-list');
+                if (!newsList) {
+                    console.error('News list element not found');
+                    return;
+                }
+
+                // Sort news by date (newest first) and take only top 5
+                const sortedNews = data.news
+                    .sort((a, b) => new Date(b.date) - new Date(a.date))
+                    .slice(0, 5);
+
+                // Generate HTML for each news item
+                sortedNews.forEach(newsItem => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'news-item';
+                    listItem.tabIndex = 0;
+
+                    listItem.innerHTML = `
+                        <div class="news-header">
+                            <span class="news-date">${newsItem.displayDate}</span>
+                            <span class="news-title">${newsItem.title}</span>
+                        </div>
+                        <span class="news-text">${newsItem.text}</span>
+                    `;
+
+                    newsList.appendChild(listItem);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading news:', error);
+                // Fallback content if news fails to load
+                const newsList = document.getElementById('news-list');
+                if (newsList) {
+                    newsList.innerHTML = '<li class="news-item">Unable to load news at this time.</li>';
+                }
+            });
+    });
+  </script>
+  <script>
+    // Load and display team members from JSON file
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('team.json')
+            .then(response => response.json())
+            .then(data => {
+                const teamGrid = document.getElementById('team-grid');
+                const alumniList = document.getElementById('alumni-list');
+
+                if (!teamGrid || !alumniList) {
+                    console.error('Team grid or alumni list elements not found');
+                    return;
+                }
+
+                // Generate current students
+                data.currentStudents.forEach(member => {
+                    const memberDiv = document.createElement('div');
+                    memberDiv.className = 'team-member';
+
+                    // Generate contact links for card (only if they exist)
+                    let cardContactLinks = '';
+                    if (member.links.email) {
+                        cardContactLinks += `<a href="mailto:${member.links.email}" aria-label="Email ${member.name}"><i class="fas fa-envelope"></i></a>`;
+                    }
+                    if (member.links.linkedin) {
+                        cardContactLinks += `<a href="${member.links.linkedin}" rel="noopener noreferrer" target="_blank" aria-label="${member.name} LinkedIn"><i class="fab fa-linkedin"></i></a>`;
+                    }
+                    if (member.links.website) {
+                        cardContactLinks += `<a href="${member.links.website}" rel="noopener noreferrer" target="_blank" aria-label="${member.name} Website"><i class="fas fa-globe"></i></a>`;
+                    }
+                    if (member.links.twitter) {
+                        cardContactLinks += `<a href="${member.links.twitter}" rel="noopener noreferrer" target="_blank" aria-label="${member.name} Twitter"><i class="fab fa-twitter"></i></a>`;
+                    }
+                    if (member.links.github) {
+                        cardContactLinks += `<a href="${member.links.github}" rel="noopener noreferrer" target="_blank" aria-label="${member.name} GitHub"><i class="fab fa-github"></i></a>`;
+                    }
+
+                    // Generate contact links for modal (same as card)
+                    let modalContactLinks = cardContactLinks;
+
+                    memberDiv.innerHTML = `
+                        <div class="member-photo">
+                            <img alt="${member.name}" src="${member.photo}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
+                        </div>
+                        <h4 class="member-name">${member.name}</h4>
+                        <p class="member-role">${member.role}</p>
+                        <p class="member-focus">${member.focus}</p>
+
+                        ${cardContactLinks ? `<div class="member-contact-links">${cardContactLinks}</div>` : ''}
+
+                        <div class="member-full-details">
+                            <p class="member-bio">${member.longBio.replace(/\n/g, '<br><br>')}</p>
+                            ${modalContactLinks ? `<div class="member-contact-links">${modalContactLinks}</div>` : ''}
+                        </div>
+                    `;
+
+                    teamGrid.appendChild(memberDiv);
+                });
+
+                // Generate alumni
+                data.alumni.forEach(alum => {
+                    const alumSpan = document.createElement('span');
+                    alumSpan.className = 'collaborator-tag';
+                    alumSpan.textContent = `${alum.name}, ${alum.role}`;
+                    alumniList.appendChild(alumSpan);
+                });
+
+                // Re-initialize modal functionality for dynamically created elements
+                initializeTeamMemberModals();
+            })
+            .catch(error => {
+                console.error('Error loading team data:', error);
+                // Fallback content if team data fails to load
+                const teamGrid = document.getElementById('team-grid');
+                if (teamGrid) {
+                    teamGrid.innerHTML = '<div class="team-member"><p>Unable to load team information at this time.</p></div>';
+                }
+            });
+    });
+
+    // Function to initialize modal functionality (extracted from existing code)
+    function initializeTeamMemberModals() {
+        const modalOverlay = document.getElementById('teamMemberModal');
+        if (!modalOverlay) {
+            console.error("Modal overlay not found!");
+            return;
+        }
+        const modalCloseButton = modalOverlay.querySelector('.modal-close-button');
+        const modalMemberNameElem = document.getElementById('modalMemberName');
+        const modalMemberRoleElem = document.getElementById('modalMemberRole');
+        const modalMemberBioElem = document.getElementById('modalMemberBio');
+        const modalMemberContactLinksElem = document.getElementById('modalMemberContactLinks');
+        const modalPhotoPlaceholderElem = modalOverlay.querySelector('.modal-photo-placeholder');
+
+        // Make each .team-member card clickable (except if clicking a link inside)
+        const teamMemberDivs = document.querySelectorAll('.team-member');
+
+        teamMemberDivs.forEach(div => {
+            div.style.cursor = 'pointer';
+            div.addEventListener('click', function(event) {
+            // Prevent modal if clicking a link inside the card
+            if (event.target.tagName === 'A' || event.target.tagName === 'I') return;
+                const teamMemberDiv = this.closest('.team-member');
+
+                // Get data from the team member card
+                const name = teamMemberDiv.querySelector('.member-name').textContent;
+                const role = teamMemberDiv.querySelector('.member-role').textContent;
+
+                // Get photo content from the card: prefer <img> if present, else use text content
+                const photoDiv = teamMemberDiv.querySelector('.member-photo');
+                const imgElem = photoDiv ? photoDiv.querySelector('img') : null;
+                // Store the card's photo content for fallback use later
+                let cardPhotoContent = '';
+                // Clear previous modal photo content
+                modalPhotoPlaceholderElem.innerHTML = '';
+                if (imgElem && imgElem.src) {
+                    // If there's an image, clone it and set correct styles
+                    const modalImg = document.createElement('img');
+                    modalImg.src = imgElem.src;
+                    modalImg.alt = imgElem.alt || name;
+                    modalImg.style.width = '100%';
+                    modalImg.style.height = '100%';
+                    modalImg.style.objectFit = 'cover';
+                    modalImg.style.borderRadius = '50%';
+                    modalPhotoPlaceholderElem.appendChild(modalImg);
+                    cardPhotoContent = ''; // No placeholder text if image is present
+                } else if (photoDiv) {
+                    // Otherwise, use the text content (e.g., [Photo Placeholder])
+                    modalPhotoPlaceholderElem.textContent = photoDiv.textContent;
+                    cardPhotoContent = photoDiv.textContent;
+                }
+
+                // Get hidden detailed content
+                const fullDetailsDiv = teamMemberDiv.querySelector('.member-full-details');
+                if (!fullDetailsDiv) {
+                    console.error("Full details div not found for this team member.", teamMemberDiv);
+                    return;
+                }
+                const bioHtml = fullDetailsDiv.querySelector('.member-bio').innerHTML;
+                const contactLinksDiv = fullDetailsDiv.querySelector('.member-contact-links');
+                const contactLinksHtml = contactLinksDiv ? contactLinksDiv.innerHTML : '';
+
+                // Populate modal
+                if(modalMemberNameElem) modalMemberNameElem.textContent = name;
+                if(modalMemberRoleElem) modalMemberRoleElem.textContent = role;
+                if(modalMemberBioElem) modalMemberBioElem.innerHTML = bioHtml;
+                if(modalMemberContactLinksElem) modalMemberContactLinksElem.innerHTML = contactLinksHtml;
+
+                // Show modal
+                modalOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scroll
+            });
+        });
+
+        // Close modal actions
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = ''; // Restore background scroll
+        }
+
+        if(modalCloseButton) modalCloseButton.addEventListener('click', closeModal);
+
+        modalOverlay.addEventListener('click', function(event) {
+            // Only close if clicked on the overlay itself, not the content
+            if (event.target === modalOverlay) {
+                closeModal();
+            }
+        });
+
+        // Optional: Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    }
+  </script>
+ </body>
+</html>

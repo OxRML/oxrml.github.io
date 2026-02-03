@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>
+        News - Reasoning with Machines Lab
+    </title>
+    <link href="styles/common.css" rel="stylesheet" />
+    <style>
+        .news-list {
+            background: transparent;
+        }
+
+        .news-photos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .news-photo {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .news-item-full {
+            padding: 1.75rem 2rem;
+            margin-bottom: 1.5rem;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+
+        .news-item-full:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-color: #cbd5e0;
+        }
+
+        .news-item-full:last-child {
+            margin-bottom: 0;
+        }
+
+        .news-date-full {
+            display: inline-block;
+            background: #2d5986;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .news-title-full {
+            font-size: 1.25rem;
+            color: #1a365d;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .news-text-full {
+            color: #4a5568;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .news-category {
+            display: inline-block;
+            background: #f8fafc;
+            color: #2d5986;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-left: 0.5rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .footer {
+            background: #1a365d;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer p {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .lab-identity h1 {
+                font-size: 2rem;
+            }
+
+            .nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .section {
+                padding: 3rem 0;
+            }
+        }
+    </style>
+    <link href="styles/header.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+    <link href="img/assets/rml_logo_dark.jpg" rel="icon" type="image/x-icon" />
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" aria-label="Reasoning with Machines Lab Home">
+                <div class="rml-logo">
+                    <img src="img/assets/rml_logo_light.jpg" alt="Reasoning with Machines Lab logo"
+                        class="lab-logo-img" />
+
+                </div>
+            </a>
+            <nav class="nav" aria-label="Primary">
+                <div class="nav-content">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="research.html">Research</a></li>
+                        <li><a href="team.html">Team</a></li>
+                        <li><a href="publications.html">Publications</a></li>
+                        <li><a href="news.html" class="active">News</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <section class="section" id="news">
+            <div class="section-header">
+                <h2 class="section-title">
+                    News
+                </h2>
+                <p class="section-subtitle">
+                    Stay updated with the latest news and announcements from the Reasoning with Machines Lab.
+                </p>
+            </div>
+            <div class="news-list" id="all-news-list">
+                <!-- All news items will be loaded dynamically -->
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>
+            &copy; 2025 Reasoning with Machines Lab, Oxford University. All rights reserved.
+        </p>
+    </footer>
+    <script>
+        // Load and display all news from JSON file
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('news.json')
+                .then(response => response.json())
+                .then(data => {
+                    const newsList = document.getElementById('all-news-list');
+                    if (!newsList) {
+                        console.error('News list element not found');
+                        return;
+                    }
+
+                    // Sort news by date (newest first)
+                    const sortedNews = data.news
+                        .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                    // Generate HTML for each news item
+                    sortedNews.forEach(newsItem => {
+                        const newsDiv = document.createElement('div');
+                        newsDiv.className = 'news-item-full';
+
+                        // Generate photos HTML if they exist
+                        let photosHtml = '';
+                        if (newsItem.photos && newsItem.photos.length > 0) {
+                            photosHtml = `
+                            <div class="news-photos">
+                                ${newsItem.photos.map(photo => `<img src="${photo}" alt="${newsItem.title}" class="news-photo" loading="eager">`).join('')}
+                            </div>
+                        `;
+                        }
+
+                        newsDiv.innerHTML = `
+                        <span class="news-date-full">${newsItem.displayDate}</span>
+                        ${newsItem.category ? `<span class="news-category">${newsItem.category}</span>` : ''}
+                        <h3 class="news-title-full">${newsItem.title}</h3>
+                        <p class="news-text-full">${newsItem.text}</p>
+                        ${photosHtml}
+                    `;
+
+                        newsList.appendChild(newsDiv);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading news:', error);
+                    // Fallback content if news fails to load
+                    const newsList = document.getElementById('all-news-list');
+                    if (newsList) {
+                        newsList.innerHTML = '<div class="news-item-full"><p class="news-text-full">Unable to load news at this time.</p></div>';
+                    }
+                });
+        });
+    </script>
+</body>
+
+</html>

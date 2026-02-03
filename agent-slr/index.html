@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgentSLR: Automating Systematic Literature Reviews with Agentic AI</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="header-inner">
+    <h1 class="paper-title">AgentSLR: Automating Systematic Literature Reviews in Epidemiology with Agentic AI</h1>
+    <div class="institution-logos">
+      <a href="https://oxrml.com/" target="_blank" rel="noopener noreferrer">
+        <img src="logos/oxrml.jpg" alt="OxRML" title="Reasoning with Machines Lab">
+      </a>
+      <a href="https://www.imperial.ac.uk/mrc-global-infectious-disease-analysis/" target="_blank" rel="noopener noreferrer">
+        <img src="logos/mrcgida.jpg" alt="MRC GIDA" title="MRC Centre for Global Infectious Disease Analysis">
+      </a>
+      <a href="https://www.ox.ac.uk/" target="_blank" rel="noopener noreferrer">
+        <img src="logos/oxofrd.png" alt="University of Oxford" title="University of Oxford">
+      </a>
+      <a href="https://www.imperial.ac.uk/" target="_blank" rel="noopener noreferrer">
+        <img src="logos/icl.jpeg" alt="Imperial College London" title="Imperial College London">
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ LINKS ============ -->
+<section class="links-section">
+  <div class="container">
+    <div class="link-boxes">
+      <a href="https://openreview.net/pdf?id=cAIjWwoZNf" target="_blank" class="link-box">
+        <img src="logos/arxiv.svg" alt="arXiv" class="link-icon">
+        <div class="link-text">
+          <span class="link-label">Paper (PDF)</span>
+          <span class="link-sub">arXiv</span>
+        </div>
+      </a>
+      <a href="https://github.com/OxRML/AI4Epireview" target="_blank" class="link-box">
+        <img src="logos/github.svg" alt="GitHub" class="link-icon">
+        <div class="link-text">
+          <span class="link-label">AgentSLR Toolkit</span>
+          <span class="link-sub">GitHub Repository</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COLLABORATORS ============ -->
+<section class="collaborators-section">
+  <div class="container">
+    <!-- <h2>Authors</h2> -->
+    <div class="authors-list">
+      <span class="author">Shreyansh Padarha<sup class="aff oxford">1</sup></span>
+      <span class="author">Ryan Othniel Kearns<sup class="aff oxford">1</sup></span>
+      <span class="author">Tristan Naidoo<sup class="aff icl">2</sup></span>
+      <span class="author">Lingyi Yang<sup class="aff oxford">1</sup></span>
+      <span class="author">&Lstrok;ukasz Borchmann<sup class="aff other">3</sup></span>
+      <span class="author">Piotr B&lstrok;aszczyk<sup class="aff other">4</sup></span>
+      <span class="author">Christian Morgenstern<sup class="aff icl">2</sup></span>
+      <span class="author">Ruth McCabe<sup class="aff icl">2</sup></span>
+      <span class="author">Sangeeta Bhatia<sup class="aff icl">2</sup></span>
+      <span class="author">Philip H. Torr<sup class="aff oxford">1</sup></span>
+      <span class="author">Jakob Foerster<sup class="aff oxford">1</sup></span>
+      <span class="author">Scott A. Hale<sup class="aff oxford">1</sup></span>
+      <span class="author">Thomas Rawson<sup class="aff icl">2</sup></span>
+      <span class="author">Anne Cori<sup class="aff icl">2</sup></span>
+      <span class="author">Elizaveta Semenova<sup class="aff icl">2</sup></span>
+      <span class="author">Adam Mahdi<sup class="aff oxford">1</sup></span>
+    </div>
+    <div class="affiliations-legend">
+      <span class="aff-item"><sup>1</sup> University of Oxford</span>
+      <span class="aff-item"><sup>2</sup> Imperial College London</span>
+      <span class="aff-item"><sup>3</sup> Snowflake AI Research</span>
+      <span class="aff-item"><sup>4</sup> Independent</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SUMMARY ============ -->
+<section class="summary-section">
+  <div class="container">
+    <div class="summary-card">
+      <h2>About AgentSLR</h2>
+      <p>
+        <strong>AgentSLR</strong> is a collaboration between the <strong>Reasoning with Machines Lab (OxRML)</strong> at the University of Oxford
+        and the <strong>Pathogen Epidemiology Review Group (PERG)</strong> at the MRC Centre for Global Infectious Disease Analysis, Imperial College London.
+      </p>
+      <p>
+        The project brings together <strong>epidemiologists, computer scientists, and AI researchers</strong> to tackle one of the
+        most resource-intensive tasks in evidence-based public health: systematic literature reviews.
+      </p>
+      <p>
+        Systematic reviews are essential for synthesising scientific evidence, yet they are costly, difficult to scale,
+        and extremely time-intensive. <strong>AgentSLR automates the complete workflow</strong> &mdash; from article retrieval and
+        multi-stage screening, through structured data extraction, to evidence synthesis via written reports.
+      </p>
+      <p>
+        Applied to epidemiological reviews of <strong>nine WHO-designated priority pathogens</strong> and validated against expert-curated ground truth,
+        AgentSLR achieves screening decisions and data extractions consistent with human annotators
+        while completing this process <strong>34.1&times; faster</strong>.
+      </p>
+      <p>
+        The pipeline is <strong>open-source and open-weight</strong>, enabling reproducible and scalable evidence synthesis for outbreak preparedness and response.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ============ INTERACTIVE PIPELINE ============ -->
+<section class="pipeline-section">
+  <div class="container">
+    <h2>Interactive Pipeline Demonstration</h2>
+    <p class="pipeline-subtitle">
+      Select a pathogen and click <strong>Run</strong> to simulate the AgentSLR pipeline in action.
+    </p>
+
+    <!-- Controls -->
+    <div class="pipeline-controls">
+      <div class="control-group">
+        <label for="pathogen-select">Select Pathogen</label>
+        <div class="select-wrapper">
+          <select id="pathogen-select">
+            <option value="">-- Choose a pathogen --</option>
+            <option value="marburg">Marburg virus</option>
+            <option value="ebola">Ebola virus</option>
+            <option value="lassa">Lassa fever virus</option>
+            <option value="sars">SARS-CoV-1</option>
+            <option value="zika">Zika virus</option>
+            <option value="mers">MERS-CoV</option>
+            <option value="nipah">Nipah virus</option>
+            <option value="rvf">Rift Valley fever virus</option>
+            <option value="nairo">Crimean-Congo hemorrhagic fever (CCHF) virus</option>
+          </select>
+        </div>
+      </div>
+      <button id="run-btn" class="btn-run" disabled>Run Pipeline</button>
+      <button id="reset-btn" class="btn-reset" style="display:none;">Reset</button>
+    </div>
+
+    <p class="disclaimer">* This run is a simulation depicting how the pipeline would be run. Data provided is redacted and a small sub-sample.</p>
+
+    <!-- Pipeline Grid -->
+    <div class="pipeline-grid">
+      <!-- Stage 1 -->
+      <div class="pipeline-card" data-stage="1">
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="stage-badge">a</div>
+            <div class="stage-icon">
+              <svg viewBox="0 0 64 64" class="icon-search">
+                <!-- Database cylinder -->
+                <ellipse cx="20" cy="16" rx="12" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
+                <line x1="8" y1="16" x2="8" y2="30" stroke="currentColor" stroke-width="2"/>
+                <line x1="32" y1="16" x2="32" y2="30" stroke="currentColor" stroke-width="2"/>
+                <ellipse cx="20" cy="30" rx="12" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
+                <!-- Magnifying glass -->
+                <circle cx="44" cy="40" r="10" fill="none" stroke="currentColor" stroke-width="2.5"/>
+                <line x1="51" y1="47" x2="58" y2="54" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Article Search &amp; Retrieval</h3>
+            <div class="stage-status" id="status-1"></div>
+            <div class="progress-bar-container" id="progress-1" style="display:none;">
+              <div class="progress-bar"><div class="progress-fill"></div></div>
+              <span class="progress-text">0%</span>
+            </div>
+            <div class="stage-log" id="log-1"></div>
+          </div>
+          <div class="card-back">
+            <div class="back-header">
+              <button class="flip-back-btn" title="Flip back">&larr;</button>
+              <h4>Article Search &amp; Retrieval</h4>
+            </div>
+            <div class="back-content">
+              <p><strong>Data Sources:</strong> OpenAlex (30 req/s), PubMed (standard API), Europe PMC (20 req/s)</p>
+              <p><strong>Search Strategy:</strong> Boolean queries with epidemiological terms, wildcard expansion for term variants, pathogen-specific exclusion criteria.</p>
+              <p><strong>Process:</strong> Deduplication by DOI/PMID/PMCID, cascading PDF retrieval from open access sources, parallel downloads with rate limiting.</p>
+              <div class="back-query">
+                <strong>Example Query:</strong>
+                <code>[PATHOGEN] AND (transmissi* OR epidemiolog* OR model* OR severity OR "case fatality ratio*" OR "serial interval*" OR "reproduction number*" OR outbreak* ...)</code>
+              </div>
+              <button class="download-btn" id="dl-stage1" style="display:none;">Download Sample Data</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage 2 -->
+      <div class="pipeline-card" data-stage="2">
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="stage-badge">b</div>
+            <div class="stage-icon">
+              <svg viewBox="0 0 64 64" class="icon-screen">
+                <!-- Document with fewer lines (title & abstract) -->
+                <rect x="16" y="10" width="32" height="28" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
+                <line x1="22" y1="18" x2="42" y2="18" stroke="currentColor" stroke-width="2"/>
+                <line x1="22" y1="24" x2="40" y2="24" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="22" y1="28" x2="38" y2="28" stroke="currentColor" stroke-width="1.5"/>
+                <!-- Check and cross below -->
+                <circle cx="26" cy="50" r="6" fill="none" stroke="#d9534f" stroke-width="2"/>
+                <line x1="23" y1="47" x2="29" y2="53" stroke="#d9534f" stroke-width="2"/>
+                <line x1="29" y1="47" x2="23" y2="53" stroke="#d9534f" stroke-width="2"/>
+                <circle cx="42" cy="50" r="6" fill="none" stroke="#5cb85c" stroke-width="2"/>
+                <polyline points="39,50 41,52 45,48" fill="none" stroke="#5cb85c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Title &amp; Abstract Screening</h3>
+            <div class="stage-status" id="status-2"></div>
+            <div class="progress-bar-container" id="progress-2" style="display:none;">
+              <div class="progress-bar"><div class="progress-fill"></div></div>
+              <span class="progress-text">0%</span>
+            </div>
+            <div class="stage-log" id="log-2"></div>
+          </div>
+          <div class="card-back">
+            <div class="back-header">
+              <button class="flip-back-btn" title="Flip back">&larr;</button>
+              <h4>Title &amp; Abstract Screening</h4>
+            </div>
+            <div class="back-content">
+              <p><strong>Inclusion Criteria:</strong></p>
+              <ul>
+                <li>English-language peer-reviewed research</li>
+                <li>Contains quantitative outbreak data</li>
+                <li>Reports transmission models or epidemiological parameters</li>
+                <li>Estimates key metrics (R<sub>0</sub>, serial interval, CFR, etc.)</li>
+              </ul>
+              <p><strong>Exclusion Criteria:</strong></p>
+              <ul>
+                <li>Conference proceedings, abstracts only</li>
+                <li>In-vitro studies without human/animal data</li>
+                <li>Case studies with &lt;10 cases</li>
+              </ul>
+              <p><strong>Performance:</strong> Precision: 0.699, Recall: 0.841, 0.51s per article</p>
+              <button class="download-btn" id="dl-stage2" style="display:none;">Download Screening Results</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage 3 -->
+      <div class="pipeline-card" data-stage="3">
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="stage-badge">c</div>
+            <div class="stage-icon">
+              <svg viewBox="0 0 80 64" class="icon-ocr">
+                <!-- PDF icon -->
+                <rect x="2" y="10" width="14" height="18" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                <text x="5" y="22" font-size="6" fill="currentColor">PDF</text>
+                <!-- Arrow -->
+                <path d="M18 19 L25 19" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow1)"/>
+                <!-- JPEG/Image icon -->
+                <rect x="26" y="10" width="14" height="18" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                <circle cx="30" cy="15" r="1.5" fill="currentColor"/>
+                <polyline points="27,25 31,20 35,23 39,18" fill="none" stroke="currentColor" stroke-width="1.3"/>
+                <!-- Arrow -->
+                <path d="M42 19 L49 19" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow2)"/>
+                <!-- OCR/Robot icon (use llm icon) -->
+                <rect x="50" y="12" width="10" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                <circle cx="53.5" cy="17" r="1" fill="currentColor"/>
+                <circle cx="56.5" cy="17" r="1" fill="currentColor"/>
+                <line x1="52" y1="20" x2="58" y2="20" stroke="currentColor" stroke-width="1.5"/>
+                <text x="50" y="26" font-size="5" fill="currentColor">OCR</text>
+                <!-- Arrow -->
+                <path d="M62 19 L69 19" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow3)"/>
+                <!-- MD/Markdown icon -->
+                <rect x="70" y="10" width="8" height="18" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                <line x1="71.5" y1="14" x2="76.5" y2="14" stroke="currentColor" stroke-width="1"/>
+                <line x1="71.5" y1="17" x2="76.5" y2="17" stroke="currentColor" stroke-width="1"/>
+                <line x1="71.5" y1="20" x2="75" y2="20" stroke="currentColor" stroke-width="1"/>
+                <line x1="71.5" y1="23" x2="76.5" y2="23" stroke="currentColor" stroke-width="1"/>
+                <!-- Arrow definitions -->
+                <defs>
+                  <marker id="arrow1" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto" markerUnits="strokeWidth">
+                    <path d="M0,0 L0,6 L9,3 z" fill="currentColor" />
+                  </marker>
+                  <marker id="arrow2" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto" markerUnits="strokeWidth">
+                    <path d="M0,0 L0,6 L9,3 z" fill="currentColor" />
+                  </marker>
+                  <marker id="arrow3" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto" markerUnits="strokeWidth">
+                    <path d="M0,0 L0,6 L9,3 z" fill="currentColor" />
+                  </marker>
+                </defs>
+              </svg>
+            </div>
+            <h3>PDF-to-Markdown Conversion</h3>
+            <div class="stage-status" id="status-3"></div>
+            <div class="progress-bar-container" id="progress-3" style="display:none;">
+              <div class="progress-bar"><div class="progress-fill"></div></div>
+              <span class="progress-text">0%</span>
+            </div>
+            <div class="stage-log" id="log-3"></div>
+          </div>
+          <div class="card-back">
+            <div class="back-header">
+              <button class="flip-back-btn" title="Flip back">&larr;</button>
+              <h4>PDF-to-Markdown Conversion</h4>
+            </div>
+            <div class="back-content">
+              <p><strong>OCR Pipeline:</strong> Page-by-page rendering to high-resolution images, Mistral OCR 3 for text extraction, preserves document hierarchy.</p>
+              <p><strong>Output Features:</strong> LaTeX equations preserved, HTML tables maintained, Markdown formatting.</p>
+              <p><strong>Performance:</strong> ~1 second per document (parallelized), 0.05s per page average.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage 4 -->
+      <div class="pipeline-card" data-stage="4">
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="stage-badge">d</div>
+            <div class="stage-icon">
+              <svg viewBox="0 0 64 64" class="icon-fulltext">
+                <!-- Full-text document with many lines -->
+                <rect x="12" y="8" width="40" height="36" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
+                <line x1="16" y1="14" x2="48" y2="14" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="16" y1="18" x2="46" y2="18" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="16" y1="22" x2="48" y2="22" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="16" y1="26" x2="44" y2="26" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="16" y1="30" x2="47" y2="30" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="16" y1="34" x2="42" y2="34" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="16" y1="38" x2="45" y2="38" stroke="currentColor" stroke-width="1.5"/>
+                <!-- Check and cross below -->
+                <circle cx="24" cy="52" r="6" fill="none" stroke="#d9534f" stroke-width="2"/>
+                <line x1="21" y1="49" x2="27" y2="55" stroke="#d9534f" stroke-width="2"/>
+                <line x1="27" y1="49" x2="21" y2="55" stroke="#d9534f" stroke-width="2"/>
+                <circle cx="40" cy="52" r="6" fill="none" stroke="#5cb85c" stroke-width="2"/>
+                <polyline points="37,52 39,54 43,50" fill="none" stroke="#5cb85c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Full-text Screening</h3>
+            <div class="stage-status" id="status-4"></div>
+            <div class="progress-bar-container" id="progress-4" style="display:none;">
+              <div class="progress-bar"><div class="progress-fill"></div></div>
+              <span class="progress-text">0%</span>
+            </div>
+            <div class="stage-log" id="log-4"></div>
+          </div>
+          <div class="card-back">
+            <div class="back-header">
+              <button class="flip-back-btn" title="Flip back">&larr;</button>
+              <h4>Full-text Screening</h4>
+            </div>
+            <div class="back-content">
+              <p><strong>Additional Requirements:</strong> Must contain extractable models or parameters, quantitative estimates with values/ranges, excludes literature reviews and meta-analyses.</p>
+              <p><strong>Screening Strategies:</strong></p>
+              <ul>
+                <li>Two-stage AI (abstract &rarr; full-text)</li>
+                <li>Human abstract &rarr; AI full-text (best F<sub>1</sub>: 0.867)</li>
+                <li>Direct AI full-text (highest recall: 0.892)</li>
+              </ul>
+              <p><strong>Performance:</strong> 132&times; faster than human screening, 1.82s per article vs. 4 minutes.</p>
+              <button class="download-btn" id="dl-stage4" style="display:none;">Download Screening Results</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage 5 -->
+      <div class="pipeline-card" data-stage="5">
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="stage-badge">e</div>
+            <div class="stage-icon">
+              <svg viewBox="0 0 64 64" class="icon-extract">
+                <!-- Paper/Document -->
+                <rect x="8" y="10" width="26" height="32" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+                <line x1="12" y1="16" x2="30" y2="16" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="12" y1="21" x2="28" y2="21" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="12" y1="26" x2="30" y2="26" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="12" y1="31" x2="26" y2="31" stroke="currentColor" stroke-width="1.5"/>
+                <!-- Magnifying glass -->
+                <circle cx="44" cy="24" r="8" fill="none" stroke="currentColor" stroke-width="2.5"/>
+                <line x1="49.5" y1="30" x2="54" y2="34.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <!-- Wrench/Tool icon -->
+                <rect x="36" y="44" width="4" height="12" rx="1" fill="currentColor" transform="rotate(-45 38 50)"/>
+                <circle cx="38" cy="47" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </div>
+            <h3>Data Extraction</h3>
+            <div class="stage-status" id="status-5"></div>
+            <div class="progress-bar-container" id="progress-5" style="display:none;">
+              <div class="progress-bar"><div class="progress-fill"></div></div>
+              <span class="progress-text">0%</span>
+            </div>
+            <div class="stage-log" id="log-5"></div>
+          </div>
+          <div class="card-back">
+            <div class="back-header">
+              <button class="flip-back-btn" title="Flip back">&larr;</button>
+              <h4>Data Extraction</h4>
+            </div>
+            <div class="back-content">
+              <p><strong>Extraction Categories:</strong></p>
+              <ul>
+                <li><em>Parameters:</em> 47 types incl. R<sub>0</sub>, CFR, incubation period, serial interval, generation time, delays</li>
+                <li><em>Models:</em> Model structure, assumptions, interventions simulated</li>
+                <li><em>Outbreaks:</em> Location, timeline, case counts, demographics</li>
+              </ul>
+              <p><strong>Process:</strong> Presence flagging (recall: 0.954), structured tool calls with schema validation, population context and uncertainty capture.</p>
+              <p><strong>Expert Validation:</strong> 79.8% average accuracy, 4.0/7.0 competence rating.</p>
+              <button class="download-btn" id="dl-stage5" style="display:none;">Download Extractions</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage 6 -->
+      <div class="pipeline-card" data-stage="6">
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="stage-badge">f</div>
+            <div class="stage-icon">
+              <svg viewBox="0 0 64 64" class="icon-report"><rect x="8" y="6" width="28" height="36" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><line x1="14" y1="14" x2="30" y2="14" stroke="currentColor" stroke-width="1.5"/><line x1="14" y1="20" x2="28" y2="20" stroke="currentColor" stroke-width="1.5"/><line x1="14" y1="26" x2="30" y2="26" stroke="currentColor" stroke-width="1.5"/><line x1="14" y1="32" x2="24" y2="32" stroke="currentColor" stroke-width="1.5"/><rect x="42" y="22" width="6" height="20" rx="1" fill="currentColor" opacity="0.4"/><rect x="50" y="14" width="6" height="28" rx="1" fill="currentColor" opacity="0.6"/><circle cx="50" cy="54" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M50 54 L50 48" stroke="currentColor" stroke-width="2"/><path d="M50 54 L56 54" stroke="currentColor" stroke-width="2"/></svg>
+            </div>
+            <h3>Report Generation</h3>
+            <div class="stage-status" id="status-6"></div>
+            <div class="progress-bar-container" id="progress-6" style="display:none;">
+              <div class="progress-bar"><div class="progress-fill"></div></div>
+              <span class="progress-text">0%</span>
+            </div>
+            <div class="stage-log" id="log-6"></div>
+          </div>
+          <div class="card-back">
+            <div class="back-header">
+              <button class="flip-back-btn" title="Flip back">&larr;</button>
+              <h4>Report Generation</h4>
+            </div>
+            <div class="back-content">
+              <p><strong>Generation Process:</strong> Descriptive statistics and visualizations, evidence tables with traceability to source articles, LLM narrative synthesis.</p>
+              <p><strong>Self-Refinement (K=5 iterations):</strong> Rubric-based critique across 8 dimensions (completeness, clarity, evidence grounding, etc.), targeted revision, verification of claims.</p>
+              <p><strong>Output Reports:</strong></p>
+              <ul>
+                <li>Models review (architecture, interventions)</li>
+                <li>Outbreaks review (timeline, geography)</li>
+                <li>Parameters synthesis (quantitative estimates with uncertainty)</li>
+              </ul>
+              <button class="download-btn" id="dl-stage6" style="display:none;">Download Reports</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESULTS ============ -->
+<section class="results-section">
+  <div class="container">
+    <h2>Results</h2>
+
+    <!-- Time Savings -->
+    <div class="result-block">
+      <h3>Processing Time: AgentSLR vs. Human Review</h3>
+      <p class="result-interpretation">
+        AgentSLR completes the end-to-end workflow in <strong>33 hours</strong> versus <strong>385 hours</strong> for manual review
+        &mdash; an <strong>11.4&times; speedup</strong>. Running continuously, this corresponds to 1.4 calendar days versus 48.1 human workdays
+        (assuming 8-hour days), yielding <strong>34.1&times; calendar-time savings</strong>.
+      </p>
+      <div class="chart-container" id="gantt-chart"></div>
+      <div class="speedup-cards">
+        <div class="speedup-card">
+          <span class="speedup-value">34&times;</span>
+          <span class="speedup-label">Abstract Screening</span>
+        </div>
+        <div class="speedup-card">
+          <span class="speedup-value">132&times;</span>
+          <span class="speedup-label">Full-text Screening</span>
+        </div>
+        <div class="speedup-card">
+          <span class="speedup-value">6.7&times;</span>
+          <span class="speedup-label">Data Extraction</span>
+        </div>
+        <div class="speedup-card">
+          <span class="speedup-value">34.1&times;</span>
+          <span class="speedup-label">Overall</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screening -->
+    <div class="result-block">
+      <h3>Article Screening Recall Across Pathogens</h3>
+      <p class="result-interpretation">
+        Two ablation screening strategies &mdash; human-conditioned and direct full-text &mdash; offer better fetch rates than
+        traditional AI-based two-stage screening. The best strategy is <strong>Human abstract gating + AI full-text</strong>
+        (F<sub>1</sub>: 0.826), balancing high recall (crucial for systematic reviews) with precision. Error bars denote bootstrapped
+        95% confidence intervals (10,000 resamples).
+      </p>
+      <div class="chart-container" id="screening-chart"></div>
+    </div>
+
+    <!-- Data Extraction -->
+    <div class="result-block">
+      <h3>Data Extraction Performance</h3>
+      <p class="result-interpretation">
+        Evaluation metrics across three validation levels: <strong>Flagging</strong> (identifying presence of data components),
+        <strong>Count</strong> (correct number of components per article), and <strong>Extraction</strong> (accuracy of specific values).
+        Models achieve the highest flagging recall (0.926) while parameters show strong extraction precision (0.561).
+      </p>
+      <div class="chart-container" id="extraction-table-container">
+        <table class="data-table" id="extraction-table">
+          <thead>
+            <tr>
+              <th rowspan="2">Data Type</th>
+              <th rowspan="2">Pathogen</th>
+              <th colspan="3">Flagging</th>
+              <th colspan="3">Count</th>
+              <th colspan="3">Extraction</th>
+            </tr>
+            <tr>
+              <th>P</th><th>R</th><th>F<sub>1</sub></th>
+              <th>P</th><th>R</th><th>F<sub>1</sub></th>
+              <th>P</th><th>R</th><th>F<sub>1</sub></th>
+            </tr>
+          </thead>
+          <tbody id="extraction-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Expert Validation -->
+    <div class="result-block">
+      <h3>Human Expert Evaluation</h3>
+      <p class="result-interpretation">
+        Seven epidemiologists evaluated AgentSLR extraction quality across stages.
+        Expert-rated flagging precision, field-level extraction accuracy, and perceived system competence
+        are reported for parameter, model, and outbreak extractions. Mean competence rating: <strong>4.0/7.0</strong>,
+        assessed as <strong>"useful with moderate supervision"</strong>.
+      </p>
+      <div class="expert-grid">
+        <div class="expert-card">
+          <h4>Expert-Rated Flagging Precision</h4>
+          <div class="chart-container" id="flagging-chart"></div>
+        </div>
+        <div class="expert-card">
+          <h4>Expert-Rated Extraction Accuracy</h4>
+          <div class="chart-container" id="accuracy-chart"></div>
+        </div>
+        <div class="expert-card">
+          <h4>Expert-Rated Competence</h4>
+          <div class="chart-container" id="competence-chart"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ IMPLICATIONS ============ -->
+<section class="implications-section">
+  <div class="container">
+    <h2>Implications</h2>
+    <div class="implications-grid">
+      <div class="implication-pane impact">
+        <h3>Impact &amp; Applications</h3>
+        <ul>
+          <li><strong>Rapid Evidence Synthesis:</strong> Enable "living reviews" that update continuously as new research emerges.</li>
+          <li><strong>Outbreak Response:</strong> Generate preliminary reviews within days during emerging pathogen outbreaks.</li>
+          <li><strong>Resource Democratization:</strong> Make systematic review capacity accessible to resource-limited settings.</li>
+          <li><strong>Researcher Efficiency:</strong> Free domain experts to focus on interpretation rather than literature screening.</li>
+          <li><strong>Scalability:</strong> Handle larger evidence bases than feasible with purely human workflows.</li>
+        </ul>
+      </div>
+      <div class="implication-pane limitations">
+        <h3>Limitations</h3>
+        <ul>
+          <li><strong>Supervised Use Required:</strong> Current accuracy (79.8%) necessitates expert oversight and validation.</li>
+          <li><strong>Domain Specificity:</strong> Optimized for epidemiological reviews; may require adaptation for other fields.</li>
+          <li><strong>Dependence on PDF Quality:</strong> OCR performance degrades with poor scans or complex layouts.</li>
+          <li><strong>LLM Constraints:</strong> Subject to hallucinations, context window limits, and API costs.</li>
+          <li><strong>Human Validation Still Essential:</strong> Not a replacement for expert judgment in final synthesis.</li>
+        </ul>
+      </div>
+      <div class="implication-pane future">
+        <h3>Future Directions</h3>
+        <ul>
+          <li><strong>Active Learning:</strong> Incorporate human feedback loops to improve screening and extraction.</li>
+          <li><strong>Multi-domain Extension:</strong> Adapt pipeline to other systematic review domains (clinical, social science).</li>
+          <li><strong>Real-time Integration:</strong> Connect to preprint servers for continuous evidence monitoring.</li>
+          <li><strong>Uncertainty Quantification:</strong> Better calibration of model confidence for flagging uncertain extractions.</li>
+          <li><strong>Collaborative Workflows:</strong> Design interfaces for efficient human-AI collaboration.</li>
+          <li><strong>Cross-lingual Capability:</strong> Extend to non-English literature with multilingual models.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CITATION ============ -->
+<section class="citation-section">
+  <div class="container">
+    <h2>Citation</h2>
+    <div class="citation-block">
+      <pre><code id="bibtex-code">@article{padarha2025agentslr,
+  title={AgentSLR: Automating Systematic Literature Reviews
+         in Epidemiology with Agentic AI},
+  author={Padarha, Shreyansh and Kearns, Ryan Othniel
+          and Naidoo, Tristan and Yang, Lingyi
+          and Borchmann, {\L}ukasz and B{\l}aszczyk, Piotr
+          and Morgenstern, Christian and McCabe, Ruth
+          and Bhatia, Sangeeta and Torr, Philip H.
+          and Foerster, Jakob and Hale, Scott A.
+          and Rawson, Thomas and Cori, Anne
+          and Semenova, Elizaveta and Mahdi, Adam},
+  journal={arXiv preprint},
+  year={2025},
+  url={https://openreview.net/pdf?id=cAIjWwoZNf}
+}</code></pre>
+      <button class="copy-btn" id="copy-bibtex" title="Copy to clipboard">Copy</button>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2025 AgentSLR &mdash; Reasoning with Machines Lab (OxRML) &amp; MRC GIDA, Imperial College London</p>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/pipeline.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

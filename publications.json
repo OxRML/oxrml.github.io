@@ -1,0 +1,310 @@
+{
+  "publications": [
+    {
+      "id": "1",
+      "date": "2025-11-04",
+      "displayDate": "November 2025",
+      "title": "Measuring what matters: Construct validity in large language model benchmarks",
+      "authors": "AM Bean, RO Kearns, A Romanou, FS Hafner, H Mayne, J Batzner, N Foroutan, C Schmitz, K Korgul, H Batra, O Deb, E Beharry, C Emde, T Foster, A Gausen, M Grandury, J Khouja, S Han, V Hofmann, L Ibrahim, H Kim, HR Kirk, F Lin, L Luettgau, J Magomere, J Rystrøm, GKM Liu, A Sotnikova, Y Yang, Y Zhao, A Bibi, A Bosselut, R Clark, A Cohan, J Foerster, Y Gal, SA Hale, ID Raji, C Summerfield, PHS Torr, C Ududec, L Rocher, A Mahdi",
+      "labMembers": ["AM Bean", "RO Kearns", "H Mayne", "K Korgul", "Y Yang", "A Mahdi"],
+      "pubDate": "2025",
+      "venue": "NeurIPS Datasets and Benchmarks Track",
+      "abstract": "Abstract",
+      "links": {
+        "arxiv": "",
+        "code": "",
+        "huggingface": "https://huggingface.co/datasets/ambean/construct-validity-review",
+        "publication": "https://openreview.net/pdf?id=mdA5lVvNcU",
+        "website": "https://oxrml.com/measuring-what-matters/"
+      }
+    },
+    {
+      "id": "dpo_toxicity",
+      "date": "2025-11-01",
+      "displayDate": "November 2025",
+      "title": "How Does DPO Reduce Toxicity? A Mechanistic Neuron-Level Analysis",
+      "authors": "Y Yang, F Sondej, H Mayne, A Lee, A Mahdi",
+      "labMembers": ["Y Yang", "H Mayne", "A Mahdi"],
+      "pubDate": "2025",
+      "venue": "EMNLP",
+      "abstract": "Abstract",
+      "links": {
+        "arxiv": "",
+        "code": "",
+        "huggingface": "",
+        "publication": "https://aclanthology.org/2025.emnlp-main.1501/",
+        "website": ""
+      }
+    },
+    {
+      "id": "decision_boundaries",
+      "date": "2025-09-11",
+      "displayDate": "September 2025",
+      "title": "LLMs Don't Know Their Own Decision Boundaries: The Unreliability of Self-Generated Counterfactual Explanations",
+      "authors": "H Mayne, RO Kearns, Y Yang, AM Bean, E Delaney, C Russel, A Mahdi",
+      "labMembers": ["H Mayne", "RO Kearns", "Y Yang", "AM Bean", "A Mahdi"],
+      "pubDate": "2025",
+      "venue": "EMNLP",
+      "abstract": "Abstract",
+      "links": {
+        "arxiv": "https://arxiv.org/abs/2509.09396",
+        "code": "https://github.com/HarryMayne/SCEs",
+        "huggingface": "",
+        "publication": "",
+        "website": "https://www.lesswrong.com/posts/YydYPCsZJJEwnCMe7/llms-don-t-know-their-own-decision-boundaries-why-is-this"
+      }
+    },
+    {
+      "id": "multimodal_healthcare",
+      "date": "2025-02-01",
+      "displayDate": "February 2025",
+      "title": "Review of multimodal machine learning approaches in healthcare",
+      "authors": "F Krones, U Marikkar, G Parsons, A Szmul, A Mahdi",
+      "labMembers": ["F Krones", "G Parsons", "A Mahdi"],
+      "pubDate": "2025",
+      "venue": "Information Fusion",
+      "abstract": "Abstract",
+      "links": {
+        "arxiv": "",
+        "code": "",
+        "huggingface": "",
+        "publication": "https://www.sciencedirect.com/science/article/pii/S1566253524004688",
+        "website": ""
+      }
+    },
+    {
+      "id": "2",
+      "date": "2025-01-01",
+      "displayDate": "January 2025",
+      "title": "LINGOLY-TOO: Disentangling memorisation from reasoning with linguistic templatisation and orthographic obfuscation",
+      "authors": "J Khouja, K Korgul, S Hellsten, L Yang, V Neacsu, H Mayne, R Kearns, A Bean, A Mahdi",
+      "labMembers": ["K Korgul", "H Mayne", "R Kearns", "A Bean", "A Mahdi"],
+      "pubDate": "2025",
+      "venue": "Under review",
+      "abstract": "Abstract",
+      "links": {
+        "arxiv": "https://arxiv.org/abs/2503.02972",
+        "code": "",
+        "huggingface": "",
+        "publication": "",
+        "website": ""
+      }
+    },
+    {
+      "id": "3",
+      "date": "2024-12-15",
+      "displayDate": "December 2024",
+      "title": "Clinical knowledge in LLMs does not translate to human interactions",
+      "authors": "AM Bean, R Payne, G Parsons, HR Kirk, J Ciro, R Mosquera, S Hincapié Monsalve, AS Ekanayaka, L Tarassenko, L Rocher, A Mahdi",
+      "labMembers": ["AM Bean", "G Parsons", "A Mahdi"],
+      "pubDate": "2024",
+      "venue": "Nature Medicine",
+      "abstract": "Abstract",
+      "links": {
+        "arxiv": "https://arxiv.org/abs/2504.18919",
+        "code": "",
+        "huggingface": "",
+        "publication": "",
+        "website": ""
+      }
+    },
+    {
+      "id": "4",
+      "date": "2024-12-10",
+      "displayDate": "December 2024",
+      "title": "Evaluating the role of 'Constitutions' for learning from AI feedback",
+      "authors": "S Redgate, AM Bean, A Mahdi",
+      "labMembers": ["S Redgate", "AM Bean", "A Mahdi"],
+      "pubDate": "2024",
+      "venue": "Preprint",
+      "abstract": "Abstract",
+      "links": {
+        "arxiv": "https://arxiv.org/abs/2411.10168",
+        "code": "",
+        "huggingface": "",
+        "publication": "",
+        "website": ""
+      }
+    },
+    {
+      "id": "5",
+      "date": "2024-11-20",
+      "displayDate": "November 2024",
+      "title": "Can sparse autoencoders be used to decompose and interpret steering vectors?",
+      "authors": "H Mayne, Y Yang, A Mahdi",
+      "labMembers": ["H Mayne", "Y Yang", "A Mahdi"],
+      "pubDate": "2024",
+      "venue": "MINT @ NeurIPS, InterpretableAI @ NeurIPS",
+      "abstract": "Abstract",
+      "links": {
+        "arxiv": "https://arxiv.org/abs/2411.08790",
+        "code": "",
+        "huggingface": "",
+        "publication": "",
+        "website": ""
+      }
+    },
+    {
+      "id": "6",
+      "date": "2024-11-15",
+      "displayDate": "November 2024",
+      "title": "Beyond toxic neurons: a mechanistic analysis of DPO for toxicity reduction",
+      "authors": "Y Yang, F Sondej, H Mayne, A Mahdi",
+      "labMembers": ["Y Yang", "H Mayne", "A Mahdi"],
+      "pubDate": "2024",
+      "venue": "MINT @ NeurIPS, InterpretableAI @ NeurIPS",
+      "abstract": "Abstract",
+      "links": {
+        "arxiv": "https://arxiv.org/abs/2411.06424",
+        "code": "https://github.com/HarryMayne/SV_interpretability",
+        "huggingface": "",
+        "publication": "",
+        "website": ""
+      }
+    },
+    {
+      "id": "7",
+      "date": "2024-10-25",
+      "displayDate": "October 2024",
+      "title": "Improving in-context learning with small language model ensembles",
+      "authors": "MM Mojarradi, L Yang, R McCraith, A Mahdi",
+      "labMembers": ["MM Mojarradi", "A Mahdi"],
+      "pubDate": "2024",
+      "venue": "Preprint",
+      "abstract": "Abstract",
+      "links": {
+        "arxiv": "https://arxiv.org/abs/2410.21868",
+        "code": "",
+        "huggingface": "",
+        "publication": "",
+        "website": ""
+      }
+    },
+    {
+      "id": "8",
+      "date": "2024-10-18",
+      "displayDate": "October 2024",
+      "title": "Combining Hough transform and deep learning approaches to reconstruct ECG signals from printouts",
+      "authors": "F Krones, B Walker, T Lyons, A Mahdi",
+      "labMembers": ["F Krones", "A Mahdi"],
+      "pubDate": "2024",
+      "venue": "Computing in Cardiology (CinC)",
+      "abstract": "Abstract",
+      "links": {
+        "arxiv": "https://arxiv.org/abs/2410.14185",
+        "code": "",
+        "huggingface": "",
+        "publication": "",
+        "website": ""
+      }
+    },
+    {
+      "id": "9",
+      "date": "2024-10-31",
+      "displayDate": "October 2024",
+      "title": "LINGOLY: A Benchmark of Olympiad-Level Linguistic Reasoning Puzzles in Low-Resource and Extinct Languages",
+      "authors": "AM Bean, S Hellsten, H Mayne, J Magomere, EA Chi, R Chi, SA Hale, HR Kirk",
+      "labMembers": ["AM Bean", "H Mayne"],
+      "pubDate": "2024",
+      "venue": "NeurIPS (Oral)",
+      "abstract": "Abstract",
+      "links": {
+        "arxiv": "https://arxiv.org/abs/2406.06196",
+        "code": "https://github.com/am-bean/lingOly",
+        "huggingface": "https://huggingface.co/datasets/ambean/lingOly",
+        "publication": "",
+        "website": ""
+      }
+    },
+    {
+      "id": "plos_digital_health",
+      "date": "2024-02-01",
+      "displayDate": "February 2024",
+      "title": "From theoretical models to practical deployment: A perspective and case study of opportunities and challenges in AI-driven cardiac auscultation research for low-income countries",
+      "authors": "F Krones, B Walker",
+      "labMembers": ["F Krones"],
+      "pubDate": "2024",
+      "venue": "PLOS Digital Health",
+      "abstract": "Abstract",
+      "links": {
+        "arxiv": "",
+        "code": "",
+        "huggingface": "",
+        "publication": "https://journals.plos.org/digitalhealth/article?id=10.1371/journal.pdig.0000437",
+        "website": ""
+      }
+    },
+    {
+      "id": "llm_shared_weaknesses",
+      "date": "2023-10-01",
+      "displayDate": "October 2023",
+      "title": "Do Large Language Models have Shared Weaknesses in Medical Question Answering?",
+      "authors": "AM Bean, K Korgul, F Krones, R McCraith, A Mahdi",
+      "labMembers": ["AM Bean", "K Korgul", "F Krones", "A Mahdi"],
+      "pubDate": "2023",
+      "venue": "arXiv preprint",
+      "abstract": "Abstract",
+      "links": {
+        "arxiv": "https://arxiv.org/abs/2310.07225",
+        "code": "",
+        "huggingface": "",
+        "publication": "",
+        "website": ""
+      }
+    },
+    {
+      "id": "llm_landscape",
+      "date": "2023-05-01",
+      "displayDate": "May 2023",
+      "title": "Exploring the landscape of large language models in medical question answering: Observations and open questions",
+      "authors": "K Korgul, AM Bean, F Krones, R McCraith, A Mahdi",
+      "labMembers": ["K Korgul", "AM Bean", "F Krones", "A Mahdi"],
+      "pubDate": "2023",
+      "venue": "CoRR",
+      "abstract": "Abstract",
+      "links": {
+        "arxiv": "",
+        "code": "",
+        "huggingface": "",
+        "publication": "https://openreview.net/forum?id=mxe1XCcRrc",
+        "website": ""
+      }
+    },
+    {
+      "id": "dual_bayesian_resnet",
+      "date": "2022-09-01",
+      "displayDate": "September 2022",
+      "title": "Dual Bayesian ResNet: A deep learning approach to heart murmur detection",
+      "authors": "B Walker, F Krones, I Kiskin, G Parsons, T Lyons, A Mahdi",
+      "labMembers": ["F Krones", "G Parsons", "A Mahdi"],
+      "pubDate": "2022",
+      "venue": "Computing in Cardiology (CinC)",
+      "abstract": "Abstract",
+      "links": {
+        "arxiv": "https://arxiv.org/abs/2305.16691",
+        "code": "",
+        "huggingface": "",
+        "publication": "https://ieeexplore.ieee.org/abstract/document/10081848/",
+        "website": ""
+      }
+    },
+    {
+      "id": "multimodal_cardiomegaly",
+      "date": "2022-07-01",
+      "displayDate": "July 2022",
+      "title": "Multimodal cardiomegaly classification with image-derived digital biomarkers",
+      "authors": "B Duvieusart, F Krones, G Parsons, A Mahdi, L Tarassenko",
+      "labMembers": ["F Krones", "G Parsons", "A Mahdi"],
+      "pubDate": "2022",
+      "venue": "Annual Conference on Medical Image Understanding and Analysis (MIUA)",
+      "abstract": "Abstract",
+      "links": {
+        "arxiv": "",
+        "code": "",
+        "huggingface": "",
+        "publication": "https://link.springer.com/chapter/10.1007/978-3-031-12053-4_2",
+        "website": ""
+      }
+    }
+  ]
+}
