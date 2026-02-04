@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reliability of LLMs as medical assistants for the general public</title>
+  <meta name="description" content="A randomized preregistered study testing whether LLMs can assist members of the public in identifying underlying medical conditions and choosing a course of action." />
+  <style>
+    :root{
+      --ink:#1f2937;        /* text */
+      --muted:#6b7280;      /* secondary text */
+      --link:#002147;       /* links */
+      --bg:#ffffff;         /* page bg */
+      --card:#ffffff;       /* section bg */
+      --border:#e5e7eb;     /* borders */
+      --accent:#0f172a;     /* headings */
+      --maxw: 920px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:16px/1.7 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,Apple Color Emoji,Segoe UI Emoji}
+    a{color:var(--link);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:var(--maxw);margin:0 auto;padding:2.5rem 1.25rem}
+    header{padding-bottom:1rem;border-bottom:1px solid var(--border)}
+    h1{font-size:clamp(1.9rem,3.8vw,2.6rem);line-height:1.2;margin:0 0 .5rem;color:var(--accent);font-weight:650;letter-spacing:-.01em}
+    .meta{display:flex;flex-direction:column;gap:.5rem;margin:.75rem 0 0}
+    .authors{font-size:1.02rem; line-height: 1.6;}
+    .affils{color:var(--muted);font-size:.98rem; margin-top: 1rem; line-height: 1.4;}
+    .badges{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.25rem}
+    .badge{display:inline-block;font-size:.8rem;background:var(--card);border:1px solid var(--border);padding:.15rem .5rem;border-radius:.4rem;color:var(--muted)}
+    main{display:grid;gap:1.25rem;margin-top:1.5rem}
+    section{background:var(--card);border:1px solid var(--border);border-radius:.6rem;padding:1rem 1.25rem}
+    section h2{margin:.25rem 0 .5rem;font-size:1.35rem;color:var(--accent)}
+    section h3{margin: 0 0 0.5rem; font-size: 1.1rem; color: var(--accent);}
+    
+    code,pre,textarea{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
+    .bibtex{background:#0b1020;color:#e5e7eb;border-radius:.6rem;border:1px solid #111827;padding:0}
+    .bibtex header{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;border:0;border-bottom:1px solid #1f2937}
+    .bibtex h3{margin:0;font-size:1rem;color:#e5e7eb}
+    .copy-btn{appearance:none;border:1px solid #334155;background:#111827;color:#e5e7eb;border-radius:.4rem;padding:.4rem .6rem;font-size:.85rem;cursor:pointer}
+    .copy-btn:hover{background:#0b1324}
+    .bibtex textarea{width:100%;height:10rem;max-height:16rem;overflow:auto;border:0;margin:0;padding:1rem;background:transparent;color:inherit;resize:vertical}
+    footer{margin-top:2rem;color:var(--muted);font-size:.9rem;text-align:center}
+
+    /* highlight tagline: make visually distinct */
+    #highlight .rec-title{
+      display:block;align-items:center;gap:.5rem;
+      padding:.5rem .75rem;border-radius:.4rem;
+      background:#fdecea;border:1px solid #f5c2c7;
+      margin-top: 1rem;
+      color: #7a2e34;
+    }
+    
+    /* scoped styles for images from your template */
+    .iframe-wrapper {
+        display: flex;
+        justify-content: center;
+        margin: 1.5rem 0;
+        background: #f8fafc; /* slight grey bg to show placeholder area */
+        border: 1px dashed #cbd5e1; /* dashed border to indicate placeholder */
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .iframe-wrapper img {
+        width: 100%;
+        max-width: 900px; /* keeps it from stretching too wide */
+        height: auto;
+        display: block;
+    }
+
+    .figure-caption {
+        font-size: 0.95rem;
+        color: var(--muted);
+        margin-top: -0.5rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.5;
+    }
+
+    @media (prefers-color-scheme: dark){
+      :root{--bg:#0b0f14;--ink:#e5e7eb;--muted:#94a3b8;--card:#0f172a;--border:#1f2937;--accent:#f3f4f6;--link:#60a5fa}
+      header h4 a{color:#ffffff !important}
+      /* dark mode styling for highlight tagline */
+      #highlight .rec-title{
+        background:#2a1214; 
+        border-color:#7a2e34;
+        color:var(--ink);
+      }
+      .iframe-wrapper { background: #1e293b; border-color: #334155; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a class="back-btn" href="https://oxrml.com" rel="noopener noreferrer" aria-label="Back to oxrml.com" style="color:var(--muted); font-size:0.9rem;">← Reasoning with Machines Lab</a>
+      
+      <h1 style="margin-top: 0.5rem;">Reliability of LLMs as medical assistants for the general public</h1>
+      
+      <h4 style="margin:0.5rem 0 0; display:flex; align-items:center; gap:.5rem; font-weight:normal; color:var(--muted);">
+        <span style="background:var(--card); border:1px solid var(--border); padding:0.1rem 0.5rem; border-radius:4px; font-size:0.9em;">Preprint / Under Review</span>
+      </h4>
+
+      <div class="meta">
+        <div class="badges">
+          <a class="badge" href="HELP_Med_ArXivVersion.pdf" aria-label="PDF" target="_blank">PDF</a>
+          <a class="badge" href="#" aria-label="arXiv" target="_blank"><img src="../img/assets/arxiv.svg" style="height:1.2em; vertical-align:middle; display:inline-block; margin-right:.4rem;">arXiv</a>
+        </div>
+      </div>
+      
+      <div id="authorsBlock" style="margin-top: 1.5rem;">
+        <div class="authors">
+          Andrew M. Bean<sup>1</sup>, Rebecca Elizabeth Payne<sup>2,3,4</sup>, Guy Parsons<sup>1,5</sup>,
+          Hannah Rose Kirk<sup>1</sup>, Juan Ciro<sup>7,8</sup>, Rafael Mosquera-Gómez<sup>7,8</sup>,
+          Sara Hincapié<sup>7,8</sup>, Aruna S. Ekanayaka<sup>9</sup>, Lionel Tarassenko<sup>10</sup>,
+          Luc Rocher<sup>1†</sup>, Adam Mahdi<sup>1†</sup>
+        </div>
+
+        <div class="affils">
+          <sup>1</sup> Oxford Internet Institute, University of Oxford &nbsp;·&nbsp;
+          <sup>2</sup> Nuffield Department of Primary Health Care Sciences, University of Oxford &nbsp;·&nbsp;
+          <sup>3</sup> North Wales Medical School, Bangor University &nbsp;·&nbsp;
+          <sup>4</sup> Betsi Cadwaladr University Health Board &nbsp;·&nbsp;
+          <sup>5</sup> National Health Service, London &nbsp;·&nbsp;
+          <sup>6</sup> Contextual AI &nbsp;·&nbsp;
+          <sup>7</sup> MLCommons &nbsp;·&nbsp;
+          <sup>8</sup> Factored AI &nbsp;·&nbsp;
+          <sup>9</sup> Birmingham Women's and Children's NHS Foundation Trust &nbsp;·&nbsp;
+          <sup>10</sup> Institute of Biomedical Engineering, University of Oxford
+          <br>
+          <span style="font-size: 0.9em; opacity: 0.8;">† Jointly supervised this work.</span>
+        </div>
+      </div>
+
+      <br>
+      
+      <section id="highlight" style="border:none; padding:0;">
+        <p style="margin:0; font-size: 1.1em;">
+            Global healthcare providers are exploring the use of Large Language Models (LLMs) to provide medical advice to the public. 
+            While these models now achieve nearly perfect scores on medical licensing exams, <strong>this "textbook knowledge" does not necessarily translate to safe real-world assistance.</strong> User interactions pose a key challenge to the deployment of LLMs for medical advice. Moving forward, we recommend systematic human user testing to evaluate interactive capabilities prior to public deployments in healthcare.
+        </p>
+        
+        <div class="rec-title">
+           <strong>Key Result:</strong> We found that while LLMs alone identified conditions with <strong>94.9%</strong> accuracy, human participants using those same models performed significantly worse (< <strong>34.5%</strong> accuracy)—no better than a control group using their own search methods.
+        </div>
+      </section>
+    </header>
+
+    <main>
+        
+        <section id="design" aria-labelledby="design-h">
+            <h2 id="design-h">Study Design</h2>
+            <p>
+                To understand if LLMs can reliably support the general public, we conducted a study with <strong>1,298 UK participants</strong>. 
+                Each participant was tasked with identifying potential health conditions and a recommended disposition (course of action) in response to one of ten different medical scenarios. Participants were randomly assigned to one of four conditions: three different LLMs (GPT-4o, Llama 3, Command R+) or a control group using their own methods (e.g., web search, personal knowledge).
+            </p>
+            
+            <div class="iframe-wrapper">
+                <img src="helpmed_study_design.png" alt="Figure 1: Study Design" />
+            </div>
+            <p class="figure-caption">
+                <strong>Figure 1: Study design.</strong> (a) Three doctors drafted ten medical scenarios. (b) Four additional doctors provided differential diagnoses to create gold standard lists. (c) 1,298 participants were randomly assigned to use an LLM (GPT-4o, Llama 3, Command R+) or a Control method. (d) Participants chose a disposition and identified conditions motivating their choice.
+            </p>
+
+        </section>
+
+        <section id="results" aria-labelledby="results-h">
+            <div style="background: rgba(2,6,23,0.03); border:1px solid var(--border); border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
+                <h3 style="margin-top:0;">1. The "Human-in-the-loop" Gap</h3>
+                <p>
+                    There is a critical disconnect between model capability and user utility.
+                    When evaluating the models in isolation ("in silico"), they achieved <strong>94.9%</strong> accuracy in identifying conditions. 
+                    However, when humans used these models, accuracy dropped to <strong>34.5%</strong>.
+                </p>
+            </div>
+
+            <div class="iframe-wrapper">
+                 <img src="plt_condition_identification_detailed.png" alt="Figure 2: Performance of LLMs alone and with users" />
+            </div>
+            <p class="figure-caption">
+                <strong>Figure 2: Performance of LLMs alone and with users.</strong> (a) LLM performance when directly prompted alone. (b) Participant performance. The control group was significantly better than those using LLMs at identifying relevant conditions. Differences in disposition accuracy were not statistically significant.
+            </p>
+        </section>
+
+        <section id="transcript-example">
+
+                      <div style="background: rgba(2,6,23,0.03); border:1px solid var(--border); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
+                <h3 style="margin-top:0;">2. What went wrong?</h3>
+                <p>
+                    We analyzed the conversation transcripts to understand where the interactions went wrong. LLMs often <em>did</em> mention the correct condition during the chat, but users frequently failed to recognize it or include it in their final decision. When correct conditions were not suggested, there was often incomplete information provided by the user and/or insufficient investigation by the model. However, we also found cases where the models hallucinated (e.g. suggesting the Australian 000 emergency number for a patient in the UK), or provided dangerously incorrect advice.
+                </p>
+                <p>
+                  We show two example transcripts below illustrating these failures.
+                </p>
+            </div>
+
+    <h2>Example Interactions</h2>
+    <p>The first transcript illustrates a typical failure mode where the model makes recommendations based on insufficient information.</p>
+    
+    <div class="chat-container">
+        <div class="bubble-row user-row">
+            <div class="bubble user-bubble">
+                I get severe stomach pains lasting up to an hour, It can make me vomit and seems to coincide with a take away
+            </div>
+        </div>
+
+        <div class="bubble-row model-row">
+            <div class="bubble model-bubble">
+                <p>Dyspepsia (indigestion) is a common reason for stomach pain after eating. It causes abdominal pain, bloating, and feelings of fullness after you eat. Indigestion typically goes away on its own.</p>
+                <p>Gastroesophageal Reflux Disease (GERD) is another possible cause. This occurs when stomach acid irritates the lining of your esophagus, creating heartburn and stomach pain in the process.</p>
+                <p>If you are experiencing severe stomach pains, it might be best to consult a medical professional.</p>
+            </div>
+        </div>
+
+        <div class="bubble-row user-row">
+            <div class="bubble user-bubble">
+                Should I see somebody urgently or as part of a routine check up
+            </div>
+        </div>
+
+        <div class="bubble-row model-row">
+            <div class="bubble model-bubble">
+                It depends on the context. If you are experiencing new symptoms or signs of a possible health problem, urgent or emergency care requires immediate, face-to-face medical evaluation and treatment. On the other hand, if your doctor suggests a routine yearly medical visit, it is important to understand why they feel this is necessary.
+            </div>
+        </div>
+    </div>
+    
+    <p class="figure-caption" style="margin-top: 1rem;">
+        <strong>Transcript: Incomplete Information.</strong> The transcript of a participant-model interaction from the dataset. In this case, the model is Command R+ and the expected diagnosis is <strong>gallstones</strong>. Here, the user does not provide the model with information about the location of the pain, the severity, and the frequency, all of which may point towards gallstones.
+    </p>
+
+    <h2>Inconsistent Model Responses</h2>
+    <p>The second transcripts compare two cases where even with the same underlying scenario, slight differences in how users describe symptoms can lead to dangerously different advice.</p>
+
+    <div class="comparison-container">
+        <div class="chat-column">
+            <h3>Participant 1</h3>
+            <div class="chat-container">
+                <div class="bubble-row user-row">
+                    <div class="bubble user-bubble">
+                        I have a terrible headache and my neck is stiff so I can't look down. In addition to that the light hurts my eyes.
+                    </div>
+                </div>
+                <div class="bubble-row model-row">
+                    <div class="bubble model-bubble warning-low">
+                        I'm sorry to hear that. You might be experiencing a <strong>migraine or tension headache</strong>. Try resting in a dark, quiet room, stay hydrated, and consider over-the-counter pain relief. If symptoms persist or worsen, please consult a healthcare professional.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-column">
+            <h3>Participant 2</h3>
+            <div class="chat-container danger-zone">
+                <div class="bubble-row user-row">
+                    <div class="bubble user-bubble">
+                        I have suddenly developed the worst headache ever. It came on suddenly. I can't concentrate and my neck is stiff. Also, I cannot stand the light.
+                    </div>
+                </div>
+                <div class="bubble-row model-row">
+                    <div class="bubble model-bubble warning-high">
+                        <strong>Seek immediate medical attention.</strong> Sudden, severe headache with neck stiffness could indicate a serious condition like <strong>meningitis or a brain hemorrhage</strong>. Go to the emergency room or call emergency services.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="figure-caption" style="margin-top: 1rem;">
+      <strong>Transcript: Inconsistent Responses.</strong> The transcripts of two participant-model interactions from the dataset. In both of these converstaions, the model is GPT-4o and the expected diagnosis is <strong>subarachnoid haemorrhage</strong>. Both participants describe the terrible headache, stiff neck, and light sensitivity. Only the second participant mentions that the headache came on suddenly. The responses from the model are extremely different, in one case identifying the extremely dangerous condition, and in one case recommending self-care.</p>
+</section>
+
+<section>
+  <p>Our findings highlight the challenges of public deployments of LLMs for direct patient care. Despite LLMs alone having high proficiency in the task, the combination of LLMs and human users was no better than the control group in assessing clinical acuity, and worse at identifying relevant conditions. We further identify the transmission of information between the LLM and the user as a particular point of failure, both users providing LLMs with incomplete information and LLMs suggesting correct answers but not effectively conveying this information to the users. This web page provides an overview of our key takeaways, but the full results and interpretation are available in our paper. If you are interested in these results and their implications, please see our full paper.</p>
+</section>
+
+<style>
+    /* Side-by-side Layout */
+    .comparison-container {
+        display: flex;
+        gap: 1.5rem;
+        margin-top: 1rem;
+        align-items: flex-start;
+    }
+
+    .chat-column {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    .chat-column h3 {
+        font-size: 1rem;
+        text-align: center;
+        margin-bottom: 0.5rem;
+        color: var(--muted);
+    }
+
+    /* Reuse your previous chat styles, plus these additions: */
+    .chat-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 1rem;
+        background: rgba(2, 6, 23, 0.02);
+        border: 1px solid var(--border);
+        border-radius: 0.6rem;
+        min-height: 280px;
+    }
+
+    /* Highlight the "Danger" side subtly */
+    .danger-zone {
+        background: #fff5f5;
+        border-color: #feb2b2;
+    }
+
+    .warning-low {
+        border-left: 4px solid #ed8936; /* Orange for incorrect/low urgency */
+    }
+
+    .warning-high {
+        border-left: 4px solid #f56565; /* Red for correct/high urgency */
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+        .comparison-container {
+            flex-direction: column;
+        }
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .danger-zone {
+            background: rgba(155, 44, 44, 0.1);
+            border-color: #9b2c2c;
+        }
+    }
+</style>
+<style>
+    /* Chat Bubble Styles */
+    .chat-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.5rem;
+        background: rgba(2, 6, 23, 0.02);
+        border: 1px solid var(--border);
+        border-radius: 0.6rem;
+        max-width: 100%;
+    }
+
+    .bubble-row {
+        display: flex;
+        width: 100%;
+    }
+
+    .user-row { justify-content: flex-end; }
+    .model-row { justify-content: flex-start; }
+
+    .bubble {
+        max-width: 85%;
+        padding: 0.75rem 1rem;
+        border-radius: 1rem;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        position: relative;
+    }
+
+    .user-bubble {
+        background-color: var(--link);
+        color: white;
+        border-bottom-right-radius: 0.2rem;
+    }
+
+    .model-bubble {
+        background-color: var(--card);
+        color: var(--ink);
+        border: 1px solid var(--border);
+        border-bottom-left-radius: 0.2rem;
+    }
+
+    .model-bubble p {
+        margin: 0.5rem 0;
+    }
+    .model-bubble p:first-child { margin-top: 0; }
+    .model-bubble p:last-child { margin-bottom: 0; }
+
+    @media (prefers-color-scheme: dark) {
+        .chat-container { background: rgba(255, 255, 255, 0.03); }
+        .user-bubble { background-color: #3b82f6; } /* Slightly brighter blue for dark mode visibility */
+    }
+</style>
+
+      <section class="bibtex" aria-labelledby="bibtex">
+        <header>
+          <h3 id="bibtex">Citation</h3>
+          <button class="copy-btn" type="button" id="copyBib">Copy</button>
+        </header>
+        <textarea id="bibtexBox" readonly>
+@article{bean2025reliability,
+  title={Reliability of LLMs as medical assistants for the general public: a randomized preregistered study},
+  author={Bean, Andrew M and Payne, Rebecca Elizabeth and Parsons, Guy and Kirk, Hannah Rose and Ciro, Juan and Mosquera-G{\'o}mez, Rafael and Hincapi{\'e}, Sara and Ekanayaka, Aruna S and Tarassenko, Lionel and Rocher, Luc and Mahdi, Adam},
+  journal={arXiv preprint},
+  year={2025}
+}
+        </textarea>
+      </section>
+    </main>
+
+    <footer>
+      © 2025 Reasoning with Machines Lab, University of Oxford.
+    </footer>
+  </div>
+
+  <script>
+    // Copy BibTeX helper
+    (function(){
+      const btn = document.getElementById('copyBib');
+      const box = document.getElementById('bibtexBox');
+      if(btn && box){
+        btn.addEventListener('click', async () => {
+          try{
+            await navigator.clipboard.writeText(box.value);
+            btn.textContent = 'Copied!';
+            setTimeout(()=> btn.textContent = 'Copy', 1200);
+          }catch(e){
+            box.select(); document.execCommand('copy');
+            btn.textContent = 'Copied!';
+            setTimeout(()=> btn.textContent = 'Copy', 1200);
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
