@@ -17,6 +17,23 @@
         "publication": "https://openreview.net/pdf?id=mdA5lVvNcU",
         "website": "https://oxrml.com/measuring-what-matters/"
       }
+    },{
+      "id": "help-med",
+      "date": "2026-02-05",
+      "displayDate": "February 2026",
+      "title": "Reliability of LLMs as medical assistants for the general public: a randomized preregsitered study",
+      "authors": "AM Bean, RE Payne, G Parsons, HR Kirk, J Ciro, R Mosquera-Gómez, S Hincapié M, AS Ekanayaka, L Tarassenko, L Rocher, A Mahdi",
+      "labMembers": ["AM Bean", "G Parsons", "A Mahdi"],
+      "pubDate": "2026",
+      "venue": "Nature Medicine",
+      "abstract": "Abstract",
+      "links": {
+        "arxiv": "https://arxiv.org/abs/2504.18919",
+        "code": "https://github.com/am-bean/HELPMed",
+        "huggingface": "https://huggingface.co/datasets/ambean/HELPMed",
+        "publication": "https://www.nature.com/articles/s41591-025-04074-y",
+        "website": "https://oxrml.com/llm-medical-assistants/"
+      }
     },
     {
       "id": "dpo_toxicity",
