@@ -313,21 +313,40 @@
             align-items: flex-start;
         }
 
-        .sort-controls,
+        .search-controls {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 0.6rem 0.75rem;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            background: white;
+            color: #2c3e50;
+            transition: border-color 0.2s ease;
+        }
+
+        #searchInput:hover,
+        #searchInput:focus {
+            border-color: #2d5986;
+            outline: none;
+        }
+
         .filter-controls {
             display: flex;
             gap: 0.75rem;
             align-items: center;
         }
 
-        .sort-controls label,
         .filter-controls label {
             font-weight: 500;
             color: #1a365d;
             font-size: 0.95rem;
         }
 
-        #sortSelect,
         #authorFilter {
             padding: 0.5rem 0.75rem;
             border: 1px solid #cbd5e0;
@@ -339,9 +358,7 @@
             transition: border-color 0.2s ease;
         }
 
-        #sortSelect:hover,
         #authorFilter:hover,
-        #sortSelect:focus,
         #authorFilter:focus {
             border-color: #2d5986;
             outline: none;
@@ -555,6 +572,16 @@
         .pub-link-website:hover {
             background: #93c5fd;
             color: #1e40af;
+        }
+
+        .pub-link-youtube {
+            background: #fecaca;
+            color: #dc2626;
+        }
+
+        .pub-link-youtube:hover {
+            background: #fca5a5;
+            color: #dc2626;
         }
 
         .lab-member {
@@ -847,13 +874,8 @@
             </div>
 
             <div class="filter-sort-section">
-                <div class="sort-controls">
-                    <label for="sortSelect">Sort by:</label>
-                    <select id="sortSelect">
-                        <option value="date-desc">Date (Newest)</option>
-                        <option value="date-asc">Date (Oldest)</option>
-                        <option value="name">Title (A-Z)</option>
-                    </select>
+                <div class="search-controls">
+                    <input type="text" id="searchInput" placeholder="Search by title, author, venue...">
                 </div>
                 <div class="filter-controls">
                     <label for="authorFilter">Filter by Author:</label>
@@ -1042,7 +1064,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             const pubModal = document.getElementById('pubModal');
             const pubModalClose = document.getElementById('pubModalClose');
-            const sortSelect = document.getElementById('sortSelect');
+            const searchInput = document.getElementById('searchInput');
             const authorFilter = document.getElementById('authorFilter');
             const clearFilterBtn = document.getElementById('clearFilterBtn');
 
@@ -1108,7 +1130,8 @@
                     'code': { label: 'Code', class: 'pub-link-code' },
                     'huggingface': { label: 'HuggingFace', class: 'pub-link-huggingface' },
                     'publication': { label: 'Publication', class: 'pub-link-publication' },
-                    'website': { label: 'Website', class: 'pub-link-website' }
+                    'website': { label: 'Website', class: 'pub-link-website' },
+                    'youtube': { label: 'YouTube', class: 'pub-link-youtube' }
                 };
 
                 Object.entries(linkTypes).forEach(([key, config]) => {
@@ -1126,31 +1149,35 @@
             function applySortAndFilter() {
                 filteredPublications = [...allPublications];
 
-                // Apply author filter
-                const selectedLastName = authorFilter.value;
-                if (selectedLastName) {
+                // Apply search filter
+                const query = searchInput.value.trim().toLowerCase();
+                if (query) {
                     filteredPublications = filteredPublications.filter(pub => {
-                        const authors = pub.authors.split(', ').map(a => a.trim());
-                        return authors.some(author => {
-                            // Extract last name (last word of the author name)
-                            const lastName = author.split(' ').pop();
-                            return lastName === selectedLastName;
+                        return pub.title.toLowerCase().includes(query) ||
+                            pub.authors.toLowerCase().includes(query) ||
+                            (pub.authorsFullNames && pub.authorsFullNames.includes(query)) ||
+                            pub.venue.toLowerCase().includes(query) ||
+                            (pub.displayDate && pub.displayDate.toLowerCase().includes(query));
+                    });
+                }
+
+                // Apply lab member filter
+                const selectedFullName = authorFilter.value;
+                if (selectedFullName) {
+                    const selectedLastName = selectedFullName.split(' ').pop();
+                    filteredPublications = filteredPublications.filter(pub => {
+                        return pub.labMembers.some(member => {
+                            const memberLastName = member.split(' ').pop();
+                            return memberLastName === selectedLastName;
                         });
                     });
                 }
 
-                // Apply sort
-                const sortValue = sortSelect.value;
-                if (sortValue === 'date-desc') {
-                    filteredPublications.sort((a, b) => new Date(b.date) - new Date(a.date));
-                } else if (sortValue === 'date-asc') {
-                    filteredPublications.sort((a, b) => new Date(a.date) - new Date(b.date));
-                } else if (sortValue === 'name') {
-                    filteredPublications.sort((a, b) => a.title.localeCompare(b.title));
-                }
+                // Always sort by date (newest first)
+                filteredPublications.sort((a, b) => new Date(b.date) - new Date(a.date));
 
                 renderPublications();
-                clearFilterBtn.disabled = !selectedLastName;
+                clearFilterBtn.disabled = !selectedFullName;
             }
 
             function renderPublications() {
@@ -1177,7 +1204,8 @@
                         'arxiv': { label: 'arXiv', class: 'pub-link-arxiv' },
                         'website': { label: 'Website', class: 'pub-link-website' },
                         'code': { label: 'Code', class: 'pub-link-code' },
-                        'huggingface': { label: 'HuggingFace', class: 'pub-link-huggingface' }
+                        'huggingface': { label: 'HuggingFace', class: 'pub-link-huggingface' },
+                        'youtube': { label: 'YouTube', class: 'pub-link-youtube' }
                     };
 
                     Object.entries(linkTypes).forEach(([key, config]) => {
@@ -1206,26 +1234,56 @@
                 });
             }
 
-            // Fetch and load publications
-            fetch('publications.json')
-                .then(response => response.json())
-                .then(data => {
-                    allPublications = data.publications;
+            // Fetch publications and team data
+            Promise.all([
+                fetch('publications.json').then(r => r.json()),
+                fetch('team.json').then(r => r.json())
+            ])
+                .then(([pubData, teamData]) => {
+                    allPublications = pubData.publications;
 
-                    // Populate author filter dropdown
-                    const allLastNames = new Set();
+                    // Build last name → full name mapping from team data
+                    const lastNameToFullName = {};
+                    lastNameToFullName['Mahdi'] = 'Adam Mahdi';
+                    teamData.currentStudents.forEach(member => {
+                        const lastName = member.name.split(' ').pop();
+                        lastNameToFullName[lastName] = member.name;
+                    });
+                    teamData.alumni.forEach(member => {
+                        const lastName = member.name.split(' ').pop();
+                        if (!lastNameToFullName[lastName]) {
+                            lastNameToFullName[lastName] = member.name;
+                        }
+                    });
+
+                    // Build full-name author strings for search
                     allPublications.forEach(pub => {
-                        pub.authors.split(', ').forEach(author => {
+                        pub.authorsFullNames = pub.authors.split(', ').map(author => {
                             const lastName = author.trim().split(' ').pop();
-                            allLastNames.add(lastName);
+                            return lastNameToFullName[lastName] || author;
+                        }).join(', ').toLowerCase();
+                    });
+
+                    // Collect unique lab member full names from publications
+                    const labMemberFullNames = new Set();
+                    allPublications.forEach(pub => {
+                        pub.labMembers.forEach(abbrev => {
+                            const lastName = abbrev.split(' ').pop();
+                            const fullName = lastNameToFullName[lastName] || abbrev;
+                            labMemberFullNames.add(fullName);
                         });
                     });
 
-                    const sortedLastNames = Array.from(allLastNames).sort();
-                    sortedLastNames.forEach(lastName => {
+                    // Populate dropdown sorted by last name
+                    const sortedNames = Array.from(labMemberFullNames).sort((a, b) => {
+                        const lastA = a.split(' ').pop();
+                        const lastB = b.split(' ').pop();
+                        return lastA.localeCompare(lastB);
+                    });
+                    sortedNames.forEach(name => {
                         const option = document.createElement('option');
-                        option.value = lastName;
-                        option.textContent = lastName;
+                        option.value = name;
+                        option.textContent = name;
                         authorFilter.appendChild(option);
                     });
 
@@ -1240,8 +1298,8 @@
                     }
                 });
 
-            // Event listeners for sort and filter
-            sortSelect.addEventListener('change', applySortAndFilter);
+            // Event listeners for search and filter
+            searchInput.addEventListener('input', applySortAndFilter);
             authorFilter.addEventListener('change', applySortAndFilter);
             clearFilterBtn.addEventListener('click', () => {
                 authorFilter.value = '';
