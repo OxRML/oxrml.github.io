@@ -101,7 +101,7 @@
       <section id="highlight">
         <p style="padding-top:0;padding-bottom:.4rem;margin:0"><strong><span class="hl-ling">Ling</span><span class="hl-oly">Oly</span>-<span class="hl-too">TOO</span></strong> (L2) is a challenging linguistics reasoning benchmark designed to counteract answering without reasoning (e.g. by guessing or memorizing answers). We accomplish this by permuting <strong class="hl-ling">Ling</strong>uistics <strong class="hl-oly">Oly</strong>mpiad problems with <strong class="hl-too">T</strong>emplatised <strong class="hl-too">O</strong>rthographic <strong class="hl-too">O</strong>bfuscations. By rewriting (obfuscating) parts of questions and answers, the chance of benchmark leakage in training data is minimized.</p>
 
-        <p style="padding-top:0;padding-bottom:.4rem;margin:0;padding-left: 1rem"><i>How do top LLMs reason on unseen linguistic questions?</i></p>
+        <p style="display: flex; justify-content: center; width: 100%"><i>How do top LLMs reason on unseen linguistic questions?</i></p>
       </section>
     </header>
 
@@ -111,7 +111,10 @@
         <section id="methods" aria-labelledby="methods-h">
             <h2 id="methods-h">Methods</h2>
             <div class="iframe-wrapper">
-                <img src="diagram.png" />
+                <picture>
+                  <source srcset="diagram_dark.png" media="(prefers-color-scheme: dark)" />
+                  <img src="diagram.png" />
+                </picture>
             </div>
             <p><b>Obfuscation example.</b> A problem before (left) and after (right) obfuscation with the simplified inductive reasoning steps needed for answering. For each obfuscation, a character mapping is sampled based on the ruleset, then applied to obfuscate the problem and the answer. Only the original problem can be solved with the aid of models' internalised knowledge.</p>
             <p>LingOly-TOO extends the LingOly benchmark by applying <em>reasoning-equivariant permutations</em> to 82 Linguistics Olympiad problems from the UK Linguistics Olympiad (UKLO). These problems are self-contained, require no prior linguistic knowledge, and can be solved from context using general reasoning and pattern matching.</p>
@@ -127,7 +130,10 @@
             <p>We evaluated fifteen reasoning and general-purpose models (both open-source and closed-source) on LingOly-TOO. We report two scores per model: M<sub>og</sub>, based on original (unobfuscated) problems, and M<sub>obf</sub>, based on obfuscated problems. The gap between these scores quantifies how much models rely on knowledge shortcuts rather than genuine reasoning.</p>
 
             <div class="iframe-wrapper">
-                <img src="main_results.png" />
+                <picture>
+                  <source srcset="main_results_dark.png" media="(prefers-color-scheme: dark)" />
+                  <img src="main_results.png" />
+                </picture>
             </div>
             <p><b>Reasoning performance on LingOly-TOO.</b> Results without controlling for knowledge and memorisation overestimate reasoning abilities (light blue). Obfuscation mitigates this effect and offers improved estimates (dark blue).</p>
 
@@ -184,6 +190,12 @@
             max-width: 900px;         /* keeps it from stretching too wide */
             height: 400px;            /* adjust to your content */
             border: none;             /* cleaner look */
+        }
+
+        .iframe-wrapper picture {
+            display: flex;
+            justify-content: center;
+            width: 100%;
         }
 
         .iframe-wrapper img {
