@@ -110,20 +110,20 @@
     },
     {
       "id": "2",
-      "date": "2025-01-01",
-      "displayDate": "January 2025",
-      "title": "LINGOLY-TOO: Disentangling memorisation from reasoning with linguistic templatisation and orthographic obfuscation",
-      "authors": "J Khouja, K Korgul, S Hellsten, L Yang, V Neacsu, H Mayne, R Kearns, A Bean, A Mahdi",
-      "labMembers": ["K Korgul", "H Mayne", "R Kearns", "A Bean", "A Mahdi"],
-      "pubDate": "2025",
-      "venue": "ICLR 2026",
+      "date": "2026-04-23",
+      "displayDate": "April 2026",
+      "title": "LingOly-TOO: Disentangling Reasoning from Knowledge with Templatised Orthographic Obfuscation",
+      "authors": "J Khouja, K Korgul, S Hellsten, L Yang, V Neacsu, H Mayne, RO Kearns, A Bean, A Mahdi",
+      "labMembers": ["K Korgul", "H Mayne", "RO Kearns", "A Bean", "A Mahdi"],
+      "pubDate": "2026",
+      "venue": "ICLR",
       "abstract": "Abstract",
       "links": {
         "arxiv": "https://arxiv.org/abs/2503.02972",
         "code": "",
-        "huggingface": "",
-        "publication": "",
-        "website": "https://huggingface.co/spaces/jkhouja/lingoly-too"
+        "huggingface": "https://huggingface.co/spaces/jkhouja/lingoly-too",
+        "publication": "https://openreview.net/pdf?id=CQIkN2uuBr",
+        "website": "https://oxrml.com/lingoly-too"
       }
     },
     {
