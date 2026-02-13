@@ -67,13 +67,23 @@
         color:var(--ink);
       }
     }
+
+    /* Accent highlights in text */
+    .hl-ling{color:#de834e}
+    .hl-oly{color:#3F81D7}
+    .hl-too{color:#6ac02d}
+    @media (prefers-color-scheme: dark){
+      .hl-ling{color:#E79E73}
+      .hl-oly{color:#4f8ad7}
+      .hl-too{color:#7AC943}
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
       <a class="back-btn" href="https://oxrml.com" rel="noopener noreferrer" aria-label="Back to oxrml.com">← Reasoning with Machines Lab</a>
-      <h1>LingOly-TOO: Disentangling Reasoning from Knowledge with Templatised Orthographic Obfuscation</h1>
+      <h1><span class="hl-ling">Ling</span><span class="hl-oly">Oly</span>-<span class="hl-too">TOO</span>: Disentangling Reasoning from Knowledge with Templatised Orthographic Obfuscation</h1>
       <h4 style="margin:0; display:flex; align-items:center; gap:.5rem;">
         <img src="../img/assets/iclr-logo.svg" style="height:1.2em; vertical-align:middle; display:inline-block; margin-right:.4rem;" />
         <a href="https://neurips.cc/virtual/2025/loc/san-diego/poster/121477" target="_blank" style="color: black"><i>ICLR 2026 Poster</i></a>
@@ -89,7 +99,7 @@
       </div>
       <br>
       <section id="highlight">
-        <p style="padding-top:0;padding-bottom:.4rem;margin:0"><strong>LingOly-TOO</strong> (L2) is a challenging linguistics reasoning benchmark designed to counteracts answering without reasoning (e.g. by guessing or memorizing answers). We accomplish this by permuting <strong>Ling</strong>uistics <strong>Oly</strong>mpiad problems with <strong>T</strong>emplates and <strong>O</strong>rthographic <strong>O</strong>bfuscations. By rewriting (obfuscating) parts of questions and answers, the chance of benchmark leakage in training data is minimized.</p>
+        <p style="padding-top:0;padding-bottom:.4rem;margin:0"><strong><span class="hl-ling">Ling</span><span class="hl-oly">Oly</span>-<span class="hl-too">TOO</span></strong> (L2) is a challenging linguistics reasoning benchmark designed to counteract answering without reasoning (e.g. by guessing or memorizing answers). We accomplish this by permuting <strong class="hl-ling">Ling</strong>uistics <strong class="hl-oly">Oly</strong>mpiad problems with <strong class="hl-too">T</strong>emplatised <strong class="hl-too">O</strong>rthographic <strong class="hl-too">O</strong>bfuscations. By rewriting (obfuscating) parts of questions and answers, the chance of benchmark leakage in training data is minimized.</p>
 
         <p style="padding-top:0;padding-bottom:.4rem;margin:0;padding-left: 1rem"><i>How do top LLMs reason on unseen linguistic questions?</i></p>
       </section>
@@ -100,16 +110,15 @@
 
         <section id="methods" aria-labelledby="methods-h">
             <h2 id="methods-h">Methods</h2>
+            <div class="iframe-wrapper">
+                <img src="diagram.png" />
+            </div>
+            <p><b>Obfuscation example.</b> A problem before (left) and after (right) obfuscation with the simplified inductive reasoning steps needed for answering. For each obfuscation, a character mapping is sampled based on the ruleset, then applied to obfuscate the problem and the answer. Only the original problem can be solved with the aid of models' internalised knowledge.</p>
             <p>LingOly-TOO extends the LingOly benchmark by applying <em>reasoning-equivariant permutations</em> to 82 Linguistics Olympiad problems from the UK Linguistics Olympiad (UKLO). These problems are self-contained, require no prior linguistic knowledge, and can be solved from context using general reasoning and pattern matching.</p>
 
             <p>We designed expert-crafted obfuscation rulesets for each problem that permute the orthography of the target language (<em>Problemese</em>) at the grapheme level. These permutations preserve the underlying linguistic mechanisms and solution logic&mdash;treating graphemes, morphemes, and phonological relationships as atomic units&mdash;while transforming the text into forms that cannot appear in any training corpus. This ensures models cannot rely on memorised knowledge or language familiarity, and must instead reason inductively from context.</p>
 
             <p>We manually annotated 1,005 sub-question/answer pairs, removed metadata that could serve as shortcuts (language names, families, geographic clues), and generated up to 6 valid permutations per problem, yielding 6,995 sub-question/answer pairs in total. All annotations were validated by team members with Linguistics Olympiad expertise, and a sample was independently audited by two International Linguistics Olympiad medallists. A randomised controlled trial with 172 human participants confirmed only a modest 5.7% performance decrease from obfuscation.</p>
-
-            <div class="iframe-wrapper">
-                <img src="diagram.png" />
-            </div>
-            <p><b>Obfuscation example.</b> A problem before (left) and after (right) obfuscation with the simplified inductive reasoning steps needed for answering. For each obfuscation, a character mapping is sampled based on the ruleset, then applied to obfuscate the problem and the answer. Only the original problem can be solved with the aid of models' internalised knowledge.</p>
         </section>
 
         <section id="results" aria-labelledby="results-h">
@@ -257,9 +266,7 @@
 
 <div id="authorsBlock">
   <div class="authors">
-  Jude Khouja<sup>1</sup>, Lingyi Yang<sup>1</sup>, Karolina Korgul<sup>1</sup>, Harry Mayne<sup>1</sup>,
-  Ryan Kearns<sup>1</sup>, Andrew Bean<sup>1</sup>, Adam Mahdi<sup>1</sup>,
-  Simi Hellsten<sup>2,3</sup>, Vlad Neacșu<sup>4,5</sup>
+  Jude Khouja<sup>1</sup>, Lingyi Yang<sup>1</sup>, Simeon Hellsten<sup>2,3</sup>, Karolina Korgul<sup>1</sup>, Vlad Neacșu<sup>4,5</sup>, Harry Mayne<sup>1</sup>, Ryan Othniel Kearns<sup>1</sup>, Andrew Bean<sup>1</sup>, Adam Mahdi<sup>1</sup>
 </div>
 
 <div class="affils">
@@ -278,8 +285,8 @@
         <textarea id="bibtexBox" readonly>
 @inproceedings{
 khouja2026lingolytoo,
-title={LingOly-TOO: Disentangling Reasoning from Knowledge with Templatised Orthographic Obfuscation},
-author={Jude Khouja and Lingyi Yang and Karolina Korgul and Harry Mayne and Ryan Kearns and Andrew Bean and Adam Mahdi and Simi Hellsten and Vlad Neac{\c{s}}u},
+title={{LINGOLY}-{TOO}: Disentangling Reasoning from Knowledge with Templatised Orthographic Obfuscation},
+author={Jude Khouja and Lingyi Yang and Simeon Hellsten and Karolina Korgul and Vlad A. Neacșu and Harry Mayne and Ryan Othniel Kearns and Andrew M. Bean and Adam Mahdi},
 booktitle={The Fourteenth International Conference on Learning Representations},
 year={2026},
 url={https://openreview.net/forum?id=CQIkN2uuBr}
