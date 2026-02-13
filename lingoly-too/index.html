@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LingOly-TOO</title>
+  <meta name="description" content="LingOly-TOO: Disentangling Reasoning from Knowledge with Templatised Orthographic Obfuscation" />
+  <link rel="icon" href="../img/assets/rml_logo_dark.jpg" type="image/jpeg" />
+  <link rel="shortcut icon" href="../img/assets/rml_logo_dark.jpg" type="image/jpeg" />
+  <style>
+    :root{
+      --ink:#1f2937;        /* text */
+      --muted:#6b7280;      /* secondary text */
+      --link:#002147;       /* links */
+      --bg:#ffffff;         /* page bg */
+      --card:#ffffff;       /* section bg */
+      --border:#e5e7eb;     /* borders */
+      --accent:#0f172a;     /* headings */
+      --maxw: 920px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:16px/1.7 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,Apple Color Emoji,Segoe UI Emoji}
+    a{color:var(--link);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:var(--maxw);margin:0 auto;padding:2.5rem 1.25rem}
+    header{padding-bottom:1rem;border-bottom:1px solid var(--border)}
+    h1{font-size:clamp(1.9rem,3.8vw,2.6rem);line-height:1.2;margin:0 0 .5rem;color:var(--accent);font-weight:650;letter-spacing:-.01em}
+    .meta{display:flex;flex-direction:column;gap:.5rem;margin:.75rem 0 0}
+    .authors{font-size:1.02rem}
+    .affils{color:var(--muted);font-size:.98rem}
+    .badges{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.25rem}
+    .badge{display:inline-block;font-size:.8rem;background:var(--card);border:1px solid var(--border);padding:.15rem .5rem;border-radius:.4rem;color:var(--muted)}
+    main{display:grid;gap:1.25rem;margin-top:1.5rem}
+    section{background:var(--card);border:1px solid var(--border);border-radius:.6rem;padding:1rem 1.25rem}
+    section h2{margin:.25rem 0 .25rem;font-size:1.25rem;color:var(--accent)}
+    .keywords{color:var(--muted);font-size:.95rem;margin-top:.5rem}
+    .toc{font-size:.95rem;color:var(--muted)}
+    .toc a{margin-right:1rem}
+    code,pre,textarea{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
+    .bibtex{background:#0b1020;color:#e5e7eb;border-radius:.6rem;border:1px solid #111827;padding:0}
+    .bibtex header{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;border:0;border-bottom:1px solid #1f2937}
+    .bibtex h3{margin:0;font-size:1rem;color:#e5e7eb}
+    .copy-btn{appearance:none;border:1px solid #334155;background:#111827;color:#e5e7eb;border-radius:.4rem;padding:.4rem .6rem;font-size:.85rem;cursor:pointer}
+    .copy-btn:hover{background:#0b1324}
+    .bibtex textarea{width:100%;height:8rem;max-height:16rem;overflow:auto;border:0;margin:0;padding:1rem;background:transparent;color:inherit;resize:vertical}
+    footer{margin-top:2rem;color:var(--muted);font-size:.9rem;text-align:center}
+    /* authors toggle */
+    .meta-toggle{display:flex;align-items:baseline;gap:.75rem}
+    .toggle-authors{appearance:none;border:0;background:none;color:var(--link);cursor:pointer;padding:0}
+    .toggle-authors:hover{text-decoration:underline}
+    /* collapsible styles no longer used */
+    /* highlight tagline: make visually distinct */
+    #highlight .rec-title{
+      display:block;align-items:center;gap:.5rem;
+      padding:.25rem .5rem;border-radius:.4rem;
+      background:#fdecea;border:1px solid #f5c2c7;
+    }
+    /* spacing between collapsible paper sections */
+    #paperDetails > section + section{margin-top:1rem}
+    @media (prefers-color-scheme: dark){
+      :root{--bg:#0b0f14;--ink:#e5e7eb;--muted:#94a3b8;--card:#0f172a;--border:#1f2937;--accent:#f3f4f6;--link:#60a5fa}
+      header h4 a{color:#ffffff !important}
+      /* dark mode styling for highlight tagline */
+      #highlight .rec-title{
+        background:#2a1214; /* deep muted red for contrast on dark */
+        border-color:#7a2e34;
+        color:var(--ink);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a class="back-btn" href="https://oxrml.com" rel="noopener noreferrer" aria-label="Back to oxrml.com">← Reasoning with Machines Lab</a>
+      <h1>LingOly-TOO: Disentangling Reasoning from Knowledge with Templatised Orthographic Obfuscation</h1>
+      <h4 style="margin:0; display:flex; align-items:center; gap:.5rem;">
+        <img src="../img/assets/iclr-logo.svg" style="height:1.2em; vertical-align:middle; display:inline-block; margin-right:.4rem;" />
+        <a href="https://neurips.cc/virtual/2025/loc/san-diego/poster/121477" target="_blank" style="color: black"><i>ICLR 2026 Poster</i></a>
+      </h4>
+
+      <div class="meta">
+        <div class="badges">
+          <a class="badge" href="https://openreview.net/pdf?id=CQIkN2uuBr" aria-label="PDF" target="_blank">PDF</a>
+          <a class="badge" href="https://arxiv.org/pdf/2503.02972" aria-label="arXiv" target="_blank"><img src="../img/assets/arxiv.svg" style="height:1.2em; vertical-align:middle; display:inline-block; margin-right:.4rem;">arXiv</a>
+          <a class="badge" href="https://huggingface.co/spaces/jkhouja/lingoly-too" aria-label="Hugging Face" target="_blank"><img src="../img/assets/hf.svg" style="height:1.2em; vertical-align:middle; display:inline-block; margin-right:.4rem;">Hugging Face</a>
+          <a class="badge" href="https://iclr.cc/virtual/2026/poster/10010858" aria-label="NeurIPS" target="_blank">ICLR Official Page</a>
+        </div>
+      </div>
+      <br>
+      <section id="highlight">
+        <p style="padding-top:0;padding-bottom:.4rem;margin:0"><strong>LingOly-TOO</strong> (L2) is a challenging linguistics reasoning benchmark designed to counteracts answering without reasoning (e.g. by guessing or memorizing answers). We accomplish this by permuting <strong>Ling</strong>uistics <strong>Oly</strong>mpiad problems with <strong>T</strong>emplates and <strong>O</strong>rthographic <strong>O</strong>bfuscations. By rewriting (obfuscating) parts of questions and answers, the chance of benchmark leakage in training data is minimized.</p>
+
+        <p style="padding-top:0;padding-bottom:.4rem;margin:0;padding-left: 1rem"><i>How do top LLMs reason on unseen linguistic questions?</i></p>
+      </section>
+    </header>
+
+    <main>
+        <div id="paperDetails">
+
+        <section id="methods" aria-labelledby="methods-h">
+            <h2 id="methods-h">Methods</h2>
+            <p>LingOly-TOO extends the LingOly benchmark by applying <em>reasoning-equivariant permutations</em> to 82 Linguistics Olympiad problems from the UK Linguistics Olympiad (UKLO). These problems are self-contained, require no prior linguistic knowledge, and can be solved from context using general reasoning and pattern matching.</p>
+
+            <p>We designed expert-crafted obfuscation rulesets for each problem that permute the orthography of the target language (<em>Problemese</em>) at the grapheme level. These permutations preserve the underlying linguistic mechanisms and solution logic&mdash;treating graphemes, morphemes, and phonological relationships as atomic units&mdash;while transforming the text into forms that cannot appear in any training corpus. This ensures models cannot rely on memorised knowledge or language familiarity, and must instead reason inductively from context.</p>
+
+            <p>We manually annotated 1,005 sub-question/answer pairs, removed metadata that could serve as shortcuts (language names, families, geographic clues), and generated up to 6 valid permutations per problem, yielding 6,995 sub-question/answer pairs in total. All annotations were validated by team members with Linguistics Olympiad expertise, and a sample was independently audited by two International Linguistics Olympiad medallists. A randomised controlled trial with 172 human participants confirmed only a modest 5.7% performance decrease from obfuscation.</p>
+
+            <div class="iframe-wrapper">
+                <img src="diagram.png" />
+            </div>
+            <p><b>Obfuscation example.</b> A problem before (left) and after (right) obfuscation with the simplified inductive reasoning steps needed for answering. For each obfuscation, a character mapping is sampled based on the ruleset, then applied to obfuscate the problem and the answer. Only the original problem can be solved with the aid of models' internalised knowledge.</p>
+        </section>
+
+        <section id="results" aria-labelledby="results-h">
+            <h2 id="results-h">Results</h2>
+
+            <p>We evaluated fifteen reasoning and general-purpose models (both open-source and closed-source) on LingOly-TOO. We report two scores per model: M<sub>og</sub>, based on original (unobfuscated) problems, and M<sub>obf</sub>, based on obfuscated problems. The gap between these scores quantifies how much models rely on knowledge shortcuts rather than genuine reasoning.</p>
+
+            <div class="iframe-wrapper">
+                <img src="main_results.png" />
+            </div>
+            <p><b>Reasoning performance on LingOly-TOO.</b> Results without controlling for knowledge and memorisation overestimate reasoning abilities (light blue). Obfuscation mitigates this effect and offers improved estimates (dark blue).</p>
+
+            <p>Frontier models achieve around 0.60 on M<sub>og</sub>, but this drops to a maximum of 0.48 on M<sub>obf</sub>. Reasoning models consistently outperform general-purpose models: GPT-5 outscores GPT 4.5, Claude 3.7 (thinking) outperforms Claude 3.7 (no thinking) at 0.43 vs. 0.30, and increasing inference-time budget helps (o3-mini high: 0.31 vs. o3-mini low: 0.12). At the hardest difficulty level (Round 2), even the best model scores only 0.31, demonstrating the benchmark is far from saturated.</p>
+        </section>
+
+        <section id="key-findings" aria-labelledby="findings-h">
+            <h2 id="findings-h">Key Findings</h2>
+
+            <ul>
+                <li><b>An unsaturated benchmark for frontier reasoning models.</b> The top model, GPT-5, scores 48% overall and only 31% on the highest difficulty problems. No model exceeds 50%, confirming that multi-hop inductive reasoning remains an open challenge.</li>
+                <li><b>A method to quantify knowledge effects.</b> The gap between M<sub>og</sub> and M<sub>obf</sub> reveals reasoning shortcuts. Score inflation from knowledge correlates with language resourcedness&mdash;models perform disproportionately better on high-resource languages in the unobfuscated setting. Providing expert reasoning guidance bridges this gap, increasing mean scores from 0.66 to 0.76.</li>
+                <li><b>A method for generating uncontaminated reasoning problems.</b> Experiments with then-unpublished UKLO 2025 problems show that the performance drop from obfuscation persists, confirming effects are not solely due to training-set memorisation but reflect genuine reliance on language knowledge.</li>
+                <li><b>Reasoning is brittle.</b> Under a robust metric that takes the minimum score across all permutations of a problem, the best model (GPT-5) drops from 0.48 to 0.28, revealing high variance and inconsistency across permutations even in frontier reasoning models.</li>
+            </ul>
+        </section>
+        </div>
+
+        <style>
+        /* subtle back button above header */
+        .back-btn{
+          display: inline-flex;
+          align-items: center;
+          gap: .5rem;
+          font-size: .95rem;
+          color: var(--muted);
+          background: transparent;
+          border: 1px solid transparent;
+          padding: .35rem .6rem;
+          border-radius: .5rem;
+          text-decoration: none;
+          margin-bottom: .75rem;
+        }
+        .back-btn:hover{
+          color: var(--link);
+          background: rgba(2,6,23,0.03);
+          border-color: var(--border);
+          text-decoration: none;
+        }
+        @media (prefers-color-scheme: dark){
+          .back-btn{ color: var(--muted); }
+          .back-btn:hover{ background: rgba(255,255,255,0.02); }
+        }
+        
+        /* scoped styles */
+        .iframe-wrapper {
+            display: flex;
+            justify-content: center;  /* centers horizontally */
+            margin: 0 0;           /* optional spacing above/below */
+        }
+
+        .iframe-wrapper iframe {
+            width: 100%;               /* adjust as needed (e.g. 100%, 60ch, etc.) */
+            max-width: 900px;         /* keeps it from stretching too wide */
+            height: 400px;            /* adjust to your content */
+            border: none;             /* cleaner look */
+        }
+
+        .iframe-wrapper img {
+            width: 80%;               /* adjust as needed (e.g. 100%, 60ch, etc.) */
+            max-width: 900px;         /* keeps it from stretching too wide */
+            height: 100%;            /* adjust to your content */
+            border: none;             /* cleaner look */
+        }
+
+
+        .rec-title{
+            display: inline-flex;              /* lay out icon + text on one line */
+            align-items: center;
+            gap: .5rem;                        /* space between icon and text */
+            padding: 0 .5rem;                  /* keep the title inside the fieldset border */
+        }
+
+        .rec-title::before {
+            content: "";
+            display: inline-block;             /* participate in layout (no overlay) */
+            inline-size: 1.1em;
+            block-size: 1.0em;
+            background: url("../img/assets/checklist-icon.svg") no-repeat center/contain;
+        }
+
+        .recs { margin-top: 1rem }
+        .recs .recs-grid {
+            display: grid;
+            /* grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); */
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        .recs .rec {
+            border: 1px solid #e5e7eb;
+            border-radius: .6rem;
+            padding: .75rem .9rem 1rem;
+            background: #f8fafc;
+        }
+        .recs .rec-title {
+            font-weight: 600;
+            color: #1f2937;
+            margin: 0 0 .5rem;
+            padding: 0;
+        }
+        /* icon list styling like rec-title */
+        #recommendations .icon-list { list-style: none; margin: .25rem 0 0; padding: 0; padding-left: 1.5rem; display: grid; gap: .4rem; }
+        #recommendations .icon-list li { position: relative; }
+        #recommendations .icon-list li::before {
+            content: "";
+            position: absolute; left: -1.5rem; top: 0.3rem;
+            inline-size: 1.1em; block-size: 1.1em;
+            background: url("../img/assets/checklist-icon.svg") no-repeat center/contain;
+        }
+        .recs .checklist {
+            list-style: none;
+            padding: 0;
+            padding-left: 1.5rem;
+            margin: 0;
+            display: grid;
+            gap: .4rem;
+        }
+        .recs .checklist li {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: start;
+            gap: .5rem;
+        }
+        .recs input[type="checkbox"] {
+            inline-size: 1rem;
+            block-size: 1rem;
+            margin-top: .2rem;
+            accent-color: #C15548; /* safe in modern browsers; ignored otherwise */
+        }
+        @media (prefers-color-scheme: dark){
+            .recs .rec { background:#0f172a; border-color:#1f2937 }
+            .recs .rec-title { color:#e5e7eb }
+        }
+</style>
+
+
+<div id="authorsBlock">
+  <div class="authors">
+  Jude Khouja<sup>1</sup>, Lingyi Yang<sup>1</sup>, Karolina Korgul<sup>1</sup>, Harry Mayne<sup>1</sup>,
+  Ryan Kearns<sup>1</sup>, Andrew Bean<sup>1</sup>, Adam Mahdi<sup>1</sup>,
+  Simi Hellsten<sup>2,3</sup>, Vlad Neacșu<sup>4,5</sup>
+</div>
+
+<div class="affils">
+  <sup>1</sup> University of Oxford &nbsp;·&nbsp;
+  <sup>2</sup> United Kingdom Linguistics Olympiad &nbsp;·&nbsp;
+  <sup>3</sup> University of Glasgow &nbsp;·&nbsp;
+  <sup>4</sup> Asia-Pacific Linguistics Olympiad &nbsp;·&nbsp;
+  <sup>5</sup> National University of Science and Technology POLITEHNICA Bucharest
+</div>
+</div>
+      <section class="bibtex" aria-labelledby="bibtex">
+        <header>
+          <h3 id="bibtex">Citation</h3>
+          <button class="copy-btn" type="button" id="copyBib">Copy</button>
+        </header>
+        <textarea id="bibtexBox" readonly>
+@inproceedings{
+khouja2026lingolytoo,
+title={LingOly-TOO: Disentangling Reasoning from Knowledge with Templatised Orthographic Obfuscation},
+author={Jude Khouja and Lingyi Yang and Karolina Korgul and Harry Mayne and Ryan Kearns and Andrew Bean and Adam Mahdi and Simi Hellsten and Vlad Neac{\c{s}}u},
+booktitle={The Fourteenth International Conference on Learning Representations},
+year={2026},
+url={https://openreview.net/forum?id=CQIkN2uuBr}
+}
+        </textarea>
+      </section>
+    </main>
+
+    <footer>
+      © 2026 Reasoning with Machines Lab, University of Oxford.
+    </footer>
+  </div>
+
+  <script>
+    // Copy BibTeX helper
+    (function(){
+      const btn = document.getElementById('copyBib');
+      const box = document.getElementById('bibtexBox');
+      if(btn && box){
+        btn.addEventListener('click', async () => {
+          try{
+            await navigator.clipboard.writeText(box.value);
+            btn.textContent = 'Copied!';
+            setTimeout(()=> btn.textContent = 'Copy', 1200);
+          }catch(e){
+            // Fallback selection method
+            box.select(); document.execCommand('copy');
+            btn.textContent = 'Copied!';
+            setTimeout(()=> btn.textContent = 'Copy', 1200);
+          }
+        });
+      }
+    })();
+
+    // BibTeX box uses fixed height with scroll; autosize removed by request
+
+    // Authors and paper details toggles removed; content always visible
+  </script>
+</body>
+</html>
