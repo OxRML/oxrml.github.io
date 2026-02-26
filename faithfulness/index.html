@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A Positive Case for Faithfulness</title>
+  <meta name="description" content="LLM Self-Explanations Help Predict Model Behavior" />
+  <link rel="icon" href="../img/assets/rml_logo_dark.jpg" type="image/jpeg" />
+  <link rel="shortcut icon" href="../img/assets/rml_logo_dark.jpg" type="image/jpeg" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
+  <style>
+    :root{
+      --ink:#1f2937;        /* text */
+      --muted:#6b7280;      /* secondary text */
+      --link:#002147;       /* links */
+      --bg:#ffffff;         /* page bg */
+      --card:#ffffff;       /* section bg */
+      --border:#e5e7eb;     /* borders */
+      --accent:#0f172a;     /* headings */
+      --maxw: 920px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:16px/1.7 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,Apple Color Emoji,Segoe UI Emoji}
+    a{color:var(--link);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:var(--maxw);margin:0 auto;padding:2.5rem 1.25rem}
+    header{padding-bottom:1rem;border-bottom:1px solid var(--border)}
+    h1{font-size:clamp(1.9rem,3.8vw,2.6rem);line-height:1.2;margin:0 0 .5rem;color:var(--accent);font-weight:650;letter-spacing:-.01em}
+    .meta{display:flex;flex-direction:column;gap:.5rem;margin:.75rem 0 0}
+    .authors{font-size:1.02rem; line-height:1.6}
+    .affils{color:var(--muted);font-size:.98rem; margin-top:1rem; line-height:1.4}
+    .badges{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.25rem}
+    .badge{display:inline-block;font-size:.8rem;background:var(--card);border:1px solid var(--border);padding:.15rem .5rem;border-radius:.4rem;color:var(--muted)}
+    main{display:grid;gap:1.25rem;margin-top:1.5rem}
+    section{background:var(--card);border:1px solid var(--border);border-radius:.6rem;padding:1rem 1.25rem}
+    section h2{margin:.25rem 0 .5rem;font-size:1.25rem;color:var(--accent)}
+    section h3{margin:0 0 0.5rem;font-size:1.1rem;color:var(--accent)}
+    code,pre,textarea{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
+    .bibtex{background:#0b1020;color:#e5e7eb;border-radius:.6rem;border:1px solid #111827;padding:0}
+    .bibtex header{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;border:0;border-bottom:1px solid #1f2937}
+    .bibtex h3{margin:0;font-size:1rem;color:#e5e7eb}
+    .copy-btn{appearance:none;border:1px solid #334155;background:#111827;color:#e5e7eb;border-radius:.4rem;padding:.4rem .6rem;font-size:.85rem;cursor:pointer}
+    .copy-btn:hover{background:#0b1324}
+    .bibtex textarea{width:100%;height:10rem;max-height:16rem;overflow:auto;border:0;margin:0;padding:1rem;background:transparent;color:inherit;resize:vertical}
+    footer{margin-top:2rem;color:var(--muted);font-size:.9rem;text-align:center}
+
+    /* highlight section */
+    #highlight .key-result{
+      display:block;
+      padding:.5rem .75rem;border-radius:.4rem;
+      background:#e8f4f0;border:1px solid #a7d7c5;
+      margin-top:1rem;
+      color:#1a5c3a;
+    }
+
+    /* author photo grid */
+    .author-grid {
+      display: flex;
+      justify-content: flex-start;
+      gap: 1.5rem;
+      margin: 1.25rem 0 0.5rem;
+      flex-wrap: wrap;
+    }
+    .author-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+      color: var(--ink);
+      width: 100px;
+    }
+    .author-card:hover {
+      text-decoration: none;
+    }
+    .author-photo-wrap {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    .author-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: filter 0.3s ease;
+    }
+    .author-photo-wrap .overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.55);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      padding: 0;
+    }
+    .author-photo-wrap .overlay img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      filter: none;
+      padding: 0 2px;
+    }
+    .author-photo-wrap .overlay span {
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.2;
+    }
+    .author-photo-wrap .overlay .inst-text {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+    .author-card:hover .author-photo-wrap img.author-photo {
+      filter: grayscale(100%) brightness(0.7);
+    }
+    .author-card:hover .overlay {
+      opacity: 1;
+    }
+    .author-name {
+      font-size: 0.82rem;
+      text-align: center;
+      line-height: 1.25;
+      color: var(--muted);
+    }
+
+    @media (prefers-color-scheme: dark){
+      :root{--bg:#0b0f14;--ink:#e5e7eb;--muted:#94a3b8;--card:#0f172a;--border:#1f2937;--accent:#f3f4f6;--link:#60a5fa}
+      #highlight .key-result{
+        background:#0f2a1f;
+        border-color:#1a5c3a;
+        color:var(--ink);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a class="back-btn" href="https://oxrml.com" rel="noopener noreferrer" aria-label="Back to oxrml.com">← Reasoning with Machines Lab</a>
+      <h1>A Positive Case for Faithfulness: LLM Self-Explanations Help Predict Model Behavior</h1>
+
+      <div class="badges" style="margin-top:.5rem;">
+        <a class="badge" href="https://arxiv.org/abs/2602.02639" aria-label="arXiv" target="_blank"><img src="../img/assets/arxiv.svg" style="height:1.2em; vertical-align:middle; display:inline-block; margin-right:.4rem;">arXiv</a>
+        <a class="badge" href="https://github.com/HarryMayne/faithfulness" aria-label="GitHub" target="_blank"><img src="../img/assets/github.svg" style="height:1.2em; vertical-align:middle; display:inline-block; margin-right:.4rem;">GitHub</a>
+        <span class="badge">Under Review</span>
+      </div>
+
+      <div class="author-grid">
+        <a class="author-card" href="https://harrymayne.com" target="_blank">
+          <div class="author-photo-wrap">
+            <img class="author-photo" src="photo_harry.jpg" alt="Harry Mayne">
+            <div class="overlay"><img src="logo_oxford_text.svg" alt="University of Oxford"></div>
+          </div>
+          <div class="author-name">Harry Mayne*</div>
+        </a>
+        <a class="author-card" href="https://justinkang221.github.io" target="_blank">
+          <div class="author-photo-wrap">
+            <img class="author-photo" src="photo_justin.jpg" alt="Justin Singh Kang">
+            <div class="overlay"><img src="logo_berkeley_text.svg" alt="UC Berkeley"></div>
+          </div>
+          <div class="author-name">Justin Singh Kang*</div>
+        </a>
+        <a class="author-card" href="https://www.turing.ac.uk/people/dewi-gould" target="_blank">
+          <div class="author-photo-wrap">
+            <img class="author-photo" src="photo_dewi.jpg" alt="Dewi Gould">
+            <div class="overlay"><span>Independent</span></div>
+          </div>
+          <div class="author-name">Dewi Gould</div>
+        </a>
+        <a class="author-card" href="https://people.eecs.berkeley.edu/~kannanr/" target="_blank">
+          <div class="author-photo-wrap">
+            <img class="author-photo" src="photo_kannan.jpg" alt="Kannan Ramchandran">
+            <div class="overlay"><img src="logo_berkeley_text.svg" alt="UC Berkeley"></div>
+          </div>
+          <div class="author-name">Kannan Ramchandran</div>
+        </a>
+        <a class="author-card" href="https://www.oii.ox.ac.uk/people/profiles/adam-mahdi/" target="_blank">
+          <div class="author-photo-wrap">
+            <img class="author-photo" src="photo_adam.jpg" alt="Adam Mahdi">
+            <div class="overlay"><img src="logo_oxford_text.svg" alt="University of Oxford"></div>
+          </div>
+          <div class="author-name">Adam Mahdi</div>
+        </a>
+        <a class="author-card" href="https://scholar.google.com/citations?user=l2E0LR4AAAAJ" target="_blank">
+          <div class="author-photo-wrap">
+            <img class="author-photo" src="photo_noah.jpg" alt="Noah Y. Siegel">
+            <div class="overlay"><img src="logo_deepmind_text.svg" alt="Google DeepMind"></div>
+          </div>
+          <div class="author-name">Noah Y. Siegel</div>
+        </a>
+      </div>
+      <div style="font-size:0.8rem; color:var(--muted); margin-top:0.25rem;">* Equal contribution</div>
+
+      <section id="highlight" style="border:none; padding:0; margin-top:1rem;">
+        <p style="margin:0; font-size:1.1em;">
+          When asked to explain their decisions, LLMs can give highly plausible self-explanations. But are these explanations actually <em>faithful</em> to the model's true reasoning, or are they just post-hoc rationalizations? Existing faithfulness metrics have critical limitations that make them unsuitable for evaluating frontier models.
+        </p>
+        <p style="margin:.75rem 0 0;">
+          In this paper, we take a <strong>predictive approach</strong>: we measure whether a model's self-explanations help an observer predict how the model will behave on related inputs. Across 18 frontier models and 7,000 counterfactual examples, we find that self-explanations <strong>substantially improve prediction of model behavior</strong>.
+        </p>
+
+        <div class="key-result">
+          <strong>Key result:</strong> Self-explanations encode valuable information about LLMs' decision-making criteria.
+        </div>
+      </section>
+    </header>
+
+    <main>
+
+      <!-- Motivation -->
+      <section id="motivation" aria-labelledby="motivation-h">
+        <h2 id="motivation-h">Why a new faithfulness metric?</h2>
+        <p>Existing faithfulness metrics rely on detecting failures: adversarial cues that bias reasoning (e.g. <a href="https://arxiv.org/abs/2305.14328" target="_blank">Turpin et al.</a>) or explicit reasoning errors. But these failure modes <strong>disappear as model capabilities scale</strong>, creating a vanishing signal problem. Frontier models no longer fall for biasing cues in the same way older models once did.</p>
+
+        <blockquote class="quote-block">
+          &ldquo;Unfortunately, we do not currently have viable dedicated evaluations for reasoning faithfulness.&rdquo;
+          <span class="quote-source">&mdash; <a href="https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf" target="_blank">Claude Sonnet 4.5 System Card</a>, Anthropic (2025)</span>
+        </blockquote>
+
+        <p>We take a different approach. Rather than looking for failures, we measure the <strong>predictive value</strong> of explanations, introducing a metric that measures how much a model's self-explanation helps an independent observer predict the model's behaviour on related inputs.</p>
+      </section>
+
+      <!-- Framework -->
+      <section id="framework" aria-labelledby="framework-h">
+        <h2 id="framework-h">Normalized simulatability gain</h2>
+        <p>Our method is based on the following principle: a faithful explanation should allow an observer to learn a model's decision-making criteria, and thus better predict its behaviour on related inputs. We formalise this with <strong>Normalized Simulatability Gain (NSG)</strong>.</p>
+
+        <div class="iframe-wrapper">
+          <img src="fig_framework.png" alt="Figure: Operationalizing faithfulness with NSG" />
+        </div>
+        <p class="figure-caption"><strong>Operationalizing faithfulness with NSG.</strong> The <em>reference model</em> (the LLM being evaluated) answers a question and gives an explanation. The <em>predictor model</em> (a separate LLM) then tries to predict the reference model's answer on similar counterfactual questions, both with and without access to the explanation. If the explanation is faithful, the predictor should do better when it has the explanation.</p>
+
+        <p>We generate counterfactual inputs using data-driven methods: for each original question, we find related questions from existing datasets that differ in at most 2 features. This ensures counterfactuals are natural and grounded in the real data distribution. NSG measures the fraction of achievable improvement that explanations deliver, ranging from 0 to 100%:</p>
+
+        <div class="formula" id="nsg-formula"></div>
+      </section>
+
+      <!-- Datasets -->
+      <section id="datasets" aria-labelledby="datasets-h">
+        <h2 id="datasets-h">Experimental setup</h2>
+        <p>We evaluate <strong>18 reference models</strong> on <strong>7,000 counterfactual examples</strong> from seven popular datasets covering health, business, and ethics:</p>
+        <ul>
+          <li><strong>Health:</strong> Heart Disease, Pima Diabetes, Breast Cancer Recurrence</li>
+          <li><strong>Business:</strong> Employee Attrition, Annual Income, Bank Marketing</li>
+          <li><strong>Ethics:</strong> Moral Machines</li>
+        </ul>
+        <p>Each reference model is evaluated by an ensemble of five predictor models (gpt-oss-20b, Qwen-3-32B, gemma-3-27b-it, GPT-5 mini, and gemini-3-flash). Results are averaged across the ensemble to avoid model-specific biases.</p>
+      </section>
+
+      <!-- Main results -->
+      <section id="results" aria-labelledby="results-h">
+        <h2 id="results-h">Self-explanations improve prediction</h2>
+        <div class="iframe-wrapper">
+          <img src="fig_scaling.png" alt="Figure: Main results showing NSG across 18 models" />
+        </div>
+        <p class="figure-caption"><strong>Self-explanations encode valuable information about models' decision-making criteria.</strong> All 18 reference models produce self-explanations that improve counterfactual prediction, with NSG ranging from 11% to 37%.</p>
+
+        <p>This is a <strong>positive result for self-explanations</strong>. Explanations consistently encode valuable information about a model's decision-making criteria that helps predict its behaviour on related inputs. The best-performing models fix approximately one-third of incorrect predictions through their explanations.</p>
+      </section>
+
+      <!-- Privileged self-knowledge -->
+      <section id="self-knowledge" aria-labelledby="self-knowledge-h">
+        <h2 id="self-knowledge-h">Do models have privileged self-knowledge?</h2>
+
+        <p>Self-explanations improve predictor accuracy, but this alone doesn't confirm they encode the true decision-making criteria. An alternative hypothesis: any plausible explanation might help prediction, regardless of source. We test this by swapping each self-explanation with one generated by a different model family that gave the same original answer.</p>
+
+        <p>We find self-explanations consistently encode more predictive information than cross-model explanations, <strong>even when the external explainer models are stronger</strong>. This holds across all model families.</p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Model family</th>
+                <th>Self-explanation NSG</th>
+                <th>Cross-model NSG</th>
+                <th>Self-explanation uplift</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Qwen 3</td><td>34.2%</td><td>31.2%</td><td>+3.0pp</td></tr>
+              <tr><td>Gemma 3</td><td>35.0%</td><td>33.2%</td><td>+1.7pp</td></tr>
+              <tr><td>GPT-5</td><td>35.9%</td><td>31.7%</td><td>+4.3pp</td></tr>
+              <tr><td>Claude 4.5</td><td>30.2%</td><td>28.0%</td><td>+2.3pp</td></tr>
+              <tr><td>Gemini 3</td><td>32.9%</td><td>30.2%</td><td>+2.7pp</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="figure-caption"><strong>Self-explanations consistently outperform cross-model explanations.</strong> This provides evidence for a privileged self-knowledge advantage: models have access to information about their own decision-making that an external observer cannot derive from input-output behaviour alone. This is important because it suggests that the value of self-explanations is not merely contextual, and that they encode genuinely privileged information about the model's reasoning process.</p>
+      </section>
+
+      <!-- Scale -->
+      <section id="scale" aria-labelledby="scale-h">
+        <h2 id="scale-h">Are bigger models more faithful?</h2>
+        <div class="iframe-wrapper">
+          <img src="fig_main_results.png" alt="Figure: Mixed trends between model scale and faithfulness" style="width:57%" />
+        </div>
+        <p class="figure-caption"><strong>Mixed trends between model scale and faithfulness.</strong> The Qwen 3 family shows a clear monotonic relationship between model size and NSG. However, the relationship breaks down past a modest capability threshold, and proprietary model families show no clear scaling trend.</p>
+      </section>
+
+      <!-- Unfaithfulness -->
+      <section id="unfaithfulness" aria-labelledby="unfaithfulness-h">
+        <h2 id="unfaithfulness-h">Remaining unfaithfulness</h2>
+
+        <p>The positive NSG results are average-case. Self-explanations help prediction overall, but they are not always faithful. We define <em>egregious unfaithfulness</em> as the case where a self-explanation leads all five predictor models to make a prediction that doesn't align with the model's true behaviour. Across models, 5-15% of self-explanations are egregiously unfaithful, with smaller models producing more misleading explanations.</p>
+
+        <div class="iframe-wrapper">
+          <img src="fig_unfaithful_example.png" alt="Figure: Example of egregious unfaithfulness from GPT-5.2" style="width:57%" />
+        </div>
+        <p class="figure-caption"><strong>GPT-5.2 being unfaithful.</strong> When presented with a moral dilemma, GPT-5.2 chooses to continue straight (inaction) and explains this by citing the &ldquo;principle of not taking active measures that cause harm.&rdquo; However, when the genders of the pedestrians are swapped in the counterfactual, the model reverses its decision and swerves (an active measure causing harm), directly contradicting its own stated reasoning. Gender is never mentioned in the explanations. Claude Opus 4.5 exhibits the same behaviour on this question.</p>
+      </section>
+
+      <!-- Takeaways -->
+      <section id="takeaways" aria-labelledby="takeaways-h">
+        <h2 id="takeaways-h">Key takeaways</h2>
+        <ul>
+          <li><strong>Self-explanations encode valuable information.</strong> Across all 18 models, explanations encode information about decision-making criteria, improving behaviour prediction by 11-37%.</li>
+          <li><strong>Models have privileged self-knowledge.</strong> Self-explanations outperform external model explanations by 1.7-4.3 percentage points, implying an advantage from self-knowledge that external methods cannot replicate.</li>
+          <li><strong>But faithfulness is not guaranteed.</strong> 5-15% of self-explanations are egregiously misleading, sometimes contradicting the model's actual behaviour on closely related inputs.</li>
+        </ul>
+      </section>
+
+    </main>
+
+    <style>
+      /* subtle back button above header */
+      .back-btn{
+        display: inline-flex;
+        align-items: center;
+        gap: .5rem;
+        font-size: .95rem;
+        color: var(--muted);
+        background: transparent;
+        border: 1px solid transparent;
+        padding: .35rem .6rem;
+        border-radius: .5rem;
+        text-decoration: none;
+        margin-bottom: .75rem;
+      }
+      .back-btn:hover{
+        color: var(--link);
+        background: rgba(2,6,23,0.03);
+        border-color: var(--border);
+        text-decoration: none;
+      }
+      @media (prefers-color-scheme: dark){
+        .back-btn{ color: var(--muted); }
+        .back-btn:hover{ background: rgba(255,255,255,0.02); }
+      }
+
+      /* figure and image styles */
+      .iframe-wrapper {
+        display: flex;
+        justify-content: center;
+        margin: 1rem 0;
+      }
+
+      .iframe-wrapper img {
+        width: 80%;
+        max-width: 900px;
+        height: auto;
+        border: none;
+      }
+
+      .figure-caption {
+        font-size: 0.95rem;
+        color: var(--muted);
+        margin-top: -0.25rem;
+        margin-bottom: 1rem;
+        line-height: 1.5;
+      }
+
+      /* blockquote styling */
+      .quote-block {
+        margin: 1rem 0;
+        padding: .75rem 1rem;
+        border-left: 3px solid var(--border);
+        background: rgba(2,6,23,0.02);
+        border-radius: 0 .4rem .4rem 0;
+        font-style: italic;
+        color: var(--ink);
+      }
+      .quote-source {
+        display: block;
+        margin-top: .5rem;
+        font-style: normal;
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+      @media (prefers-color-scheme: dark) {
+        .quote-block { background: rgba(255,255,255,0.03); }
+      }
+
+      /* formula display */
+      .formula {
+        text-align: center;
+        font-size: 1.05rem;
+        padding: .75rem 0;
+        color: var(--accent);
+        font-weight: 500;
+      }
+      /* Hide KaTeX MathML accessibility text that shows as duplicate */
+      .katex-mathml {
+        position: absolute !important;
+        clip: rect(1px, 1px, 1px, 1px) !important;
+        overflow: hidden !important;
+        height: 1px !important;
+        width: 1px !important;
+        padding: 0 !important;
+        border: 0 !important;
+      }
+
+      /* table styles */
+      .table-wrapper {
+        overflow-x: auto;
+        margin: 1rem 0;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.95rem;
+      }
+      th, td {
+        padding: .5rem .75rem;
+        text-align: left;
+        border-bottom: 1px solid var(--border);
+      }
+      th {
+        font-weight: 600;
+        color: var(--accent);
+        background: rgba(2,6,23,0.02);
+      }
+      td:last-child {
+        font-weight: 600;
+        color: #166534;
+      }
+      @media (prefers-color-scheme: dark) {
+        th { background: rgba(255,255,255,0.03); }
+        td:last-child { color: #6ee7b7; }
+      }
+    </style>
+
+
+    <section class="bibtex" aria-labelledby="bibtex" style="margin-top:1.5rem;">
+      <header>
+        <h3 id="bibtex">Citation</h3>
+        <button class="copy-btn" type="button" id="copyBib">Copy</button>
+      </header>
+      <textarea id="bibtexBox" readonly>
+@misc{mayne2026positivecasefaithfulnessllm,
+      title={A Positive Case for Faithfulness: LLM Self-Explanations Help Predict Model Behavior},
+      author={Harry Mayne and Justin Singh Kang and Dewi Gould and Kannan Ramchandran and Adam Mahdi and Noah Y. Siegel},
+      year={2026},
+      eprint={2602.02639},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2602.02639},
+}
+      </textarea>
+    </section>
+
+    <footer>
+      &copy; 2026 Reasoning with Machines Lab, University of Oxford.
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script>
+    // Render NSG formula
+    (function(){
+      const el = document.getElementById('nsg-formula');
+      if(el){
+        katex.render(
+          '\\text{NSG} := \\frac{\\text{Acc}_{\\text{with exp}} - \\text{Acc}_{\\text{without exp}}}{1 - \\text{Acc}_{\\text{without exp}}}',
+          el,
+          { displayMode: true, throwOnError: false }
+        );
+      }
+    })();
+
+    // Copy BibTeX helper
+    (function(){
+      const btn = document.getElementById('copyBib');
+      const box = document.getElementById('bibtexBox');
+      if(btn && box){
+        btn.addEventListener('click', async () => {
+          try{
+            await navigator.clipboard.writeText(box.value);
+            btn.textContent = 'Copied!';
+            setTimeout(()=> btn.textContent = 'Copy', 1200);
+          }catch(e){
+            box.select(); document.execCommand('copy');
+            btn.textContent = 'Copied!';
+            setTimeout(()=> btn.textContent = 'Copy', 1200);
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
