@@ -1,5 +1,23 @@
 {
   "publications": [
+        {
+      "id": "llm_as_judge_polyvis",
+      "date": "2025-11-01",
+      "displayDate": "November 2025",
+      "title": "Evaluating LLM-as-a-Judge under Multilingual, Multimodal and Multi-domain Constraints",
+      "authors": "Shreyansh Padarha, Elizaveta Semenova, Bertie Vidgen, Adam Mahdi, Scott A. Hale",
+      "labMembers": ["Shreyansh Padarha", "Adam Mahdi"],
+      "pubDate": "2025",
+      "venue": "Evaluating the Evolving LLM Lifecycle @ NeurIPS",
+      "abstract": "Large Language Models (LLMs) as judges have emerged as an important component within the post-training pipeline. The growing popularity of judge LLMs has prompted their evaluation on proxy alignment and reward modelling datasets. Yet, they have not been assessed under combined cross-lingual and multimodal settings. To address this gap, we introduce PolyVis (Polyglot Vision-Language Alignment), a multilingual vision-language alignment benchmark that evaluates judge models under 12 languages and distinct task objectives: hallucinations, safety, knowledge and reasoning. Our findings reveal LLM judge model performance is significantly influenced by composite interactions between task objectives, language and individual model characteristics. These results suggest the need for building tailored evaluation frameworks to challenge each model’s specific capabilities, moving beyond one-size-fits-all approaches that obscure critical performance disparities.",
+      "links": {
+        "arxiv": "",
+        "code": "",
+        "huggingface": "",
+        "publication": "https://openreview.net/pdf?id=cAIjWwoZNf",
+        "website": ""
+      }
+    },
     {
       "id": "faithfulness_self_explanations",
       "date": "2026-02-02",
