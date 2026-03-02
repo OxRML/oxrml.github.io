@@ -138,7 +138,7 @@
       "abstract": "Abstract",
       "links": {
         "arxiv": "https://arxiv.org/abs/2503.02972",
-        "code": "",
+        "code": "https://github.com/jkhouja/LingOly-TOO",
         "huggingface": "https://huggingface.co/spaces/jkhouja/lingoly-too",
         "publication": "https://openreview.net/pdf?id=CQIkN2uuBr",
         "website": "https://oxrml.com/lingoly-too"
