@@ -1,321 +1,632 @@
 /* ======================================
    charts.js — Results visualizations
+   Updated with ICML 2025 paper data
    ====================================== */
 
 const Charts = (() => {
 
-  /* ---------- GANTT CHART ---------- */
-  let ganttZoomLevel = 1;
-  const ganttMaxHours = 400;
+  // Color scheme
+  const COLORS = {
+    titleAbstract: '#B7D3C6',
+    pdfConversion: '#C9A3A3',
+    fulltextScreening: '#6BAED6',
+    dataExtraction: '#E38B48',
+    parameters: '#FFCBA4',
+    models: '#E38B48',
+    outbreaks: '#B45C1A',
+    flagging: '#D97C7C',
+    counts: '#8BB3E6',
+    extraction: '#8FD3B0',
+  };
 
+  const MODEL_COLORS = {
+    'GPT-OSS-120B': '#2B2E5F',
+    'GLM-4.7': '#4B4F86',
+    'DeepSeek-V3.2': '#6C74AD',
+    'Kimi-K2.5': '#9AA4CF',
+    'GPT-5.2': '#BDBDBD',
+  };
+
+  /* ---------- GANTT CHART ---------- */
   function renderGantt(containerId) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    const maxHours = ganttMaxHours;
+    const maxHours = 400;
 
-    // Human data
+    // Human data (from paper)
     const humanBars = [
-      { label: 'Title & Abstract\nScreening', start: 0, end: 114.15, color: '#B7D3C6' },
-      { label: 'Full-text\nScreening', start: 114.15, end: 187.62, color: '#6BAED6' },
-      { label: 'Data\nExtraction', start: 187.62, end: 385.12, color: '#E38B48' },
+      { label: 'Title & Abstract Screening', start: 0, end: 114.15, color: COLORS.titleAbstract },
+      { label: 'Full-text Screening', start: 114.15, end: 187.62, color: COLORS.fulltextScreening },
+      { label: 'Data Extraction', start: 187.62, end: 385.12, color: COLORS.dataExtraction },
     ];
 
-    // AgentSLR data
+    // AgentSLR data (from paper - 20 hours total)
     const agentBars = [
-      { label: 'Title & Abstract\nScreening', start: 0, end: 3.32, color: '#B7D3C6' },
-      { label: 'PDF-to-MD\nConversion', start: 3.32, end: 3.63, color: '#C9A3A3' },
-      { label: 'Full-text\nScreening', start: 3.63, end: 4.19, color: '#6BAED6' },
-      { label: 'Data\nExtraction', start: 4.19, end: 33.82, color: '#E38B48' },
+      { label: 'Title & Abstract Screening', start: 0, end: 3.20, color: COLORS.titleAbstract },
+      { label: 'PDF-to-MD Conversion', start: 3.20, end: 5.99, color: COLORS.pdfConversion },
+      { label: 'Full-text Screening', start: 5.99, end: 6.61, color: COLORS.fulltextScreening },
+      { label: 'Data Extraction', start: 6.61, end: 20.00, color: COLORS.dataExtraction },
     ];
 
     function pct(v) { return (v / maxHours * 100).toFixed(2) + '%'; }
     function w(bar) { return ((bar.end - bar.start) / maxHours * 100).toFixed(2) + '%'; }
 
-    function renderRow(label, bars) {
+    function renderRow(label, bars, totalHours, showLabels = false) {
       return `
         <div class="gantt-row">
-          <div class="gantt-label">${label}</div>
+          <div class="gantt-label">${label}<br><span style="font-size:0.75rem;color:var(--text-light);">${totalHours}h</span></div>
           <div class="gantt-track">
-            ${bars.map(b => `<div class="gantt-bar" style="left:${pct(b.start)};width:${w(b)};background:${b.color};" title="${b.label.replace('\n',' ')}: ${b.start.toFixed(1)}-${b.end.toFixed(1)}h"></div>`).join('')}
+            ${bars.map(b => {
+              const duration = (b.end - b.start).toFixed(1);
+              const widthPct = (b.end - b.start) / maxHours * 100;
+              const showLabel = showLabels && widthPct > 8;
+              return `<div class="gantt-bar" style="left:${pct(b.start)};width:${w(b)};background:${b.color};" title="${b.label}: ${duration}h">${showLabel ? duration + 'h' : ''}</div>`;
+            }).join('')}
           </div>
         </div>`;
     }
 
     // Legend
     const legendItems = [
-      { label: 'Title & Abstract Screening', color: '#B7D3C6' },
-      { label: 'PDF-to-MD Conversion*', color: '#C9A3A3' },
-      { label: 'Full-text Screening', color: '#6BAED6' },
-      { label: 'Data Extraction', color: '#E38B48' },
+      { label: 'Title & Abstract Screening', color: COLORS.titleAbstract },
+      { label: 'PDF-to-MD Conversion*', color: COLORS.pdfConversion },
+      { label: 'Full-text Screening', color: COLORS.fulltextScreening },
+      { label: 'Data Extraction', color: COLORS.dataExtraction },
     ];
     const legend = `<div style="display:flex;gap:14px;justify-content:center;margin-bottom:12px;flex-wrap:wrap;font-size:0.78rem;">
       ${legendItems.map(l => `<span style="display:flex;align-items:center;gap:4px;"><span style="width:12px;height:12px;background:${l.color};border-radius:2px;display:inline-block;"></span>${l.label}</span>`).join('')}
     </div>`;
 
-    // Generate ticks based on zoom level
-    const tickInterval = ganttZoomLevel >= 4 ? 5 : ganttZoomLevel >= 2 ? 25 : 50;
-    const ticks = [];
-    for (let t = 0; t <= maxHours; t += tickInterval) {
-      ticks.push(t);
-    }
+    const ticks = [0, 50, 100, 150, 200, 250, 300, 350, 400];
 
-    // Zoom controls
-    const zoomControls = `
-      <div style="display:flex;gap:8px;justify-content:center;align-items:center;margin-bottom:12px;">
-        <button id="gantt-zoom-out" style="padding:4px 12px;border:1px solid #ccc;border-radius:4px;background:white;cursor:pointer;font-size:0.85rem;">−</button>
-        <span style="font-size:0.78rem;color:var(--text-muted);min-width:60px;text-align:center;">Zoom: ${ganttZoomLevel}x</span>
-        <button id="gantt-zoom-in" style="padding:4px 12px;border:1px solid #ccc;border-radius:4px;background:white;cursor:pointer;font-size:0.85rem;">+</button>
-        <button id="gantt-reset" style="padding:4px 12px;border:1px solid #ccc;border-radius:4px;background:white;cursor:pointer;font-size:0.78rem;">Reset</button>
-      </div>
-    `;
+    // Zoomed inset for AgentSLR
+    const zoomMax = 25;
+    const zoomTicks = [0, 5, 10, 15, 20, 25];
+    function zoomPct(v) { return (v / zoomMax * 100).toFixed(2) + '%'; }
+    function zoomW(bar) { return ((bar.end - bar.start) / zoomMax * 100).toFixed(2) + '%'; }
 
-    const ganttContent = `
-      <div class="gantt-wrapper" style="overflow-x:auto;overflow-y:hidden;">
-        <div style="min-width:${100 * ganttZoomLevel}%;">
-          ${renderRow('Humans', humanBars)}
-          ${renderRow('AgentSLR', agentBars)}
-          <div class="gantt-axis">
-            ${ticks.map(t => `<span>${t}</span>`).join('')}
-          </div>
+    const zoomRow = `
+      <div class="gantt-row">
+        <div class="gantt-label" style="font-size:0.75rem;color:var(--accent);">AgentSLR<br>(magnified)</div>
+        <div class="gantt-track" style="background:rgba(74,111,165,0.08);">
+          ${agentBars.map(b => {
+            const duration = (b.end - b.start).toFixed(1);
+            return `<div class="gantt-bar" style="left:${zoomPct(b.start)};width:${zoomW(b)};background:${b.color};" title="${b.label}: ${duration}h">${duration}h</div>`;
+          }).join('')}
         </div>
       </div>
-    `;
+      <div class="gantt-axis" style="margin-left:100px;">
+        ${zoomTicks.map(t => `<span>${t}</span>`).join('')}
+      </div>
+      <div style="text-align:center;font-size:0.72rem;color:var(--text-light);margin-top:2px;">Time (hours) &mdash; Magnified view</div>`;
 
     container.innerHTML = `
       ${legend}
-      ${zoomControls}
-      ${ganttContent}
-      <div style="text-align:center;font-size:0.78rem;color:var(--text-light);margin-top:8px;">Time (hours) - Scroll horizontally to pan</div>
+      ${renderRow('Humans', humanBars, '385', true)}
+      ${renderRow('AgentSLR', agentBars, '20', false)}
+      <div class="gantt-axis">
+        ${ticks.map(t => `<span>${t}</span>`).join('')}
+      </div>
+      <div style="text-align:center;font-size:0.78rem;color:var(--text-light);margin-top:4px;">Time (hours)</div>
+      <div style="text-align:center;">
+        <button class="gantt-magnify-toggle" id="gantt-magnify-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="M21 21l-4.35-4.35"/>
+            <path d="M11 8v6M8 11h6"/>
+          </svg>
+          Show Magnified View
+        </button>
+      </div>
+      <div class="gantt-magnified-view" id="gantt-magnified">
+        ${zoomRow}
+      </div>
     `;
 
-    // Add zoom event listeners
-    const zoomInBtn = document.getElementById('gantt-zoom-in');
-    const zoomOutBtn = document.getElementById('gantt-zoom-out');
-    const resetBtn = document.getElementById('gantt-reset');
-
-    if (zoomInBtn) {
-      zoomInBtn.addEventListener('click', () => {
-        if (ganttZoomLevel < 8) {
-          ganttZoomLevel *= 2;
-          renderGantt(containerId);
+    // Toggle magnified view
+    const btn = document.getElementById('gantt-magnify-btn');
+    const magnified = document.getElementById('gantt-magnified');
+    if (btn && magnified) {
+      btn.addEventListener('click', function() {
+        const isVisible = magnified.classList.contains('visible');
+        if (isVisible) {
+          magnified.classList.remove('visible');
+          btn.classList.remove('active');
+          btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="M21 21l-4.35-4.35"/>
+            <path d="M11 8v6M8 11h6"/>
+          </svg> Show Magnified View`;
+        } else {
+          magnified.classList.add('visible');
+          btn.classList.add('active');
+          btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="M21 21l-4.35-4.35"/>
+            <path d="M8 11h6"/>
+          </svg> Hide Magnified View`;
         }
-      });
-    }
-
-    if (zoomOutBtn) {
-      zoomOutBtn.addEventListener('click', () => {
-        if (ganttZoomLevel > 1) {
-          ganttZoomLevel /= 2;
-          renderGantt(containerId);
-        }
-      });
-    }
-
-    if (resetBtn) {
-      resetBtn.addEventListener('click', () => {
-        ganttZoomLevel = 1;
-        renderGantt(containerId);
       });
     }
   }
 
-  /* ---------- SCREENING BAR CHART ---------- */
-  function renderScreeningChart(containerId) {
+  /* ---------- MODEL ABLATION CHART ---------- */
+  function renderModelAblationChart(containerId) {
     const container = document.getElementById(containerId);
     if (!container) return;
+    function topRoundedBarPath(x, y, w, h, r) {
+      const rr = Math.max(0, Math.min(r, w / 2, h));
+      const yb = y + h;
+      return `M${x},${yb} L${x},${y + rr} Q${x},${y} ${x + rr},${y} L${x + w - rr},${y} Q${x + w},${y} ${x + w},${y + rr} L${x + w},${yb} Z`;
+    }
 
-    const pathogens = ['Marburg', 'Ebola', 'Lassa', 'SARS', 'Zika', 'MERS', 'Nipah', 'Overall'];
-
-    // Recall data [two-stage AI, direct full-text, human+AI]
-    const data = {
-      'Marburg': [0.76, 0.82, 0.80],
-      'Ebola':   [0.83, 0.92, 0.83],
-      'Lassa':   [0.89, 0.91, 0.82],
-      'SARS':    [0.87, 0.90, 0.87],
-      'Zika':    [0.72, 0.80, 0.77],
-      'MERS':    [0.88, 0.97, 0.86],
-      'Nipah':   [0.80, 0.95, 0.88],
-      'Overall': [0.81, 0.92, 0.83],
-    };
-
-    const strategies = [
-      { key: 0, label: 'AI Screen (Abstract) \u2192 AI Screen (Full-Text)', color: '#B7D3C6' },
-      { key: 1, label: 'AI Screen (Direct Full-Text)', color: '#6BAED6' },
-      { key: 2, label: 'Human Screen (Abstract) \u2192 AI Screen (Full-Text)', color: '#4A7FAD' },
+    const stages = [
+      'Title & Abstract\nScreening',
+      'Full-text\nScreening',
+      'Parameter\nExtraction',
+      'Model\nExtraction',
+      'Outbreak\nExtraction'
     ];
 
-    const svgW = 700, svgH = 300;
-    const margin = { top: 40, right: 20, bottom: 50, left: 50 };
+    const models = ['GPT-OSS-120B', 'GLM-4.7', 'DeepSeek-V3.2', 'Kimi-K2.5', 'GPT-5.2'];
+
+    // Data from paper
+    const data = {
+      'Title & Abstract\nScreening': {
+        'GPT-OSS-120B': { f1: 0.74, std: 0.03 },
+        'GLM-4.7': { f1: 0.72, std: 0.05 },
+        'DeepSeek-V3.2': { f1: 0.62, std: 0.05 },
+        'Kimi-K2.5': { f1: 0.77, std: 0.05 },
+        'GPT-5.2': { f1: 0.65, std: 0.03 },
+      },
+      'Full-text\nScreening': {
+        'GPT-OSS-120B': { f1: 0.87, std: 0.04 },
+        'GLM-4.7': { f1: 0.81, std: 0.03 },
+        'DeepSeek-V3.2': { f1: 0.74, std: 0.06 },
+        'Kimi-K2.5': { f1: 0.83, std: 0.05 },
+        'GPT-5.2': { f1: 0.82, std: 0.04 },
+      },
+      'Parameter\nExtraction': {
+        'GPT-OSS-120B': { f1: 0.59, std: 0.03, flagging: 0.66, counts: 0.59, extraction: 0.54 },
+        'GLM-4.7': { f1: 0.63, std: 0.04, flagging: 0.72, counts: 0.61, extraction: 0.54 },
+        'DeepSeek-V3.2': { f1: 0.56, std: 0.01, flagging: 0.60, counts: 0.56, extraction: 0.50 },
+        'Kimi-K2.5': { f1: 0.63, std: 0.04, flagging: 0.72, counts: 0.62, extraction: 0.56 },
+        'GPT-5.2': { f1: 0.58, std: 0.04, flagging: 0.66, counts: 0.50, extraction: 0.59 },
+      },
+      'Model\nExtraction': {
+        'GPT-OSS-120B': { f1: 0.75, std: 0.04, flagging: 0.91, counts: 0.68, extraction: 0.67 },
+        'GLM-4.7': { f1: 0.85, std: 0.06, flagging: 0.93, counts: 0.93, extraction: 0.68 },
+        'DeepSeek-V3.2': { f1: 0.81, std: 0.06, flagging: 0.87, counts: 0.92, extraction: 0.65 },
+        'Kimi-K2.5': { f1: 0.81, std: 0.04, flagging: 0.92, counts: 0.81, extraction: 0.68 },
+        'GPT-5.2': { f1: 0.77, std: 0.04, flagging: 0.90, counts: 0.72, extraction: 0.67 },
+      },
+      'Outbreak\nExtraction': {
+        'GPT-OSS-120B': { f1: 0.70, std: 0.14, flagging: 0.62, counts: 0.69, extraction: 0.79 },
+        'GLM-4.7': { f1: 0.72, std: 0.09, flagging: 0.68, counts: 0.72, extraction: 0.77 },
+        'DeepSeek-V3.2': { f1: 0.73, std: 0.06, flagging: 0.65, counts: 0.78, extraction: 0.75 },
+        'Kimi-K2.5': { f1: 0.76, std: 0.08, flagging: 0.64, counts: 0.87, extraction: 0.78 },
+        'GPT-5.2': { f1: 0.77, std: 0.01, flagging: 0.66, counts: 0.80, extraction: 0.84 },
+      },
+    };
+
+    const svgW = 1000, svgH = 400;
+    const margin = { top: 75, right: 30, bottom: 90, left: 55 };
     const plotW = svgW - margin.left - margin.right;
     const plotH = svgH - margin.top - margin.bottom;
 
-    const groupW = plotW / pathogens.length;
-    const barW = groupW * 0.22;
-    const barGap = 2;
+    const stageW = plotW / stages.length;
+    const barW = stageW * 0.14;
+    const barGap = 3;
 
-    let svg = `<svg viewBox="0 0 ${svgW} ${svgH}" class="screening-chart-svg">`;
+    let svg = `<svg viewBox="0 0 ${svgW} ${svgH}" style="width:100%;height:auto;overflow:visible;">`;
 
-    // Legend with better spacing
-    svg += `<g transform="translate(10, 8)">`;
+    // Legend for models (inside the SVG, properly positioned)
+    svg += `<g transform="translate(${margin.left}, 15)">`;
     let legendX = 0;
-    strategies.forEach((s, i) => {
-      svg += `<rect x="${legendX}" y="0" width="12" height="12" rx="2" fill="${s.color}"/>`;
-      svg += `<text x="${legendX + 16}" y="10" font-size="9" fill="#6B6B6B">${s.label}</text>`;
-      // Calculate text width for proper spacing
-      const textWidth = s.label.length * 5.5; // Approximate character width
-      legendX += 16 + textWidth + 15; // icon width + text + gap
+    models.forEach((m, i) => {
+      svg += `<rect x="${legendX}" y="0" width="14" height="14" rx="3" fill="${MODEL_COLORS[m]}"/>`;
+      svg += `<text x="${legendX + 20}" y="11" font-size="11" fill="#444">${m}</text>`;
+      legendX += m.length * 7 + 45;
     });
     svg += `</g>`;
 
-    // Y axis
-    for (let y = 0; y <= 1; y += 0.2) {
+    // Legend for component dots (positioned after models)
+    svg += `<g transform="translate(${margin.left + 680}, 15)">`;
+    const dotLegend = [
+      { label: 'Flagging', color: COLORS.flagging },
+      { label: 'Counts', color: COLORS.counts },
+      { label: 'Extraction', color: COLORS.extraction },
+    ];
+    dotLegend.forEach((d, i) => {
+      const x = i * 90;
+      svg += `<circle cx="${x + 5}" cy="7" r="5" fill="${d.color}"/>`;
+      svg += `<text x="${x + 14}" y="11" font-size="10" fill="#666">${d.label}</text>`;
+    });
+    svg += `</g>`;
+
+    // Y axis (no gridlines)
+    svg += `<line x1="${margin.left}" y1="${margin.top}" x2="${margin.left}" y2="${margin.top + plotH}" stroke="#BDBDBD" stroke-width="1"/>`;
+    for (let y = 0; y <= 1; y += 0.25) {
       const yPos = margin.top + plotH - (y * plotH);
-      svg += `<line x1="${margin.left}" y1="${yPos}" x2="${margin.left + plotW}" y2="${yPos}" stroke="#EDE8E1" stroke-width="1"/>`;
-      svg += `<text x="${margin.left - 8}" y="${yPos + 3}" text-anchor="end" font-size="9" fill="#9A9A9A">${y.toFixed(1)}</text>`;
+      svg += `<text x="${margin.left - 10}" y="${yPos + 4}" text-anchor="end" font-size="10" fill="#999">${y.toFixed(2)}</text>`;
     }
-    svg += `<text x="${margin.left - 35}" y="${margin.top + plotH/2}" text-anchor="middle" font-size="10" fill="#6B6B6B" transform="rotate(-90, ${margin.left - 35}, ${margin.top + plotH/2})">Recall</text>`;
+    svg += `<text x="${margin.left - 42}" y="${margin.top + plotH/2}" text-anchor="middle" font-size="12" fill="#666" transform="rotate(-90, ${margin.left - 42}, ${margin.top + plotH/2})">F&#8321; Score</text>`;
+
+    // X axis line
+    svg += `<line x1="${margin.left}" y1="${margin.top + plotH}" x2="${margin.left + plotW}" y2="${margin.top + plotH}" stroke="#BDBDBD" stroke-width="1"/>`;
 
     // Bars
-    pathogens.forEach((p, pi) => {
-      const groupX = margin.left + pi * groupW + groupW * 0.15;
-      const vals = data[p];
-      vals.forEach((v, si) => {
-        const x = groupX + si * (barW + barGap);
-        const h = v * plotH;
+    stages.forEach((stage, si) => {
+      const stageData = data[stage];
+      const groupX = margin.left + si * stageW + stageW * 0.12;
+      const hasComponents = stage.includes('Extraction');
+
+      // Find best value in group
+      const groupVals = models.map(m => stageData[m].f1);
+      const maxVal = Math.max(...groupVals);
+
+      models.forEach((model, mi) => {
+        const d = stageData[model];
+        const x = groupX + mi * (barW + barGap);
+        const h = d.f1 * plotH;
         const y = margin.top + plotH - h;
-        svg += `<rect x="${x}" y="${y}" width="${barW}" height="${h}" rx="2" fill="${strategies[si].color}"/>`;
-        // Error bar (simulated ~2-5% CI)
-        const errH = (0.03 + Math.random() * 0.04) * plotH;
+        const isBest = d.f1 === maxVal;
+
+        // Bar
+        svg += `<path d="${topRoundedBarPath(x, y, barW, h, 3)}" fill="${MODEL_COLORS[model]}"/>`;
+
+        // Error bar
+        const errH = d.std * plotH;
         const mid = x + barW / 2;
-        svg += `<line x1="${mid}" y1="${y - errH/2}" x2="${mid}" y2="${y + errH/2}" stroke="#2D2D2D" stroke-width="1"/>`;
-        svg += `<line x1="${mid - 3}" y1="${y - errH/2}" x2="${mid + 3}" y2="${y - errH/2}" stroke="#2D2D2D" stroke-width="1"/>`;
-        svg += `<line x1="${mid - 3}" y1="${y + errH/2}" x2="${mid + 3}" y2="${y + errH/2}" stroke="#2D2D2D" stroke-width="1"/>`;
+        svg += `<line x1="${mid}" y1="${y - errH}" x2="${mid}" y2="${y + errH}" stroke="#333" stroke-width="1"/>`;
+        svg += `<line x1="${mid - 3}" y1="${y - errH}" x2="${mid + 3}" y2="${y - errH}" stroke="#333" stroke-width="1"/>`;
+        svg += `<line x1="${mid - 3}" y1="${y + errH}" x2="${mid + 3}" y2="${y + errH}" stroke="#333" stroke-width="1"/>`;
+
+        // Value label for ALL bars
+        const labelWeight = isBest ? 'font-weight="bold"' : '';
+        const labelColor = isBest ? '#333' : '#666';
+        svg += `<text x="${mid}" y="${y - errH - 6}" text-anchor="middle" font-size="9" ${labelWeight} fill="${labelColor}">${d.f1.toFixed(2)}</text>`;
+
+        // Component dots for extraction stages
+        if (hasComponents && d.flagging) {
+          const dotX = x;
+          svg += `<circle cx="${dotX}" cy="${margin.top + plotH - d.flagging * plotH}" r="4" fill="${COLORS.flagging}"/>`;
+          svg += `<circle cx="${dotX}" cy="${margin.top + plotH - d.counts * plotH}" r="4" fill="${COLORS.counts}"/>`;
+          svg += `<circle cx="${dotX}" cy="${margin.top + plotH - d.extraction * plotH}" r="4" fill="${COLORS.extraction}"/>`;
+        }
       });
-      // Label
-      svg += `<text x="${groupX + (3 * (barW + barGap)) / 2}" y="${margin.top + plotH + 18}" text-anchor="middle" font-size="9" fill="#6B6B6B">${p}</text>`;
+
+      // Stage label
+      const labelLines = stage.split('\n');
+      svg += `<text x="${groupX + (models.length * (barW + barGap)) / 2}" y="${margin.top + plotH + 20}" text-anchor="middle" font-size="11" fill="#666">`;
+      labelLines.forEach((line, li) => {
+        svg += `<tspan x="${groupX + (models.length * (barW + barGap)) / 2}" dy="${li === 0 ? 0 : 14}">${line}</tspan>`;
+      });
+      svg += `</text>`;
     });
 
     svg += `</svg>`;
     container.innerHTML = svg;
   }
 
-  /* ---------- EXTRACTION TABLE ---------- */
-  function renderExtractionTable() {
-    const tbody = document.getElementById('extraction-tbody');
-    if (!tbody) return;
+  /* ---------- COST VS PERFORMANCE CHART ---------- */
+  function renderCostPerformanceChart(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
 
     const data = [
-      { type: 'Parameters', pathogen: 'Lassa', vals: [0.438,0.955,0.600, 0.800,0.545,0.649, 0.594,0.655,0.615] },
-      { type: '', pathogen: 'Ebola', vals: [0.510,0.958,0.665, 0.798,0.538,0.643, 0.581,0.604,0.583] },
-      { type: '', pathogen: 'SARS', vals: [0.463,0.954,0.623, 0.909,0.667,0.769, 0.548,0.655,0.573] },
-      { type: '', pathogen: 'Zika', vals: [0.352,0.949,0.514, 0.596,0.418,0.491, 0.519,0.581,0.541] },
-      { type: '', pathogen: 'Average', vals: [0.441,0.954,0.601, 0.776,0.542,0.638, 0.561,0.624,0.578], avg: true },
-      { type: 'Models', pathogen: 'Lassa', vals: [0.909,1.000,0.952, 0.600,1.000,0.750, 0.687,0.699,0.690] },
-      { type: '', pathogen: 'Ebola', vals: [0.876,0.952,0.912, 0.500,1.000,0.667, 0.606,0.680,0.636] },
-      { type: '', pathogen: 'SARS', vals: [0.841,0.841,0.841, 0.486,0.971,0.648, 0.610,0.683,0.638] },
-      { type: '', pathogen: 'Zika', vals: [0.785,0.911,0.843, 0.483,0.977,0.646, 0.683,0.753,0.706] },
-      { type: '', pathogen: 'Average', vals: [0.853,0.926,0.887, 0.517,0.987,0.678, 0.647,0.704,0.668], avg: true },
-      { type: 'Outbreaks', pathogen: 'Lassa', vals: [0.690,0.816,0.705, 0.833,1.000,0.909, 0.864,0.740,0.778] },
-      { type: '', pathogen: 'Zika', vals: [0.576,0.713,0.525, 0.489,0.449,0.468, 0.870,0.780,0.812] },
-      { type: '', pathogen: 'Average', vals: [0.633,0.765,0.615, 0.661,0.724,0.689, 0.867,0.760,0.795], avg: true },
-      { type: '<strong>Average</strong>', pathogen: '', vals: [0.644,0.905,0.718, 0.649,0.757,0.664, 0.720,0.723,0.710], avg: true },
+      { model: 'GPT-OSS-120B', cost: 13.9, f1: 0.70, f1_err: 0.07 },
+      { model: 'DeepSeek-V3.2', cost: 73.6, f1: 0.67, f1_err: 0.11 },
+      { model: 'Kimi-K2.5', cost: 277.2, f1: 0.74, f1_err: 0.07 },
+      { model: 'GLM-4.7', cost: 810.8, f1: 0.73, f1_err: 0.09 },
+      { model: 'GPT-5.2', cost: 1348.2, f1: 0.69, f1_err: 0.09 },
     ];
 
-    tbody.innerHTML = data.map(row => {
-      const cls = row.avg ? ' class="row-avg"' : '';
-      const cells = row.vals.map(v => `<td>${v.toFixed(3)}</td>`).join('');
-      return `<tr${cls}><td>${row.type}</td><td>${row.pathogen}</td>${cells}</tr>`;
-    }).join('');
+    const svgW = 800, svgH = 380;
+    const margin = { top: 70, right: 60, bottom: 60, left: 80 };
+    const plotW = svgW - margin.left - margin.right;
+    const plotH = svgH - margin.top - margin.bottom;
+
+    // Log scale for x-axis
+    const minCost = 10, maxCost = 2000;
+    const logMin = Math.log10(minCost), logMax = Math.log10(maxCost);
+
+    function xPos(cost) {
+      const logCost = Math.log10(cost);
+      return margin.left + ((logCost - logMin) / (logMax - logMin)) * plotW;
+    }
+
+    function yPos(f1) {
+      return margin.top + plotH - ((f1 - 0.55) / 0.35) * plotH;
+    }
+
+    let svg = `<svg viewBox="0 0 ${svgW} ${svgH}" style="width:100%;height:auto;">`;
+
+    // Corner triangles for ideal/less ideal regions
+    // Top-left triangle (ideal - green pastel)
+    svg += `<defs>
+      <linearGradient id="idealGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#C2DCCF;stop-opacity:0.6"/>
+        <stop offset="100%" style="stop-color:#C2DCCF;stop-opacity:0"/>
+      </linearGradient>
+      <linearGradient id="lessIdealGradient" x1="100%" y1="100%" x2="0%" y2="0%">
+        <stop offset="0%" style="stop-color:#E3C4C4;stop-opacity:0.6"/>
+        <stop offset="100%" style="stop-color:#E3C4C4;stop-opacity:0"/>
+      </linearGradient>
+    </defs>`;
+
+    // Ideal region (top-left)
+    svg += `<polygon points="${margin.left},${margin.top} ${margin.left + plotW * 0.4},${margin.top} ${margin.left},${margin.top + plotH * 0.4}" fill="url(#idealGradient)"/>`;
+
+    // Less ideal region (bottom-right)
+    svg += `<polygon points="${margin.left + plotW},${margin.top + plotH} ${margin.left + plotW * 0.6},${margin.top + plotH} ${margin.left + plotW},${margin.top + plotH * 0.6}" fill="url(#lessIdealGradient)"/>`;
+
+    // Labels for regions
+    svg += `<text x="${margin.left + 15}" y="${margin.top + 20}" font-size="9" fill="#6BAE7E" font-style="italic">Ideal</text>`;
+    svg += `<text x="${margin.left + plotW - 50}" y="${margin.top + plotH - 10}" font-size="9" fill="#D17171" font-style="italic">Less Ideal</text>`;
+
+    // Y axis (no gridlines)
+    svg += `<line x1="${margin.left}" y1="${margin.top}" x2="${margin.left}" y2="${margin.top + plotH}" stroke="#bbb" stroke-width="1"/>`;
+    for (let y = 0.6; y <= 0.85; y += 0.05) {
+      const yp = yPos(y);
+      if (yp >= margin.top && yp <= margin.top + plotH) {
+        svg += `<text x="${margin.left - 10}" y="${yp + 4}" text-anchor="end" font-size="10" fill="#999">${y.toFixed(2)}</text>`;
+      }
+    }
+    svg += `<text x="${margin.left - 55}" y="${margin.top + plotH/2}" text-anchor="middle" font-size="12" fill="#666" transform="rotate(-90, ${margin.left - 55}, ${margin.top + plotH/2})">Average Performance (F&#8321; Score)</text>`;
+
+    // X axis (log scale, no gridlines)
+    svg += `<line x1="${margin.left}" y1="${margin.top + plotH}" x2="${margin.left + plotW}" y2="${margin.top + plotH}" stroke="#bbb" stroke-width="1"/>`;
+    const xTicks = [10, 20, 50, 100, 200, 500, 1000];
+    xTicks.forEach(t => {
+      const xp = xPos(t);
+      if (xp >= margin.left && xp <= margin.left + plotW) {
+        svg += `<text x="${xp}" y="${margin.top + plotH + 20}" text-anchor="middle" font-size="10" fill="#999">$${t >= 1000 ? (t/1000) + 'k' : t}</text>`;
+      }
+    });
+    svg += `<text x="${margin.left + plotW/2}" y="${margin.top + plotH + 45}" text-anchor="middle" font-size="12" fill="#666">Total Cost per Pathogen run (log&#8321;&#8320; USD)</text>`;
+
+    // Data points
+    data.forEach(d => {
+      const x = xPos(d.cost);
+      const y = yPos(d.f1);
+      const errTop = yPos(d.f1 + d.f1_err);
+      const errBot = yPos(d.f1 - d.f1_err);
+      const color = MODEL_COLORS[d.model];
+
+      // Error bar
+      svg += `<line x1="${x}" y1="${errTop}" x2="${x}" y2="${errBot}" stroke="${color}" stroke-width="6" stroke-linecap="round"/>`;
+      svg += `<line x1="${x - 6}" y1="${errTop}" x2="${x + 6}" y2="${errTop}" stroke="${color}" stroke-width="3"/>`;
+      svg += `<line x1="${x - 6}" y1="${errBot}" x2="${x + 6}" y2="${errBot}" stroke="${color}" stroke-width="3"/>`;
+
+      // Point
+      svg += `<circle cx="${x}" cy="${y}" r="10" fill="${color}" stroke="white" stroke-width="2"/>`;
+
+      // Model name label (top)
+      svg += `<text x="${x}" y="${margin.top - 35}" text-anchor="middle" font-size="10" fill="#666">${d.model}</text>`;
+      // Cost label
+      svg += `<text x="${x}" y="${margin.top - 22}" text-anchor="middle" font-size="11" font-weight="bold" fill="${color}">$${d.cost < 100 ? d.cost.toFixed(1) : Math.round(d.cost)}</text>`;
+      // Performance annotation with +/- deviation alongside the dot
+      svg += `<text x="${x + 16}" y="${y + 4}" text-anchor="start" font-size="9" fill="#444">${d.f1.toFixed(2)}</text>`;
+      svg += `<text x="${x + 16}" y="${y + 14}" text-anchor="start" font-size="8" fill="#888">&plusmn;${d.f1_err.toFixed(2)}</text>`;
+    });
+
+    svg += `</svg>`;
+    container.innerHTML = svg;
+  }
+
+  /* ---------- SCREENING BAR CHART ---------- */
+  function renderScreeningChart(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    function topRoundedBarPath(x, y, w, h, r) {
+      const rr = Math.max(0, Math.min(r, w / 2, h));
+      const yb = y + h;
+      return `M${x},${yb} L${x},${y + rr} Q${x},${y} ${x + rr},${y} L${x + w - rr},${y} Q${x + w},${y} ${x + w},${y + rr} L${x + w},${yb} Z`;
+    }
+
+    const pathogens = ['Marburg', 'Ebola', 'Lassa', 'SARS', 'Zika', 'MERS', 'Nipah', 'Overall'];
+
+    // Recall data from paper [two-stage AI, direct full-text, human+AI]
+    const data = {
+      'Marburg': { recall: [0.76, 0.82, 0.83] },
+      'Ebola':   { recall: [0.84, 0.93, 0.97] },
+      'Lassa':   { recall: [0.78, 0.91, 0.94] },
+      'SARS':    { recall: [0.85, 0.91, 0.95] },
+      'Zika':    { recall: [0.79, 0.85, 0.91] },
+      'MERS':    { recall: [0.83, 0.95, 0.96] },
+      'Nipah':   { recall: [0.84, 0.88, 0.90] },
+      'Overall': { recall: [0.81, 0.89, 0.92] },
+    };
+
+    const COLOR_TWO_STAGE = '#8AC1E1';
+    const COLOR_DIRECT = '#3F86B5';
+    const COLOR_PERG_FILTERED = '#1F5F8C';
+
+    const strategies = [
+      { key: 0, label: 'AI Screen (Abstract) → AI Screen (Full-text)', color: COLOR_TWO_STAGE },
+      { key: 1, label: 'AI Screen (Direct Full-text)', color: COLOR_DIRECT },
+      { key: 2, label: 'Human Screen (Abstract) → AI Screen (Full-text)', color: COLOR_PERG_FILTERED },
+    ];
+
+    const svgW = 900, svgH = 320;
+    const margin = { top: 50, right: 30, bottom: 60, left: 55 };
+    const plotW = svgW - margin.left - margin.right;
+    const plotH = svgH - margin.top - margin.bottom;
+
+    const groupW = plotW / pathogens.length;
+    const barW = groupW * 0.22;
+    const barGap = 3;
+
+    let svg = `<svg viewBox="0 0 ${svgW} ${svgH}" class="screening-chart-svg" style="width:100%;height:auto;">`;
+
+    // Legend
+    svg += `<g transform="translate(${margin.left}, 12)">`;
+    let lx = 0;
+    strategies.forEach((s, i) => {
+      svg += `<rect x="${lx}" y="0" width="14" height="12" rx="2" fill="${s.color}"/>`;
+      svg += `<text x="${lx + 20}" y="10" font-size="10" fill="#666">${s.label}</text>`;
+      lx += s.label.length * 5.5 + 40;
+    });
+    svg += `</g>`;
+
+    // Y axis (no gridlines)
+    svg += `<line x1="${margin.left}" y1="${margin.top}" x2="${margin.left}" y2="${margin.top + plotH}" stroke="#BDBDBD" stroke-width="1"/>`;
+    for (let y = 0; y <= 1; y += 0.25) {
+      const yPos = margin.top + plotH - (y * plotH);
+      svg += `<text x="${margin.left - 10}" y="${yPos + 4}" text-anchor="end" font-size="10" fill="#999">${y.toFixed(2)}</text>`;
+    }
+    svg += `<text x="${margin.left - 40}" y="${margin.top + plotH/2}" text-anchor="middle" font-size="11" fill="#666" transform="rotate(-90, ${margin.left - 40}, ${margin.top + plotH/2})">Recall</text>`;
+
+    // X axis line
+    svg += `<line x1="${margin.left}" y1="${margin.top + plotH}" x2="${margin.left + plotW}" y2="${margin.top + plotH}" stroke="#BDBDBD" stroke-width="1"/>`;
+
+    // Bars
+    pathogens.forEach((p, pi) => {
+      const groupX = margin.left + pi * groupW + groupW * 0.12;
+      const vals = data[p].recall;
+
+      // Find best value
+      const maxVal = Math.max(...vals);
+
+      vals.forEach((v, si) => {
+        const x = groupX + si * (barW + barGap);
+        const h = v * plotH;
+        const y = margin.top + plotH - h;
+        const isBest = v === maxVal;
+
+        svg += `<path d="${topRoundedBarPath(x, y, barW, h, 2)}" fill="${strategies[si].color}"/>`;
+
+        // Error bar (simulated ~3% CI)
+        const errH = 0.03 * plotH;
+        const mid = x + barW / 2;
+        svg += `<line x1="${mid}" y1="${y - errH}" x2="${mid}" y2="${y + errH}" stroke="#333" stroke-width="1"/>`;
+        svg += `<line x1="${mid - 3}" y1="${y - errH}" x2="${mid + 3}" y2="${y - errH}" stroke="#333" stroke-width="1"/>`;
+        svg += `<line x1="${mid - 3}" y1="${y + errH}" x2="${mid + 3}" y2="${y + errH}" stroke="#333" stroke-width="1"/>`;
+
+        // Value label
+        const labelStyle = isBest ? 'font-weight="bold" fill="#333"' : 'fill="#666"';
+        svg += `<text x="${mid}" y="${y - errH - 5}" text-anchor="middle" font-size="9" ${labelStyle}>${v.toFixed(2)}</text>`;
+      });
+
+      // Pathogen label
+      svg += `<text x="${groupX + (3 * (barW + barGap)) / 2}" y="${margin.top + plotH + 20}" text-anchor="middle" font-size="10" fill="#666">${p}</text>`;
+    });
+
+    svg += `</svg>`;
+    container.innerHTML = svg;
   }
 
   /* ---------- EXPERT CHARTS ---------- */
   function renderExpertCharts() {
-    renderHorizontalBars('flagging-chart', [
-      { label: 'Parameters', value: 0.45, color: '#EFCFB8' },
-      { label: 'Models', value: 0.35, color: '#E8B990' },
-      { label: 'Outbreaks', value: 0.62, color: '#E0A56A' },
-    ]);
-
-    renderHorizontalBars('accuracy-chart', [
-      { label: 'Parameters', value: 0.25, color: '#EFCFB8' },
-      { label: 'Models', value: 0.72, color: '#E8B990' },
-      { label: 'Outbreaks', value: 0.78, color: '#E0A56A' },
-    ]);
-
-    renderCompetenceHistogram('competence-chart');
-  }
-
-  function renderHorizontalBars(containerId, items) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-
-    // Determine appropriate scale based on data range
-    const minVal = Math.min(...items.map(i => i.value));
-    const maxVal = Math.max(...items.map(i => i.value));
-    
-    // Use dynamic scale: start from 0 if max < 0.5, otherwise use a scale that fits the data better
-    let scaleMin = 0;
-    let scaleMax = 1;
-    
-    // If all values are between 0.2 and 0.85, use a tighter scale
-    if (minVal >= 0.2 && maxVal <= 0.85) {
-      scaleMin = 0;
-      scaleMax = 1;
-    }
-    
-    const scaleRange = scaleMax - scaleMin;
-    
-    container.innerHTML = items.map(item => {
-      const percentage = ((item.value - scaleMin) / scaleRange) * 100;
-      return `
-      <div class="hbar-row">
-        <div class="hbar-label">${item.label}</div>
-        <div class="hbar-track">
-          <div class="hbar-fill" style="width:${percentage}%;background:${item.color};"></div>
-          <div class="hbar-value">${item.value.toFixed(2)}</div>
-        </div>
-      </div>`;
-    }).join('') + `
-      <div style="display:flex;justify-content:space-between;margin-left:80px;font-size:0.7rem;color:var(--text-light);margin-top:4px;">
-        <span>${scaleMin}</span><span>${(scaleMin + scaleRange * 0.25).toFixed(2)}</span><span>${(scaleMin + scaleRange * 0.5).toFixed(2)}</span><span>${(scaleMin + scaleRange * 0.75).toFixed(2)}</span><span>${scaleMax}</span>
-      </div>`;
-  }
-
-  function renderCompetenceHistogram(containerId) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-
-    // Competence distribution data (approximate from figure)
-    const categories = ['Parameters', 'Models', 'Outbreaks'];
-    const colors = ['#EFCFB8', '#E8B990', '#E0A56A'];
-    // Distributions across 1-7 scale
-    const distributions = {
-      'Parameters': [0.10, 0.25, 0.30, 0.20, 0.10, 0.03, 0.02],
-      'Models':     [0.05, 0.10, 0.15, 0.25, 0.20, 0.15, 0.10],
-      'Outbreaks':  [0.03, 0.08, 0.12, 0.22, 0.25, 0.18, 0.12],
+    // Data from paper
+    const expertData = {
+      parameters: { flagging: 0.66, accuracy: 0.77, competence: [2,3,3,4,4,4,4,4,5,5,5,5,5,5,5,5,6,6,6,6], mean: 4.2 },
+      models: { flagging: 0.40, accuracy: 0.83, competence: [1,1,1,1,1,2,2,2,3,3,4,4,5,5,5,6,6,6,7,7], mean: 2.8 },
+      outbreaks: { flagging: 0.61, accuracy: 0.80, competence: [1,2,2,3,3,4,4,4,4,5,5,5,5,5,5,6,6,6,6,6], mean: 3.9 },
     };
-    const means = { 'Parameters': 3.1, 'Models': 4.3, 'Outbreaks': 4.6 };
 
-    let html = '';
-    categories.forEach((cat, ci) => {
-      const dist = distributions[cat];
-      const maxVal = Math.max(...dist);
-      html += `<div style="margin-bottom:10px;">
-        <div style="font-size:0.78rem;font-weight:500;margin-bottom:6px;color:var(--text-muted);">${cat}</div>
-        <div class="competence-bar-group" style="height:80px;">
-          ${dist.map((d, i) => {
-            const h = (d / maxVal) * 70;
-            return `<div class="competence-bar" style="height:${h}px;background:${colors[ci]};position:relative;">
-              <div class="competence-bar-label">${i + 1}</div>
-            </div>`;
-          }).join('')}
+    renderFlaggingChart('flagging-chart', expertData);
+    renderAccuracyChart('accuracy-chart', expertData);
+    renderCompetenceHistogram('competence-chart', expertData);
+  }
+
+  function renderFlaggingChart(containerId, expertData) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    const items = [
+      { label: 'Parameters', value: expertData.parameters.flagging, color: COLORS.parameters },
+      { label: 'Models', value: expertData.models.flagging, color: COLORS.models },
+      { label: 'Outbreaks', value: expertData.outbreaks.flagging, color: COLORS.outbreaks },
+    ];
+
+    container.innerHTML = `
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        ${items.map(item => `
+          <div class="hbar-row">
+            <div class="hbar-label">${item.label}</div>
+            <div class="hbar-track">
+              <div class="hbar-fill" style="width:${item.value * 100}%;background:${item.color};"></div>
+              <div class="hbar-value">${item.value.toFixed(2)}</div>
+            </div>
+          </div>
+        `).join('')}
+        <div style="display:flex;justify-content:space-between;margin-left:80px;font-size:0.7rem;color:var(--text-light);margin-top:4px;">
+          <span>0</span><span>0.5</span><span>1</span>
         </div>
-        <div style="font-size:0.7rem;color:var(--text-light);margin-top:14px;">Mean: ${means[cat].toFixed(1)} / 7.0</div>
+      </div>`;
+  }
+
+  function renderAccuracyChart(containerId, expertData) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    const items = [
+      { label: 'Parameters', value: expertData.parameters.accuracy, color: COLORS.parameters },
+      { label: 'Models', value: expertData.models.accuracy, color: COLORS.models },
+      { label: 'Outbreaks', value: expertData.outbreaks.accuracy, color: COLORS.outbreaks },
+    ];
+
+    container.innerHTML = `
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        ${items.map(item => `
+          <div class="hbar-row">
+            <div class="hbar-label">${item.label}</div>
+            <div class="hbar-track">
+              <div class="hbar-fill" style="width:${item.value * 100}%;background:${item.color};"></div>
+              <div class="hbar-value">${item.value.toFixed(2)}</div>
+            </div>
+          </div>
+        `).join('')}
+        <div style="display:flex;justify-content:space-between;margin-left:80px;font-size:0.7rem;color:var(--text-light);margin-top:4px;">
+          <span>0</span><span>0.5</span><span>1</span>
+        </div>
+      </div>`;
+  }
+
+  function renderCompetenceHistogram(containerId, expertData) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    const categories = [
+      { name: 'Parameters', data: expertData.parameters, color: COLORS.parameters },
+      { name: 'Models', data: expertData.models, color: COLORS.models },
+      { name: 'Outbreaks', data: expertData.outbreaks, color: COLORS.outbreaks },
+    ];
+
+    function getDistribution(competence) {
+      const dist = [0, 0, 0, 0, 0, 0, 0];
+      competence.forEach(c => { dist[c - 1]++; });
+      return dist.map(d => d / competence.length);
+    }
+
+    let html = '<div style="display:flex;flex-direction:column;gap:16px;">';
+    categories.forEach(cat => {
+      const dist = getDistribution(cat.data.competence);
+      const maxVal = Math.max(...dist);
+
+      html += `<div>
+        <div class="competence-category">
+          <div class="competence-header">
+            <div class="competence-category-name">${cat.name}</div>
+            <div class="competence-mean-badge">Mean ${cat.data.mean.toFixed(1)} / 7.0</div>
+          </div>
+          <div class="competence-bar-group">
+          ${dist.map((d, i) => {
+            const h = maxVal > 0 ? (d / maxVal) * 55 : 0;
+            return `<div class="competence-bar" style="height:${h}px;background:${cat.color};"></div>`;
+          }).join('')}
+            <div class="competence-mean-line" style="left:${((cat.data.mean - 1) / 6) * 100}%;"></div>
+          </div>
+        </div>
       </div>`;
     });
 
-    html += `<div style="display:flex;justify-content:space-between;font-size:0.7rem;color:var(--text-light);margin-top:6px;padding:0 2px;"><span>Incompetent</span><span>Autonomous</span></div>`;
+    html += `<div class="competence-axis">${[1,2,3,4,5,6,7].map(v => `<span>${v}</span>`).join('')}</div>`;
+    html += `<div class="competence-scale-labels"><span>Incompetent</span><span>Autonomous</span></div>`;
+    html += '</div>';
 
     container.innerHTML = html;
   }
@@ -323,10 +634,18 @@ const Charts = (() => {
   /* ---------- PUBLIC API ---------- */
   function renderAll() {
     renderGantt('gantt-chart');
+    renderModelAblationChart('model-ablation-chart');
+    renderCostPerformanceChart('cost-performance-chart');
     renderScreeningChart('screening-chart');
-    renderExtractionTable();
     renderExpertCharts();
   }
 
-  return { renderAll, renderGantt, renderScreeningChart, renderExtractionTable, renderExpertCharts };
+  return {
+    renderAll,
+    renderGantt,
+    renderModelAblationChart,
+    renderCostPerformanceChart,
+    renderScreeningChart,
+    renderExpertCharts
+  };
 })();

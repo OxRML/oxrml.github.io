@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AgentSLR: Automating Systematic Literature Reviews with Agentic AI</title>
+  <link rel="icon" type="image/jpeg" href="../img/assets/rml_logo_dark.jpg">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -13,25 +14,37 @@
 <!-- ============ LOGOS (collapses on scroll) ============ -->
 <div class="logo-bar" id="logo-bar">
   <div class="logo-bar-inner">
-    <a href="https://oxrml.com/" target="_blank" rel="noopener noreferrer">
-      <img src="logos/oxrml.jpg" alt="OxRML" title="Reasoning with Machines Lab">
-    </a>
-    <a href="https://www.imperial.ac.uk/mrc-global-infectious-disease-analysis/" target="_blank" rel="noopener noreferrer">
-      <img src="logos/mrcgida.jpg" alt="MRC GIDA" title="MRC Centre for Global Infectious Disease Analysis">
-    </a>
     <a href="https://www.ox.ac.uk/" target="_blank" rel="noopener noreferrer">
       <img src="logos/oxofrd.png" alt="University of Oxford" title="University of Oxford">
     </a>
     <a href="https://www.imperial.ac.uk/" target="_blank" rel="noopener noreferrer">
       <img src="logos/icl.jpeg" alt="Imperial College London" title="Imperial College London">
     </a>
+        <a href="https://oxrml.com/" target="_blank" rel="noopener noreferrer">
+      <img src="../img/assets/rml_logo_dark.jpg" alt="OxRML" title="Reasoning with Machines Lab">
+    </a>
+    <a href="https://www.imperial.ac.uk/mrc-global-infectious-disease-analysis/" target="_blank" rel="noopener noreferrer">
+      <img src="logos/mrcgida.jpg" alt="MRC GIDA" title="MRC Centre for Global Infectious Disease Analysis">
+    </a>
   </div>
+</div>
+
+<div class="theme-control">
+  <button class="theme-toggle" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="5"/>
+      <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+    </svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+  </button>
 </div>
 
 <!-- ============ HEADER ============ -->
 <header class="site-header">
   <div class="container">
-    <a class="back-btn" href="https://oxrml.com" rel="noopener noreferrer">← Reasoning with Machines Lab</a>
+    <a class="back-btn" href="https://oxrml.com" rel="noopener noreferrer">&larr; Reasoning with Machines Lab</a>
 
     <h1 class="paper-title">AgentSLR: Automating Systematic Literature Reviews in Epidemiology with Agentic AI</h1>
 
@@ -39,24 +52,23 @@
       <a class="header-badge" href="https://openreview.net/pdf?id=cAIjWwoZNf" target="_blank">
         <img src="logos/arxiv.svg" alt="">Paper (PDF)
       </a>
-      <a class="header-badge" href="https://github.com/OxRML/AI4Epireview" target="_blank">
+      <a class="header-badge" href="https://github.com/OxRML/AgentSLR" target="_blank">
         <img src="logos/github.svg" alt="">AgentSLR Toolkit
       </a>
     </div>
 
     <div class="authors-block">
-      Shreyansh Padarha<sup>1</sup>, Ryan Othniel Kearns<sup>1</sup>, Tristan Naidoo<sup>2</sup>,
-      Lingyi Yang<sup>1</sup>, &Lstrok;ukasz Borchmann<sup>3</sup>, Piotr B&lstrok;aszczyk<sup>4</sup>,
-      Christian Morgenstern<sup>2</sup>, Ruth McCabe<sup>2</sup>, Sangeeta Bhatia<sup>2</sup>,
-      Philip H. Torr<sup>1</sup>, Jakob Foerster<sup>1</sup>, Scott A. Hale<sup>1</sup>,
-      Thomas Rawson<sup>2</sup>, Anne Cori<sup>2</sup>, Elizaveta Semenova<sup>2</sup>, Adam Mahdi<sup>1</sup>
+      Shreyansh Padarha<sup>1</sup> Ryan Othniel Kearns<sup>1</sup> Tristan Naidoo<sup>2</sup> Lingyi Yang<sup>3</sup> &Lstrok;ukasz Borchmann<sup>4</sup>
+      Piotr B&lstrok;aszczyk<sup>5</sup> Christian Morgenstern<sup>2</sup><br> Ruth McCabe<sup>2</sup> Sangeeta Bhatia<sup>2</sup> Philip H. Torr<sup>1</sup>
+      Jakob Foerster<sup>1</sup> Scott A. Hale<sup>1</sup> Thomas Rawson<sup>2</sup> Anne Cori<sup>2</sup> Elizaveta Semenova<sup>2</sup> Adam Mahdi<sup>1</sup>
     </div>
 
     <div class="affils-block">
       <sup>1</sup> University of Oxford &nbsp;&middot;&nbsp;
       <sup>2</sup> Imperial College London &nbsp;&middot;&nbsp;
-      <sup>3</sup> Snowflake AI Research &nbsp;&middot;&nbsp;
-      <sup>4</sup> Independent
+      <sup>3</sup> University of Nottingham &nbsp;&middot;&nbsp;
+      <sup>4</sup> Snowflake AI Research &nbsp;&middot;&nbsp;
+      <sup>5</sup> Independent
     </div>
   </div>
 </header>
@@ -82,7 +94,7 @@
       <p>
         Applied to epidemiological reviews of <strong>nine WHO-designated priority pathogens</strong> and validated against expert-curated ground truth,
         AgentSLR achieves screening decisions and data extractions consistent with human annotators
-        while completing this process <strong>34.1&times; faster</strong>.
+        while completing this process <strong>58&times; faster</strong> (reducing review time from ~7 weeks to 20 hours).
       </p>
       <p>
         The pipeline is <strong>open-source and open-weight</strong>, enabling reproducible and scalable evidence synthesis for outbreak preparedness and response.
@@ -90,8 +102,6 @@
     </div>
   </div>
 </section>
-
-
 
 <!-- ============ INTERACTIVE PIPELINE ============ -->
 <section class="pipeline-section">
@@ -219,7 +229,6 @@
                 <li>In-vitro studies without human/animal data</li>
                 <li>Case studies with &lt;10 cases</li>
               </ul>
-              <p><strong>Performance:</strong> Precision: 0.699, Recall: 0.841, 0.51s per article</p>
               <button class="download-btn" id="dl-stage2" style="display:none;">Download Screening Results</button>
             </div>
           </div>
@@ -286,9 +295,8 @@
               <h4>PDF-to-Markdown Conversion</h4>
             </div>
             <div class="back-content">
-              <p><strong>OCR Pipeline:</strong> Page-by-page rendering to high-resolution images, Mistral OCR 3 for text extraction, preserves document hierarchy.</p>
+              <p><strong>OCR Pipeline:</strong> Page-by-page rendering to high-resolution images, Mistral OCR for text extraction, preserves document hierarchy.</p>
               <p><strong>Output Features:</strong> LaTeX equations preserved, HTML tables maintained, Markdown formatting.</p>
-              <p><strong>Performance:</strong> ~1 second per document (parallelized), 0.05s per page average.</p>
             </div>
           </div>
         </div>
@@ -335,11 +343,10 @@
               <p><strong>Additional Requirements:</strong> Must contain extractable models or parameters, quantitative estimates with values/ranges, excludes literature reviews and meta-analyses.</p>
               <p><strong>Screening Strategies:</strong></p>
               <ul>
-                <li>Two-stage AI (abstract &rarr; full-text)</li>
-                <li>Human abstract &rarr; AI full-text (best F<sub>1</sub>: 0.867)</li>
-                <li>Direct AI full-text (highest recall: 0.892)</li>
+                <li>Two-stage AI (abstract &rarr; full-text): Recall 0.81</li>
+                <li>Human abstract &rarr; AI full-text: Recall 0.92</li>
+                <li>Direct AI full-text: Recall 0.89</li>
               </ul>
-              <p><strong>Performance:</strong> 132&times; faster than human screening, 1.82s per article vs. 4 minutes.</p>
               <button class="download-btn" id="dl-stage4" style="display:none;">Download Screening Results</button>
             </div>
           </div>
@@ -387,8 +394,7 @@
                 <li><em>Models:</em> Model structure, assumptions, interventions simulated</li>
                 <li><em>Outbreaks:</em> Location, timeline, case counts, demographics</li>
               </ul>
-              <p><strong>Process:</strong> Presence flagging (recall: 0.954), structured tool calls with schema validation, population context and uncertainty capture.</p>
-              <p><strong>Expert Validation:</strong> 79.8% average accuracy, 4.0/7.0 competence rating.</p>
+              <p><strong>Process:</strong> Presence flagging, structured tool calls with schema validation, population context and uncertainty capture.</p>
               <button class="download-btn" id="dl-stage5" style="display:none;">Download Extractions</button>
             </div>
           </div>
@@ -438,138 +444,259 @@
 <section class="results-section">
   <div class="container">
     <h2>Results</h2>
+    <p class="results-subtitle">Click on any tile to explore detailed findings</p>
+
+    <!-- Results Tiles Grid -->
+    <div class="results-tiles-grid">
+
+      <!-- Time Savings Tile -->
+      <div class="result-tile" data-target="time-savings-pane">
+        <div class="tile-preview">
+          <div class="tile-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="24" cy="24" r="18"/>
+              <path d="M24 12v12l8 8"/>
+            </svg>
+          </div>
+        </div>
+        <div class="tile-content">
+          <h3>Processing Time</h3>
+          <p class="tile-claim">Calendar-time savings vs. human review</p>
+        </div>
+      </div>
+
+      <!-- Model Performance Tile -->
+      <div class="result-tile" data-target="model-performance-pane">
+        <div class="tile-preview">
+          <div class="tile-bars">
+            <div class="mini-bar" style="height:74%;background:#2B2E5F;"></div>
+            <div class="mini-bar" style="height:85%;background:#4B4F86;"></div>
+            <div class="mini-bar" style="height:81%;background:#6C74AD;"></div>
+            <div class="mini-bar" style="height:81%;background:#9AA4CF;"></div>
+            <div class="mini-bar" style="height:77%;background:#BDBDBD;"></div>
+          </div>
+        </div>
+        <div class="tile-content">
+          <h3>Model Performance</h3>
+          <p class="tile-claim">F<sub>1</sub> scores across pipeline stages</p>
+        </div>
+      </div>
+
+      <!-- Cost vs Performance Tile -->
+      <div class="result-tile" data-target="cost-performance-pane">
+        <div class="tile-preview">
+          <div class="tile-icon scatter">
+            <svg viewBox="0 0 48 48" fill="none">
+              <circle cx="10" cy="20" r="4" fill="#2B2E5F"/>
+              <circle cx="22" cy="14" r="4" fill="#6C74AD"/>
+              <circle cx="34" cy="12" r="4" fill="#9AA4CF"/>
+              <circle cx="42" cy="18" r="4" fill="#BDBDBD"/>
+            </svg>
+          </div>
+        </div>
+        <div class="tile-content">
+          <h3>Cost vs. Performance</h3>
+          <p class="tile-claim">Cost savings with open-weight models</p>
+        </div>
+      </div>
+
+      <!-- Article Screening Tile -->
+      <div class="result-tile" data-target="screening-pane">
+        <div class="tile-preview">
+          <div class="tile-bars">
+            <div class="mini-bar" style="height:81%;background:#8AC1E1;"></div>
+            <div class="mini-bar" style="height:89%;background:#3F86B5;"></div>
+            <div class="mini-bar" style="height:92%;background:#1F5F8C;"></div>
+          </div>
+        </div>
+        <div class="tile-content">
+          <h3>Article Screening</h3>
+          <p class="tile-claim">Best recall with human-conditioned strategy</p>
+        </div>
+      </div>
+
+      <!-- Human Expert Evaluation Tile -->
+      <div class="result-tile" data-target="expert-pane">
+        <div class="tile-preview">
+          <div class="tile-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="24" cy="14" r="8"/>
+              <path d="M10 42c0-8 6-14 14-14s14 6 14 14"/>
+            </svg>
+          </div>
+        </div>
+        <div class="tile-content">
+          <h3>Expert Evaluation</h3>
+          <p class="tile-claim">Mean competence rating by epidemiologists</p>
+        </div>
+      </div>
+
+    </div>
 
     <!-- Time Savings -->
-    <div class="result-block">
-      <h3>Processing Time: AgentSLR vs. Human Review</h3>
-      <p class="result-interpretation">
-        AgentSLR completes the end-to-end workflow in <strong>33 hours</strong> versus <strong>385 hours</strong> for manual review
-        &mdash; an <strong>11.4&times; speedup</strong>. Running continuously, this corresponds to 1.4 calendar days versus 48.1 human workdays
-        (assuming 8-hour days), yielding <strong>34.1&times; calendar-time savings</strong>.
-      </p>
-      <div class="chart-container" id="gantt-chart"></div>
-      <div class="speedup-cards">
-        <div class="speedup-card">
-          <span class="speedup-value">34&times;</span>
-          <span class="speedup-label">Abstract Screening</span>
-        </div>
-        <div class="speedup-card">
-          <span class="speedup-value">132&times;</span>
-          <span class="speedup-label">Full-text Screening</span>
-        </div>
-        <div class="speedup-card">
-          <span class="speedup-value">6.7&times;</span>
-          <span class="speedup-label">Data Extraction</span>
-        </div>
-        <div class="speedup-card">
-          <span class="speedup-value">34.1&times;</span>
-          <span class="speedup-label">Overall</span>
+    <div class="collapsible-pane" id="time-savings-pane" data-expanded="false">
+      <button class="collapsible-header" aria-expanded="false">
+        <span class="collapsible-title">Processing Time: AgentSLR vs. Human Review</span>
+        <span class="collapsible-icon"></span>
+      </button>
+      <div class="collapsible-content">
+        <div class="result-block">
+          <p class="result-interpretation">
+            AgentSLR (with <strong>GPT-OSS-120B</strong>) completes the end-to-end workflow in <strong>20 hours</strong> versus <strong>385 hours</strong> for manual review
+            &mdash; a <strong>19.3&times; speedup</strong>. Running continuously, this corresponds to less than 1 calendar day versus 48.1 human workdays
+            (assuming 8-hour days), yielding <strong>58&times; calendar-time savings</strong>.
+          </p>
+          <div class="chart-container" id="gantt-chart"></div>
+          <div class="speedup-cards">
+            <div class="speedup-card">
+              <span class="speedup-value">36&times;</span>
+              <span class="speedup-label">Abstract Screening</span>
+            </div>
+            <div class="speedup-card">
+              <span class="speedup-value">118&times;</span>
+              <span class="speedup-label">Full-text Screening</span>
+            </div>
+            <div class="speedup-card">
+              <span class="speedup-value">14.7&times;</span>
+              <span class="speedup-label">Data Extraction</span>
+            </div>
+            <div class="speedup-card highlight">
+              <span class="speedup-value">58&times;</span>
+              <span class="speedup-label">Calendar-Time Savings</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Screening -->
-    <div class="result-block">
-      <h3>Article Screening Recall Across Pathogens</h3>
-      <p class="result-interpretation">
-        Two ablation screening strategies &mdash; human-conditioned and direct full-text &mdash; offer better fetch rates than
-        traditional AI-based two-stage screening. The best strategy is <strong>Human abstract gating + AI full-text</strong>
-        (F<sub>1</sub>: 0.826), balancing high recall (crucial for systematic reviews) with precision. Error bars denote bootstrapped
-        95% confidence intervals (10,000 resamples).
-      </p>
-      <div class="chart-container" id="screening-chart"></div>
+    <!-- Model Performance -->
+    <div class="collapsible-pane" id="model-performance-pane" data-expanded="false">
+      <button class="collapsible-header" aria-expanded="false">
+        <span class="collapsible-title">Model Performance Across Pipeline Stages</span>
+        <span class="collapsible-icon"></span>
+      </button>
+      <div class="collapsible-content">
+        <div class="result-block">
+          <p class="result-interpretation">
+            Performance comparison of five frontier reasoning models across all AgentSLR pipeline stages.
+            Macro F<sub>1</sub> is reported for each model, with averages computed over evaluated pathogens.
+            For extraction tasks, colored dots show F<sub>1</sub> scores for <span class="dot-legend flagging">Flagging</span>,
+            <span class="dot-legend counts">Counts</span>, and <span class="dot-legend extraction">Extraction</span> sub-tasks.
+            No single model dominates across all stages: <strong>Kimi-K2.5</strong> and <strong>GPT-OSS-120B</strong> lead screening,
+            while extraction leaders vary by data type.
+          </p>
+          <div class="chart-container" id="model-ablation-chart"></div>
+        </div>
+      </div>
     </div>
 
-    <!-- Data Extraction -->
-    <div class="result-block">
-      <h3>Data Extraction Performance</h3>
-      <p class="result-interpretation">
-        Evaluation metrics across three validation levels: <strong>Flagging</strong> (identifying presence of data components),
-        <strong>Count</strong> (correct number of components per article), and <strong>Extraction</strong> (accuracy of specific values).
-        Models achieve the highest flagging recall (0.926) while parameters show strong extraction precision (0.561).
-      </p>
-      <div class="chart-container" id="extraction-table-container">
-        <table class="data-table" id="extraction-table">
-          <thead>
-            <tr>
-              <th rowspan="2">Data Type</th>
-              <th rowspan="2">Pathogen</th>
-              <th colspan="3">Flagging</th>
-              <th colspan="3">Count</th>
-              <th colspan="3">Extraction</th>
-            </tr>
-            <tr>
-              <th>P</th><th>R</th><th>F<sub>1</sub></th>
-              <th>P</th><th>R</th><th>F<sub>1</sub></th>
-              <th>P</th><th>R</th><th>F<sub>1</sub></th>
-            </tr>
-          </thead>
-          <tbody id="extraction-tbody"></tbody>
-        </table>
+    <!-- Cost vs Performance -->
+    <div class="collapsible-pane" id="cost-performance-pane" data-expanded="false">
+      <button class="collapsible-header" aria-expanded="false">
+        <span class="collapsible-title">Cost vs. Performance Trade-off</span>
+        <span class="collapsible-icon"></span>
+      </button>
+      <div class="collapsible-content">
+        <div class="result-block">
+          <p class="result-interpretation">
+            Comparing total cost against average performance for a complete AgentSLR pathogen run.
+            Higher cost does not consistently correspond to higher performance.
+            <strong>GPT-OSS-120B</strong> achieves competitive performance (F<sub>1</sub> = 0.70) at the lowest cost ($13.9),
+            over 96&times; cheaper than GPT-5.2 ($1,348), which yields a lower average F<sub>1</sub> of 0.69.
+            <strong>Kimi-K2.5</strong> achieves the best overall performance (F<sub>1</sub> = 0.74) at a mid-range cost ($277).
+          </p>
+          <div class="chart-container" id="cost-performance-chart"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article Screening -->
+    <div class="collapsible-pane" id="screening-pane" data-expanded="false">
+      <button class="collapsible-header" aria-expanded="false">
+        <span class="collapsible-title">Article Screening Strategies</span>
+        <span class="collapsible-icon"></span>
+      </button>
+      <div class="collapsible-content">
+        <div class="result-block">
+          <p class="result-interpretation">
+            Fetch rate (recall) of article screening strategies across pathogens using <strong>GPT-OSS-120B</strong>.
+            Two ablation strategies &mdash; <strong>human-conditioned</strong> and <strong>direct full-text</strong> &mdash;
+            offer better fetch rates than traditional AI-based two-stage screening.
+            Bootstrapped 95% confidence intervals (10,000 resamples) show overlapping performance between ablations across most pathogens.
+          </p>
+          <div class="chart-container" id="screening-chart"></div>
+        </div>
       </div>
     </div>
 
     <!-- Expert Validation -->
-    <div class="result-block">
-      <h3>Human Expert Evaluation</h3>
-      <p class="result-interpretation">
-        Seven epidemiologists evaluated AgentSLR extraction quality across stages.
-        Expert-rated flagging precision, field-level extraction accuracy, and perceived system competence
-        are reported for parameter, model, and outbreak extractions. Mean competence rating: <strong>4.0/7.0</strong>,
-        assessed as <strong>"useful with moderate supervision"</strong>.
-      </p>
-      <div class="expert-grid">
-        <div class="expert-card">
-          <h4>Expert-Rated Flagging Precision</h4>
-          <div class="chart-container" id="flagging-chart"></div>
-        </div>
-        <div class="expert-card">
-          <h4>Expert-Rated Extraction Accuracy</h4>
-          <div class="chart-container" id="accuracy-chart"></div>
-        </div>
-        <div class="expert-card">
-          <h4>Expert-Rated Competence</h4>
-          <div class="chart-container" id="competence-chart"></div>
+    <div class="collapsible-pane" id="expert-pane" data-expanded="false">
+      <button class="collapsible-header" aria-expanded="false">
+        <span class="collapsible-title">Human Expert Evaluation</span>
+        <span class="collapsible-icon"></span>
+      </button>
+      <div class="collapsible-content">
+        <div class="result-block">
+          <p class="result-interpretation">
+            Six epidemiologists evaluated AgentSLR (<strong>GPT-OSS-120B</strong>) extraction quality.
+            Expert-rated flagging precision, field-level extraction accuracy, and perceived system competence
+            are reported for parameter, model, and outbreak extractions.
+            Mean competence ratings: <strong>4.2</strong> (parameters), <strong>2.8</strong> (models), <strong>3.9</strong> (outbreaks),
+            where 4 denotes a system usable under moderate supervision.
+          </p>
+          <div class="expert-grid">
+            <div class="expert-card expert-card-flagging">
+              <h4>Expert-Rated Flagging Precision</h4>
+              <div class="chart-container" id="flagging-chart"></div>
+            </div>
+            <div class="expert-card expert-card-accuracy">
+              <h4>Expert-Rated Extraction Accuracy</h4>
+              <div class="chart-container" id="accuracy-chart"></div>
+            </div>
+            <div class="expert-card expert-card-competence">
+              <h4>Expert-Rated Competence</h4>
+              <div class="chart-container" id="competence-chart"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
-<!-- ============ IMPLICATIONS ============ -->
+<!-- ============ KEY FINDINGS / IMPLICATIONS / FUTURE WORK ============ -->
 <section class="implications-section">
   <div class="container">
-    <h2>Implications</h2>
     <div class="implications-grid">
-      <div class="implication-pane impact">
-        <h3>Impact &amp; Applications</h3>
+      <div class="implication-pane findings">
+        <h3>Key Findings</h3>
         <ul>
-          <li><strong>Rapid Evidence Synthesis:</strong> Enable "living reviews" that update continuously as new research emerges.</li>
-          <li><strong>Outbreak Response:</strong> Generate preliminary reviews within days during emerging pathogen outbreaks.</li>
-          <li><strong>Resource Democratization:</strong> Make systematic review capacity accessible to resource-limited settings.</li>
-          <li><strong>Researcher Efficiency:</strong> Free domain experts to focus on interpretation rather than literature screening.</li>
-          <li><strong>Scalability:</strong> Handle larger evidence bases than feasible with purely human workflows.</li>
+          <li><strong>58&times; Calendar-Time Savings:</strong> AgentSLR reduces active review time from 48.1 human workdays to less than 1 day.</li>
+          <li><strong>High Screening Recall:</strong> Two-stage screening achieves 0.81 recall; direct full-text processing reaches 0.89 without human involvement.</li>
+          <li><strong>Parameter Extraction Ceiling:</strong> No model exceeds F<sub>1</sub> = 0.63 for parameter extraction, suggesting the bottleneck is task ambiguity, not model capability.</li>
+          <li><strong>Expert Validation:</strong> Human experts rate field-level accuracy at 0.80 on average, 18.8 percentage points above automated metrics.</li>
+          <li><strong>Cost-Effective:</strong> Open-weight GPT-OSS-120B achieves competitive performance at 96&times; lower cost than frontier closed-source models.</li>
         </ul>
       </div>
-      <div class="implication-pane limitations">
-        <h3>Limitations</h3>
+      <div class="implication-pane implications">
+        <h3>Implications</h3>
         <ul>
-          <li><strong>Supervised Use Required:</strong> Current accuracy (79.8%) necessitates expert oversight and validation.</li>
-          <li><strong>Domain Specificity:</strong> Optimized for epidemiological reviews; may require adaptation for other fields.</li>
-          <li><strong>Dependence on PDF Quality:</strong> OCR performance degrades with poor scans or complex layouts.</li>
-          <li><strong>LLM Constraints:</strong> Subject to hallucinations, context window limits, and API costs.</li>
-          <li><strong>Human Validation Still Essential:</strong> Not a replacement for expert judgment in final synthesis.</li>
+          <li><strong>Human-in-the-Loop:</strong> AgentSLR is best deployed with expert oversight &mdash; high recall ensures relevant evidence reaches validators.</li>
+          <li><strong>Open-Weight Advantage:</strong> Open models enable version pinning and local deployment, critical for reproducible living reviews.</li>
+          <li><strong>Living Reviews:</strong> The efficiency gains enable continuous evidence updates as new research emerges.</li>
+          <li><strong>Outbreak Response:</strong> Generate preliminary reviews within days during emerging pathogen outbreaks.</li>
+          <li><strong>Resource Democratization:</strong> Make systematic review capacity accessible to resource-limited settings.</li>
         </ul>
       </div>
       <div class="implication-pane future">
         <h3>Future Directions</h3>
         <ul>
-          <li><strong>Active Learning:</strong> Incorporate human feedback loops to improve screening and extraction.</li>
-          <li><strong>Multi-domain Extension:</strong> Adapt pipeline to other systematic review domains (clinical, social science).</li>
-          <li><strong>Real-time Integration:</strong> Connect to preprint servers for continuous evidence monitoring.</li>
-          <li><strong>Uncertainty Quantification:</strong> Better calibration of model confidence for flagging uncertain extractions.</li>
-          <li><strong>Collaborative Workflows:</strong> Design interfaces for efficient human-AI collaboration.</li>
-          <li><strong>Cross-lingual Capability:</strong> Extend to non-English literature with multilingual models.</li>
+          <li><strong>Human Uplift Study:</strong> Formal quantification of time savings with human-in-the-loop implementation.</li>
+          <li><strong>Multi-Domain Extension:</strong> Adapt pipeline to clinical trials, social science, and other systematic review domains.</li>
+          <li><strong>Heterogeneous Multi-Agent:</strong> Route sub-tasks to models with complementary capability profiles.</li>
+          <li><strong>Error Structure Analysis:</strong> Distinguish random from systematic failure modes for high-stakes contexts.</li>
+          <li><strong>Cross-Lingual Support:</strong> Extend to non-English literature with multilingual models.</li>
         </ul>
       </div>
     </div>
@@ -592,7 +719,7 @@
           and Foerster, Jakob and Hale, Scott A.
           and Rawson, Thomas and Cori, Anne
           and Semenova, Elizaveta and Mahdi, Adam},
-  journal={arXiv preprint},
+  journal={ICML 2025},
   year={2025},
   url={https://openreview.net/pdf?id=cAIjWwoZNf}
 }</code></pre>
@@ -613,6 +740,7 @@
 <script src="js/app.js"></script>
 <script>
   (function () {
+    // Logo bar collapse on scroll
     var bar = document.getElementById('logo-bar');
     window.addEventListener('scroll', function () {
       if (window.scrollY > 60) {
@@ -621,6 +749,86 @@
         bar.classList.remove('collapsed');
       }
     }, { passive: true });
+
+    // Theme toggle
+    var themeToggle = document.getElementById('theme-toggle');
+    var currentTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+
+    themeToggle.addEventListener('click', function() {
+      var newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    });
+
+    // Collapsible panes - track currently expanded pane
+    var currentlyExpandedPane = null;
+
+    function collapsePane(pane) {
+      var content = pane.querySelector('.collapsible-content');
+      var header = pane.querySelector('.collapsible-header');
+      content.style.maxHeight = content.scrollHeight + 'px';
+      content.offsetHeight; // force reflow
+      content.style.maxHeight = '0';
+      pane.dataset.expanded = 'false';
+      header.setAttribute('aria-expanded', 'false');
+    }
+
+    function expandPane(pane) {
+      var content = pane.querySelector('.collapsible-content');
+      var header = pane.querySelector('.collapsible-header');
+      content.style.maxHeight = content.scrollHeight + 'px';
+      pane.dataset.expanded = 'true';
+      header.setAttribute('aria-expanded', 'true');
+      setTimeout(function() {
+        content.style.maxHeight = 'none';
+      }, 300);
+    }
+
+    function togglePane(pane, fromTile) {
+      var isExpanded = pane.dataset.expanded === 'true';
+
+      // If clicking on an already expanded pane, collapse it
+      if (isExpanded) {
+        collapsePane(pane);
+        currentlyExpandedPane = null;
+        return;
+      }
+
+      // Collapse any currently expanded pane
+      if (currentlyExpandedPane && currentlyExpandedPane !== pane) {
+        collapsePane(currentlyExpandedPane);
+      }
+
+      // Expand the new pane
+      expandPane(pane);
+      currentlyExpandedPane = pane;
+    }
+
+    document.querySelectorAll('.collapsible-header').forEach(function(header) {
+      header.addEventListener('click', function() {
+        togglePane(this.parentElement, false);
+      });
+    });
+
+    // Result tiles - click to expand and scroll to pane
+    document.querySelectorAll('.result-tile').forEach(function(tile) {
+      tile.addEventListener('click', function() {
+        var targetId = this.dataset.target;
+        var pane = document.getElementById(targetId);
+        if (pane) {
+          togglePane(pane, true);
+          setTimeout(function() {
+            pane.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }
+      });
+    });
+
+    // Initialize collapsed panes
+    document.querySelectorAll('.collapsible-pane[data-expanded="false"] .collapsible-content').forEach(function(content) {
+      content.style.maxHeight = '0';
+    });
   })();
 </script>
 </body>
