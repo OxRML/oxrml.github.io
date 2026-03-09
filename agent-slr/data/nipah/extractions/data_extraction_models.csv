@@ -1,0 +1,42 @@
+article_id,model_type,compartmental_type
+PMID_33139552,Compartmental,SIR
+PMID_33139552,Compartmental,SIR
+PMID_33139552,Compartmental,SIR
+PMID_21632614,Compartmental,Other compartmental
+PMID_21632614,Agent / Individual based,Not compartmental
+DOI_325d66e3cbe7,Compartmental,Other compartmental
+DOI_325d66e3cbe7,Compartmental,Other compartmental
+PMID_11732410,Compartmental,SEIR
+DOI_121c6900edd2,Compartmental,Other compartmental
+PMID_35705986,Branching process,Not compartmental
+PMID_35705986,Branching process,Not compartmental
+PMID_35705986,Branching process,Not compartmental
+PMID_35705986,Branching process,Not compartmental
+PMID_38086402,Branching process,Not compartmental
+PMID_38086402,Branching process,Not compartmental
+DOI_e38a0cadfd50,Compartmental,Other compartmental
+DOI_379820682087,Compartmental,SIR
+DOI_379820682087,Compartmental,SIR
+PMID_39808615,Compartmental,Other compartmental
+PMID_39808615,Compartmental,Other compartmental
+PMID_39808615,Compartmental,Other compartmental
+PMID_40239175,Compartmental,Other compartmental
+PMID_40239175,Compartmental,Other compartmental
+PMID_23472057,Branching process,Not compartmental
+PMID_31401962,Compartmental,SIR
+PMID_31401962,Compartmental,Other compartmental
+PMID_31401962,Compartmental,SEIR
+PMID_31401962,Compartmental,Other compartmental
+PMID_31401962,Compartmental,Other compartmental
+PMID_31401962,Compartmental,Other compartmental
+PMID_31401962,Compartmental,Other compartmental
+PMID_31401962,Compartmental,Other compartmental
+PMID_31401962,Compartmental,Other compartmental
+PMID_31401962,Compartmental,Other compartmental
+PMID_31401962,Compartmental,Other compartmental
+PMID_31401962,Compartmental,Other compartmental
+PMID_24312221,Agent / Individual based,Not compartmental
+PMID_24312221,Agent / Individual based,Not compartmental
+DOI_f9fa15509439,Compartmental,SIR
+DOI_b8837039496c,Compartmental,Other compartmental
+DOI_b8837039496c,Compartmental,Other compartmental

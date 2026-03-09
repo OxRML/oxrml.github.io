@@ -1,0 +1,133 @@
+article_id,model_type,compartmental_type
+1841,Compartmental,SEIR-SEI
+1821,Compartmental,Other compartmental
+1821,Compartmental,Other compartmental
+1821,Compartmental,Other compartmental
+1940,Compartmental,SEIR-SEI
+6765,Compartmental,SEIR-SEI
+1941,Branching process,Not compartmental
+3039,Compartmental,SEIR-SEI
+3039,Compartmental,SEIR-SEI
+3039,Compartmental,SEIR-SEI
+1405,Compartmental,SEIR-SEI
+1405,Compartmental,SEIR-SEI
+2012,Compartmental,Other compartmental
+2012,Compartmental,Other compartmental
+2012,Compartmental,Other compartmental
+2012,Compartmental,Other compartmental
+2012,Compartmental,Other compartmental
+3403,Branching process,Not compartmental
+6948,Compartmental,SEIR-SEI
+5772,Compartmental,SEIR-SEI
+28649,Compartmental,SEIR-SEI
+7336,Compartmental,SEIR-SEI
+7336,Other,Not compartmental
+1117,Compartmental,Other compartmental
+5537,Compartmental,SEIR-SEI
+5537,Compartmental,SEIR-SEI
+947,Compartmental,SIR
+947,Compartmental,SIR
+947,Compartmental,SIR
+947,Compartmental,SIR
+6775,Compartmental,SEIR-SEI
+6775,Compartmental,SEIR-SEI
+13242,Compartmental,Other compartmental
+13242,Compartmental,Other compartmental
+1508,Compartmental,SEIR
+1508,Compartmental,SEIR
+1508,Compartmental,SEIR
+1508,Compartmental,SEIR
+1508,Compartmental,SEIR
+6935,Compartmental,SEIR-SEI
+7047,Compartmental,SIR
+7047,Agent / Individual based,Not compartmental
+5590,Compartmental,SIR
+5874,Compartmental,Other compartmental
+6675,Compartmental,SEIR-SEI
+5535,Compartmental,SEIR-SEI
+5949,Other,Not compartmental
+6031,Compartmental,SEIR-SEI
+4309,Agent / Individual based,Not compartmental
+5870,Other,Not compartmental
+5870,Other,Not compartmental
+5870,Other,Not compartmental
+5870,Other,Not compartmental
+4352,Agent / Individual based,Not compartmental
+17295,Compartmental,SEIR-SEI
+8361,Branching process,Not compartmental
+8361,Branching process,Not compartmental
+6046,Other,Not compartmental
+6046,Other,Not compartmental
+5671,Branching process,Not compartmental
+5671,Branching process,Not compartmental
+7312,Compartmental,SEIR-SEI
+7312,Branching process,Not compartmental
+6915,Other,Not compartmental
+6915,Other,Not compartmental
+6915,Other,Not compartmental
+6915,Other,Not compartmental
+6915,Other,Not compartmental
+6915,Other,Not compartmental
+6915,Other,Not compartmental
+6915,Other,Not compartmental
+6915,Other,Not compartmental
+6915,Other,Not compartmental
+6915,Other,Not compartmental
+6915,Other,Not compartmental
+6915,Other,Not compartmental
+6915,Other,Not compartmental
+6915,Other,Not compartmental
+6915,Other,Not compartmental
+6915,Other,Not compartmental
+6915,Other,Not compartmental
+6915,Other,Not compartmental
+6915,Other,Not compartmental
+6915,Other,Not compartmental
+6915,Other,Not compartmental
+6915,Other,Not compartmental
+4413,Compartmental,Other compartmental
+6780,Agent / Individual based,Not compartmental
+5868,Compartmental,SEIR-SEI
+2425,Compartmental,Other compartmental
+2425,Compartmental,Other compartmental
+2661,Compartmental,SEIR-SEI
+2024,Other,Not compartmental
+4110,Compartmental,SIR
+4110,Compartmental,SIR
+4110,Compartmental,SIR
+4110,Compartmental,SIR
+5826,Agent / Individual based,Not compartmental
+5826,Agent / Individual based,Not compartmental
+5826,Agent / Individual based,Not compartmental
+5907,Other,Not compartmental
+6591,Compartmental,SIR
+6591,Compartmental,SIR
+4308,Other,Not compartmental
+2632,Compartmental,SEIR-SEI
+7760,Compartmental,SEIR-SEI
+7760,Branching process,Not compartmental
+1534,Compartmental,Other compartmental
+1028,Compartmental,SEIR-SEI
+1028,Compartmental,SEIR-SEI
+1466,Compartmental,SEIR-SEI
+8608,Compartmental,SEIR-SEI
+21934,Compartmental,SEIR
+5639,Compartmental,SIR
+8302,Compartmental,SEIR-SEI
+8302,Branching process,Not compartmental
+27081,Compartmental,Other compartmental
+27081,Compartmental,Other compartmental
+2876,Other,Not compartmental
+7464,Compartmental,SEIR
+7939,Compartmental,Other compartmental
+7939,Compartmental,SEIR-SEI
+7939,Compartmental,Other compartmental
+6862,Compartmental,SIR
+6862,Compartmental,SIR
+6862,Compartmental,SIR
+6862,Compartmental,SIR
+6848,Compartmental,SEIR-SEI
+3758,Compartmental,SEIR-SEI
+3758,Branching process,Not compartmental
+8031,Compartmental,Other compartmental
+23364,Compartmental,SEIR-SEI

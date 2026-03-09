@@ -90,7 +90,7 @@ const DataLoader = (() => {
   async function loadPathogenData(pathogen) {
     const base = `data/${pathogen}`;
     const [harvest, abstractScreen, fulltextScreen, models, outbreaks, parameters, modelsReport, outbreaksReport] = await Promise.all([
-      fetchCSV(`${base}/harvests/metadata_with_downloads.csv`),
+      fetchCSV(`${base}/harvests/metadata_with_downloads.csv`).then(rows => rows.length ? rows : fetchCSV(`${base}/harvests/articles_with_markdown.csv`)),
       fetchCSV(`${base}/screening/abstract_screening_results.csv`),
       fetchCSV(`${base}/screening/fulltext_screening_results.csv`),
       fetchCSV(`${base}/extractions/data_extraction_models.csv`),

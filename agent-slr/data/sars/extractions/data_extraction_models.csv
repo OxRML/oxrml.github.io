@@ -1,0 +1,86 @@
+article_id,model_type,compartmental_type
+3375,Compartmental,SEIR
+3375,Branching process,Not compartmental
+3375,Branching process,Not compartmental
+706,Branching process,Not compartmental
+706,Agent / Individual based,Not compartmental
+4837,Other,Not compartmental
+4837,Agent / Individual based,Not compartmental
+5386,Compartmental,Other compartmental
+5069,Compartmental,Other compartmental
+8759,Agent / Individual based,Not compartmental
+8759,Branching process,Not compartmental
+8759,Compartmental,SIR
+3497,Compartmental,Other compartmental
+7029,Compartmental,Other compartmental
+7029,Compartmental,Other compartmental
+7029,Compartmental,Other compartmental
+5385,Compartmental,Other compartmental
+3284,Compartmental,SEIR
+4466,Compartmental,Other compartmental
+1036,Compartmental,Other compartmental
+1036,Compartmental,Other compartmental
+435,Agent / Individual based,Not compartmental
+435,Other,Not compartmental
+435,Other,Not compartmental
+2838,Agent / Individual based,Not compartmental
+2838,Agent / Individual based,Not compartmental
+2838,Agent / Individual based,Not compartmental
+7135,Compartmental,Other compartmental
+965,Compartmental,SEIR
+965,Compartmental,SEIR
+5589,Compartmental,SIR
+7372,Compartmental,Other compartmental
+7372,Compartmental,Other compartmental
+7372,Compartmental,Other compartmental
+9416,Compartmental,Other compartmental
+11000,Compartmental,SEIR
+11000,Compartmental,SEIR
+5896,Other,Not compartmental
+2223,Other,Not compartmental
+2223,Other,Not compartmental
+2223,Other,Not compartmental
+2223,Other,Not compartmental
+2223,Other,Not compartmental
+2223,Other,Not compartmental
+2223,Other,Not compartmental
+2223,Other,Not compartmental
+2223,Other,Not compartmental
+4469,Compartmental,Other compartmental
+655,Compartmental,SEIR
+3609,Compartmental,SEIR
+2498,Agent / Individual based,Not compartmental
+10922,Compartmental,Other compartmental
+10922,Compartmental,Other compartmental
+5880,Branching process,Not compartmental
+6700,Compartmental,Other compartmental
+11599,Compartmental,SEIR
+6339,Compartmental,SEIR
+6339,Compartmental,SEIR
+6339,Compartmental,SEIR
+7256,Compartmental,SEIR
+3991,Compartmental,SEIR
+2006,Compartmental,Other compartmental
+3479,Agent / Individual based,Not compartmental
+4293,Compartmental,SEIR
+4293,Agent / Individual based,Not compartmental
+3685,Compartmental,SEIR
+3685,Compartmental,SEIR
+8513,Compartmental,Other compartmental
+8513,Compartmental,Other compartmental
+8513,Compartmental,Other compartmental
+3047,Branching process,Not compartmental
+3047,Branching process,Not compartmental
+3047,Branching process,Not compartmental
+3047,Branching process,Not compartmental
+5154,Agent / Individual based,Not compartmental
+5154,Branching process,Not compartmental
+8787,Compartmental,Other compartmental
+8787,Compartmental,Other compartmental
+8787,Compartmental,Other compartmental
+3726,Branching process,Not compartmental
+3726,Branching process,Not compartmental
+3726,Branching process,Not compartmental
+3726,Branching process,Not compartmental
+4305,Other,Not compartmental
+2614,Branching process,Not compartmental

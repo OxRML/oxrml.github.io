@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Markdown Viewer</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.8.1/github-markdown.min.css">
+  <style>
+    body { margin: 0; background: #f6f8fa; color: #24292f; }
+    .wrap { max-width: 980px; margin: 24px auto; padding: 0 16px; }
+    .markdown-body {
+      box-sizing: border-box;
+      min-height: 100vh;
+      padding: 24px;
+      background: #fff;
+      border: 1px solid #d0d7de;
+      border-radius: 8px;
+      color: #24292f;
+      --color-canvas-default: #ffffff;
+      --color-canvas-subtle: #f6f8fa;
+      --color-border-default: #d0d7de;
+      --color-fg-default: #24292f;
+      --color-fg-muted: #57606a;
+      --color-accent-fg: #0969da;
+    }
+    .error { color: #b42318; font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+    .markdown-body img { max-width: 100%; height: auto; }
+    .markdown-body p,
+    .markdown-body li,
+    .markdown-body td,
+    .markdown-body th,
+    .markdown-body code,
+    .markdown-body pre,
+    .markdown-body strong,
+    .markdown-body em,
+    .markdown-body blockquote {
+      color: #24292f;
+    }
+    .markdown-body h1,
+    .markdown-body h2,
+    .markdown-body h3,
+    .markdown-body h4,
+    .markdown-body h5,
+    .markdown-body h6 {
+      color: #1f2328;
+    }
+    .markdown-body a { color: #0969da; }
+    .markdown-body table {
+      background: #ffffff;
+    }
+    .markdown-body th,
+    .markdown-body td {
+      background: #ffffff;
+      border-color: #d0d7de;
+    }
+    .markdown-body tr:nth-child(2n) {
+      background: #f6f8fa;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <article id="md-content" class="markdown-body"></article>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
+  <script>
+    (async function () {
+      const container = document.getElementById('md-content');
+      const params = new URLSearchParams(window.location.search);
+      const mdPath = params.get('path');
+      if (!mdPath) {
+        container.innerHTML = '<p class="error">Missing markdown path.</p>';
+        return;
+      }
+      try {
+        const resp = await fetch(mdPath);
+        if (!resp.ok) throw new Error('Unable to load markdown file');
+        const md = await resp.text();
+        const basePath = mdPath.split('/').slice(0, -1).join('/') + '/';
+        marked.use({
+          gfm: true,
+          breaks: false
+        });
+        const renderer = new marked.Renderer();
+        renderer.image = function (href, title, text) {
+          let src = '';
+          let imgTitle = title || '';
+          let imgAlt = text || '';
+          if (typeof href === 'object' && href !== null) {
+            src = String(href.href || '');
+            imgTitle = href.title || imgTitle;
+            imgAlt = href.text || imgAlt;
+          } else {
+            src = String(href || '');
+          }
+          if (src && !/^(https?:)?\/\//i.test(src) && !src.startsWith('/')) {
+            src = basePath + src.replace(/^\.\//, '');
+          }
+          const titleAttr = imgTitle ? ` title="${imgTitle}"` : '';
+          return `<img src="${src}" alt="${imgAlt}"${titleAttr}>`;
+        };
+        container.innerHTML = marked.parse(md, { renderer });
+        document.title = mdPath.split('/').pop() + ' - Markdown Viewer';
+      } catch (err) {
+        container.innerHTML = `<p class="error">${err.message}</p>`;
+      }
+    })();
+  </script>
+</body>
+</html>
