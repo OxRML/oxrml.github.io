@@ -263,6 +263,36 @@
             margin-bottom: 0;
         }
 
+        .pub-layout {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.25rem;
+        }
+
+        .pub-content {
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        .pub-gif {
+            flex: 0 0 270px;
+            width: 270px;
+            margin-left: auto;
+            border-radius: 8px;
+            overflow: hidden;
+            background: transparent;
+            border: none;
+        }
+
+        .pub-gif img {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 8 / 5;
+            object-fit: cover;
+        }
+
         .pub-title {
             font-size: 1.1rem;
             color: #1a365d;
@@ -648,6 +678,16 @@
 
             .section {
                 padding: 3rem 0;
+            }
+
+            .pub-layout {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .pub-gif {
+                width: min(280px, 100%);
+                flex-basis: auto;
             }
         }
 
@@ -1068,6 +1108,20 @@
             const authorFilter = document.getElementById('authorFilter');
             const clearFilterBtn = document.getElementById('clearFilterBtn');
 
+            function resolveAssetPath(path) {
+                if (!path || !path.trim()) {
+                    return '';
+                }
+
+                const trimmedPath = path.trim().replace(/^@/, '');
+                if (/^https?:\/\//i.test(trimmedPath)) {
+                    return trimmedPath;
+                }
+
+                const normalizedPath = trimmedPath.replace(/^\.?\//, '');
+                return normalizedPath.startsWith('/') ? normalizedPath : `/${normalizedPath}`;
+            }
+
             // Close modal
             function closePubModal() {
                 pubModal.classList.remove('active');
@@ -1214,14 +1268,24 @@
                         }
                     });
 
+                    const webpPath = resolveAssetPath(pub.webp_path);
+                    const webpHtml = webpPath
+                        ? `<div class="pub-gif"><img src="${webpPath}" alt="Process visualization for ${pub.title}" loading="lazy"></div>`
+                        : '';
+
                     pubDiv.innerHTML = `
-                    <h4 class="pub-title" style="cursor: pointer; text-decoration: none;" data-pub-id="${pub.id}">${pub.title}</h4>
-                    <p class="pub-authors">${processedAuthors}</p>
-                    <div class="pub-date-venue">
-                        <span class="pub-date">${pub.pubDate || pub.displayDate}</span>
-                        <span class="pub-venue">${pub.venue}</span>
+                    <div class="pub-layout">
+                        <div class="pub-content">
+                            <h4 class="pub-title" style="cursor: pointer; text-decoration: none;" data-pub-id="${pub.id}">${pub.title}</h4>
+                            <p class="pub-authors">${processedAuthors}</p>
+                            <div class="pub-date-venue">
+                                <span class="pub-date">${pub.pubDate || pub.displayDate}</span>
+                                <span class="pub-venue">${pub.venue}</span>
+                            </div>
+                            ${linkBoxes ? `<div class="pub-links">${linkBoxes}</div>` : ''}
+                        </div>
+                        ${webpHtml}
                     </div>
-                    ${linkBoxes ? `<div class="pub-links">${linkBoxes}</div>` : ''}
                 `;
 
                     // Add click event to title
@@ -1236,8 +1300,8 @@
 
             // Fetch publications and team data
             Promise.all([
-                fetch('publications.json').then(r => r.json()),
-                fetch('team.json').then(r => r.json())
+                fetch('publications.json', { cache: 'no-store' }).then(r => r.json()),
+                fetch('team.json', { cache: 'no-store' }).then(r => r.json())
             ])
                 .then(([pubData, teamData]) => {
                     allPublications = pubData.publications;
