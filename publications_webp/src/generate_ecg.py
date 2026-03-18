@@ -22,8 +22,8 @@ import math, os
 # CANVAS & TIMING
 # ═══════════════════════════════════════════════════════════════════════════════
 W, H = 720, 450
-FPS = 12
-TOTAL = 8.0
+FPS = 20
+TOTAL = 10.0
 N = int(FPS * TOTAL)
 OUT = "img/publications/ecg.webp"
 
@@ -68,9 +68,9 @@ def get_font(size, bold=False):
     except:
         return ImageFont.load_default()
 
-F_LG = get_font(22, True)
-F_MD = get_font(18)
-F_SM = get_font(15)
+F_LG = get_font(30, True)
+F_MD = get_font(24)
+F_SM = get_font(20)
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # UTILITIES

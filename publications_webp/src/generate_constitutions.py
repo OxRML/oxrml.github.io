@@ -26,8 +26,8 @@ import math, os
 # CANVAS & TIMING
 # ═══════════════════════════════════════════════════════════════════════════════
 W, H = 720, 450
-FPS = 12
-TOTAL = 8.0
+FPS = 20
+TOTAL = 10.0
 N = int(FPS * TOTAL)
 OUT = "img/publications/constitutions.webp"
 
@@ -73,9 +73,9 @@ def get_font(size, bold=False):
     except:
         return ImageFont.load_default()
 
-F_LG = get_font(24, True)
-F_MD = get_font(20)
-F_SM = get_font(16)
+F_LG = get_font(32, True)
+F_MD = get_font(26)
+F_SM = get_font(20)
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # UTILITIES
@@ -201,12 +201,12 @@ def render_frame(f):
     draw = ImageDraw.Draw(img)
 
     # Scene timing
-    # Scene 1: 0-4s (constitution → LLM → feedback)
-    # Scene 2: 4-8s (results comparison)
+    # Scene 1: 0-5s (constitution → LLM → feedback)
+    # Scene 2: 5-10s (results comparison)
     # Crossfade at boundaries for seamless loop
 
-    s1_a = (1 - ph(f, 3.5, 4.2)) * max(ph(f, 0.0, 0.5), 1 - ph(f, 7.5, 8.0))
-    s2_a = ph(f, 3.8, 4.5) * (1 - ph(f, 7.2, 8.0))
+    s1_a = (1 - ph(f, 4.5, 5.2)) * max(ph(f, 0.0, 0.5), 1 - ph(f, 9.5, 10.0))
+    s2_a = ph(f, 4.8, 5.5) * (1 - ph(f, 9.2, 10.0))
 
     # ════════════════════════════════════════════════════════════════════════
     # SCENE 1: Constitution → LLM Critic → Feedback
@@ -214,31 +214,31 @@ def render_frame(f):
 
     if s1_a > 0.01:
         # Constitution document (left side)
-        doc_a = ph(f, 0.3, 1.2) * s1_a
+        doc_a = ph(f, 0.4, 1.5) * s1_a
         draw_document(draw, 130, 200, 110, 140, C_DOC_B, doc_a, num_lines=6, label="Constitution")
 
         # Arrow from doc to LLM
-        arr1_a = ph(f, 1.0, 1.8) * s1_a
+        arr1_a = ph(f, 1.2, 2.2) * s1_a
         if arr1_a > 0.2:
             draw_arrow(draw, 190, 200, 260, 200, fbg(C_LIGHT, arr1_a))
 
         # LLM Critic (center)
-        llm_a = ph(f, 1.3, 2.2) * s1_a
+        llm_a = ph(f, 1.6, 2.8) * s1_a
         draw_llm_box(draw, 340, 200, 120, 90, llm_a, "LLM Critic")
 
         # Arrow from LLM to feedback
-        arr2_a = ph(f, 2.0, 2.8) * s1_a
+        arr2_a = ph(f, 2.5, 3.5) * s1_a
         if arr2_a > 0.2:
             draw_arrow(draw, 405, 200, 475, 200, fbg(C_LIGHT, arr2_a))
 
         # Feedback bubble (right side)
-        fb_a = ph(f, 2.5, 3.5) * s1_a
+        fb_a = ph(f, 3.2, 4.3) * s1_a
         draw_feedback_bubble(draw, 570, 200, 140, 80, fb_a)
         if fb_a > 0.6:
             tc(draw, 570, 200, "Feedback", F_MD, fbg(C_MID, fb_a))
 
         # "Medical interviews" context label at top
-        ctx_a = ph(f, 0.5, 1.5) * s1_a
+        ctx_a = ph(f, 0.6, 1.8) * s1_a
         if ctx_a > 0.3:
             tc(draw, 360, 50, "Patient-centered communication", F_MD, fbg(C_LIGHT, ctx_a))
 
@@ -253,45 +253,45 @@ def render_frame(f):
 
         # Left section: EMOTIVE (detailed wins)
         em_cx = 220
-        em_a = ph(f, 4.2, 5.0) * s2_a
+        em_a = ph(f, 5.3, 6.2) * s2_a
 
         if em_a > 0.3:
             tc(draw, em_cx, 90, "Emotive", F_LG, fbg(C_DARK, em_a))
             tc(draw, em_cx, 115, "(empathy, rapport)", F_SM, fbg(C_MID, em_a * 0.7))
 
         # Two bars: Basic (left, short) vs Detailed (right, tall)
-        bar_prog = ph(f, 5.0, 6.2)
+        bar_prog = ph(f, 6.2, 7.8)
 
         # Basic bar
-        b1_a = ph(f, 4.8, 5.5) * s2_a
+        b1_a = ph(f, 6.0, 6.8) * s2_a
         draw_bar(draw, em_cx - 40, bot_y, bar_w, bar_h, 0.42 * bar_prog, C_DOC_A, b1_a, "Basic")
 
         # Detailed bar (taller)
-        b2_a = ph(f, 5.0, 5.7) * s2_a
+        b2_a = ph(f, 6.2, 7.0) * s2_a
         draw_bar(draw, em_cx + 40, bot_y, bar_w, bar_h, 0.78 * bar_prog, C_DOC_B, b2_a, "Detailed")
 
         # Checkmark above detailed bar
-        check_a = ph(f, 6.0, 6.8) * s2_a
+        check_a = ph(f, 7.5, 8.5) * s2_a
         if check_a > 0.3:
             draw_check(draw, em_cx + 40, bot_y - bar_h * 0.78 - 25, 20, (75, 155, 95), check_a)
 
         # Right section: PRACTICAL (no difference)
         pr_cx = 500
-        pr_a = ph(f, 4.5, 5.3) * s2_a
+        pr_a = ph(f, 5.6, 6.5) * s2_a
 
         if pr_a > 0.3:
             tc(draw, pr_cx, 90, "Practical", F_LG, fbg(C_DARK, pr_a))
             tc(draw, pr_cx, 115, "(information gathering)", F_SM, fbg(C_MID, pr_a * 0.7))
 
         # Two bars: both same height
-        b3_a = ph(f, 5.2, 5.9) * s2_a
+        b3_a = ph(f, 6.5, 7.3) * s2_a
         draw_bar(draw, pr_cx - 40, bot_y, bar_w, bar_h, 0.50 * bar_prog, C_DOC_A, b3_a, "Basic")
 
-        b4_a = ph(f, 5.4, 6.1) * s2_a
+        b4_a = ph(f, 6.7, 7.5) * s2_a
         draw_bar(draw, pr_cx + 40, bot_y, bar_w, bar_h, 0.50 * bar_prog, C_DOC_B, b4_a, "Detailed")
 
         # Equals sign between (no winner)
-        eq_a = ph(f, 6.2, 7.0) * s2_a
+        eq_a = ph(f, 7.8, 8.8) * s2_a
         if eq_a > 0.3:
             draw_equals(draw, pr_cx, bot_y - bar_h * 0.50 - 25, 25, C_MID, eq_a)
 

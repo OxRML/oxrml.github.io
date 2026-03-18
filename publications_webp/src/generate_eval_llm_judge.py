@@ -28,8 +28,8 @@ from PIL import Image, ImageDraw, ImageFont
 
 # ── Canvas & timing ───────────────────────────────────────────────────────────
 W, H    = 720, 450     # canvas size (px)
-FPS     = 12           # frames per second — lower = smoother scroll on web
-TOTAL   = 12.5         # total animation duration (seconds)
+FPS     = 20           # frames per second — smoother animation
+TOTAL   = 10.0         # total animation duration (seconds)
 N       = int(FPS * TOTAL)
 
 # ── Pastel palette ────────────────────────────────────────────────────────────

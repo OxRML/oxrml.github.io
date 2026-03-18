@@ -25,8 +25,8 @@ import math, os, shutil
 # CANVAS & TIMING
 # ─────────────────────────────────────────────────────────────────
 W, H     = 720, 450
-FRAME_MS = 55          # ~18 fps
-N        = 226         # frames → 12.4 s loop
+FRAME_MS = 50          # 20 fps - smoother animation
+N        = 200         # frames → 10 s loop
 
 # ─────────────────────────────────────────────────────────────────
 # PALETTE  — muted clinical tones
@@ -75,31 +75,31 @@ def _f(size, bold=False):
     except TypeError:
         return ImageFont.load_default()
 
-F_TINY = _f(22)          # footnote / axis labels   (was 9, then 18)
-F_SM   = _f(26)          # pill labels               (was 11, then 22)
-F_MD   = _f(30)          # bracket labels            (was 13, then 26)
-F_LG   = _f(36, True)    # scene descriptor          (was 16, then 32)
-F_XL   = _f(56, True)    # big percentage number     (was 24, then 48)
+F_TINY = _f(24)          # footnote / axis labels   (increased)
+F_SM   = _f(28)          # pill labels               (increased)
+F_MD   = _f(32)          # bracket labels            (increased)
+F_LG   = _f(40, True)    # scene descriptor          (increased)
+F_XL   = _f(58, True)    # big percentage number     (increased)
 
 # ─────────────────────────────────────────────────────────────────
-# ACT TIMING (frame indices)
+# ACT TIMING (frame indices) — scaled for 200 frames / 10s
 # ─────────────────────────────────────────────────────────────────
 # Act 1 — RCT arms
-A1_FADEIN  = (0,  22)
-A1_ARMS    = (14, 78)     # arms stagger in
-A1_FADEOUT = (78, 90)
+A1_FADEIN  = (0,  20)
+A1_ARMS    = (12, 70)     # arms stagger in
+A1_FADEOUT = (70, 80)
 
 # Act 2 — parallel bars (no fade-out; flows directly into act 3)
-A2_FADEIN  = (90, 110)
-A2_FILL    = (106, 158)
-A2_HOLD    = (158, 170)   # bars freeze at max before act 3
+A2_FADEIN  = (80, 98)
+A2_FILL    = (94, 140)
+A2_HOLD    = (140, 150)   # bars freeze at max before act 3
 
 # Act 3 — gap bracket (bars remain; bracket fades on top)
-A3_BRACKET = (170, 198)   # bracket draws in
-A3_HOLD    = (198, 215)
-A3_FADEOUT = (212, 222)
+A3_BRACKET = (150, 175)   # bracket draws in
+A3_HOLD    = (175, 190)
+A3_FADEOUT = (188, 196)
 
-FADE_START = 222          # cross-fade to white before loop
+FADE_START = 196          # cross-fade to white before loop
 
 # ─────────────────────────────────────────────────────────────────
 # BAR GEOMETRY  (scaled for 720 × 450)

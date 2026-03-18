@@ -23,7 +23,7 @@ from PIL import Image, ImageDraw, ImageFont
 # ═══════════════════════════════════════════════════════════════════════════════
 
 W, H       = 720, 450          # canvas dimensions (px)
-FPS        = 12                # frames per second — lower = slower
+FPS        = 20                # frames per second — smoother animation
 TOTAL_SECS = 10.0              # total loop duration (seconds)
 N_FRAMES   = int(FPS * TOTAL_SECS)   # = 120
 
@@ -83,10 +83,10 @@ def _font(size, bold=False):
     except TypeError:
         return ImageFont.load_default()
 
-F_NODE = _font(22, bold=True)   # node labels        (orig 11→22)
-F_SUB  = _font(16)               # sub-labels         (orig  9→18, using 16)
-F_QUES = _font(52, bold=True)   # "?" symbol
-F_CV   = _font(24, bold=True)   # "Construct Validity ✓" label (orig 12→24)
+F_NODE = _font(28, bold=True)   # node labels        (increased for readability)
+F_SUB  = _font(20)               # sub-labels         (increased)
+F_QUES = _font(58, bold=True)   # "?" symbol
+F_CV   = _font(30, bold=True)   # "Construct Validity ✓" label (increased)
 
 # ── Node geometry ──────────────────────────────────────────────────────────────
 PHE_CX, PHE_CY = 108, 220       # Phenomenon circle centre

@@ -29,8 +29,8 @@ import math, os
 # CANVAS & TIMING
 # ═══════════════════════════════════════════════════════════════════════════════
 W, H = 720, 450
-FPS = 12
-TOTAL = 8.0
+FPS = 20
+TOTAL = 10.0
 N = int(FPS * TOTAL)
 OUT = "img/publications/counterfactual.webp"
 
@@ -76,10 +76,10 @@ def get_font(size, bold=False):
     except:
         return ImageFont.load_default()
 
-F_LG = get_font(20, True)
-F_MD = get_font(16)
-F_SM = get_font(14)
-F_AXIS = get_font(13)
+F_LG = get_font(28, True)
+F_MD = get_font(22)
+F_SM = get_font(18)
+F_AXIS = get_font(16)
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # UTILITIES

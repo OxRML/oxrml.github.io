@@ -11,10 +11,10 @@ import math, os
 
 # ── Canvas & timing ───────────────────────────────────────────────────────────
 W, H       = 720, 450
-FPS        = 15
-N_PER      = 70           # frames per scene
+FPS        = 20
+N_PER      = 67           # frames per scene
 N_SCENES   = 3
-N_FRAMES   = N_PER * N_SCENES   # 210 frames ≈ 14 s
+N_FRAMES   = N_PER * N_SCENES   # ~200 frames ≈ 10 s
 DELAY_MS   = 1000 // FPS        # 67 ms/frame
 XFADE      = 8
 
@@ -32,12 +32,12 @@ C_DARK   = ( 44,  44,  54)
 C_MED    = (100, 100, 116)
 C_LIGHT  = (152, 152, 168)
 
-# ── Font sizes (2× the originals) ────────────────────────────────────────────
-SZ_XS = 20
-SZ_SM = 24
-SZ_MD = 28
-SZ_LG = 34
-SZ_XL = 44
+# ── Font sizes (increased for readability) ───────────────────────────────────
+SZ_XS = 24
+SZ_SM = 28
+SZ_MD = 32
+SZ_LG = 40
+SZ_XL = 50
 
 # Cross-platform font paths (Linux, macOS, Windows)
 FONT_PATHS_REG = [
