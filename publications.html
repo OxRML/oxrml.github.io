@@ -451,6 +451,16 @@
             .pub-modal-content {
                 padding: 1.5rem;
             }
+
+            .pub-modal-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .pub-modal-preview {
+                width: min(270px, 100%);
+                flex-basis: auto;
+            }
         }
 
         .pub-modal-close {
@@ -479,10 +489,38 @@
             line-height: 1.4;
         }
 
+        .pub-modal-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .pub-modal-header-main {
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        .pub-modal-preview {
+            flex: 0 0 270px;
+            width: 270px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #f8fafc;
+        }
+
+        .pub-modal-preview img {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 8 / 5;
+            object-fit: contain;
+        }
+
         .pub-modal-meta {
             display: flex;
             gap: 1.5rem;
-            margin-bottom: 1.5rem;
             flex-wrap: wrap;
             font-size: 0.95rem;
         }
@@ -934,9 +972,16 @@
     <div class="pub-modal-overlay" id="pubModal">
         <div class="pub-modal-content">
             <button class="pub-modal-close" id="pubModalClose">&times;</button>
-            <h3 class="pub-modal-title" id="pubModalTitle"></h3>
-            <div class="pub-modal-meta" id="pubModalMeta"></div>
-            <p class="pub-authors" id="pubModalAuthors"></p>
+            <div class="pub-modal-header">
+                <div class="pub-modal-header-main">
+                    <h3 class="pub-modal-title" id="pubModalTitle"></h3>
+                    <div class="pub-modal-meta" id="pubModalMeta"></div>
+                    <p class="pub-authors" id="pubModalAuthors"></p>
+                </div>
+                <div class="pub-modal-preview" id="pubModalPreviewContainer" style="display: none;">
+                    <img id="pubModalPreview" alt="">
+                </div>
+            </div>
             <div class="pub-modal-abstract" id="pubModalAbstractContainer" style="display: none;">
                 <div class="pub-modal-abstract-label">Abstract</div>
                 <div class="pub-modal-abstract-text" id="pubModalAbstract"></div>
@@ -1144,6 +1189,8 @@
             // Open publication modal
             function openPubModal(pub) {
                 document.getElementById('pubModalTitle').textContent = pub.title;
+                const previewContainer = document.getElementById('pubModalPreviewContainer');
+                const previewImage = document.getElementById('pubModalPreview');
 
                 // Populate metadata
                 const metaHtml = `
@@ -1167,6 +1214,17 @@
                     return trimmedAuthor;
                 }).join(', ');
                 document.getElementById('pubModalAuthors').innerHTML = processedAuthors;
+
+                const previewPath = resolveAssetPath(pub.webp_path);
+                if (previewPath) {
+                    previewImage.src = previewPath;
+                    previewImage.alt = `Preview image for ${pub.title}`;
+                    previewContainer.style.display = 'block';
+                } else {
+                    previewImage.removeAttribute('src');
+                    previewImage.alt = '';
+                    previewContainer.style.display = 'none';
+                }
 
                 // Display abstract if available
                 const abstractContainer = document.getElementById('pubModalAbstractContainer');
