@@ -1,40 +1,42 @@
-#!/usr/bin/env python3
+#publications_webp/src/generate_icl_ensemble.py
+
 """
-Ensemble SuperICL — animated WebP
+Paper Context:
+In-context learning (ICL) is cheap but less accurate than fine-tuning.
+This paper: Use multiple fine-tuned SMALL language models (SLMs) as "experts"
+to advise the large LLM → achieves SOTA results.
 
-PAPER CONTEXT:
-  In-context learning (ICL) is cheap but less accurate than fine-tuning.
-  This paper: Use multiple fine-tuned SMALL language models (SLMs) as "experts"
-  to advise the large LLM → achieves SOTA results.
+Three stages:
+1. Fine-tuned SLMs make predictions
+2. Predictions are fed as context to LLM
+3. LLM makes final prediction (better than ICL alone)
 
-  Three stages:
-  1. Fine-tuned SLMs make predictions
-  2. Predictions are fed as context to LLM
-  3. LLM makes final prediction (better than ICL alone)
+Visual Story:
+Scene 1 (0-3s): Multiple small SLM circles appear with "fine-tuned" labels
+Scene 2 (3-5.5s): SLMs send signals to central large LLM circle
+Scene 3 (5.5-8s): Output comparison - ICL alone vs Ensemble (higher bar)
 
-VISUAL STORY (seamless loop):
-  Scene 1 (0-3s): Multiple small SLM circles appear with "fine-tuned" labels
-  Scene 2 (3-5.5s): SLMs send signals to central large LLM circle
-  Scene 3 (5.5-8s): Output comparison - ICL alone vs Ensemble (higher bar)
-
-720×450, ~8s loop, 12 fps
+Frame and Scene timing Calculations:
+Canvas: 720x450.
+Frame calculation: FPS = 20, TOTAL = 10.0, N = int(FPS * TOTAL) = 200.
+Scene timings: Scene 1 (0-3s) | Scene 2 (3-5.5s) | Scene 3 (5.5-8s).
 """
 
 from PIL import Image, ImageDraw, ImageFont
 import math, os
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # CANVAS & TIMING
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 W, H = 720, 450
 FPS = 20
 TOTAL = 10.0
 N = int(FPS * TOTAL)
-OUT = "img/publications/icl_ensemble.webp"
+OUT_PATH = "img/publications/icl_ensemble.webp"
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # PALETTE
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 BG = (255, 255, 255)
 C_SLM1 = (210, 225, 250)        # SLM 1 - blue
 C_SLM2 = (250, 225, 210)        # SLM 2 - peach
@@ -48,9 +50,9 @@ C_DARK = (55, 58, 75)
 C_MID = (118, 122, 138)
 C_LIGHT = (170, 175, 188)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # FONTS
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 FONT_PATHS = [
     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
     "/System/Library/Fonts/Supplemental/Arial.ttf",
@@ -79,9 +81,9 @@ F_LG = get_font(30, True)
 F_MD = get_font(24)
 F_SM = get_font(20)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # UTILITIES
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 def ease(t):
     t = max(0., min(1., t))
     return t * t * (3. - 2. * t)
@@ -104,9 +106,9 @@ def tc(draw, cx, cy, text, font, fill):
     tw, th = bb[2] - bb[0], bb[3] - bb[1]
     draw.text((int(cx - tw/2), int(cy - th/2)), text, font=font, fill=fill)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # SLM POSITIONS
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 SLMS = [
     (120, 130, C_SLM1, "SLM₁"),
     (220, 90, C_SLM2, "SLM₂"),
@@ -116,9 +118,9 @@ SLMS = [
 LLM_POS = (270, 260)
 LLM_R = 55
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # DRAWING COMPONENTS
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def draw_slm_circle(draw, cx, cy, r, col, alpha, label=""):
     """Small expert SLM circle."""
@@ -208,9 +210,9 @@ def draw_arrow(draw, x1, y1, x2, y2, col, width=2, head=10):
         (x2 - head * math.cos(ang + 0.35), y2 - head * math.sin(ang + 0.35)),
     ], fill=col)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # SCENE RENDERING
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def render_frame(f):
     img = Image.new("RGB", (W, H), BG)
@@ -310,9 +312,9 @@ def render_frame(f):
 
     return img
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # MAIN
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 if __name__ == "__main__":
     print(f"Rendering {N} frames ({W}×{H}px, {FPS}fps, {TOTAL}s)...")
@@ -325,7 +327,7 @@ if __name__ == "__main__":
 
     print("✓ Self-review passed")
 
-    os.makedirs(os.path.dirname(OUT), exist_ok=True)
-    frames[0].save(OUT, format="WEBP", save_all=True, append_images=frames[1:],
+    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
+    frames[0].save(OUT_PATH, format="WEBP", save_all=True, append_images=frames[1:],
                    duration=int(1000/FPS), loop=0, lossless=True)
-    print(f"✓ Saved → {OUT} ({os.path.getsize(OUT)//1024} KB)")
+    print(f"✓ Saved → {OUT_PATH} ({os.path.getsize(OUT_PATH)//1024} KB)")

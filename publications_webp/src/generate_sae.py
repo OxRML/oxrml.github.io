@@ -1,43 +1,45 @@
-#!/usr/bin/env python3
+#publications_webp/src/generate_sae.py
+
 """
-SAE + Steering Vectors — animated WebP
+Paper Context:
+Can SAEs interpret steering vectors? NO, because:
+1. Steering vectors fall OUTSIDE the SAE's training distribution
+2. Steering vectors have MEANINGFUL NEGATIVE projections (SAEs only do positive)
 
-PAPER CONTEXT:
-  Can SAEs interpret steering vectors? NO, because:
-  1. Steering vectors fall OUTSIDE the SAE's training distribution
-  2. Steering vectors have MEANINGFUL NEGATIVE projections (SAEs only do positive)
+Result: SAE reconstructions lose essential steering properties.
 
-  Result: SAE reconstructions lose essential steering properties.
+Visual Story:
+Scene 1 (0-3s): SAE box with training distribution cloud INSIDE
+- Shows "trained on activations" concept
+- Purple steering vector arrow appears OUTSIDE the cloud
+Scene 2 (3-5.5s): Vector enters SAE → feature decomposition
+- Bars appear: some positive (green), some NEGATIVE (red, pointing down)
+- "Negative!" warning
+Scene 3 (5.5-8s): Reconstruction fails
+- Original vector vs reconstructed (different directions)
+- ≠ symbol, X mark
 
-VISUAL STORY (seamless loop, connected transitions):
-  Scene 1 (0-3s): SAE box with training distribution cloud INSIDE
-                  - Shows "trained on activations" concept
-                  - Purple steering vector arrow appears OUTSIDE the cloud
-  Scene 2 (3-5.5s): Vector enters SAE → feature decomposition
-                  - Bars appear: some positive (green), some NEGATIVE (red, pointing down)
-                  - "Negative!" warning
-  Scene 3 (5.5-8s): Reconstruction fails
-                  - Original vector vs reconstructed (different directions)
-                  - ≠ symbol, X mark
-
-720×450, ~8s loop, 12 fps
+Frame and Scene timing Calculations:
+Canvas: 720x450.
+Frame calculation: FPS = 20, TOTAL = 10.0, N = int(FPS * TOTAL) = 200.
+Scene timings: Scene 1 (0-3s) | Scene 2 (3-5.5s) | Scene 3 (5.5-8s).
 """
 
 from PIL import Image, ImageDraw, ImageFont
 import math, os
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # CANVAS & TIMING
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 W, H = 720, 450
 FPS = 20
 TOTAL = 10.0
 N = int(FPS * TOTAL)
-OUT = "img/publications/sae.webp"
+OUT_PATH = "img/publications/sae.webp"
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # PALETTE
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 BG = (255, 255, 255)
 C_DIST = (245, 240, 220)        # Training distribution - cream
 C_VECTOR = (190, 170, 225)      # Steering vector - purple
@@ -49,9 +51,9 @@ C_DARK = (55, 58, 75)
 C_MID = (118, 122, 138)
 C_LIGHT = (170, 175, 188)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # FONTS
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 FONT_PATHS = [
     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
     "/System/Library/Fonts/Supplemental/Arial.ttf",
@@ -81,9 +83,9 @@ F_MD = get_font(22)
 F_SM = get_font(18)
 F_SYM = get_font(36, True)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # UTILITIES
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 def ease(t):
     t = max(0., min(1., t))
     return t * t * (3. - 2. * t)
@@ -106,15 +108,15 @@ def tc(draw, cx, cy, text, font, fill):
     tw, th = bb[2] - bb[0], bb[3] - bb[1]
     draw.text((int(cx - tw/2), int(cy - th/2)), text, font=font, fill=fill)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # FIXED POSITIONS (consistent across scenes)
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 SAE_CX, SAE_CY = 360, 225
 SAE_W, SAE_H = 200, 140
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # DRAWING COMPONENTS
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def draw_sae_box(draw, alpha, show_label=True):
     """SAE processing box - stays in same position."""
@@ -204,9 +206,9 @@ def draw_x_mark(draw, cx, cy, size, alpha):
     draw.line([(cx-s, cy-s), (cx+s, cy+s)], fill=col, width=4)
     draw.line([(cx+s, cy-s), (cx-s, cy+s)], fill=col, width=4)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # SCENE RENDERING
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def render_frame(f):
     img = Image.new("RGB", (W, H), BG)
@@ -330,9 +332,9 @@ def render_frame(f):
 
     return img
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # MAIN
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 if __name__ == "__main__":
     print(f"Rendering {N} frames ({W}×{H}px, {FPS}fps, {TOTAL}s)...")
@@ -345,7 +347,7 @@ if __name__ == "__main__":
 
     print("✓ Self-review passed")
 
-    os.makedirs(os.path.dirname(OUT), exist_ok=True)
-    frames[0].save(OUT, format="WEBP", save_all=True, append_images=frames[1:],
+    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
+    frames[0].save(OUT_PATH, format="WEBP", save_all=True, append_images=frames[1:],
                    duration=int(1000/FPS), loop=0, lossless=True)
-    print(f"✓ Saved → {OUT} ({os.path.getsize(OUT)//1024} KB)")
+    print(f"✓ Saved → {OUT_PATH} ({os.path.getsize(OUT_PATH)//1024} KB)")

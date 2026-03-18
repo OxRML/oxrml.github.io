@@ -1,15 +1,27 @@
-# publications_gif/src/generate_faitful.py
+#publications_webp/src/generate_faithful.py
 
 """
-NSG Faithfulness — animated WebP
-3 scenes · 15 fps · 70 frames/scene = 14 s loop
-Canvas 720 × 450, all text 2× original sizes, symbol-heavy.
+Paper Context:
+LLM self-explanations are evaluated for whether they help an observer predict model behavior.
+The paper introduces Normalized Simulatability Gain (NSG) as a faithfulness metric and shows explanations can improve prediction while still sometimes misleading observers.
+
+Visual Story:
+Scene 1 (0.0-3.35s): A patient prompts an LLM, which answers and reveals an explanation key.
+Scene 2 (3.35-6.70s): A counterfactual patient ages from 60 to 30 and the model answer flips.
+Scene 3 (6.70-10.05s): Observers with and without explanations are compared with NSG uplift bars.
+
+Frame and Scene timing Calculations:
+Canvas: 720x450.
+Frame calculation: FPS = 20, N_PER = 67, N_SCENES = 3, N_FRAMES = N_PER * N_SCENES = 201.
+Total duration: N_FRAMES / FPS = 10.05s with XFADE = 8 frame cross-fades between scenes.
 """
 
 from PIL import Image, ImageDraw, ImageFont
 import math, os
 
-# ── Canvas & timing ───────────────────────────────────────────────────────────
+# ======
+# Canvas & timing
+# ======
 W, H       = 720, 450
 FPS        = 20
 N_PER      = 67           # frames per scene
@@ -18,9 +30,11 @@ N_FRAMES   = N_PER * N_SCENES   # ~200 frames ≈ 10 s
 DELAY_MS   = 1000 // FPS        # 67 ms/frame
 XFADE      = 8
 
-OUTPUT_PATH = "img/publications/faithfulNSG.webp"
+OUT_PATH = "img/publications/faithfulNSG.webp"
 
-# ── Palette ───────────────────────────────────────────────────────────────────
+# ======
+# Palette
+# ======
 BG       = (255, 255, 255)
 C_BLUE   = (173, 210, 235)
 C_PURPLE = (205, 192, 232)
@@ -32,14 +46,15 @@ C_DARK   = ( 44,  44,  54)
 C_MED    = (100, 100, 116)
 C_LIGHT  = (152, 152, 168)
 
-# ── Font sizes (increased for readability) ───────────────────────────────────
+# ======
+# Font sizes (increased for readability)
+# ======
 SZ_XS = 24
 SZ_SM = 28
 SZ_MD = 32
 SZ_LG = 40
 SZ_XL = 50
 
-# Cross-platform font paths (Linux, macOS, Windows)
 FONT_PATHS_REG = [
     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",        # Linux
     "/System/Library/Fonts/Supplemental/Arial.ttf",           # macOS
@@ -53,10 +68,9 @@ FONT_PATHS_BOLD = [
     "C:/Windows/Fonts/arialbd.ttf",                           # Windows
 ]
 
-
-# ═════════════════════════════════════════════════════════════════════════════
+# ======
 # FONT LOADING
-# ═════════════════════════════════════════════════════════════════════════════
+# ======
 
 def _font(bold, size):
     paths = FONT_PATHS_BOLD if bold else FONT_PATHS_REG
@@ -84,10 +98,9 @@ def make_fonts():
         "b_xl": _font(True,  SZ_XL),
     }
 
-
-# ═════════════════════════════════════════════════════════════════════════════
+# ======
 # UTILITIES
-# ═════════════════════════════════════════════════════════════════════════════
+# ======
 
 def ease(t):
     t = max(0.0, min(1.0, t))
@@ -117,10 +130,9 @@ def arw(draw, x0, y0, x1, y1, color, width=3, head=12):
         ay = y1 - head * math.sin(ang + da)
         draw.line([(x1, y1), (int(ax), int(ay))], fill=color, width=width)
 
-
-# ═════════════════════════════════════════════════════════════════════════════
+# ======
 # SHARED DRAWING COMPONENTS
-# ═════════════════════════════════════════════════════════════════════════════
+# ======
 
 def draw_person(draw, cx, cy, alpha, color=None, size=1.0):
     """
@@ -137,7 +149,6 @@ def draw_person(draw, cx, cy, alpha, color=None, size=1.0):
        fade(color, alpha), fade(C_GRAY, alpha * 0.65), radius=10)
     draw.ellipse([cx - hr, cy - hr, cx + hr, cy + hr],
                  fill=fade(color, alpha), outline=fade(C_GRAY, alpha * 0.65), width=2)
-
 
 def draw_llm(draw, cx, cy, w, h, alpha, pulse=0.0):
     """
@@ -166,7 +177,6 @@ def draw_llm(draw, cx, cy, w, h, alpha, pulse=0.0):
             xi, yi = dots[i]; xj, yj = dots[j]
             draw.line([(xi, yi), (xj, yj)], fill=fade(C_GRAY, alpha * 0.4), width=1)
 
-
 def draw_bubble(draw, cx, cy, w, h, color, alpha, tail="up"):
     """Speech bubble with tail pointing up or down."""
     x0, y0 = cx - w // 2, cy - h // 2
@@ -179,7 +189,6 @@ def draw_bubble(draw, cx, cy, w, h, color, alpha, tail="up"):
     elif tail == "down":
         draw.polygon([(tx - 10, y1), (tx + 10, y1), (tx, y1 + 18)],
                      fill=fade(color, alpha))
-
 
 def draw_key(draw, cx, cy, size, color, alpha):
     """Geometric key icon: ring head + shaft + two teeth."""
@@ -200,7 +209,6 @@ def draw_key(draw, cx, cy, size, color, alpha):
     for tx in (sx0 + sh - tw * 3, sx0 + sh - tw):
         draw.rectangle([tx, cy + sw // 2, tx + tw - 1, cy + sw // 2 + th], fill=c)
 
-
 def draw_check(draw, cx, cy, size, color, alpha):
     """Geometric checkmark (two line segments)."""
     c = fade(color, alpha)
@@ -208,7 +216,6 @@ def draw_check(draw, cx, cy, size, color, alpha):
     xm = cx - int(size * 0.08); ym = cy + int(size * 0.36)
     draw.line([(cx - int(size*0.44), cy - int(size*0.05)), (xm, ym)], fill=c, width=lw)
     draw.line([(xm, ym), (cx + int(size*0.50), cy - int(size*0.44))],  fill=c, width=lw)
-
 
 def draw_xmark(draw, cx, cy, size, color, alpha):
     """Geometric ✗ (two diagonal lines)."""
@@ -218,10 +225,11 @@ def draw_xmark(draw, cx, cy, size, color, alpha):
     draw.line([(cx - s, cy - s), (cx + s, cy + s)], fill=c, width=lw)
     draw.line([(cx + s, cy - s), (cx - s, cy + s)], fill=c, width=lw)
 
-
-# ═════════════════════════════════════════════════════════════════════════════
-# SCENE 1 — Patient → LLM → Answer  +  Explanation key appears
-# ═════════════════════════════════════════════════════════════════════════════
+# ======
+# ======
+# SCENE 1 — Patient → LLM → Answer + Explanation key appears
+# ======
+# ======
 
 def scene1(t, fonts):
     """
@@ -271,10 +279,11 @@ def scene1(t, fonts):
     ct(d, "Model answers & explains", W // 2, 30, fonts["xs"], fade(C_LIGHT, a_llm))
     return img
 
-
-# ═════════════════════════════════════════════════════════════════════════════
+# ======
+# ======
 # SCENE 2 — Age morphs 60 → 30; LLM flips its answer
-# ═════════════════════════════════════════════════════════════════════════════
+# ======
+# ======
 
 def scene2(t, fonts):
     """
@@ -337,10 +346,11 @@ def scene2(t, fonts):
        W // 2, 30, fonts["xs"], fade(C_LIGHT, a_all))
     return img
 
-
-# ═════════════════════════════════════════════════════════════════════════════
+# ======
+# ======
 # SCENE 3 — Observer with vs without explanation; NSG bar chart
-# ═════════════════════════════════════════════════════════════════════════════
+# ======
+# ======
 
 def scene3(t, fonts):
     """
@@ -426,10 +436,9 @@ def scene3(t, fonts):
        W // 2, 30, fonts["xs"], fade(C_LIGHT, a_lay))
     return img
 
-
-# ═════════════════════════════════════════════════════════════════════════════
+# ======
 # FRAME COMPOSITION
-# ═════════════════════════════════════════════════════════════════════════════
+# ======
 
 def render_frames(fonts):
     scene_fns = [scene1, scene2, scene3]
@@ -450,7 +459,6 @@ def render_frames(fonts):
         frames.append(main)
     return frames
 
-
 def validate(frames):
     for i, f in enumerate(frames):
         px = list(f.getdata())
@@ -463,7 +471,6 @@ def validate(frames):
     print(f"  ✓ All {len(frames)} frames OK ({W}×{H})")
     return True
 
-
 def main():
     print("━" * 50)
     print("  NSG WebP Generator  (3 scenes · 14 s)")
@@ -474,10 +481,10 @@ def main():
     frames = render_frames(fonts)
     print("[3/4] Validating …")
     validate(frames)
-    print(f"[4/4] Saving → {OUTPUT_PATH}")
-    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
+    print(f"[4/4] Saving → {OUT_PATH}")
+    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
     frames[0].save(
-        OUTPUT_PATH,
+        OUT_PATH,
         format="WEBP",
         save_all=True,
         append_images=frames[1:],
@@ -485,11 +492,10 @@ def main():
         loop=0,
         lossless=True,   # crisp text rendering
     )
-    kb = os.path.getsize(OUTPUT_PATH) // 1024
+    kb = os.path.getsize(OUT_PATH) // 1024
     print(f"\n  ✓ Done!  {N_FRAMES} frames · {N_FRAMES/FPS:.1f} s · {DELAY_MS} ms/frame · {kb} KB")
-    print(f"  ✓ {OUTPUT_PATH}")
+    print(f"  ✓ {OUT_PATH}")
     print("━" * 50)
-
 
 if __name__ == "__main__":
     main()

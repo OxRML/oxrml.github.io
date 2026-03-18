@@ -1,21 +1,23 @@
-#!/usr/bin/env python3
-"""
-How Does DPO Reduce Toxicity? — animated WebP
+#publications_webp/src/generate_dpo_toxicity.py
 
-PAPER CONTEXT:
-  Prior work claimed DPO reduces toxicity by dampening a few "toxic neurons".
-  This paper shows that's only 2.5-24% of the effect.
+"""
+Paper Context:
+Prior work claimed DPO reduces toxicity by dampening a few "toxic neurons".
+This paper shows that's only 2.5-24% of the effect.
 
 KEY FINDING:
-  DPO actually works via DISTRIBUTED activation shifts across MANY neurons,
-  not just a few toxic ones. Four neuron groups combine to reduce toxicity.
+DPO actually works via DISTRIBUTED activation shifts across MANY neurons,
+not just a few toxic ones. Four neuron groups combine to reduce toxicity.
 
-VISUAL STORY (seamless loop):
-  Scene 1 (0-3s): Prior belief - a few red "toxic" neurons highlighted
-  Scene 2 (3-6s): Reality - many neurons show small shifts (arrows), not just toxic ones
-  Scene 3 (6-8s): Combined effect → net toxicity reduction
+Visual Story:
+Scene 1 (0-3s): Prior belief - a few red "toxic" neurons highlighted
+Scene 2 (3-6s): Reality - many neurons show small shifts (arrows), not just toxic ones
+Scene 3 (6-8s): Combined effect → net toxicity reduction
 
-720×450, ~8s loop, 12 fps
+Frame and Scene timing Calculations:
+Canvas: 720x450.
+Frame calculation: FPS = 20, TOTAL = 10.0, N = int(FPS * TOTAL) = 200.
+Scene timings: Scene 1 (0-3s) | Scene 2 (3-6s) | Scene 3 (6-8s).
 """
 
 from PIL import Image, ImageDraw, ImageFont
@@ -23,18 +25,18 @@ import math, os, random
 
 random.seed(42)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # CANVAS & TIMING
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 W, H = 720, 450
 FPS = 20
 TOTAL = 10.0
 N = int(FPS * TOTAL)
-OUT = "img/publications/dpo_toxicity.webp"
+OUT_PATH = "img/publications/dpo_toxicity.webp"
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # PALETTE
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 BG = (255, 255, 255)
 C_TOXIC = (240, 175, 175)      # Toxic neuron - coral/red
 C_NEUTRAL = (215, 218, 225)    # Neutral neuron - gray
@@ -45,9 +47,9 @@ C_DARK = (55, 58, 75)
 C_MID = (118, 122, 138)
 C_LIGHT = (170, 175, 188)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # FONTS
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 FONT_PATHS = [
     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
     "/System/Library/Fonts/Supplemental/Arial.ttf",
@@ -76,9 +78,9 @@ F_LG = get_font(30, True)
 F_MD = get_font(24)
 F_SM = get_font(20)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # UTILITIES
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 def ease(t):
     t = max(0., min(1., t))
     return t * t * (3. - 2. * t)
@@ -101,9 +103,9 @@ def tc(draw, cx, cy, text, font, fill):
     tw, th = bb[2] - bb[0], bb[3] - bb[1]
     draw.text((int(cx - tw/2), int(cy - th/2)), text, font=font, fill=fill)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # NEURON GRID
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 ROWS, COLS = 4, 8
 GRID_X0, GRID_Y0 = 100, 140
 GRID_X1, GRID_Y1 = 520, 340
@@ -121,9 +123,9 @@ for idx in range(ROWS * COLS):
     shift = random.uniform(-0.5, 0.5)
     neurons.append((x, y, is_toxic, shift))
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # DRAWING COMPONENTS
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def draw_neuron(draw, x, y, is_toxic, alpha, highlight=False):
     """Draw a single neuron circle."""
@@ -178,9 +180,9 @@ def draw_toxicity_meter(draw, cx, cy, w, h, level, alpha, label=""):
     if label and alpha > 0.4:
         tc(draw, cx, y0 - 18, label, F_SM, fbg(C_MID, alpha))
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # SCENE RENDERING
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def render_frame(f):
     img = Image.new("RGB", (W, H), BG)
@@ -278,9 +280,9 @@ def render_frame(f):
 
     return img
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # MAIN
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 if __name__ == "__main__":
     print(f"Rendering {N} frames ({W}×{H}px, {FPS}fps, {TOTAL}s)...")
@@ -293,7 +295,7 @@ if __name__ == "__main__":
 
     print("✓ Self-review passed")
 
-    os.makedirs(os.path.dirname(OUT), exist_ok=True)
-    frames[0].save(OUT, format="WEBP", save_all=True, append_images=frames[1:],
+    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
+    frames[0].save(OUT_PATH, format="WEBP", save_all=True, append_images=frames[1:],
                    duration=int(1000/FPS), loop=0, lossless=True)
-    print(f"✓ Saved → {OUT} ({os.path.getsize(OUT)//1024} KB)")
+    print(f"✓ Saved → {OUT_PATH} ({os.path.getsize(OUT_PATH)//1024} KB)")

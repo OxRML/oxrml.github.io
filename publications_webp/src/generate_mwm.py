@@ -1,33 +1,37 @@
-# publications_gif/src/generate_mwm.py
+#publications_webp/src/generate_mwm.py
 
-#!/usr/bin/env python3
 """
-SCENE 1  0.5 – 3.8 s   Two nodes appear; dashed red gap + pulsing "?"
-SCENE 2  3.8 – 7.8 s   8 practice icons arc in across the gap
-SCENE 3  8.0 – 9.6 s   Gap heals → solid green arrow + "Construct Validity ✓"
+Paper Context:
+The construct validity paper argues benchmark scores only matter when they stay aligned with the target phenomenon.
+Its eight practice icons visualize the methodological bridge between the benchmark score and the underlying construct.
 
-EDIT GUIDE
-  Colours    : C_* constants and ICON_FILLS / ICON_MARKS lists
-  Positions  : PHE_CX/CY/R, SCO_CX/CY, BOX_*, ARR_*, ICON_Y/R constants
-  Text       : string literals passed to ctext()
-  Font sizes : size= argument in _font() calls at top of file
-  Timing     : s / e arguments in ph(t, s, e) calls (in seconds)
-  Speed      : FPS and TOTAL_SECS constants
+Visual Story:
+Scene 1 (0.5-3.8s): Two nodes appear with a dashed red gap and a pulsing question mark.
+Scene 2 (3.8-7.8s): Eight practice icons arc across the gap to connect phenomenon and score.
+Scene 3 (8.0-9.6s): The gap resolves into a green arrow and a construct-validity check label.
+
+Frame and Scene timing Calculations:
+Canvas: 720x450.
+Frame calculation: FPS = 20, TOTAL_SECS = 10.0, N_FRAMES = int(FPS * TOTAL_SECS) = 200.
+Loop envelope: scenes occupy 0.5-9.6s and the remaining interval is used for the white reset envelope.
 """
 
 import math, os
 from PIL import Image, ImageDraw, ImageFont
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # CONFIGURATION
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 W, H       = 720, 450          # canvas dimensions (px)
 FPS        = 20                # frames per second — smoother animation
 TOTAL_SECS = 10.0              # total loop duration (seconds)
-N_FRAMES   = int(FPS * TOTAL_SECS)   # = 120
+N_FRAMES   = int(FPS * TOTAL_SECS)   # = 200
+OUT_PATH = "img/publications/mwm.webp"
 
-# ── Pastel palette ─────────────────────────────────────────────────────────────
+# ======
+# Pastel palette
+# ======
 BG     = (255, 255, 255)
 C_PHE  = (188, 215, 244)       # Phenomenon circle fill — pastel blue
 C_SCO  = (245, 212, 183)       # Score box fill        — pastel peach
@@ -51,8 +55,11 @@ ICON_MARKS = [
     (172, 102, 140), (102, 162,  92),
 ]
 
-# ── Fonts — all sizes are 2× the original 480×270 script values ───────────────
-# Cross-platform font paths (Linux, macOS, Windows)
+# ======
+# ======
+# Fonts — all sizes are 2× the original 480×270 script values
+# ======
+# ======
 FONT_PATHS_REG = [
     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",        # Linux
     "/usr/share/fonts/truetype/google-fonts/Poppins-Regular.ttf",
@@ -88,7 +95,9 @@ F_SUB  = _font(20)               # sub-labels         (increased)
 F_QUES = _font(58, bold=True)   # "?" symbol
 F_CV   = _font(30, bold=True)   # "Construct Validity ✓" label (increased)
 
-# ── Node geometry ──────────────────────────────────────────────────────────────
+# ======
+# Node geometry
+# ======
 PHE_CX, PHE_CY = 108, 220       # Phenomenon circle centre
 PHE_R          = 90              # radius — sized to hold "Phenomenon" at 22pt
 
@@ -101,7 +110,9 @@ ARR_X1 = PHE_CX + PHE_R + 10    # 208 — arrow start (just outside circle)
 ARR_X2 = SCO_CX - BOX_W//2 - 10 # 534 — arrow end   (just outside box)
 ARR_MX = (ARR_X1 + ARR_X2) // 2  # 371 — midpoint
 
-# ── 8 icon arc (spread between nodes, above the arrow) ───────────────────────
+# ======
+# 8 icon arc (spread between nodes, above the arrow)
+# ======
 N_ICONS = 8
 ICON_Y  = 100                    # y-centre of all icon circles
 ICON_R  = 17                     # icon circle radius
@@ -110,13 +121,17 @@ _end    = ARR_X2 - ICON_R - 10  # 507 — rightmost icon centre
 ICON_XS = [int(_start + (_end - _start) * i / (N_ICONS - 1))
            for i in range(N_ICONS)]   # [235, 273, 312, …, 507]
 
+# ======
+# ======
 # Arc connector endpoints (top of each node — polyline path above arrow)
+# ======
+# ======
 ARC_L = (PHE_CX, PHE_CY - PHE_R)         # (108, 130) — top of PHE circle
 ARC_R = (SCO_CX, SCO_CY - BOX_H // 2)   # (618, 175) — top of SCO box
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # UTILITY FUNCTIONS
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def ease(t):
     """Smooth-step easing, clamped to [0, 1]."""
@@ -161,8 +176,14 @@ def arr_tip(draw, x2, y, col, sz=14, w=3):
         draw.line([(x2, y), (x2 - sz*math.cos(da), y - sz*math.sin(da))],
                   fill=col, width=w)
 
-# ── 8 Icon mark drawing functions ─────────────────────────────────────────────
+# ======
+# 8 Icon mark drawing functions
+# ======
+# ======
+# ======
 # Each: (draw, cx, cy, r, mark_colour) — r is the working radius inside the circle
+# ======
+# ======
 
 def icon_lens(draw, cx, cy, r, c):
     """Magnifying glass — (1) Define the phenomenon"""
@@ -241,9 +262,9 @@ ICON_FUNCS = [
     icon_shield, icon_bars, icon_scan, icon_stamp,
 ]
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # FRAME LOOP
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 frames = []
 
@@ -364,10 +385,9 @@ for fi in range(N_FRAMES):
 
     frames.append(img)
 
-
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # SELF-REVIEW: scan border pixels for unintended clipping
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 MARGIN = 6
 issues = []
@@ -390,20 +410,20 @@ else:
     print("✓  Self-review: no edge-clipping detected.")
 print(f"✓  {len(frames)} frames  |  {W}×{H}px  |  {FPS}fps  |  {TOTAL_SECS}s loop")
 
-
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
+# ======
 # SAVE — animated WebP
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
+# ======
 
-OUT = "img/publications/mwm.webp"
-os.makedirs(os.path.dirname(OUT), exist_ok=True)
+os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
 
 frames[0].save(
-    OUT,
+    OUT_PATH,
     save_all=True,
     append_images=frames[1:],
     loop=0,                        # 0 = loop forever
     duration=int(1000 / FPS),      # ms per frame (83 ms @ 12 fps)
     lossless=True,                 # lossless WebP for crisp vector art
 )
-print(f"✓  Saved → {OUT}")
+print(f"✓  Saved → {OUT_PATH}")

@@ -1,42 +1,44 @@
-#!/usr/bin/env python3
+#publications_webp/src/generate_counterfactual.py
+
 """
-LLM Counterfactual Explanations — animated WebP
+Paper Context:
+"LLMs Don't Know Their Own Decision Boundaries"
+- LLMs generate self-counterfactual explanations (SCEs)
+- Example: Age=60, BP=135 → "high risk". SCE: "If BP=110, low risk"
+- KEY FINDING: Validity-Minimality Trade-off
+- When asked for counterfactual: VALID but NOT minimal (big jump)
+- When asked for MINIMAL counterfactual: minimal but NOT valid (tiny step)
 
-PAPER CONTEXT:
-  "LLMs Don't Know Their Own Decision Boundaries"
-  - LLMs generate self-counterfactual explanations (SCEs)
-  - Example: Age=60, BP=135 → "high risk". SCE: "If BP=110, low risk"
-  - KEY FINDING: Validity-Minimality Trade-off
-    - When asked for counterfactual: VALID but NOT minimal (big jump)
-    - When asked for MINIMAL counterfactual: minimal but NOT valid (tiny step)
+Visual Story:
+Scene 1 (0-3s): Decision boundary scatter plot (Age vs Education)
+- A data point appears in "Below $50K" region
+- LLM prediction label
+Scene 2 (3-6s): Two counterfactual attempts shown on the plot:
+- Big arrow crossing boundary (valid, not minimal)
+- Small arrow not crossing (minimal, not valid)
+Scene 3 (6-8s): Trade-off summary with checkmarks/X marks
 
-VISUAL STORY (seamless loop):
-  Scene 1 (0-3s): Decision boundary scatter plot (Age vs Education)
-                  - A data point appears in "Below $50K" region
-                  - LLM prediction label
-  Scene 2 (3-6s): Two counterfactual attempts shown on the plot:
-                  - Big arrow crossing boundary (valid, not minimal)
-                  - Small arrow not crossing (minimal, not valid)
-  Scene 3 (6-8s): Trade-off summary with checkmarks/X marks
-
-720×450, ~8s loop, 12 fps
+Frame and Scene timing Calculations:
+Canvas: 720x450.
+Frame calculation: FPS = 20, TOTAL = 10.0, N = int(FPS * TOTAL) = 200.
+Scene timings: Scene 1 (0-3s) | Scene 2 (3-6s) | Scene 3 (6-8s).
 """
 
 from PIL import Image, ImageDraw, ImageFont
 import math, os
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # CANVAS & TIMING
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 W, H = 720, 450
 FPS = 20
 TOTAL = 10.0
 N = int(FPS * TOTAL)
-OUT = "img/publications/counterfactual.webp"
+OUT_PATH = "img/publications/counterfactual.webp"
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # PALETTE
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 BG = (255, 255, 255)
 C_ABOVE = (195, 225, 210)       # Above $50K region - mint green
 C_BELOW = (240, 220, 215)       # Below $50K region - warm pink
@@ -49,9 +51,9 @@ C_DARK = (55, 58, 75)
 C_MID = (118, 122, 138)
 C_LIGHT = (170, 175, 188)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # FONTS
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 FONT_PATHS = [
     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
     "/System/Library/Fonts/Supplemental/Arial.ttf",
@@ -81,9 +83,9 @@ F_MD = get_font(22)
 F_SM = get_font(18)
 F_AXIS = get_font(16)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # UTILITIES
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 def ease(t):
     t = max(0., min(1., t))
     return t * t * (3. - 2. * t)
@@ -106,9 +108,9 @@ def tc(draw, cx, cy, text, font, fill):
     tw, th = bb[2] - bb[0], bb[3] - bb[1]
     draw.text((int(cx - tw/2), int(cy - th/2)), text, font=font, fill=fill)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # PLOT COORDINATES
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # Decision boundary plot area
 PLOT_X0, PLOT_Y0 = 80, 80
 PLOT_X1, PLOT_Y1 = 380, 340
@@ -124,9 +126,9 @@ BIG_X, BIG_Y = 300, 140
 # Small step target (doesn't cross - invalid)
 SMALL_X, SMALL_Y = 200, 220
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # DRAWING COMPONENTS
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def draw_decision_plot(draw, alpha, show_boundary=True):
     """Draw the decision boundary scatter plot."""
@@ -229,9 +231,9 @@ def draw_result_icon(draw, cx, cy, is_valid, alpha, size=24):
         draw.line([(cx-r+4, cy-r+4), (cx+r-4, cy+r-4)], fill=col, width=3)
         draw.line([(cx+r-4, cy-r+4), (cx-r+4, cy+r-4)], fill=col, width=3)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # SCENE RENDERING
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def render_frame(f):
     img = Image.new("RGB", (W, H), BG)
@@ -373,9 +375,9 @@ def render_frame(f):
 
     return img
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # MAIN
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 if __name__ == "__main__":
     print(f"Rendering {N} frames ({W}×{H}px, {FPS}fps, {TOTAL}s)...")
@@ -388,7 +390,7 @@ if __name__ == "__main__":
 
     print("✓ Self-review passed")
 
-    os.makedirs(os.path.dirname(OUT), exist_ok=True)
-    frames[0].save(OUT, format="WEBP", save_all=True, append_images=frames[1:],
+    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
+    frames[0].save(OUT_PATH, format="WEBP", save_all=True, append_images=frames[1:],
                    duration=int(1000/FPS), loop=0, lossless=True)
-    print(f"✓ Saved → {OUT} ({os.path.getsize(OUT)//1024} KB)")
+    print(f"✓ Saved → {OUT_PATH} ({os.path.getsize(OUT_PATH)//1024} KB)")

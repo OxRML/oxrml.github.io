@@ -1,19 +1,21 @@
-#!/usr/bin/env python3
+#publications_webp/src/generate_multimodal.py
+
 """
-Multimodal ML Review — animated WebP
+Paper Context:
+This is a SYSTEMATIC REVIEW paper that:
+- Reviews 50+ studies on multimodal ML in healthcare
+- Covers imaging, text, time series, tabular data
+- Key finding: effectiveness depends on specific data AND task
 
-PAPER CONTEXT:
-  This is a SYSTEMATIC REVIEW paper that:
-  - Reviews 50+ studies on multimodal ML in healthcare
-  - Covers imaging, text, time series, tabular data
-  - Key finding: effectiveness depends on specific data AND task
+Visual Story:
+Scene 1 (0-3.5s): Many small paper/study icons appear around edges
+Scene 2 (3.5-6s): Papers flow into central "synthesis" circle → unified view
+Scene 3 (6-8s): Four modality icons + "~task" indicator (effectiveness varies)
 
-VISUAL STORY (seamless loop):
-  Scene 1 (0-3.5s): Many small paper/study icons appear around edges
-  Scene 2 (3.5-6s): Papers flow into central "synthesis" circle → unified view
-  Scene 3 (6-8s): Four modality icons + "~task" indicator (effectiveness varies)
-
-720×450, ~8s loop, 12 fps
+Frame and Scene timing Calculations:
+Canvas: 720x450.
+Frame calculation: FPS = 20, TOTAL = 10.0, N = int(FPS * TOTAL) = 200.
+Scene timings: Scene 1 (0-3.5s) | Scene 2 (3.5-6s) | Scene 3 (6-8s).
 """
 
 from PIL import Image, ImageDraw, ImageFont
@@ -21,18 +23,18 @@ import math, os, random
 
 random.seed(42)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # CANVAS & TIMING
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 W, H = 720, 450
 FPS = 20
 TOTAL = 10.0
 N = int(FPS * TOTAL)
-OUT = "img/publications/multimodal.webp"
+OUT_PATH = "img/publications/multimodal.webp"
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # PALETTE
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 BG = (255, 255, 255)
 C_PAPER = (235, 238, 245)       # Study papers - light blue-gray
 C_SYNTH = (255, 245, 225)       # Synthesis center - warm cream
@@ -44,9 +46,9 @@ C_DARK = (55, 58, 75)
 C_MID = (118, 122, 138)
 C_LIGHT = (170, 175, 188)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # FONTS
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 FONT_PATHS = [
     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
     "/System/Library/Fonts/Supplemental/Arial.ttf",
@@ -75,9 +77,9 @@ F_LG = get_font(30, True)
 F_MD = get_font(24)
 F_SM = get_font(20)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # UTILITIES
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 def ease(t):
     t = max(0., min(1., t))
     return t * t * (3. - 2. * t)
@@ -100,9 +102,9 @@ def tc(draw, cx, cy, text, font, fill):
     tw, th = bb[2] - bb[0], bb[3] - bb[1]
     draw.text((int(cx - tw/2), int(cy - th/2)), text, font=font, fill=fill)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # STUDY PAPERS (scattered around edges)
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # Generate 12 paper positions around the perimeter
 papers = []
 for i in range(12):
@@ -112,9 +114,9 @@ for i in range(12):
     y = 225 + r * math.sin(angle) * 0.75  # Elliptical
     papers.append((x, y, angle))
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # DRAWING COMPONENTS
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def draw_paper_icon(draw, x, y, size, alpha):
     """Small paper/study icon."""
@@ -198,9 +200,9 @@ def draw_modality_icon(draw, cx, cy, size, mod_type, alpha):
             # Horizontal line
             draw.line([(cx-s+5, cy), (cx+s-5, cy)], fill=grid_col, width=1)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # SCENE RENDERING
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def render_frame(f):
     img = Image.new("RGB", (W, H), BG)
@@ -314,9 +316,9 @@ def render_frame(f):
 
     return img
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # MAIN
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 if __name__ == "__main__":
     print(f"Rendering {N} frames ({W}×{H}px, {FPS}fps, {TOTAL}s)...")
@@ -329,7 +331,7 @@ if __name__ == "__main__":
 
     print("✓ Self-review passed")
 
-    os.makedirs(os.path.dirname(OUT), exist_ok=True)
-    frames[0].save(OUT, format="WEBP", save_all=True, append_images=frames[1:],
+    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
+    frames[0].save(OUT_PATH, format="WEBP", save_all=True, append_images=frames[1:],
                    duration=int(1000/FPS), loop=0, lossless=True)
-    print(f"✓ Saved → {OUT} ({os.path.getsize(OUT)//1024} KB)")
+    print(f"✓ Saved → {OUT_PATH} ({os.path.getsize(OUT_PATH)//1024} KB)")

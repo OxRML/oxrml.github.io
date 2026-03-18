@@ -1,0 +1,146 @@
+[
+  {
+    "paper_title": "From theoretical models to practical deployment: A perspective and case study of opportunities and challenges in AI-driven cardiac auscultation research for low-income countries",
+    "py_file": "publications_webp/src/generate_cardiac_auscultation.py",
+    "paper_id": "plos_digital_health",
+    "Paper Context": "AI-driven cardiac auscultation research for low-income settings.\nKey: Bayesian ResNet for heart murmur detection from sound recordings.\nFocus: Gap between AI research and real-world deployment in LMICs.",
+    "Visual Story": "Scene 1 (0-2.5s): Stethoscope icon + heart sound waveform appears\nScene 2 (2.5-5s): Waveform \u2192 spectrogram \u2192 AI model \u2192 prediction\nScene 3 (5-8s): Deployment challenges visualized (barriers fading in/out)",
+    "Scene Timings": "Canvas: 720x450.\nFrame calculation: FPS = 20, TOTAL = 10.0, N = int(FPS * TOTAL) = 200.\nScene timings: Scene 1 (0-2.5s) | Scene 2 (2.5-5s) | Scene 3 (5-8s)."
+  },
+  {
+    "paper_title": "Evaluating the role of 'Constitutions' for learning from AI feedback",
+    "py_file": "publications_webp/src/generate_constitutions.py",
+    "paper_id": "4",
+    "Paper Context": "Tests how different \"constitutions\" (written guidelines) affect AI feedback quality.\nApplied to medical interviews for patient-centered communication.\n\nKEY FINDING:\n- Detailed constitutions \u2192 better EMOTIVE feedback (empathy, rapport)\n- BUT: No constitution beats baseline for PRACTICAL skills (info gathering)",
+    "Visual Story": "Scene 1 (0-4s): Constitution doc \u2192 feeds into LLM critic \u2192 produces feedback\nScene 2 (4-8s): Results comparison - Emotive bar rises high for detailed,\nPractical bars stay equal (detailed \u2260 better)\nFade back to Scene 1",
+    "Scene Timings": "Canvas: 720x450.\nFrame calculation: FPS = 20, TOTAL = 10.0, N = int(FPS * TOTAL) = 200.\nScene timings: Scene 1 (0-4s) | Scene 2 (4-8s) | Fade back to Scene 1."
+  },
+  {
+    "paper_title": "LLMs Don't Know Their Own Decision Boundaries: The Unreliability of Self-Generated Counterfactual Explanations",
+    "py_file": "publications_webp/src/generate_counterfactual.py",
+    "paper_id": "decision_boundaries",
+    "Paper Context": "\"LLMs Don't Know Their Own Decision Boundaries\"\n- LLMs generate self-counterfactual explanations (SCEs)\n- Example: Age=60, BP=135 \u2192 \"high risk\". SCE: \"If BP=110, low risk\"\n- KEY FINDING: Validity-Minimality Trade-off\n- When asked for counterfactual: VALID but NOT minimal (big jump)\n- When asked for MINIMAL counterfactual: minimal but NOT valid (tiny step)",
+    "Visual Story": "Scene 1 (0-3s): Decision boundary scatter plot (Age vs Education)\n- A data point appears in \"Below $50K\" region\n- LLM prediction label\nScene 2 (3-6s): Two counterfactual attempts shown on the plot:\n- Big arrow crossing boundary (valid, not minimal)\n- Small arrow not crossing (minimal, not valid)\nScene 3 (6-8s): Trade-off summary with checkmarks/X marks",
+    "Scene Timings": "Canvas: 720x450.\nFrame calculation: FPS = 20, TOTAL = 10.0, N = int(FPS * TOTAL) = 200.\nScene timings: Scene 1 (0-3s) | Scene 2 (3-6s) | Scene 3 (6-8s)."
+  },
+  {
+    "paper_title": "How Does DPO Reduce Toxicity? A Mechanistic Neuron-Level Analysis",
+    "py_file": "publications_webp/src/generate_dpo_toxicity.py",
+    "paper_id": "dpo_toxicity",
+    "Paper Context": "Prior work claimed DPO reduces toxicity by dampening a few \"toxic neurons\".\nThis paper shows that's only 2.5-24% of the effect.\n\nKEY FINDING:\nDPO actually works via DISTRIBUTED activation shifts across MANY neurons,\nnot just a few toxic ones. Four neuron groups combine to reduce toxicity.",
+    "Visual Story": "Scene 1 (0-3s): Prior belief - a few red \"toxic\" neurons highlighted\nScene 2 (3-6s): Reality - many neurons show small shifts (arrows), not just toxic ones\nScene 3 (6-8s): Combined effect \u2192 net toxicity reduction",
+    "Scene Timings": "Canvas: 720x450.\nFrame calculation: FPS = 20, TOTAL = 10.0, N = int(FPS * TOTAL) = 200.\nScene timings: Scene 1 (0-3s) | Scene 2 (3-6s) | Scene 3 (6-8s)."
+  },
+  {
+    "paper_title": "Dual Bayesian ResNet: A deep learning approach to heart murmur detection",
+    "py_file": "publications_webp/src/generate_dual_bayesian_resnet.py",
+    "paper_id": "dual_bayesian_resnet",
+    "Paper Context": "PhysioNet Challenge 2022 - 4th place solution.\nUses log mel spectrograms with overlapping segments.\nDual binary classification: present vs (unknown/absent) + unknown vs (present/absent)\nClassifications aggregated for final patient label.",
+    "Visual Story": "Scene 1 (0-2.5s): Heart sound waveform with overlapping segments\nScene 2 (2.5-5.5s): Segments \u2192 spectrograms \u2192 dual binary paths\nScene 3 (5.5-8s): Aggregation \u2192 final classification + 4th place badge",
+    "Scene Timings": "Canvas: 720x450.\nFrame calculation: FPS = 20, TOTAL = 10.0, N = int(FPS * TOTAL) = 200.\nScene timings: Scene 1 (0-2.5s) | Scene 2 (2.5-5.5s) | Scene 3 (5.5-8s)."
+  },
+  {
+    "paper_title": "Combining Hough transform and deep learning approaches to reconstruct ECG signals from printouts",
+    "py_file": "publications_webp/src/generate_ecg.py",
+    "paper_id": "8",
+    "Paper Context": "Paper ECGs (printouts) \u2192 digital signal reconstruction.\nPipeline: Hough transform (rotate) \u2192 U-Net (segment) \u2192 Vectorize\nWon 1st place at PhysioNet 2024 Challenge.",
+    "Visual Story": "Scene 1 (0-3s): Tilted paper ECG with grid and signal appears\nScene 2 (3-5.5s): Pipeline steps - rotate, segment, vectorize\nScene 3 (5.5-8s): Clean digital waveform emerges + 1st place badge",
+    "Scene Timings": "Canvas: 720x450.\nFrame calculation: FPS = 20, TOTAL = 10.0, N = int(FPS * TOTAL) = 200.\nScene timings: Scene 1 (0-3s) | Scene 2 (3-5.5s) | Scene 3 (5.5-8s)."
+  },
+  {
+    "paper_title": "Evaluating LLM-as-a-Judge under Multilingual, Multimodal and Multi-domain Constraints",
+    "py_file": "publications_webp/src/generate_eval_llm_judge.py",
+    "paper_id": "llm_as_judge_polyvis",
+    "Paper Context": "LLM judges evaluate multimodal content across 12 languages and multiple task types.\nThe paper shows judge performance is shaped by composite interactions between task, language, and model behavior rather than separable factors.",
+    "Visual Story": "Scene 1 (0.5-4.0s): A balance scale compares two multimodal responses with the judge orb at the pivot.\nScene 2 (4.5-8.0s): Twelve language bubbles orbit the judge and vary their connection strengths.\nScene 3 (8.5-10.0s): Task bars rise to different heights to show non-decomposable performance.",
+    "Scene Timings": "Canvas: 720x450.\nFrame calculation: FPS = 20, TOTAL = 10.0, N = int(FPS * TOTAL) = 200.\nScene timing note: Scene 3 is configured through 12.0s in code, but the 10.0s loop renders the 8.5-10.0s segment before reset."
+  },
+  {
+    "paper_title": "A Positive Case for Faithfulness: LLM Self-Explanations Help Predict Model Behavior",
+    "py_file": "publications_webp/src/generate_faithful.py",
+    "paper_id": "faithfulness_self_explanations",
+    "Paper Context": "LLM self-explanations are evaluated for whether they help an observer predict model behavior.\nThe paper introduces Normalized Simulatability Gain (NSG) as a faithfulness metric and shows explanations can improve prediction while still sometimes misleading observers.",
+    "Visual Story": "Scene 1 (0.0-3.35s): A patient prompts an LLM, which answers and reveals an explanation key.\nScene 2 (3.35-6.70s): A counterfactual patient ages from 60 to 30 and the model answer flips.\nScene 3 (6.70-10.05s): Observers with and without explanations are compared with NSG uplift bars.",
+    "Scene Timings": "Canvas: 720x450.\nFrame calculation: FPS = 20, N_PER = 67, N_SCENES = 3, N_FRAMES = N_PER * N_SCENES = 201.\nTotal duration: N_FRAMES / FPS = 10.05s with XFADE = 8 frame cross-fades between scenes."
+  },
+  {
+    "paper_title": "Reliability of LLMs as medical assistants for the general public: a randomized preregsitered study",
+    "py_file": "publications_webp/src/generate_helpmed.py",
+    "paper_id": "help-med",
+    "Paper Context": "The HELPMed animation summarizes a randomized preregistered study on LLMs as medical assistants for the general public.\nIt contrasts direct LLM performance with trial-arm outcomes across multiple model and control conditions.",
+    "Visual Story": "Act 1 (0.0-4.0s): A clinical vignette fans out into GPT-4o, Llama 3, Command R+, and control trial arms.\nAct 2 (4.0-7.5s): A split comparison shows a 95% direct-LLM bar beside a 34% trial-arm bar.\nAct 3 (7.5-9.8s): A bracket highlights the 61 percentage-point gap before the white loop fade.",
+    "Scene Timings": "Canvas: 720x450.\nFrame calculation: FRAME_MS = 50, N = 200, total duration = N * FRAME_MS / 1000 = 10.0s.\nAct timing windows: Act 1 = frames 0-80, Act 2 = frames 80-150, Act 3 = frames 150-196, fade = frames 196-199."
+  },
+  {
+    "paper_title": "Improving in-context learning with small language model ensembles",
+    "py_file": "publications_webp/src/generate_icl_ensemble.py",
+    "paper_id": "7",
+    "Paper Context": "In-context learning (ICL) is cheap but less accurate than fine-tuning.\nThis paper: Use multiple fine-tuned SMALL language models (SLMs) as \"experts\"\nto advise the large LLM \u2192 achieves SOTA results.\n\nThree stages:\n1. Fine-tuned SLMs make predictions\n2. Predictions are fed as context to LLM\n3. LLM makes final prediction (better than ICL alone)",
+    "Visual Story": "Scene 1 (0-3s): Multiple small SLM circles appear with \"fine-tuned\" labels\nScene 2 (3-5.5s): SLMs send signals to central large LLM circle\nScene 3 (5.5-8s): Output comparison - ICL alone vs Ensemble (higher bar)",
+    "Scene Timings": "Canvas: 720x450.\nFrame calculation: FPS = 20, TOTAL = 10.0, N = int(FPS * TOTAL) = 200.\nScene timings: Scene 1 (0-3s) | Scene 2 (3-5.5s) | Scene 3 (5.5-8s)."
+  },
+  {
+    "paper_title": "LINGOLY: A Benchmark of Olympiad-Level Linguistic Reasoning Puzzles in Low-Resource and Extinct Languages",
+    "py_file": "publications_webp/src/generate_lingoly_one.py",
+    "paper_id": "9",
+    "Paper Context": "LLMs are tested on linguistic puzzles from low-resource/extinct languages.\nThe puzzles require multi-step reasoning to identify patterns.\nEven top models struggle on hard problems (38.7% accuracy).\n\nKey insight: True multi-step out-of-domain reasoning remains a challenge.",
+    "Visual Story": "Scene 1 (0-3s): Puzzle pieces with exotic morpheme symbols appear\nScene 2 (3-5.5s): LLM orb processes them \u2192 shows \"38%\" result\nScene 3 (5.5-8s): Difficulty bars showing accuracy drops on harder levels",
+    "Scene Timings": "Canvas: 720x450.\nFrame calculation: FPS = 20, TOTAL = 10.0, N = int(FPS * TOTAL) = 200.\nScene timings: Scene 1 (0-3s) | Scene 2 (3-5.5s) | Scene 3 (5.5-8s)."
+  },
+  {
+    "paper_title": "LingOly-TOO: Disentangling Reasoning from Knowledge with Templatised Orthographic Obfuscation",
+    "py_file": "publications_webp/src/generate_lingolytoo.py",
+    "paper_id": "2",
+    "Paper Context": "LingOly-TOO tests whether reasoning can be separated from memorized knowledge using templatised orthographic obfuscation.\nThe visual focuses on preserving meaning while scrambling surface forms and then comparing downstream reasoning scores.",
+    "Visual Story": "Phase 1 (0.0-2.1s): An original word and its meaning fade in with light background pairs.\nPhase 2 (2.5-6.5s): Characters scramble left-to-right into the obfuscated form while meaning stays fixed.\nPhase 3 (6.9-8.75s): Original and obfuscated score bars rise side by side before the loop fade.",
+    "Scene Timings": "Canvas: 720x450.\nFrame calculation: FPS = 20, SECS = 10.0, N = int(FPS * SECS) = 200.\nPhase timing windows: Phase 1 = frames 0-42, Phase 2 = frames 50-130, Phase 3 = frames 138-175, fade = frames 182-199."
+  },
+  {
+    "paper_title": "Exploring the landscape of large language models in medical question answering: Observations and open questions",
+    "py_file": "publications_webp/src/generate_llm_landscape_med.py",
+    "paper_id": "llm_landscape",
+    "Paper Context": "Systematic benchmarking of 8 LLMs on Polish medical licensing exams.\nEnables per-question comparison between LLMs and human test-takers.\nKey patterns: model similarities, confidence-accuracy correlation,\nnegative correlation with question length.",
+    "Visual Story": "Scene 1 (0-2.5s): Multiple LLMs of varying sizes appear (landscape view)\nScene 2 (2.5-5.5s): Questions tested \u2192 accuracy chart with human baseline\nScene 3 (5.5-8s): Key patterns: confidence\u2191, length\u2193, human similarity",
+    "Scene Timings": "Canvas: 720x450.\nFrame calculation: FPS = 20, TOTAL = 10.0, N = int(FPS * TOTAL) = 200.\nScene timings: Scene 1 (0-2.5s) | Scene 2 (2.5-5.5s) | Scene 3 (5.5-8s)."
+  },
+  {
+    "paper_title": "Do Large Language Models have Shared Weaknesses in Medical Question Answering?",
+    "py_file": "publications_webp/src/generate_llm_shared_weaknesses.py",
+    "paper_id": "llm_shared_weaknesses",
+    "Paper Context": "Benchmarking 16 LLMs on Polish medical licensing exams.\nKey findings: LLMs have correlated accuracies (shared weaknesses),\nperformance negatively correlated with discriminating questions,\nconfidence correlates with accuracy, length negatively correlates.",
+    "Visual Story": "Scene 1 (0-2.5s): Multiple LLM icons appear in a grid\nScene 2 (2.5-5.5s): Questions flow \u2192 some answered wrong by ALL \u2192 shared weakness\nScene 3 (5.5-8s): Correlation pattern visualization (similarity matrix)",
+    "Scene Timings": "Canvas: 720x450.\nFrame calculation: FPS = 20, TOTAL = 10.0, N = int(FPS * TOTAL) = 200.\nScene timings: Scene 1 (0-2.5s) | Scene 2 (2.5-5.5s) | Scene 3 (5.5-8s)."
+  },
+  {
+    "paper_title": "Review of multimodal machine learning approaches in healthcare",
+    "py_file": "publications_webp/src/generate_multimodal.py",
+    "paper_id": "multimodal_healthcare",
+    "Paper Context": "This is a SYSTEMATIC REVIEW paper that:\n- Reviews 50+ studies on multimodal ML in healthcare\n- Covers imaging, text, time series, tabular data\n- Key finding: effectiveness depends on specific data AND task",
+    "Visual Story": "Scene 1 (0-3.5s): Many small paper/study icons appear around edges\nScene 2 (3.5-6s): Papers flow into central \"synthesis\" circle \u2192 unified view\nScene 3 (6-8s): Four modality icons + \"~task\" indicator (effectiveness varies)",
+    "Scene Timings": "Canvas: 720x450.\nFrame calculation: FPS = 20, TOTAL = 10.0, N = int(FPS * TOTAL) = 200.\nScene timings: Scene 1 (0-3.5s) | Scene 2 (3.5-6s) | Scene 3 (6-8s)."
+  },
+  {
+    "paper_title": "Multimodal cardiomegaly classification with image-derived digital biomarkers",
+    "py_file": "publications_webp/src/generate_multimodal_cardiomegaly.py",
+    "paper_id": "multimodal_cardiomegaly",
+    "Paper Context": "Classifying cardiomegaly using multimodal data: chest X-rays + ICU data.\nKey contribution: Digital biomarkers (CTR, CPAR) from images provide\ncomparable performance to black-box deep learning with better explainability.\nCTR (cardiothoracic ratio) = cardiac width / thoracic width",
+    "Visual Story": "Scene 1 (0-2.5s): Chest X-ray with heart/lung outlines \u2192 CTR measurement\nScene 2 (2.5-5.5s): Multimodal fusion: X-ray + ICU data \u2192 combined model\nScene 3 (5.5-8s): Comparison: simple CTR \u2248 black-box + better explainability",
+    "Scene Timings": "Canvas: 720x450.\nFrame calculation: FPS = 20, TOTAL = 10.0, N = int(FPS * TOTAL) = 200.\nScene timings: Scene 1 (0-2.5s) | Scene 2 (2.5-5.5s) | Scene 3 (5.5-8s)."
+  },
+  {
+    "paper_title": "Measuring what matters: Construct validity in large language model benchmarks",
+    "py_file": "publications_webp/src/generate_mwm.py",
+    "paper_id": "1",
+    "Paper Context": "The construct validity paper argues benchmark scores only matter when they stay aligned with the target phenomenon.\nIts eight practice icons visualize the methodological bridge between the benchmark score and the underlying construct.",
+    "Visual Story": "Scene 1 (0.5-3.8s): Two nodes appear with a dashed red gap and a pulsing question mark.\nScene 2 (3.8-7.8s): Eight practice icons arc across the gap to connect phenomenon and score.\nScene 3 (8.0-9.6s): The gap resolves into a green arrow and a construct-validity check label.",
+    "Scene Timings": "Canvas: 720x450.\nFrame calculation: FPS = 20, TOTAL_SECS = 10.0, N_FRAMES = int(FPS * TOTAL_SECS) = 200.\nLoop envelope: scenes occupy 0.5-9.6s and the remaining interval is used for the white reset envelope."
+  },
+  {
+    "paper_title": "Can sparse autoencoders be used to decompose and interpret steering vectors?",
+    "py_file": "publications_webp/src/generate_sae.py",
+    "paper_id": "5",
+    "Paper Context": "Can SAEs interpret steering vectors? NO, because:\n1. Steering vectors fall OUTSIDE the SAE's training distribution\n2. Steering vectors have MEANINGFUL NEGATIVE projections (SAEs only do positive)\n\nResult: SAE reconstructions lose essential steering properties.",
+    "Visual Story": "Scene 1 (0-3s): SAE box with training distribution cloud INSIDE\n- Shows \"trained on activations\" concept\n- Purple steering vector arrow appears OUTSIDE the cloud\nScene 2 (3-5.5s): Vector enters SAE \u2192 feature decomposition\n- Bars appear: some positive (green), some NEGATIVE (red, pointing down)\n- \"Negative!\" warning\nScene 3 (5.5-8s): Reconstruction fails\n- Original vector vs reconstructed (different directions)\n- \u2260 symbol, X mark",
+    "Scene Timings": "Canvas: 720x450.\nFrame calculation: FPS = 20, TOTAL = 10.0, N = int(FPS * TOTAL) = 200.\nScene timings: Scene 1 (0-3s) | Scene 2 (3-5.5s) | Scene 3 (5.5-8s)."
+  }
+]

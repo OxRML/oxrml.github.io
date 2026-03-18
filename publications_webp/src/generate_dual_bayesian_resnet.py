@@ -1,37 +1,39 @@
-#!/usr/bin/env python3
+#publications_webp/src/generate_dual_bayesian_resnet.py
+
 """
-Dual Bayesian ResNet for Heart Murmur Detection — animated WebP
+Paper Context:
+PhysioNet Challenge 2022 - 4th place solution.
+Uses log mel spectrograms with overlapping segments.
+Dual binary classification: present vs (unknown/absent) + unknown vs (present/absent)
+Classifications aggregated for final patient label.
 
-PAPER CONTEXT:
-  PhysioNet Challenge 2022 - 4th place solution.
-  Uses log mel spectrograms with overlapping segments.
-  Dual binary classification: present vs (unknown/absent) + unknown vs (present/absent)
-  Classifications aggregated for final patient label.
+Visual Story:
+Scene 1 (0-2.5s): Heart sound waveform with overlapping segments
+Scene 2 (2.5-5.5s): Segments → spectrograms → dual binary paths
+Scene 3 (5.5-8s): Aggregation → final classification + 4th place badge
 
-VISUAL STORY (seamless loop):
-  Scene 1 (0-2.5s): Heart sound waveform with overlapping segments
-  Scene 2 (2.5-5.5s): Segments → spectrograms → dual binary paths
-  Scene 3 (5.5-8s): Aggregation → final classification + 4th place badge
-
-720×450, ~8s loop, 12 fps
+Frame and Scene timing Calculations:
+Canvas: 720x450.
+Frame calculation: FPS = 20, TOTAL = 10.0, N = int(FPS * TOTAL) = 200.
+Scene timings: Scene 1 (0-2.5s) | Scene 2 (2.5-5.5s) | Scene 3 (5.5-8s).
 """
 
 from PIL import Image, ImageDraw, ImageFont
 import math
 import os
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # CANVAS & TIMING
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 W, H = 720, 450
 FPS = 20
 TOTAL = 10.0
 N = int(FPS * TOTAL)
-OUT = "img/publications/dual_bayesian_resnet.webp"
+OUT_PATH = "img/publications/dual_bayesian_resnet.webp"
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # PALETTE (pastel colors)
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 BG = (255, 255, 255)
 C_WAVE = (200, 180, 220)        # Audio wave - soft purple
 C_SPEC = (255, 230, 200)        # Spectrogram - warm peach
@@ -43,9 +45,9 @@ C_DARK = (55, 58, 75)
 C_MID = (118, 122, 138)
 C_LIGHT = (170, 175, 188)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # FONTS (cross-platform)
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 FONT_PATHS = [
     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
     "/System/Library/Fonts/Supplemental/Arial.ttf",
@@ -77,9 +79,9 @@ F_MD = get_font(24)
 F_SM = get_font(20)
 F_XS = get_font(16)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # UTILITIES
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 def ease(t):
     t = max(0., min(1., t))
     return t * t * (3. - 2. * t)
@@ -113,9 +115,9 @@ def draw_arrow(draw, x1, y1, x2, y2, col, width=2, head=8):
         (x2 - head * math.cos(ang + 0.4), y2 - head * math.sin(ang + 0.4)),
     ], fill=col)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # DRAWING COMPONENTS
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def draw_waveform(draw, cx, cy, width, height, alpha, phase=0, segments=None):
     """Draw audio waveform with optional segment markers."""
@@ -229,9 +231,9 @@ def draw_badge(draw, cx, cy, alpha, text="4th"):
     if alpha > 0.5:
         tc(draw, cx, cy, text, F_SM, fbg(C_DARK, alpha * 0.9))
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # SCENE RENDERING
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def render_frame(f):
     img = Image.new("RGB", (W, H), BG)
@@ -388,9 +390,9 @@ def render_frame(f):
 
     return img
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # MAIN
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 if __name__ == "__main__":
     print(f"Rendering {N} frames ({W}×{H}px, {FPS}fps, {TOTAL}s)...")
@@ -403,9 +405,9 @@ if __name__ == "__main__":
 
     print("✓ Self-review passed")
 
-    os.makedirs(os.path.dirname(OUT), exist_ok=True)
+    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
     frames[0].save(
-        OUT,
+        OUT_PATH,
         format="WEBP",
         save_all=True,
         append_images=frames[1:],
@@ -413,4 +415,4 @@ if __name__ == "__main__":
         loop=0,
         lossless=True
     )
-    print(f"✓ Saved → {OUT} ({os.path.getsize(OUT) // 1024} KB)")
+    print(f"✓ Saved → {OUT_PATH} ({os.path.getsize(OUT_PATH) // 1024} KB)")

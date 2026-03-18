@@ -1,29 +1,40 @@
-# publications_gif/src/generate_lingolytoo.py
+#publications_webp/src/generate_lingolytoo.py
 
 """
-  Phase 1  A word + its meaning fade in — large, centred.
-           Bracket-style marks hint at morpheme structure.
+Paper Context:
+LingOly-TOO tests whether reasoning can be separated from memorized knowledge using templatised orthographic obfuscation.
+The visual focuses on preserving meaning while scrambling surface forms and then comparing downstream reasoning scores.
 
-  Phase 2  Letters scramble one-by-one into the obfuscated word
-           while the meaning line stays perfectly still.
-           (This is the KEY insight: orthography ≠ meaning.)
+Visual Story:
+Phase 1 (0.0-2.1s): An original word and its meaning fade in with light background pairs.
+Phase 2 (2.5-6.5s): Characters scramble left-to-right into the obfuscated form while meaning stays fixed.
+Phase 3 (6.9-8.75s): Original and obfuscated score bars rise side by side before the loop fade.
 
-  Phase 3  Score bars rise side-by-side.
-           A downward Δ arrow between them shows the performance drop.
-
-  Fade     Slow white-out → seamless loop.
+Frame and Scene timing Calculations:
+Canvas: 720x450.
+Frame calculation: FPS = 20, SECS = 10.0, N = int(FPS * SECS) = 200.
+Phase timing windows: Phase 1 = frames 0-42, Phase 2 = frames 50-130, Phase 3 = frames 138-175, fade = frames 182-199.
 """
 
 from PIL import Image, ImageDraw, ImageFont
 import math, os, random
 
-# ── Canvas ───────────────────────────────────────────────── ← ADJUST
+# ======
+# ======
+# Canvas
+# ======
+# ======
 W, H  = 720, 450
 FPS   = 20
 SECS  = 10.0
 N     = int(FPS * SECS)   # 200 frames
+OUT_PATH = "img/publications/lingolytoo.webp"
 
-# ── Palette ──────────────────────────────────────────────── ← ADJUST
+# ======
+# ======
+# Palette
+# ======
+# ======
 BG      = (255, 255, 255)
 BLUE_C  = (195, 220, 245)   # original tint
 PEACH_C = (250, 213, 190)   # obfuscated tint
@@ -37,7 +48,11 @@ COL_W1  = ( 75, 115, 170)   # original word — blue
 COL_W2  = (185, 100,  60)   # obfuscated word — warm
 COL_ARR = (180, 170, 200)   # annotation / arrow
 
-# ── Content ──────────────────────────────────────────────── ← ADJUST
+# ======
+# ======
+# Content
+# ======
+# ======
 ORIG_WORD  = "Ufgent"
 OBFU_WORD  = "Eqcawg"
 MEANING    = "They flew"
@@ -52,8 +67,11 @@ BG_PAIRS = [
 SCORE_ORIG = 0.79   # ← ADJUST
 SCORE_OBFU = 0.58   # ← ADJUST
 
-# ── Fonts (DejaVu Sans, 2× the original sizes) ─────────────── ← ADJUST
-# Cross-platform font paths (Linux, macOS, Windows)
+# ======
+# ======
+# Fonts (DejaVu Sans, 2× the original sizes)
+# ======
+# ======
 FONT_PATHS_BOLD = [
     "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",  # Linux
     "/System/Library/Fonts/Supplemental/Arial Bold.ttf",      # macOS
@@ -68,10 +86,10 @@ FONT_PATHS_REG = [
 ]
 
 def tf(paths, size):
-    for path in paths:
-        if os.path.exists(path):
+    for OUT_PATH in paths:
+        if os.OUT_PATH.exists(OUT_PATH):
             try:
-                return ImageFont.truetype(path, size)
+                return ImageFont.truetype(OUT_PATH, size)
             except Exception:
                 continue
     # Fallback with explicit size for newer Pillow
@@ -89,7 +107,9 @@ F = {
     "bgpair": tf(FONT_PATHS_REG, 20),    # faint background pairs
 }
 
-# ── Scramble character pool ───────────────────────────────────────────────────
+# ======
+# Scramble character pool
+# ======
 # Keeps the "alien language" feel while staying readable as letter-like shapes
 POOL = "abcdefghijklmnopqrstuvwxyz"
 
@@ -97,7 +117,9 @@ POOL = "abcdefghijklmnopqrstuvwxyz"
 random.seed(42)
 CHAR_SEEDS = [random.randint(0, 9999) for _ in range(max(len(ORIG_WORD), len(OBFU_WORD)))]
 
-# ── Score bar layout ──────────────────────────────────────────────────────────
+# ======
+# Score bar layout
+# ======
 BW     = 120   # bar width           ← ADJUST
 BH     = 180   # max bar height
 BBASE  = H - 95
@@ -106,7 +128,9 @@ BGAP   = 60    # gap between bars
 BOX    = BCX - BGAP // 2 - BW   # left (original) bar x
 BRX    = BCX + BGAP // 2         # right (obfuscated) bar x
 
-# ── Helpers ───────────────────────────────────────────────────────────────────
+# ======
+# Helpers
+# ======
 def ease(t):
     t = max(0.0, min(1.0, t))
     return t * t * (3 - 2 * t)
@@ -145,7 +169,9 @@ def rrect(draw, xy, r, fill=None, outline=None, w=1):
     except AttributeError:
         draw.rectangle(xy, fill=fill, outline=outline, width=w)
 
-# ── Scramble logic ────────────────────────────────────────────────────────────
+# ======
+# Scramble logic
+# ======
 # Phase 2 spans frames 50-130 (~4 s).
 # Each character index `ci` starts scrambling at a slightly different frame
 # so the effect ripples left→right.
@@ -181,8 +207,9 @@ def scramble_char(ci, f, orig_ch, obfu_ch):
     else:
         return obfu_ch, 1.0    # snap to final
 
-
-# ── Phase renderers ────────────────────────────────────────────────────────────
+# ======
+# Phase renderers
+# ======
 
 def draw_bg_pairs(draw, vis):
     """Faint secondary word pairs for atmosphere (Phase 1)."""
@@ -192,7 +219,6 @@ def draw_bg_pairs(draw, vis):
         # left cluster
         draw.text((48, y), src, font=F["bgpair"], fill=fc(COL_W1, vis * 0.22))
         draw.text((48, y + 21), "→  " + tgt, font=F["bgpair"], fill=fc(COL_S, vis * 0.18))
-
 
 def draw_word_phase(draw, word_chars, vis, meaning_vis):
     """
@@ -224,7 +250,6 @@ def draw_word_phase(draw, word_chars, vis, meaning_vis):
         col = lc(COL_W1, COL_W2, blend)
         draw.text((x, cy), ch, font=F["word"], fill=fc(col, vis))
         x += tw(F["word"], ch) + 2
-
 
 def draw_scores(draw, vis):
     """Two bars rising with a delta arrow between them."""
@@ -276,8 +301,9 @@ def draw_scores(draw, vis):
         # tcx(draw, f"−{delta:.2f}", mid_x, (y_orig + y_obfu) // 2 - 12,
         #     F["tiny"], fc(BORD_P, dv))
 
-
-# ── Per-frame renderer ─────────────────────────────────────────────────────────
+# ======
+# Per-frame renderer
+# ======
 def render(f):
     img  = Image.new("RGB", (W, H), BG)
     draw = ImageDraw.Draw(img)
@@ -321,12 +347,11 @@ def render(f):
 
     return img
 
-
-# ── Main ──────────────────────────────────────────────────────────────────────
+# ======
+# Main
+# ======
 def main():
-    out = "img/publications"
-    os.makedirs(out, exist_ok=True)
-    path = os.path.join(out, "lingolytoo.webp")
+    os.makedirs(os.OUT_PATH.dirname(OUT_PATH), exist_ok=True)
 
     print(f"Rendering {N} frames ({W}×{H}, {FPS}fps, {SECS}s) …")
     frames = []
@@ -337,14 +362,14 @@ def main():
 
     print("Saving animated WebP …")
     frames[0].save(
-        path,
+        OUT_PATH,
         save_all=True,
         append_images=frames[1:],
         loop=0,
         duration=int(1000 / FPS),   # ms per frame
         lossless=True,              # crisp text rendering
     )
-    print(f"Saved → {path}  ({os.path.getsize(path)/1024:.0f} KB)")
+    print(f"Saved → {OUT_PATH}  ({os.OUT_PATH.getsize(OUT_PATH)/1024:.0f} KB)")
 
 if __name__ == "__main__":
     main()

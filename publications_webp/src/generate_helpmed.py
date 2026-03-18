@@ -1,36 +1,37 @@
-# publications_gif/src/generate_helpmed.py
+#publications_webp/src/generate_helpmed.py
 
 """
-  Act 1 — The Trial
-      Clinical vignette card with medical cross fans out into
-      four colour-coded RCT arms (GPT-4o · Llama 3 · Command R+ · Control).
-      Icons + colour carry the message; minimal text.
+Paper Context:
+The HELPMed animation summarizes a randomized preregistered study on LLMs as medical assistants for the general public.
+It contrasts direct LLM performance with trial-arm outcomes across multiple model and control conditions.
 
-  Act 2 — The Contrast
-      Split canvas.  Left: stethoscope → 95 % green bar (LLM direct).
-      Right: patient silhouette --→ LLM terminal → 34 % rose bar (RCT arm).
-      Both bars animate simultaneously — the height difference is the story.
+Visual Story:
+Act 1 (0.0-4.0s): A clinical vignette fans out into GPT-4o, Llama 3, Command R+, and control trial arms.
+Act 2 (4.0-7.5s): A split comparison shows a 95% direct-LLM bar beside a 34% trial-arm bar.
+Act 3 (7.5-9.8s): A bracket highlights the 61 percentage-point gap before the white loop fade.
 
-  Act 3 — The Gap
-      Bars freeze.  A calibrated bracket fades in at centre: "−61 pp".
-      Medical cross anchors the clinical frame.
-
-  Fade to white → seamless loop.
+Frame and Scene timing Calculations:
+Canvas: 720x450.
+Frame calculation: FRAME_MS = 50, N = 200, total duration = N * FRAME_MS / 1000 = 10.0s.
+Act timing windows: Act 1 = frames 0-80, Act 2 = frames 80-150, Act 3 = frames 150-196, fade = frames 196-199.
 """
 
 from PIL import Image, ImageDraw, ImageFont
 import math, os, shutil
 
-# ─────────────────────────────────────────────────────────────────
+# ======
 # CANVAS & TIMING
-# ─────────────────────────────────────────────────────────────────
+# ======
 W, H     = 720, 450
 FRAME_MS = 50          # 20 fps - smoother animation
 N        = 200         # frames → 10 s loop
+OUT_PATH = "img/publications/helpmed.webp"
 
-# ─────────────────────────────────────────────────────────────────
-# PALETTE  — muted clinical tones
-# ─────────────────────────────────────────────────────────────────
+# ======
+# ======
+# PALETTE — muted clinical tones
+# ======
+# ======
 BG      = (255, 255, 255)
 C_SLATE = (88,  110, 130)
 C_MID   = (155, 170, 182)
@@ -44,10 +45,11 @@ C_LLAMA = (135, 195, 160)
 C_CMD   = (185, 155, 210)
 C_CTRL  = (200, 195, 180)
 
-# ─────────────────────────────────────────────────────────────────
-# FONTS  — 2× the original sizes
-# ─────────────────────────────────────────────────────────────────
-# Cross-platform font paths (Linux, macOS, Windows)
+# ======
+# ======
+# FONTS — 2× the original sizes
+# ======
+# ======
 FONT_PATHS_REG = [
     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",        # Linux
     "/System/Library/Fonts/Supplemental/Arial.ttf",           # macOS
@@ -81,29 +83,43 @@ F_MD   = _f(32)          # bracket labels            (increased)
 F_LG   = _f(40, True)    # scene descriptor          (increased)
 F_XL   = _f(58, True)    # big percentage number     (increased)
 
-# ─────────────────────────────────────────────────────────────────
+# ======
+# ======
 # ACT TIMING (frame indices) — scaled for 200 frames / 10s
-# ─────────────────────────────────────────────────────────────────
+# ======
+# ======
+# ======
+# ======
 # Act 1 — RCT arms
+# ======
+# ======
 A1_FADEIN  = (0,  20)
 A1_ARMS    = (12, 70)     # arms stagger in
 A1_FADEOUT = (70, 80)
 
+# ======
+# ======
 # Act 2 — parallel bars (no fade-out; flows directly into act 3)
+# ======
+# ======
 A2_FADEIN  = (80, 98)
 A2_FILL    = (94, 140)
 A2_HOLD    = (140, 150)   # bars freeze at max before act 3
 
+# ======
+# ======
 # Act 3 — gap bracket (bars remain; bracket fades on top)
+# ======
+# ======
 A3_BRACKET = (150, 175)   # bracket draws in
 A3_HOLD    = (175, 190)
 A3_FADEOUT = (188, 196)
 
 FADE_START = 196          # cross-fade to white before loop
 
-# ─────────────────────────────────────────────────────────────────
-# BAR GEOMETRY  (scaled for 720 × 450)
-# ─────────────────────────────────────────────────────────────────
+# ======
+# BAR GEOMETRY (scaled for 720 × 450)
+# ======
 BAR_BOT = 410   # y of bar bottom
 BAR_W   = 72    # bar width
 BAR_H   = 220   # full-track height
@@ -112,9 +128,9 @@ BAR_H   = 220   # full-track height
 BX_L = 185      # LLM-alone bar
 BX_R = 540      # Human+LLM bar
 
-# ─────────────────────────────────────────────────────────────────
+# ======
 # MATH / COLOUR HELPERS
-# ─────────────────────────────────────────────────────────────────
+# ======
 
 def ease(t):
     t = max(0., min(1., t))
@@ -138,9 +154,11 @@ def tc(draw, cx, cy, text, font, fill):
     tw = bb[2] - bb[0]; th = bb[3] - bb[1]
     draw.text((cx - tw // 2, cy - th // 2), text, font=font, fill=fill)
 
-# ─────────────────────────────────────────────────────────────────
-# ICON PRIMITIVES  — thin-stroke, no solid cartoon fills
-# ─────────────────────────────────────────────────────────────────
+# ======
+# ======
+# ICON PRIMITIVES — thin-stroke, no solid cartoon fills
+# ======
+# ======
 
 def draw_medical_cross(draw, cx, cy, r=14, col=(175, 58, 68), lw=2):
     """Outlined ⊕ medical cross in a circle."""
@@ -149,7 +167,6 @@ def draw_medical_cross(draw, cx, cy, r=14, col=(175, 58, 68), lw=2):
     arm = int(r * 0.54); hw = max(1, lw - 1)
     draw.rectangle([cx - hw, cy - arm, cx + hw, cy + arm], fill=col)
     draw.rectangle([cx - arm, cy - hw, cx + arm, cy + hw], fill=col)
-
 
 def draw_stethoscope(draw, cx, cy, s=1., col=C_SLATE, lw=2):
     """
@@ -180,7 +197,6 @@ def draw_stethoscope(draw, cx, cy, s=1., col=C_SLATE, lw=2):
         draw.ellipse([cx+sign*sep-er, top_y-er,
                       cx+sign*sep+er, top_y+er], fill=col)
 
-
 def draw_patient(draw, cx, cy, s=1., col=C_SLATE, lw=2):
     """
     Thin-outline patient silhouette.
@@ -199,7 +215,6 @@ def draw_patient(draw, cx, cy, s=1., col=C_SLATE, lw=2):
         (cx - bw - round(4*s), cy + round(40*s)),
     ]
     draw.polygon(body, outline=col, fill=lerp(col, BG, 0.90))
-
 
 def draw_terminal(draw, cx, cy, s=1., col=C_SLATE, lw=1):
     """
@@ -227,7 +242,6 @@ def draw_terminal(draw, cx, cy, s=1., col=C_SLATE, lw=1):
         draw.rounded_rectangle([cx-ll//2, base+dy-1, cx+ll//2, base+dy+1],
                                 radius=1, fill=lc)
 
-
 def draw_clinical_card(draw, x, y, w, h, lines, col, a=1.):
     """
     Clinical vignette card: rounded rect + colour header + stub lines.
@@ -251,7 +265,6 @@ def draw_clinical_card(draw, x, y, w, h, lines, col, a=1.):
         draw.rounded_rectangle([lx, ly, lx+lw, ly+4],
                                 radius=2, fill=txt)
 
-
 def draw_arrow(draw, x1, y1, x2, y2, col, lw=1, hs=8, dash=False):
     """Thin directed arrow, optionally dashed."""
     if dash:
@@ -274,7 +287,6 @@ def draw_arrow(draw, x1, y1, x2, y2, col, lw=1, hs=8, dash=False):
                     round(y2 - hs*math.sin(ang - side*0.40)))],
                   fill=col, width=lw)
 
-
 def draw_vbar(draw, cx, bot, bw, bh, frac, fill_col, trk_a=1.):
     """Vertical bar: filled from the bottom up."""
     draw.rounded_rectangle([cx-bw//2, bot-bh, cx+bw//2, bot],
@@ -284,10 +296,9 @@ def draw_vbar(draw, cx, bot, bw, bh, frac, fill_col, trk_a=1.):
         draw.rounded_rectangle([cx-bw//2, bot-fh, cx+bw//2, bot],
                                 radius=5, fill=fill_col)
 
-
-# ─────────────────────────────────────────────────────────────────
+# ======
 # ACT RENDERERS
-# ─────────────────────────────────────────────────────────────────
+# ======
 
 def act1(draw, f):
     """
@@ -358,7 +369,6 @@ def act1(draw, f):
         # Arm label
         tc(draw, pill_cx + 8, ay, al, F_SM,
            fbg(lerp(ac, C_SLATE, 0.40), arm_a))
-
 
 def act2(draw, f):
     """
@@ -447,7 +457,6 @@ def act2(draw, f):
 
     tc(draw, 540, BAR_BOT + 22, "conditions identified", F_TINY, col_m)
 
-
 def act3(draw, f):
     """
     Act 3 — The Gap
@@ -524,10 +533,9 @@ def act3(draw, f):
         tc(draw, sp_x, mid_y - 18, "−61 pp",    F_MD,   fbg(C_ROSE, la * a_out))
         tc(draw, sp_x, mid_y + 18, "p < 0.001", F_TINY, fbg(C_MID,  la * a_out))
 
-
-# ─────────────────────────────────────────────────────────────────
+# ======
 # MASTER FRAME COMPOSER
-# ─────────────────────────────────────────────────────────────────
+# ======
 
 def render_frame(f):
     img  = Image.new("RGB", (W, H), BG)
@@ -547,10 +555,11 @@ def render_frame(f):
 
     return img
 
-
-# ─────────────────────────────────────────────────────────────────
+# ======
+# ======
 # RENDER — SELF-REVIEW — SAVE
-# ─────────────────────────────────────────────────────────────────
+# ======
+# ======
 
 if __name__ == "__main__":
     print(f"Rendering {N} frames  {W}×{H} px  {N*FRAME_MS/1000:.1f} s …")
@@ -573,11 +582,10 @@ if __name__ == "__main__":
         print("  ✓ no clipping issues")
 
     # ── Save animated WebP ──────────────────────────
-    out_webp   = "img/publications/helpmed.webp"
-    os.makedirs(os.path.dirname(out_webp), exist_ok=True)
+    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
 
     frames[0].save(
-        out_webp,
+        OUT_PATH,
         format="WEBP",
         save_all=True,
         append_images=frames[1:],
@@ -586,5 +594,5 @@ if __name__ == "__main__":
         lossless=True,   # crisp text rendering
     )
 
-    kb = os.path.getsize(out_webp) / 1024
-    print(f"✓  {out_webp}  ({kb:.0f} KB)\n✓")
+    kb = os.path.getsize(OUT_PATH) / 1024
+    print(f"✓  {OUT_PATH}  ({kb:.0f} KB)\n✓")

@@ -1,35 +1,37 @@
-#!/usr/bin/env python3
+#publications_webp/src/generate_ecg.py
+
 """
-ECG Digitization (PhysioNet Challenge) — animated WebP
+Paper Context:
+Paper ECGs (printouts) → digital signal reconstruction.
+Pipeline: Hough transform (rotate) → U-Net (segment) → Vectorize
+Won 1st place at PhysioNet 2024 Challenge.
 
-PAPER CONTEXT:
-  Paper ECGs (printouts) → digital signal reconstruction.
-  Pipeline: Hough transform (rotate) → U-Net (segment) → Vectorize
-  Won 1st place at PhysioNet 2024 Challenge.
+Visual Story:
+Scene 1 (0-3s): Tilted paper ECG with grid and signal appears
+Scene 2 (3-5.5s): Pipeline steps - rotate, segment, vectorize
+Scene 3 (5.5-8s): Clean digital waveform emerges + 1st place badge
 
-VISUAL STORY (seamless loop):
-  Scene 1 (0-3s): Tilted paper ECG with grid and signal appears
-  Scene 2 (3-5.5s): Pipeline steps - rotate, segment, vectorize
-  Scene 3 (5.5-8s): Clean digital waveform emerges + 1st place badge
-
-720×450, ~8s loop, 12 fps
+Frame and Scene timing Calculations:
+Canvas: 720x450.
+Frame calculation: FPS = 20, TOTAL = 10.0, N = int(FPS * TOTAL) = 200.
+Scene timings: Scene 1 (0-3s) | Scene 2 (3-5.5s) | Scene 3 (5.5-8s).
 """
 
 from PIL import Image, ImageDraw, ImageFont
 import math, os
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # CANVAS & TIMING
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 W, H = 720, 450
 FPS = 20
 TOTAL = 10.0
 N = int(FPS * TOTAL)
-OUT = "img/publications/ecg.webp"
+OUT_PATH = "img/publications/ecg.webp"
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # PALETTE
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 BG = (255, 255, 255)
 C_PAPER = (255, 250, 245)       # Paper - warm white
 C_GRID = (255, 225, 225)        # ECG grid - pink
@@ -41,9 +43,9 @@ C_MID = (118, 122, 138)
 C_LIGHT = (170, 175, 188)
 C_GOLD = (255, 215, 130)        # 1st place
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # FONTS
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 FONT_PATHS = [
     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
     "/System/Library/Fonts/Supplemental/Arial.ttf",
@@ -72,9 +74,9 @@ F_LG = get_font(30, True)
 F_MD = get_font(24)
 F_SM = get_font(20)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # UTILITIES
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 def ease(t):
     t = max(0., min(1., t))
     return t * t * (3. - 2. * t)
@@ -97,9 +99,9 @@ def tc(draw, cx, cy, text, font, fill):
     tw, th = bb[2] - bb[0], bb[3] - bb[1]
     draw.text((int(cx - tw/2), int(cy - th/2)), text, font=font, fill=fill)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # ECG WAVEFORM GENERATION
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def generate_ecg_wave(x_start, x_end, y_center, amplitude, num_beats=2):
     """Generate ECG-like waveform points."""
@@ -134,9 +136,9 @@ def generate_ecg_wave(x_start, x_end, y_center, amplitude, num_beats=2):
 
     return points
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # DRAWING COMPONENTS
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def draw_paper_ecg(draw, cx, cy, w, h, alpha, rotation=0.):
     """Draw paper ECG with grid and tilted signal."""
@@ -212,9 +214,9 @@ def draw_arrow(draw, x1, y1, x2, y2, col, width=2, head=8):
         (x2 - head * math.cos(ang + 0.4), y2 - head * math.sin(ang + 0.4)),
     ], fill=col)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # SCENE RENDERING
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def render_frame(f):
     img = Image.new("RGB", (W, H), BG)
@@ -306,9 +308,9 @@ def render_frame(f):
 
     return img
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # MAIN
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 if __name__ == "__main__":
     print(f"Rendering {N} frames ({W}×{H}px, {FPS}fps, {TOTAL}s)...")
@@ -321,7 +323,7 @@ if __name__ == "__main__":
 
     print("✓ Self-review passed")
 
-    os.makedirs(os.path.dirname(OUT), exist_ok=True)
-    frames[0].save(OUT, format="WEBP", save_all=True, append_images=frames[1:],
+    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
+    frames[0].save(OUT_PATH, format="WEBP", save_all=True, append_images=frames[1:],
                    duration=int(1000/FPS), loop=0, lossless=True)
-    print(f"✓ Saved → {OUT} ({os.path.getsize(OUT)//1024} KB)")
+    print(f"✓ Saved → {OUT_PATH} ({os.path.getsize(OUT_PATH)//1024} KB)")

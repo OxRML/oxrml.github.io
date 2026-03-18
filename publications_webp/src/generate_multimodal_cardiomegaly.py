@@ -1,37 +1,39 @@
-#!/usr/bin/env python3
+#publications_webp/src/generate_multimodal_cardiomegaly.py
+
 """
-Multimodal Cardiomegaly Classification — animated WebP
+Paper Context:
+Classifying cardiomegaly using multimodal data: chest X-rays + ICU data.
+Key contribution: Digital biomarkers (CTR, CPAR) from images provide
+comparable performance to black-box deep learning with better explainability.
+CTR (cardiothoracic ratio) = cardiac width / thoracic width
 
-PAPER CONTEXT:
-  Classifying cardiomegaly using multimodal data: chest X-rays + ICU data.
-  Key contribution: Digital biomarkers (CTR, CPAR) from images provide
-  comparable performance to black-box deep learning with better explainability.
-  CTR (cardiothoracic ratio) = cardiac width / thoracic width
+Visual Story:
+Scene 1 (0-2.5s): Chest X-ray with heart/lung outlines → CTR measurement
+Scene 2 (2.5-5.5s): Multimodal fusion: X-ray + ICU data → combined model
+Scene 3 (5.5-8s): Comparison: simple CTR ≈ black-box + better explainability
 
-VISUAL STORY (seamless loop):
-  Scene 1 (0-2.5s): Chest X-ray with heart/lung outlines → CTR measurement
-  Scene 2 (2.5-5.5s): Multimodal fusion: X-ray + ICU data → combined model
-  Scene 3 (5.5-8s): Comparison: simple CTR ≈ black-box + better explainability
-
-720×450, ~8s loop, 12 fps
+Frame and Scene timing Calculations:
+Canvas: 720x450.
+Frame calculation: FPS = 20, TOTAL = 10.0, N = int(FPS * TOTAL) = 200.
+Scene timings: Scene 1 (0-2.5s) | Scene 2 (2.5-5.5s) | Scene 3 (5.5-8s).
 """
 
 from PIL import Image, ImageDraw, ImageFont
 import math
 import os
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # CANVAS & TIMING
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 W, H = 720, 450
 FPS = 20
 TOTAL = 10.0
 N = int(FPS * TOTAL)
-OUT = "img/publications/multimodal_cardiomegaly.webp"
+OUT_PATH = "img/publications/multimodal_cardiomegaly.webp"
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # PALETTE (pastel colors)
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 BG = (255, 255, 255)
 C_XRAY = (230, 235, 245)        # X-ray background - light blue-gray
 C_HEART = (255, 210, 210)       # Heart outline - soft red
@@ -44,9 +46,9 @@ C_DARK = (55, 58, 75)
 C_MID = (118, 122, 138)
 C_LIGHT = (170, 175, 188)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # FONTS (cross-platform)
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 FONT_PATHS = [
     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
     "/System/Library/Fonts/Supplemental/Arial.ttf",
@@ -78,9 +80,9 @@ F_MD = get_font(24)
 F_SM = get_font(20)
 F_XS = get_font(16)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # UTILITIES
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 def ease(t):
     t = max(0., min(1., t))
     return t * t * (3. - 2. * t)
@@ -114,9 +116,9 @@ def draw_arrow(draw, x1, y1, x2, y2, col, width=2, head=8):
         (x2 - head * math.cos(ang + 0.4), y2 - head * math.sin(ang + 0.4)),
     ], fill=col)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # DRAWING COMPONENTS
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def draw_xray_frame(draw, cx, cy, size, alpha):
     """Draw X-ray frame background."""
@@ -243,9 +245,9 @@ def draw_explainability_icon(draw, cx, cy, size, alpha):
         draw.line([(cx - r//2, cy - 5), (cx - r//6, cy + r//4 - 5)], fill=col, width=2)
         draw.line([(cx - r//6, cy + r//4 - 5), (cx + r//2, cy - r//2 - 5)], fill=col, width=2)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # SCENE RENDERING
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def render_frame(f):
     img = Image.new("RGB", (W, H), BG)
@@ -399,9 +401,9 @@ def render_frame(f):
 
     return img
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # MAIN
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 if __name__ == "__main__":
     print(f"Rendering {N} frames ({W}×{H}px, {FPS}fps, {TOTAL}s)...")
@@ -414,9 +416,9 @@ if __name__ == "__main__":
 
     print("✓ Self-review passed")
 
-    os.makedirs(os.path.dirname(OUT), exist_ok=True)
+    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
     frames[0].save(
-        OUT,
+        OUT_PATH,
         format="WEBP",
         save_all=True,
         append_images=frames[1:],
@@ -424,4 +426,4 @@ if __name__ == "__main__":
         loop=0,
         lossless=True
     )
-    print(f"✓ Saved → {OUT} ({os.path.getsize(OUT) // 1024} KB)")
+    print(f"✓ Saved → {OUT_PATH} ({os.path.getsize(OUT_PATH) // 1024} KB)")

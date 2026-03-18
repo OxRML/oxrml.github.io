@@ -1,37 +1,39 @@
-#!/usr/bin/env python3
+#publications_webp/src/generate_llm_landscape_med.py
+
 """
-LLM Landscape in Medical Q&A — animated WebP
+Paper Context:
+Systematic benchmarking of 8 LLMs on Polish medical licensing exams.
+Enables per-question comparison between LLMs and human test-takers.
+Key patterns: model similarities, confidence-accuracy correlation,
+negative correlation with question length.
 
-PAPER CONTEXT:
-  Systematic benchmarking of 8 LLMs on Polish medical licensing exams.
-  Enables per-question comparison between LLMs and human test-takers.
-  Key patterns: model similarities, confidence-accuracy correlation,
-  negative correlation with question length.
+Visual Story:
+Scene 1 (0-2.5s): Multiple LLMs of varying sizes appear (landscape view)
+Scene 2 (2.5-5.5s): Questions tested → accuracy chart with human baseline
+Scene 3 (5.5-8s): Key patterns: confidence↑, length↓, human similarity
 
-VISUAL STORY (seamless loop):
-  Scene 1 (0-2.5s): Multiple LLMs of varying sizes appear (landscape view)
-  Scene 2 (2.5-5.5s): Questions tested → accuracy chart with human baseline
-  Scene 3 (5.5-8s): Key patterns: confidence↑, length↓, human similarity
-
-720×450, ~8s loop, 12 fps
+Frame and Scene timing Calculations:
+Canvas: 720x450.
+Frame calculation: FPS = 20, TOTAL = 10.0, N = int(FPS * TOTAL) = 200.
+Scene timings: Scene 1 (0-2.5s) | Scene 2 (2.5-5.5s) | Scene 3 (5.5-8s).
 """
 
 from PIL import Image, ImageDraw, ImageFont
 import math
 import os
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # CANVAS & TIMING
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 W, H = 720, 450
 FPS = 20
 TOTAL = 10.0
 N = int(FPS * TOTAL)
-OUT = "img/publications/llm_landscape_med.webp"
+OUT_PATH = "img/publications/llm_landscape_med.webp"
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # PALETTE (pastel colors)
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 BG = (255, 255, 255)
 C_LLM_L = (200, 220, 250)       # Large LLM - blue
 C_LLM_M = (220, 240, 220)       # Medium LLM - green
@@ -45,9 +47,9 @@ C_MID = (118, 122, 138)
 C_LIGHT = (170, 175, 188)
 C_ACCENT = (100, 160, 200)      # Accent blue
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # FONTS (cross-platform)
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 FONT_PATHS = [
     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
     "/System/Library/Fonts/Supplemental/Arial.ttf",
@@ -79,9 +81,9 @@ F_MD = get_font(24)
 F_SM = get_font(20)
 F_XS = get_font(16)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # UTILITIES
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 def ease(t):
     t = max(0., min(1., t))
     return t * t * (3. - 2. * t)
@@ -115,9 +117,9 @@ def draw_arrow(draw, x1, y1, x2, y2, col, width=2, head=8):
         (x2 - head * math.cos(ang + 0.4), y2 - head * math.sin(ang + 0.4)),
     ], fill=col)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # DRAWING COMPONENTS
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def draw_llm_box(draw, cx, cy, size, alpha, color, label=""):
     """Draw an LLM model box with size indicating model scale."""
@@ -223,9 +225,9 @@ def draw_pattern_indicator(draw, cx, cy, alpha, icon_type="up", label=""):
     if label and alpha > 0.5:
         tc(draw, cx, cy + r + 14, label, F_XS, fbg(C_MID, alpha))
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # SCENE RENDERING
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def render_frame(f):
     img = Image.new("RGB", (W, H), BG)
@@ -379,9 +381,9 @@ def render_frame(f):
 
     return img
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # MAIN
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 if __name__ == "__main__":
     print(f"Rendering {N} frames ({W}×{H}px, {FPS}fps, {TOTAL}s)...")
@@ -394,9 +396,9 @@ if __name__ == "__main__":
 
     print("✓ Self-review passed")
 
-    os.makedirs(os.path.dirname(OUT), exist_ok=True)
+    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
     frames[0].save(
-        OUT,
+        OUT_PATH,
         format="WEBP",
         save_all=True,
         append_images=frames[1:],
@@ -404,4 +406,4 @@ if __name__ == "__main__":
         loop=0,
         lossless=True
     )
-    print(f"✓ Saved → {OUT} ({os.path.getsize(OUT) // 1024} KB)")
+    print(f"✓ Saved → {OUT_PATH} ({os.path.getsize(OUT_PATH) // 1024} KB)")

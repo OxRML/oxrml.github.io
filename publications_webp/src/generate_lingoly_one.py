@@ -1,37 +1,41 @@
-#!/usr/bin/env python3
+#publications_webp/src/generate_lingoly_one.py
+
 """
-LINGOLY (Linguistic Olympiad Benchmark) — animated WebP
+Paper Context:
+LLMs are tested on linguistic puzzles from low-resource/extinct languages.
+The puzzles require multi-step reasoning to identify patterns.
+Even top models struggle on hard problems (38.7% accuracy).
 
-PAPER CONTEXT:
-  LLMs are tested on linguistic puzzles from low-resource/extinct languages.
-  The puzzles require multi-step reasoning to identify patterns.
-  Even top models struggle on hard problems (38.7% accuracy).
+Key insight: True multi-step out-of-domain reasoning remains a challenge.
 
-  Key insight: True multi-step out-of-domain reasoning remains a challenge.
+Visual Story:
+Scene 1 (0-3s): Puzzle pieces with exotic morpheme symbols appear
+Scene 2 (3-5.5s): LLM orb processes them → shows "38%" result
+Scene 3 (5.5-8s): Difficulty bars showing accuracy drops on harder levels
 
-VISUAL STORY (seamless loop):
-  Scene 1 (0-3s): Puzzle pieces with exotic morpheme symbols appear
-  Scene 2 (3-5.5s): LLM orb processes them → shows "38%" result
-  Scene 3 (5.5-8s): Difficulty bars showing accuracy drops on harder levels
-
-720×450, ~8s loop, 12 fps
+Frame and Scene timing Calculations:
+Canvas: 720x450.
+Frame calculation: FPS = 20, TOTAL = 10.0, N = int(FPS * TOTAL) = 200.
+Scene timings: Scene 1 (0-3s) | Scene 2 (3-5.5s) | Scene 3 (5.5-8s).
 """
 
 from PIL import Image, ImageDraw, ImageFont
 import math, os
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # CANVAS & TIMING
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 W, H = 720, 450
 FPS = 20
 TOTAL = 10.0
 N = int(FPS * TOTAL)
-OUT = "img/publications/lingoly_one.webp"
+OUT_PATH = "img/publications/lingoly_one.webp"
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
+# ======
 # PALETTE — soft pastels
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
+# ======
 BG = (255, 255, 255)
 C_PIECE1 = (200, 220, 245)      # Puzzle piece 1 - blue
 C_PIECE2 = (200, 235, 210)      # Puzzle piece 2 - mint
@@ -44,9 +48,9 @@ C_DARK = (55, 58, 75)
 C_MID = (118, 122, 138)
 C_LIGHT = (170, 175, 188)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # FONTS
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 FONT_PATHS = [
     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
     "/System/Library/Fonts/Supplemental/Arial.ttf",
@@ -77,9 +81,9 @@ F_SM = get_font(20)
 F_GLYPH = get_font(34, True)    # Puzzle symbols
 F_BIG = get_font(48, True)      # Large percentage
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # UTILITIES
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 def ease(t):
     t = max(0., min(1., t))
     return t * t * (3. - 2. * t)
@@ -102,9 +106,9 @@ def tc(draw, cx, cy, text, font, fill):
     tw, th = bb[2] - bb[0], bb[3] - bb[1]
     draw.text((int(cx - tw/2), int(cy - th/2)), text, font=font, fill=fill)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # DRAWING COMPONENTS
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def draw_puzzle_piece(draw, cx, cy, w, h, col, alpha, glyph=""):
     """Puzzle piece with jigsaw-like edges and a symbol inside."""
@@ -170,9 +174,9 @@ def draw_arrow(draw, x1, y1, x2, y2, col, width=2, head=8):
         (x2 - head * math.cos(ang + 0.4), y2 - head * math.sin(ang + 0.4)),
     ], fill=col)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # SCENE RENDERING
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def render_frame(f):
     img = Image.new("RGB", (W, H), BG)
@@ -290,9 +294,9 @@ def render_frame(f):
 
     return img
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # MAIN
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 if __name__ == "__main__":
     print(f"Rendering {N} frames ({W}×{H}px, {FPS}fps, {TOTAL}s)...")
@@ -305,7 +309,7 @@ if __name__ == "__main__":
 
     print("✓ Self-review passed")
 
-    os.makedirs(os.path.dirname(OUT), exist_ok=True)
-    frames[0].save(OUT, format="WEBP", save_all=True, append_images=frames[1:],
+    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
+    frames[0].save(OUT_PATH, format="WEBP", save_all=True, append_images=frames[1:],
                    duration=int(1000/FPS), loop=0, lossless=True)
-    print(f"✓ Saved → {OUT} ({os.path.getsize(OUT)//1024} KB)")
+    print(f"✓ Saved → {OUT_PATH} ({os.path.getsize(OUT_PATH)//1024} KB)")

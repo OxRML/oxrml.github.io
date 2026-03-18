@@ -1,36 +1,38 @@
-#!/usr/bin/env python3
+#publications_webp/src/generate_cardiac_auscultation.py
+
 """
-Cardiac Auscultation AI Deployment — animated WebP
+Paper Context:
+AI-driven cardiac auscultation research for low-income settings.
+Key: Bayesian ResNet for heart murmur detection from sound recordings.
+Focus: Gap between AI research and real-world deployment in LMICs.
 
-PAPER CONTEXT:
-  AI-driven cardiac auscultation research for low-income settings.
-  Key: Bayesian ResNet for heart murmur detection from sound recordings.
-  Focus: Gap between AI research and real-world deployment in LMICs.
+Visual Story:
+Scene 1 (0-2.5s): Stethoscope icon + heart sound waveform appears
+Scene 2 (2.5-5s): Waveform → spectrogram → AI model → prediction
+Scene 3 (5-8s): Deployment challenges visualized (barriers fading in/out)
 
-VISUAL STORY (seamless loop):
-  Scene 1 (0-2.5s): Stethoscope icon + heart sound waveform appears
-  Scene 2 (2.5-5s): Waveform → spectrogram → AI model → prediction
-  Scene 3 (5-8s): Deployment challenges visualized (barriers fading in/out)
-
-720×450, ~8s loop, 12 fps
+Frame and Scene timing Calculations:
+Canvas: 720x450.
+Frame calculation: FPS = 20, TOTAL = 10.0, N = int(FPS * TOTAL) = 200.
+Scene timings: Scene 1 (0-2.5s) | Scene 2 (2.5-5s) | Scene 3 (5-8s).
 """
 
 from PIL import Image, ImageDraw, ImageFont
 import math
 import os
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # CANVAS & TIMING
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 W, H = 720, 450
 FPS = 20
 TOTAL = 10.0
 N = int(FPS * TOTAL)
-OUT = "img/publications/cardiac_auscultation.webp"
+OUT_PATH = "img/publications/cardiac_auscultation.webp"
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # PALETTE (pastel colors)
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 BG = (255, 255, 255)
 C_HEART = (245, 200, 200)       # Heart - soft pink
 C_WAVE = (200, 220, 245)        # Sound wave - soft blue
@@ -42,9 +44,9 @@ C_MID = (118, 122, 138)
 C_LIGHT = (170, 175, 188)
 C_ACCENT = (180, 130, 130)      # Accent pink
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # FONTS (cross-platform)
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 FONT_PATHS = [
     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
     "/System/Library/Fonts/Supplemental/Arial.ttf",
@@ -77,9 +79,9 @@ F_LG = get_font(30, True)
 F_MD = get_font(24)
 F_SM = get_font(20)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # UTILITIES
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 def ease(t):
     """Smooth ease-in-out."""
     t = max(0., min(1., t))
@@ -119,9 +121,9 @@ def draw_arrow(draw, x1, y1, x2, y2, col, width=2, head=8):
         (x2 - head * math.cos(ang + 0.4), y2 - head * math.sin(ang + 0.4)),
     ], fill=col)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # DRAWING COMPONENTS
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def draw_heart_icon(draw, cx, cy, size, alpha):
     """Draw a simple heart shape."""
@@ -259,9 +261,9 @@ def draw_checkmark(draw, cx, cy, size, alpha):
     draw.line([(cx - size//3, cy), (cx - size//10, cy + size//4)], fill=col, width=3)
     draw.line([(cx - size//10, cy + size//4), (cx + size//3, cy - size//4)], fill=col, width=3)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # SCENE RENDERING
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def render_frame(f):
     img = Image.new("RGB", (W, H), BG)
@@ -396,9 +398,9 @@ def render_frame(f):
 
     return img
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # SELF-REVIEW & MAIN
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def self_review(frames):
     """Check for common issues: overlap, clipping, legibility."""
@@ -440,11 +442,11 @@ if __name__ == "__main__":
     self_review(frames)
 
     # Ensure output directory exists
-    os.makedirs(os.path.dirname(OUT), exist_ok=True)
+    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
 
     # Save as animated WebP with lossless compression
     frames[0].save(
-        OUT,
+        OUT_PATH,
         format="WEBP",
         save_all=True,
         append_images=frames[1:],
@@ -452,4 +454,4 @@ if __name__ == "__main__":
         loop=0,
         lossless=True
     )
-    print(f"✓ Saved → {OUT} ({os.path.getsize(OUT) // 1024} KB)")
+    print(f"✓ Saved → {OUT_PATH} ({os.path.getsize(OUT_PATH) // 1024} KB)")

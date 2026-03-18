@@ -1,38 +1,36 @@
-# publications_gif/src/generate_eval_llm_judge.py
+#publications_webp/src/generate_eval_llm_judge.py
 
 """
-Concept: LLM judges evaluate multimodal (image+text) content across 12 languages.
-Performance varies dramatically by task — it is NOT decomposable into independent
-model + language + task factors.
+Paper Context:
+LLM judges evaluate multimodal content across 12 languages and multiple task types.
+The paper shows judge performance is shaped by composite interactions between task, language, and model behavior rather than separable factors.
 
-Three scenes, symbol-driven
-────────────────────────────
-  1  The Scale   (0.5–4.0s)   Balance scale — two image cards, judge orb at pivot
-  2  Language Ring (4.5–8.0s) 12 language bubbles orbit the judge; lines vary
-  3  Task Bars   (8.5–12.0s)  Three bars at starkly different heights + ≠ symbol
+Visual Story:
+Scene 1 (0.5-4.0s): A balance scale compares two multimodal responses with the judge orb at the pivot.
+Scene 2 (4.5-8.0s): Twelve language bubbles orbit the judge and vary their connection strengths.
+Scene 3 (8.5-10.0s): Task bars rise to different heights to show non-decomposable performance.
 
-Output: animated WebP  (img/publications/eval_llm_judge.webp)
-
-Adjust
-──────
-  Canvas:    W, H at top
-  Timing:    scene_alpha() s0/s1 values, sp() t0/t1 values
-  Colours:   P_* palette constants
-  Positions: per-scene comments label every editable coordinate
-  Text:      string literals inside tc() calls
-  Font size: get_font(N) — original used 9-28; doubled here for 720x450
+Frame and Scene timing Calculations:
+Canvas: 720x450.
+Frame calculation: FPS = 20, TOTAL = 10.0, N = int(FPS * TOTAL) = 200.
+Scene timing note: Scene 3 is configured through 12.0s in code, but the 10.0s loop renders the 8.5-10.0s segment before reset.
 """
 
 import math, os
 from PIL import Image, ImageDraw, ImageFont
 
-# ── Canvas & timing ───────────────────────────────────────────────────────────
+# ======
+# Canvas & timing
+# ======
 W, H    = 720, 450     # canvas size (px)
 FPS     = 20           # frames per second — smoother animation
 TOTAL   = 10.0         # total animation duration (seconds)
 N       = int(FPS * TOTAL)
+OUT_PATH = os.path.join(os.environ.get("WEBP_OUT_DIR", "img/publications"), "eval_llm_judge.webp")
 
-# ── Pastel palette ────────────────────────────────────────────────────────────
+# ======
+# Pastel palette
+# ======
 BG          = (255, 255, 255)
 P_BLUE      = (190, 215, 240)
 P_GREEN     = (185, 230, 200)
@@ -47,8 +45,9 @@ TEXT_DARK   = (55,  55,  75)
 TEXT_MID    = (115, 115, 140)
 TEXT_LIGHT  = (175, 175, 195)
 
-# ── Font ─────────────────────────────────────────────────────────────────────
-# Cross-platform font paths (Linux, macOS, Windows)
+# ======
+# Font
+# ======
 FONT_PATHS_REG = [
     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",        # Linux
     "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
@@ -78,7 +77,9 @@ def get_font(size, bold=False):
     except TypeError:
         return ImageFont.load_default()
 
-# ── Math ──────────────────────────────────────────────────────────────────────
+# ======
+# Math
+# ======
 def smooth(t):
     """Smoothstep ease-in/out, clamped [0,1]."""
     t = max(0., min(1., t))
@@ -106,7 +107,9 @@ def sp(fs, t0, t1):
     """Smoothstep progress [0,1] from t0 → t1 seconds."""
     return smooth(max(0., min(1., (fs - t0) / max(1e-9, t1 - t0))))
 
-# ── Drawing primitives ────────────────────────────────────────────────────────
+# ======
+# Drawing primitives
+# ======
 def tc(draw, x, y, text, font, color):
     """Text centred at (x, y)."""
     bb = draw.textbbox((0, 0), text, font=font)
@@ -136,18 +139,43 @@ def draw_eye(draw, cx, cy, color):
     # pupil
     draw.ellipse([cx - 5, cy - 5, cx + 5, cy + 5], fill=color)
 
-
-# ── Scene 1: The Scale ────────────────────────────────────────────────────────
+# ======
+# Scene 1: The Scale
+# ======
 # Two image cards hang from a balance beam; judge orb sits at the pivot.
+# ======
+# ======
 # The beam slowly tilts left — left card rises (winner), right falls (loser).
+# ======
+# ======
 # A ✓ appears over the winning card.
 #
 # Key coordinates to edit
-#   pivot_y  — height of beam pivot
-#   beam_arm — half-length of beam (controls how wide the scale is)
-#   string_h — length of string from beam end to card top
-#   cw, ch   — card width and height
-#   tilt deg — maximum tilt angle (line: math.radians(...))
+# ======
+# ======
+# pivot_y — height of beam pivot
+# ======
+# ======
+# ======
+# ======
+# beam_arm — half-length of beam (controls how wide the scale is)
+# ======
+# ======
+# ======
+# ======
+# string_h — length of string from beam end to card top
+# ======
+# ======
+# ======
+# ======
+# cw, ch — card width and height
+# ======
+# ======
+# ======
+# ======
+# tilt deg — maximum tilt angle (line: math.radians(...))
+# ======
+# ======
 def draw_scene1(draw, fs):
     a = scene_alpha(fs, 0.5, 4.0, fade=0.35)
     if a < 0.001:
@@ -262,16 +290,33 @@ def draw_scene1(draw, fs):
         # Font size 56 — change to resize the ✓ symbol
         tc(draw, lcx, vy, "\u2713", get_font(56, bold=True), lc(BG, (72, 158, 92), vt))
 
-
-# ── Scene 2: Language Ring ────────────────────────────────────────────────────
+# ======
+# Scene 2: Language Ring
+# ======
 # 12 language bubbles stagger in and orbit the central judge orb.
 # Connector lines vary in thickness/opacity to hint at unequal performance.
 #
 # Key values to edit
-#   R         — orbit radius
-#   br        — bubble radius
-#   LANGS     — 2-letter language codes
-#   STRENGTHS — relative line opacity per language (1.0 = brightest)
+# ======
+# ======
+# R — orbit radius
+# ======
+# ======
+# ======
+# ======
+# br — bubble radius
+# ======
+# ======
+# ======
+# ======
+# LANGS — 2-letter language codes
+# ======
+# ======
+# ======
+# ======
+# STRENGTHS — relative line opacity per language (1.0 = brightest)
+# ======
+# ======
 def draw_scene2(draw, fs):
     a = scene_alpha(fs, 4.5, 8.0, fade=0.35)
     if a < 0.001:
@@ -339,19 +384,44 @@ def draw_scene2(draw, fs):
         tc(draw, int(bx), int(by), lang,
            get_font(20, bold=True), lc(BG, TEXT_DARK, lt * a))
 
-
-# ── Scene 3: Task Bars ────────────────────────────────────────────────────────
+# ======
+# Scene 3: Task Bars
+# ======
 # Three bars at dramatically different heights show task-dependent performance.
 # Scatter dots on each bar show cross-language variance within each task.
 # The ≠ symbol appears last as the key takeaway.
 #
 # Key values to edit
-#   baseline  — y-coordinate of bar bottom
-#   chart_h   — max bar height (tallest bar at acc=1.0)
-#   bar_w     — bar width (px)
-#   gap       — space between bars (px)
-#   ACCS      — overall accuracy per task (controls bar height)
-#   BCOLORS   — bar fill colours
+# ======
+# ======
+# baseline — y-coordinate of bar bottom
+# ======
+# ======
+# ======
+# ======
+# chart_h — max bar height (tallest bar at acc=1.0)
+# ======
+# ======
+# ======
+# ======
+# bar_w — bar width (px)
+# ======
+# ======
+# ======
+# ======
+# gap — space between bars (px)
+# ======
+# ======
+# ======
+# ======
+# ACCS — overall accuracy per task (controls bar height)
+# ======
+# ======
+# ======
+# ======
+# BCOLORS — bar fill colours
+# ======
+# ======
 def draw_scene3(draw, fs):
     a = scene_alpha(fs, 8.5, 12.0, fade=0.35)
     if a < 0.001:
@@ -438,8 +508,9 @@ def draw_scene3(draw, fs):
         tc(draw, W // 2, H - 38, "\u2260",        # ≠ Unicode  (y raised to clear margin)
            get_font(38, bold=True), lc(BG, TEXT_MID, nt))
 
-
-# ── Frame builder ─────────────────────────────────────────────────────────────
+# ======
+# Frame builder
+# ======
 def build_frame(idx):
     fs   = idx / FPS
     img  = Image.new("RGB", (W, H), BG)
@@ -449,8 +520,9 @@ def build_frame(idx):
     draw_scene3(draw, fs)
     return img
 
-
-# ── Self-review: edge-clip check ──────────────────────────────────────────────
+# ======
+# Self-review: edge-clip check
+# ======
 def check_frame(img, idx):
     MARGIN = 6
     W_, H_  = img.size
@@ -464,13 +536,11 @@ def check_frame(img, idx):
                     return False
     return True
 
-
-# ── Main ──────────────────────────────────────────────────────────────────────
+# ======
+# Main
+# ======
 if __name__ == "__main__":
-    # Output path — change to your project directory
-    OUT_DIR   = os.environ.get("WEBP_OUT_DIR", "img/publications/")
-    WEBP_PATH = os.path.join(OUT_DIR, "eval_llm_judge.webp")
-    os.makedirs(OUT_DIR, exist_ok=True)
+    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
 
     print(f"Rendering {N} frames  ({W}×{H}px, {FPS}fps, {TOTAL}s)…")
     frames, warns = [], 0
@@ -491,7 +561,7 @@ if __name__ == "__main__":
 
     dur_ms = int(1000 / FPS)    # ms per frame
     frames[0].save(
-        WEBP_PATH,
+        OUT_PATH,
         format="WEBP",
         save_all=True,
         append_images=frames[1:],
@@ -499,4 +569,4 @@ if __name__ == "__main__":
         loop=0,
         lossless=True,   # crisp text rendering
     )
-    print(f"✓  WebP saved → {WEBP_PATH}  ({len(frames)} frames, {dur_ms}ms/frame)")
+    print(f"✓  WebP saved → {OUT_PATH}  ({len(frames)} frames, {dur_ms}ms/frame)")

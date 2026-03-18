@@ -1,37 +1,39 @@
-#!/usr/bin/env python3
+#publications_webp/src/generate_llm_shared_weaknesses.py
+
 """
-LLM Shared Weaknesses in Medical Q&A — animated WebP
+Paper Context:
+Benchmarking 16 LLMs on Polish medical licensing exams.
+Key findings: LLMs have correlated accuracies (shared weaknesses),
+performance negatively correlated with discriminating questions,
+confidence correlates with accuracy, length negatively correlates.
 
-PAPER CONTEXT:
-  Benchmarking 16 LLMs on Polish medical licensing exams.
-  Key findings: LLMs have correlated accuracies (shared weaknesses),
-  performance negatively correlated with discriminating questions,
-  confidence correlates with accuracy, length negatively correlates.
+Visual Story:
+Scene 1 (0-2.5s): Multiple LLM icons appear in a grid
+Scene 2 (2.5-5.5s): Questions flow → some answered wrong by ALL → shared weakness
+Scene 3 (5.5-8s): Correlation pattern visualization (similarity matrix)
 
-VISUAL STORY (seamless loop):
-  Scene 1 (0-2.5s): Multiple LLM icons appear in a grid
-  Scene 2 (2.5-5.5s): Questions flow → some answered wrong by ALL → shared weakness
-  Scene 3 (5.5-8s): Correlation pattern visualization (similarity matrix)
-
-720×450, ~8s loop, 12 fps
+Frame and Scene timing Calculations:
+Canvas: 720x450.
+Frame calculation: FPS = 20, TOTAL = 10.0, N = int(FPS * TOTAL) = 200.
+Scene timings: Scene 1 (0-2.5s) | Scene 2 (2.5-5.5s) | Scene 3 (5.5-8s).
 """
 
 from PIL import Image, ImageDraw, ImageFont
 import math
 import os
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # CANVAS & TIMING
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 W, H = 720, 450
 FPS = 20
 TOTAL = 10.0
 N = int(FPS * TOTAL)
-OUT = "img/publications/llm_shared_weaknesses.webp"
+OUT_PATH = "img/publications/llm_shared_weaknesses.webp"
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # PALETTE (pastel colors)
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 BG = (255, 255, 255)
 C_LLM1 = (220, 235, 250)        # LLM box - blue
 C_LLM2 = (250, 230, 220)        # LLM box - peach
@@ -46,9 +48,9 @@ C_LIGHT = (170, 175, 188)
 
 LLM_COLORS = [C_LLM1, C_LLM2, C_LLM3, C_LLM4]
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # FONTS (cross-platform)
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 FONT_PATHS = [
     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
     "/System/Library/Fonts/Supplemental/Arial.ttf",
@@ -80,9 +82,9 @@ F_MD = get_font(24)
 F_SM = get_font(20)
 F_XS = get_font(16)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # UTILITIES
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 def ease(t):
     t = max(0., min(1., t))
     return t * t * (3. - 2. * t)
@@ -107,9 +109,9 @@ def tc(draw, cx, cy, text, font, fill):
     tw, th = bb[2] - bb[0], bb[3] - bb[1]
     draw.text((int(cx - tw / 2), int(cy - th / 2)), text, font=font, fill=fill)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # DRAWING COMPONENTS
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def draw_llm_box(draw, cx, cy, size, alpha, color, label=""):
     """Draw an LLM model box."""
@@ -204,9 +206,9 @@ def draw_correlation_matrix(draw, cx, cy, size, alpha, progress=1.0):
             # Left labels
             tc(draw, x0 - 16, y0 + i * cell_size + cell_size//2, lbl, F_XS, fbg(C_MID, alpha))
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # SCENE RENDERING
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def render_frame(f):
     img = Image.new("RGB", (W, H), BG)
@@ -336,9 +338,9 @@ def render_frame(f):
 
     return img
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # SELF-REVIEW & MAIN
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def self_review(frames):
     """Check for common issues."""
@@ -356,9 +358,9 @@ if __name__ == "__main__":
 
     self_review(frames)
 
-    os.makedirs(os.path.dirname(OUT), exist_ok=True)
+    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
     frames[0].save(
-        OUT,
+        OUT_PATH,
         format="WEBP",
         save_all=True,
         append_images=frames[1:],
@@ -366,4 +368,4 @@ if __name__ == "__main__":
         loop=0,
         lossless=True
     )
-    print(f"✓ Saved → {OUT} ({os.path.getsize(OUT) // 1024} KB)")
+    print(f"✓ Saved → {OUT_PATH} ({os.path.getsize(OUT_PATH) // 1024} KB)")

@@ -1,39 +1,41 @@
-#!/usr/bin/env python3
-"""
-Constitutions Role Eval — animated WebP
+#publications_webp/src/generate_constitutions.py
 
-PAPER CONTEXT:
-  Tests how different "constitutions" (written guidelines) affect AI feedback quality.
-  Applied to medical interviews for patient-centered communication.
+"""
+Paper Context:
+Tests how different "constitutions" (written guidelines) affect AI feedback quality.
+Applied to medical interviews for patient-centered communication.
 
 KEY FINDING:
-  - Detailed constitutions → better EMOTIVE feedback (empathy, rapport)
-  - BUT: No constitution beats baseline for PRACTICAL skills (info gathering)
+- Detailed constitutions → better EMOTIVE feedback (empathy, rapport)
+- BUT: No constitution beats baseline for PRACTICAL skills (info gathering)
 
-VISUAL STORY (seamless loop):
-  Scene 1 (0-4s): Constitution doc → feeds into LLM critic → produces feedback
-  Scene 2 (4-8s): Results comparison - Emotive bar rises high for detailed,
-                  Practical bars stay equal (detailed ≠ better)
-  Fade back to Scene 1
+Visual Story:
+Scene 1 (0-4s): Constitution doc → feeds into LLM critic → produces feedback
+Scene 2 (4-8s): Results comparison - Emotive bar rises high for detailed,
+Practical bars stay equal (detailed ≠ better)
+Fade back to Scene 1
 
-720×450, ~8s loop, 12 fps
+Frame and Scene timing Calculations:
+Canvas: 720x450.
+Frame calculation: FPS = 20, TOTAL = 10.0, N = int(FPS * TOTAL) = 200.
+Scene timings: Scene 1 (0-4s) | Scene 2 (4-8s) | Fade back to Scene 1.
 """
 
 from PIL import Image, ImageDraw, ImageFont
 import math, os
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # CANVAS & TIMING
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 W, H = 720, 450
 FPS = 20
 TOTAL = 10.0
 N = int(FPS * TOTAL)
-OUT = "img/publications/constitutions.webp"
+OUT_PATH = "img/publications/constitutions.webp"
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # PALETTE
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 BG = (255, 255, 255)
 C_DOC_A = (235, 218, 200)      # Basic constitution - warm beige
 C_DOC_B = (195, 218, 240)      # Detailed constitution - blue
@@ -44,9 +46,9 @@ C_DARK = (55, 58, 75)
 C_MID = (118, 122, 138)
 C_LIGHT = (170, 175, 188)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # FONTS
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 FONT_PATHS = [
     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
     "/System/Library/Fonts/Supplemental/Arial.ttf",
@@ -77,9 +79,9 @@ F_LG = get_font(32, True)
 F_MD = get_font(26)
 F_SM = get_font(20)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # UTILITIES
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 def ease(t):
     t = max(0., min(1., t))
     return t * t * (3. - 2. * t)
@@ -102,9 +104,9 @@ def tc(draw, cx, cy, text, font, fill):
     tw, th = bb[2] - bb[0], bb[3] - bb[1]
     draw.text((int(cx - tw/2), int(cy - th/2)), text, font=font, fill=fill)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # DRAWING COMPONENTS
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def draw_document(draw, cx, cy, w, h, col, alpha, num_lines=3, label=""):
     """Document with lines inside showing detail level."""
@@ -192,9 +194,9 @@ def draw_equals(draw, cx, cy, size, col, alpha):
     draw.line([(cx - size*0.3, cy - 5), (cx + size*0.3, cy - 5)], fill=c, width=3)
     draw.line([(cx - size*0.3, cy + 5), (cx + size*0.3, cy + 5)], fill=c, width=3)
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # SCENE RENDERING
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 def render_frame(f):
     img = Image.new("RGB", (W, H), BG)
@@ -297,9 +299,9 @@ def render_frame(f):
 
     return img
 
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 # MAIN
-# ═══════════════════════════════════════════════════════════════════════════════
+# ======
 
 if __name__ == "__main__":
     print(f"Rendering {N} frames ({W}×{H}px, {FPS}fps, {TOTAL}s)...")
@@ -327,7 +329,7 @@ if __name__ == "__main__":
     else:
         print("✓ Self-review passed")
 
-    os.makedirs(os.path.dirname(OUT), exist_ok=True)
-    frames[0].save(OUT, format="WEBP", save_all=True, append_images=frames[1:],
+    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
+    frames[0].save(OUT_PATH, format="WEBP", save_all=True, append_images=frames[1:],
                    duration=int(1000/FPS), loop=0, lossless=True)
-    print(f"✓ Saved → {OUT} ({os.path.getsize(OUT)//1024} KB)")
+    print(f"✓ Saved → {OUT_PATH} ({os.path.getsize(OUT_PATH)//1024} KB)")
