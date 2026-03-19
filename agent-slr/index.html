@@ -30,9 +30,7 @@
     }
   </script>
   <link rel="icon" type="image/jpeg" href="../img/assets/rml_logo_dark.jpg">
-  <link rel="stylesheet" href="css/styles.css?v=20260319a">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=20260319h">
 </head>
 <body>
 
@@ -88,7 +86,10 @@
 
     <div class="header-badges">
       <a class="header-badge" href="https://openreview.net/pdf?id=cAIjWwoZNf" target="_blank">
-        <img src="logos/arxiv.svg" alt="">Paper (PDF)
+        <img src="logos/arxiv.svg" alt="">Paper
+      </a>
+      <a class="header-badge" href="https://huggingface.co/" target="_blank">
+        <img src="../img/assets/hf.svg" alt="">Hugging Face
       </a>
       <a class="header-badge" href="https://github.com/OxRML/AgentSLR" target="_blank">
         <img src="logos/github.svg" alt="">AgentSLR Toolkit
@@ -122,9 +123,9 @@
           <strong>Key Findings:</strong> Across nine WHO-designated priority pathogens, AgentSLR delivers expert-comparable performance while dramatically reducing review time.
         </div>
         <ul class="hero-findings-list">
-          <li><strong>58&times; faster:</strong> review time drops from roughly 7 weeks to about 20 hours.</li>
-          <li><strong>End-to-end coverage:</strong> the pipeline handles retrieval, screening, extraction, and report synthesis in one workflow.</li>
-          <li><strong>Human oversight still matters:</strong> the paper identifies stage-specific failure modes through human-in-the-loop validation.</li>
+          <li><strong>58&times; faster:</strong> review time drops from roughly 7 weeks to about 20 hours</li>
+          <li><strong>End-to-end coverage:</strong> the pipeline handles retrieval, screening, extraction, and report synthesis in one workflow</li>
+          <li><strong>Human oversight still matters:</strong> the paper identifies stage-specific failure modes through human-in-the-loop validation</li>
         </ul>
       </div>
     </div>
@@ -140,338 +141,19 @@
         AgentSLR moves from literature retrieval through screening, extraction, and report generation.
       </p>
 
-      <!-- Pipeline Diagram Grid -->
-      <div class="pipeline-diagram">
-      <!-- Stage a: Article Search and Retrieval -->
-      <div class="diagram-card">
-        <div class="diagram-badge">a</div>
-        <h4 class="diagram-title">Article Search and Retrieval</h4>
-        <div class="diagram-content diagram-content-a">
-          <!-- Database cylinder -->
-          <svg class="diagram-db" viewBox="0 0 60 50" fill="none" stroke="#333" stroke-width="1.5">
-            <ellipse cx="30" cy="10" rx="22" ry="7"/>
-            <path d="M8 10v28c0 3.9 9.8 7 22 7s22-3.1 22-7V10"/>
-            <ellipse cx="30" cy="38" rx="22" ry="7"/>
-          </svg>
-          <div class="diagram-docs-row-a">
-            <!-- Title doc (with Title header inside) -->
-            <div class="diagram-doc-a">
-              <svg viewBox="0 0 55 65" fill="none" stroke="#333" stroke-width="1.2">
-                <rect x="2" y="2" width="51" height="61" rx="2"/>
-                <rect x="6" y="6" width="18" height="6" fill="#f5f5f5" stroke="#333" stroke-width="0.6"/>
-                <text x="15" y="10.5" text-anchor="middle" font-size="4.5" fill="#333" stroke="none">Title</text>
-                <path d="M6 16h43M6 22h40M6 28h42M6 34h38M6 40h43M6 46h36M6 52h40M6 58h35"/>
-              </svg>
-            </div>
-            <!-- PDF doc (with image placeholder) -->
-            <div class="diagram-doc-a">
-              <svg viewBox="0 0 55 65" fill="none" stroke="#333" stroke-width="1.2">
-                <path d="M2 2h40l11 11v50H2z"/>
-                <path d="M42 2v11h11"/>
-                <rect x="8" y="16" width="37" height="22" fill="#e5e5e5" stroke="#ccc" stroke-width="0.5"/>
-                <path d="M8 44h37M8 50h33M8 56h35"/>
-              </svg>
-              <span>PDF</span>
-            </div>
-          </div>
-          <!-- Abstract doc -->
-          <div class="diagram-abstract-a">
-            <svg viewBox="0 0 80 42" fill="none" stroke="#333" stroke-width="1.2">
-              <rect x="2" y="2" width="76" height="38" rx="2"/>
-              <rect x="5" y="5" width="24" height="6" fill="#f5f5f5" stroke="#333" stroke-width="0.5"/>
-              <text x="17" y="9.5" text-anchor="middle" font-size="4" fill="#333" stroke="none">Abstract</text>
-              <path d="M5 15h70M5 20h66M5 25h68M5 30h62M5 35h55"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-
-      <!-- Stage b: Title and Abstract Screening -->
-      <div class="diagram-card">
-        <div class="diagram-badge">b</div>
-        <h4 class="diagram-title">Title and Abstract Screening</h4>
-        <div class="diagram-content">
-          <div class="diagram-screen-row">
-            <!-- Title doc -->
-            <div class="diagram-doc-screen">
-              <svg viewBox="0 0 50 58" fill="none" stroke="#333" stroke-width="1.1">
-                <rect x="2" y="2" width="46" height="54" rx="2"/>
-                <rect x="5" y="5" width="16" height="5" fill="#f5f5f5" stroke="#333" stroke-width="0.5"/>
-                <text x="13" y="9" text-anchor="middle" font-size="4" fill="#333" stroke="none">Title</text>
-                <path d="M5 14h40M5 19h37M5 24h39M5 29h35M5 34h40M5 39h33M5 44h38M5 49h30"/>
-              </svg>
-            </div>
-            <!-- Abstract doc with TXT badge -->
-            <div class="diagram-doc-screen with-badge-screen">
-              <svg viewBox="0 0 50 58" fill="none" stroke="#333" stroke-width="1.1">
-                <rect x="2" y="2" width="46" height="54" rx="2"/>
-                <rect x="5" y="5" width="22" height="5" fill="#f5f5f5" stroke="#333" stroke-width="0.5"/>
-                <text x="16" y="9" text-anchor="middle" font-size="4" fill="#333" stroke="none">Abstract</text>
-                <path d="M5 14h40M5 19h37M5 24h39M5 29h35M5 34h40M5 39h33M5 44h38"/>
-              </svg>
-              <div class="doc-badge-screen">TXT</div>
-            </div>
-          </div>
-          <!-- Lines indicator -->
-          <div class="diagram-lines-v"></div>
-          <div class="diagram-criteria">
-            <div class="criteria-item exclude">
-              <span class="criteria-label">Exclusion Criteria</span>
-              <div class="criteria-row">
-                <span class="criteria-icon">&#10005;</span>
-                <span class="criteria-dots">...</span>
-              </div>
-            </div>
-            <div class="criteria-item include">
-              <span class="criteria-label">Inclusion Criteria</span>
-              <div class="criteria-row">
-                <span class="criteria-icon">&#10003;</span>
-                <span class="criteria-dots">...</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Stage c: PDF-to-Markdown Conversion -->
-      <div class="diagram-card">
-        <div class="diagram-badge">c</div>
-        <h4 class="diagram-title">PDF-to-Markdown Conversion</h4>
-        <div class="diagram-content diagram-content-c">
-          <div class="diagram-conversion-flow">
-            <!-- PDF -->
-            <div class="conversion-step">
-              <svg viewBox="0 0 44 52" fill="none" stroke="#333" stroke-width="1.1">
-                <path d="M2 2h30l10 10v38H2z"/>
-                <path d="M32 2v10h10"/>
-                <rect x="6" y="16" width="30" height="16" fill="#e5e5e5" stroke="#ccc" stroke-width="0.5"/>
-                <path d="M6 36h30M6 41h26M6 46h28"/>
-              </svg>
-              <span>PDF</span>
-            </div>
-            <div class="conversion-arrow">&rarr;</div>
-            <!-- JPEG -->
-            <div class="conversion-step">
-              <svg viewBox="0 0 44 52" fill="none" stroke="#333" stroke-width="1.1">
-                <path d="M2 2h30l10 10v38H2z"/>
-                <path d="M32 2v10h10"/>
-                <rect x="6" y="16" width="30" height="16" fill="#d8d8d8" stroke="#bbb" stroke-width="0.5"/>
-                <path d="M6 36h30M6 41h26M6 46h28"/>
-              </svg>
-              <span>JPEG</span>
-            </div>
-            <div class="conversion-arrow">&rarr;</div>
-            <!-- OCR -->
-            <div class="conversion-step">
-              <svg viewBox="0 0 44 52" fill="none" stroke="#333" stroke-width="1.1">
-                <path d="M2 2h30l10 10v38H2z"/>
-                <path d="M32 2v10h10"/>
-                <text x="22" y="32" text-anchor="middle" font-size="10" fill="#333" stroke="none" font-weight="500">OCR</text>
-              </svg>
-              <span>OCR</span>
-            </div>
-            <div class="conversion-arrow">&rarr;</div>
-            <!-- Markdown -->
-            <div class="conversion-step">
-              <svg viewBox="0 0 44 52" fill="none" stroke="#333" stroke-width="1.1">
-                <path d="M2 2h30l10 10v38H2z"/>
-                <path d="M32 2v10h10"/>
-                <path d="M6 18h30M6 23h26M6 28h28M6 33h24M6 38h30M6 43h22"/>
-              </svg>
-              <div class="doc-badge-c">M&#8595;</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Stage d: Full-text Screening -->
-      <div class="diagram-card">
-        <div class="diagram-badge">d</div>
-        <h4 class="diagram-title">Full-text Screening</h4>
-        <div class="diagram-content">
-          <div class="diagram-screen-row">
-            <!-- Title doc -->
-            <div class="diagram-doc-screen">
-              <svg viewBox="0 0 50 58" fill="none" stroke="#333" stroke-width="1.1">
-                <rect x="2" y="2" width="46" height="54" rx="2"/>
-                <rect x="5" y="5" width="16" height="5" fill="#f5f5f5" stroke="#333" stroke-width="0.5"/>
-                <text x="13" y="9" text-anchor="middle" font-size="4" fill="#333" stroke="none">Title</text>
-                <path d="M5 14h40M5 19h37M5 24h39M5 29h35M5 34h40M5 39h33M5 44h38M5 49h30"/>
-              </svg>
-            </div>
-            <!-- Abstract doc with M↓ badge -->
-            <div class="diagram-doc-screen with-badge-screen">
-              <svg viewBox="0 0 50 58" fill="none" stroke="#333" stroke-width="1.1">
-                <rect x="2" y="2" width="46" height="54" rx="2"/>
-                <rect x="5" y="5" width="22" height="5" fill="#f5f5f5" stroke="#333" stroke-width="0.5"/>
-                <text x="16" y="9" text-anchor="middle" font-size="4" fill="#333" stroke="none">Abstract</text>
-                <path d="M5 14h40M5 19h37M5 24h39M5 29h35M5 34h40M5 39h33M5 44h38"/>
-              </svg>
-              <div class="doc-badge-screen md-badge-screen">M&#8595;</div>
-            </div>
-          </div>
-          <!-- Lines indicator -->
-          <div class="diagram-lines-v"></div>
-          <div class="diagram-criteria">
-            <div class="criteria-item exclude">
-              <span class="criteria-label">Exclusion Criteria</span>
-              <div class="criteria-row">
-                <span class="criteria-icon">&#10005;</span>
-                <span class="criteria-dots">...</span>
-              </div>
-            </div>
-            <div class="criteria-item include">
-              <span class="criteria-label">Inclusion Criteria</span>
-              <div class="criteria-row">
-                <span class="criteria-icon">&#10003;</span>
-                <span class="criteria-dots">...</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Stage e: Data Extraction -->
-      <div class="diagram-card">
-        <div class="diagram-badge">e</div>
-        <h4 class="diagram-title">Data Extraction</h4>
-        <div class="diagram-content">
-          <div class="diagram-screen-row">
-            <!-- Title doc -->
-            <div class="diagram-doc-screen">
-              <svg viewBox="0 0 50 58" fill="none" stroke="#333" stroke-width="1.1">
-                <rect x="2" y="2" width="46" height="54" rx="2"/>
-                <rect x="5" y="5" width="16" height="5" fill="#f5f5f5" stroke="#333" stroke-width="0.5"/>
-                <text x="13" y="9" text-anchor="middle" font-size="4" fill="#333" stroke="none">Title</text>
-                <path d="M5 14h40M5 19h37M5 24h39M5 29h35M5 34h40M5 39h33M5 44h38M5 49h30"/>
-              </svg>
-            </div>
-            <!-- Abstract doc with M↓ badge -->
-            <div class="diagram-doc-screen with-badge-screen">
-              <svg viewBox="0 0 50 58" fill="none" stroke="#333" stroke-width="1.1">
-                <rect x="2" y="2" width="46" height="54" rx="2"/>
-                <rect x="5" y="5" width="22" height="5" fill="#f5f5f5" stroke="#333" stroke-width="0.5"/>
-                <text x="16" y="9" text-anchor="middle" font-size="4" fill="#333" stroke="none">Abstract</text>
-                <path d="M5 14h40M5 19h37M5 24h39M5 29h35M5 34h40M5 39h33M5 44h38"/>
-              </svg>
-              <div class="doc-badge-screen md-badge-screen">M&#8595;</div>
-            </div>
-          </div>
-          <!-- Lines branching down -->
-          <div class="diagram-lines-branch"></div>
-          <!-- Extraction icons -->
-          <div class="diagram-extraction-icons">
-            <div class="extraction-icon-item">
-              <!-- Parameters: table/spreadsheet icon -->
-              <svg viewBox="0 0 36 32" fill="none" stroke="#333" stroke-width="1.1">
-                <rect x="2" y="6" width="32" height="24" rx="2"/>
-                <path d="M2 12h32M12 12v18M24 12v18"/>
-                <rect x="4" y="2" width="12" height="5" fill="#f5f5f5" stroke="#333" stroke-width="0.6"/>
-              </svg>
-              <span>Parameters</span>
-            </div>
-            <div class="extraction-icon-item">
-              <!-- Outbreaks: virus icon -->
-              <svg viewBox="0 0 36 36" fill="none" stroke="#333" stroke-width="1.1">
-                <circle cx="18" cy="18" r="8"/>
-                <circle cx="18" cy="18" r="2.5" fill="#333"/>
-                <!-- Spikes with dots -->
-                <line x1="18" y1="6" x2="18" y2="10"/>
-                <circle cx="18" cy="5" r="1.8" fill="#333"/>
-                <line x1="18" y1="26" x2="18" y2="30"/>
-                <circle cx="18" cy="31" r="1.8" fill="#333"/>
-                <line x1="6" y1="18" x2="10" y2="18"/>
-                <circle cx="5" cy="18" r="1.8" fill="#333"/>
-                <line x1="26" y1="18" x2="30" y2="18"/>
-                <circle cx="31" cy="18" r="1.8" fill="#333"/>
-                <!-- Diagonal spikes -->
-                <line x1="9.5" y1="9.5" x2="12" y2="12"/>
-                <circle cx="8.5" cy="8.5" r="1.8" fill="#333"/>
-                <line x1="24" y1="12" x2="26.5" y2="9.5"/>
-                <circle cx="27.5" cy="8.5" r="1.8" fill="#333"/>
-                <line x1="9.5" y1="26.5" x2="12" y2="24"/>
-                <circle cx="8.5" cy="27.5" r="1.8" fill="#333"/>
-                <line x1="24" y1="24" x2="26.5" y2="26.5"/>
-                <circle cx="27.5" cy="27.5" r="1.8" fill="#333"/>
-              </svg>
-              <span>Outbreaks</span>
-            </div>
-            <div class="extraction-icon-item">
-              <!-- Models: people/network icon -->
-              <svg viewBox="0 0 40 34" fill="none" stroke="#333" stroke-width="1.1">
-                <!-- Center person (larger) -->
-                <circle cx="20" cy="8" r="4"/>
-                <path d="M13 22c0-4 3-7 7-7s7 3 7 7"/>
-                <!-- Left person (smaller) -->
-                <circle cx="7" cy="12" r="3"/>
-                <path d="M2 24c0-3 2-5 5-5s5 2 5 5"/>
-                <!-- Right person (smaller) -->
-                <circle cx="33" cy="12" r="3"/>
-                <path d="M28 24c0-3 2-5 5-5s5 2 5 5"/>
-                <!-- Connection lines -->
-                <path d="M10 14l6 3M30 14l-6 3" stroke-dasharray="2 1"/>
-              </svg>
-              <span>Models</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Stage f: Report Generation -->
-      <div class="diagram-card">
-        <div class="diagram-badge">f</div>
-        <h4 class="diagram-title">Report Generation</h4>
-        <div class="diagram-content diagram-content-f">
-          <div class="diagram-report-layout">
-            <!-- Report document -->
-            <div class="report-doc">
-              <svg viewBox="0 0 55 70" fill="none" stroke="#333" stroke-width="1.1">
-                <rect x="2" y="2" width="51" height="66" rx="2"/>
-                <rect x="5" y="5" width="18" height="6" fill="#f5f5f5" stroke="#333" stroke-width="0.5"/>
-                <text x="14" y="9.5" text-anchor="middle" font-size="4" fill="#333" stroke="none">Report</text>
-                <path d="M5 15h45M5 20h42"/>
-                <!-- Mini chart area -->
-                <rect x="5" y="26" width="45" height="38" rx="1" fill="#fafafa" stroke="#333" stroke-width="0.5"/>
-                <rect x="10" y="48" width="7" height="12" fill="#bbb" stroke="none"/>
-                <rect x="20" y="42" width="7" height="18" fill="#888" stroke="none"/>
-                <rect x="30" y="46" width="7" height="14" fill="#bbb" stroke="none"/>
-              </svg>
-            </div>
-            <!-- Robot/LLM icon -->
-            <div class="diagram-robot">
-              <svg viewBox="0 0 36 44" fill="none" stroke="#333" stroke-width="1.2">
-                <!-- Robot head -->
-                <rect x="6" y="10" width="24" height="18" rx="3"/>
-                <!-- Antenna -->
-                <line x1="18" y1="3" x2="18" y2="10"/>
-                <circle cx="18" cy="3" r="2" fill="#333"/>
-                <!-- Eyes -->
-                <rect x="10" y="15" width="5" height="5" rx="1" fill="#333"/>
-                <rect x="21" y="15" width="5" height="5" rx="1" fill="#333"/>
-                <!-- Mouth -->
-                <path d="M12 24h12"/>
-                <!-- Body -->
-                <rect x="8" y="30" width="20" height="10" rx="2"/>
-                <path d="M13 35h10"/>
-              </svg>
-            </div>
-            <!-- Charts visualization -->
-            <div class="report-charts">
-              <svg viewBox="0 0 80 62" fill="none" stroke="#333" stroke-width="1.1">
-                <!-- Bar chart -->
-                <rect x="4" y="36" width="12" height="22" fill="#ddd" stroke="#333"/>
-                <rect x="20" y="24" width="12" height="34" fill="#aaa" stroke="#333"/>
-                <rect x="36" y="14" width="12" height="44" fill="#888" stroke="#333"/>
-                <!-- Pie chart -->
-                <circle cx="64" cy="36" r="18" fill="#eee"/>
-                <path d="M64 36L64 18A18 18 0 0 1 79 47z" fill="#888"/>
-                <path d="M64 36L79 47A18 18 0 0 1 49 47z" fill="#aaa"/>
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
+      <!-- Pipeline Figure -->
+      <figure class="pipeline-figure">
+        <img src="logos/flashfigure.jpg" alt="AgentSLR Pipeline Overview" class="pipeline-img">
+        <figcaption>
+          <strong>Figure:</strong> End-to-end AgentSLR pipeline for automated systematic reviews.
+          <strong>(a)</strong> Article Search queries databases and retrieves PDFs.
+          <strong>(b)</strong> Title/Abstract Screening filters using inclusion/exclusion criteria.
+          <strong>(c)</strong> PDF-to-Markdown converts documents via OCR.
+          <strong>(d)</strong> Full-text Screening applies stricter criteria.
+          <strong>(e)</strong> Data Extraction uses tool-calling to extract parameters, models, and outbreaks.
+          <strong>(f)</strong> Report Generation synthesises data through iterative LLM refinement.
+        </figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -484,7 +166,7 @@
     <div class="section-card">
       <h2>Results</h2>
 
-      <p class="results-subtitle">Select a result tile to view the chart and summary on the right.</p>
+      <p class="results-subtitle">Select a result tile to view the chart and summary below.</p>
 
       <div class="results-layout">
         <div class="results-tiles-grid" role="tablist" aria-label="Results navigation">
@@ -551,20 +233,6 @@
             </div>
           </button>
 
-          <button class="result-tile" type="button" id="tile-expert" data-target="expert-pane" aria-selected="false" aria-controls="expert-pane">
-            <div class="tile-preview">
-              <div class="tile-icon">
-                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="24" cy="14" r="8"/>
-                  <path d="M10 42c0-8 6-14 14-14s14 6 14 14"/>
-                </svg>
-              </div>
-            </div>
-            <div class="tile-content">
-              <h3>Expert Evaluation</h3>
-              <p class="tile-claim">Mean competence rating by epidemiologists</p>
-            </div>
-          </button>
         </div>
 
         <div class="results-detail-panel">
@@ -658,38 +326,6 @@
               </ul>
             </div>
           </article>
-
-          <article class="result-pane" id="expert-pane" role="tabpanel" aria-labelledby="tile-expert">
-            <div class="result-block">
-              <h3 class="result-pane-title">Human Expert Evaluation</h3>
-              <p class="figure-caption">
-                Six epidemiologists rated AgentSLR extractions on flagging precision, field-level accuracy,
-                and overall competence (1 = incompetent, 4 = useful under supervision, 7 = fully autonomous)
-                across parameters, models, and outbreaks.
-              </p>
-
-              <div class="expert-grid">
-                <div class="expert-card expert-card-flagging">
-                  <h4>Expert-Rated Flagging Precision</h4>
-                  <div class="chart-container" id="flagging-chart"></div>
-                </div>
-                <div class="expert-card expert-card-accuracy">
-                  <h4>Expert-Rated Extraction Accuracy</h4>
-                  <div class="chart-container" id="accuracy-chart"></div>
-                </div>
-                <div class="expert-card expert-card-competence">
-                  <h4>Expert-Rated Competence</h4>
-                  <div class="chart-container" id="competence-chart"></div>
-                </div>
-              </div>
-
-              <ul class="result-bullets">
-                <li>Field-level extraction accuracy averaged <strong>0.80</strong> across all data types, nearly 19 points above automated scoring baselines.</li>
-                <li>Parameter and outbreak competence ratings of <strong>4.2 and 3.9</strong> place AgentSLR at or above the threshold for a useful supervised tool.</li>
-                <li>Experts consistently reported that AgentSLR outputs reduce net annotation effort, with false positives being quick to identify and remove.</li>
-              </ul>
-            </div>
-          </article>
         </div>
       </div>
     </div>
@@ -735,50 +371,6 @@
               <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
             </svg>
             <span><strong>Error Structure Matters as Much as Frequency:</strong> Systematic gaps in coverage introduce bias. Characterising failure modes, not just rates, is essential before high-stakes deployment.</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="future-section" id="future-directions">
-  <div class="container">
-    <div class="section-card">
-      <h2>Future Directions</h2>
-      <div class="implication-pane future standalone">
-        <ul>
-          <li>
-            <svg class="impl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M18 8v6M15 11h6"/>
-            </svg>
-            <span><strong>Human Uplift Study:</strong> A formal study to quantify time savings in a human-in-the-loop workflow, prioritising understudied diseases with serious epidemic potential.</span>
-          </li>
-          <li>
-            <svg class="impl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
-            </svg>
-            <span><strong>Multi-Domain Extension:</strong> The framework is domain-agnostic. Future work can explore generalisation across medical, social, and physical sciences.</span>
-          </li>
-          <li>
-            <svg class="impl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="12" cy="18" r="3"/><path d="M6 9v3a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V9"/><path d="M12 15v-3"/>
-            </svg>
-            <span><strong>Heterogeneous Multi-Agent Pipelines:</strong> Different models excel at different stages. Routing sub-tasks to models with complementary strengths could improve overall performance.</span>
-          </li>
-          <li>
-            <svg class="impl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="9"/><path d="M12 8v4l2 2"/><path d="M8 3h8"/><path d="M9.5 2L8 3M14.5 2l1.5 1"/>
-              <path d="M16 16l2 2M8 16l-2 2"/>
-            </svg>
-            <span><strong>Systematic Error Analysis:</strong> Consistent underperformance on certain pathogens and study types warrants explicit characterisation before deployment in high-stakes settings.</span>
-          </li>
-          <li>
-            <svg class="impl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-              <text x="9" y="14" font-size="9" font-weight="600" fill="currentColor" stroke="none">文</text>
-            </svg>
-            <span><strong>Cross-Lingual Support:</strong> Current English-only screening excludes non-English evidence. Multilingual models offer a clear path forward, along with human annotated ground-truth.</span>
           </li>
         </ul>
       </div>
@@ -838,9 +430,9 @@
 </div>
 
 <script src="js/data.js?v=20260306e"></script>
-<script src="js/charts.js?v=20260319a"></script>
-<script src="js/pipeline.js?v=20260319a"></script>
-<script src="js/app.js?v=20260319a"></script>
+<script src="js/charts.js?v=20260319e"></script>
+<script src="js/pipeline.js?v=20260319c"></script>
+<script src="js/app.js?v=20260319c"></script>
 <script>
   (function () {
     // Logo bar collapse on scroll

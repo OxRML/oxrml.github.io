@@ -210,8 +210,8 @@ const Charts = (() => {
       },
     };
 
-    const svgW = 1000, svgH = 400;
-    const margin = { top: 75, right: 30, bottom: 90, left: 55 };
+    const svgW = 1000, svgH = 334;
+    const margin = { top: 60, right: 30, bottom: 44, left: 55 };
     const plotW = svgW - margin.left - margin.right;
     const plotH = svgH - margin.top - margin.bottom;
 
@@ -637,7 +637,6 @@ const Charts = (() => {
     renderModelAblationChart('model-ablation-chart');
     renderCostPerformanceChart('cost-performance-chart');
     renderScreeningChart('screening-chart');
-    renderExpertCharts();
   }
 
   return {
@@ -645,7 +644,6 @@ const Charts = (() => {
     renderGantt,
     renderModelAblationChart,
     renderCostPerformanceChart,
-    renderScreeningChart,
-    renderExpertCharts
+    renderScreeningChart
   };
 })();
