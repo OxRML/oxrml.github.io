@@ -36,14 +36,6 @@
       "photos": ["img/news/icml_2024.jpeg"]
     },
     {
-      "id": "2",
-      "date": "2024-12-10",
-      "displayDate": "Dec 2024", 
-      "title": "New paper!",
-      "text": "Clinical knowledge in LLMs does not translate to human interactions.",
-      "category": "publication"
-    },
-    {
       "id": "1",
       "date": "2024-12-05",
       "displayDate": "Dec 2024",
