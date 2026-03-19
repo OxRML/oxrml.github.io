@@ -30,7 +30,7 @@
     }
   </script>
   <link rel="icon" type="image/jpeg" href="../img/assets/rml_logo_dark.jpg">
-  <link rel="stylesheet" href="css/styles.css?v=20260319i">
+  <link rel="stylesheet" href="css/styles.css?v=20260319j">
 </head>
 <body>
 
@@ -46,18 +46,6 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9h6V5H6v4zm0 10h6v-4H6v4zM12 9h6V5h-6v4zm0 10h6v-4h-6v4z"/></svg>
   </a>
 </nav>
-
-<div class="theme-control">
-  <button class="theme-toggle" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
-    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <circle cx="12" cy="12" r="5"/>
-      <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-    </svg>
-    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-    </svg>
-  </button>
-</div>
 
 <!-- ============ HEADER ============ -->
 <header class="site-header">
@@ -370,36 +358,10 @@
   </div>
 </footer>
 
-<div class="md-modal" id="md-modal" aria-hidden="true">
-  <div class="md-modal-backdrop" id="md-modal-backdrop"></div>
-  <div class="md-modal-panel" role="dialog" aria-modal="true" aria-labelledby="md-modal-title">
-    <div class="md-modal-header">
-      <h3 id="md-modal-title">Generated Report (Markdown)</h3>
-      <button class="md-modal-close" id="md-modal-close" title="Close">&times;</button>
-    </div>
-    <div class="md-modal-body" id="md-modal-body"></div>
-  </div>
-</div>
-
-<script src="js/data.js?v=20260306e"></script>
-<script src="js/charts.js?v=20260319g"></script>
-<script src="js/pipeline.js?v=20260319c"></script>
-<script src="js/app.js?v=20260319c"></script>
+<script src="js/charts.js?v=20260319h"></script>
+<script src="js/app.js?v=20260319d"></script>
 <script>
   (function () {
-    // Theme toggle - default to system preference
-    var themeToggle = document.getElementById('theme-toggle');
-    var storedTheme = localStorage.getItem('theme');
-    var systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    var currentTheme = storedTheme || (systemPrefersDark ? 'dark' : 'light');
-    document.documentElement.setAttribute('data-theme', currentTheme);
-
-    themeToggle.addEventListener('click', function() {
-      var newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-    });
-
     // Result tiles - click to switch the active detail pane
     var resultTiles = Array.prototype.slice.call(document.querySelectorAll('.result-tile'));
     var resultPanes = Array.prototype.slice.call(document.querySelectorAll('.result-pane'));
@@ -433,7 +395,6 @@
     var stickyToc = document.getElementById('sticky-toc');
     var tocItems = document.querySelectorAll('.toc-item');
     var sections = {
-      'about': document.getElementById('about'),
       'pipeline': document.getElementById('pipeline'),
       'results': document.getElementById('results'),
       'citation': document.getElementById('citation')
