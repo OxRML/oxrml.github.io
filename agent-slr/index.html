@@ -6,12 +6,12 @@
   <title>AgentSLR: Automating Systematic Literature Reviews with Agentic AI</title>
   <meta name="description" content="AgentSLR automates systematic literature reviews using agentic AI, achieving 58× faster review times while maintaining expert-level accuracy.">
   <meta property="og:title" content="AgentSLR: Automating Systematic Literature Reviews with Agentic AI">
-  <meta property="og:description" content="AI-powered systematic literature review automation - 58× faster than manual review.">
+  <meta property="og:description" content="AI-powered systematic literature review automation in epidemiology — 58× faster than manual review.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://oxrml.com/agent-slr/">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="AgentSLR: Automating Systematic Literature Reviews">
-  <meta name="twitter:description" content="AI-powered systematic literature review automation - 58× faster than manual review.">
+  <meta name="twitter:description" content="AI-powered systematic literature review automation in epidemiology — 58× faster than manual review.">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -33,24 +33,6 @@
   <link rel="stylesheet" href="css/styles.css?v=20260319h">
 </head>
 <body>
-
-<!-- ============ LOGOS (collapses on scroll) ============ -->
-<div class="logo-bar" id="logo-bar">
-  <div class="logo-bar-inner">
-    <a href="https://www.ox.ac.uk/" target="_blank" rel="noopener noreferrer">
-      <img src="logos/oxofrd.png" alt="University of Oxford" title="University of Oxford">
-    </a>
-    <a href="https://www.imperial.ac.uk/" target="_blank" rel="noopener noreferrer">
-      <img src="logos/icl.jpeg" alt="Imperial College London" title="Imperial College London">
-    </a>
-        <a href="https://oxrml.com/" target="_blank" rel="noopener noreferrer">
-      <img src="../img/assets/rml_logo_dark.jpg" alt="OxRML" title="Reasoning with Machines Lab">
-    </a>
-    <a href="https://www.imperial.ac.uk/mrc-global-infectious-disease-analysis/" target="_blank" rel="noopener noreferrer">
-      <img src="logos/mrcgida.jpg" alt="MRC GIDA" title="MRC Centre for Global Infectious Disease Analysis">
-    </a>
-  </div>
-</div>
 
 <!-- Sticky TOC -->
 <nav class="sticky-toc" id="sticky-toc">
@@ -112,21 +94,12 @@
 
     <div class="hero-intro">
       <p class="hero-lede">
-        Systematic literature reviews are essential for evidence-based public health, but they are costly, slow, and difficult to scale.
-        In epidemiology, that creates a real bottleneck for outbreak preparedness and rapid evidence synthesis.
-      </p>
-      <p class="hero-lede hero-lede-strong">
-        <strong>AgentSLR</strong> automates the full systematic review workflow for epidemiology, from article retrieval and screening to structured extraction and report drafting.
+        Systematic literature reviews are essential for evidence-based public health, but they are costly, slow, and difficult to scale. In epidemiology, that creates a real bottleneck for outbreak preparedness and rapid evidence synthesis. <strong>AgentSLR</strong> automates the full systematic review workflow for epidemiology, from article retrieval and screening to structured extraction and report drafting.
       </p>
       <div class="hero-findings" aria-label="Key findings">
-        <div class="hero-findings-title">
-          <strong>Key Findings:</strong> Across nine WHO-designated priority pathogens, AgentSLR delivers expert-comparable performance while dramatically reducing review time.
-        </div>
-        <ul class="hero-findings-list">
-          <li><strong>58&times; faster:</strong> review time drops from roughly 7 weeks to about 20 hours</li>
-          <li><strong>End-to-end coverage:</strong> the pipeline handles retrieval, screening, extraction, and report synthesis in one workflow</li>
-          <li><strong>Human oversight still matters:</strong> the paper identifies stage-specific failure modes through human-in-the-loop validation</li>
-        </ul>
+        <p class="hero-findings-title">
+          <strong>Key Findings:</strong> Across nine WHO-designated priority pathogens, AgentSLR delivers expert-comparable performance while being <strong>58&times; faster</strong>, cutting review time from roughly <strong>7 weeks</strong> to about <strong>20 hours</strong>. It provides <strong>end-to-end coverage</strong> across retrieval, screening, extraction, and report synthesis, while <strong>human-in-the-loop oversight</strong> remains important for catching stage-specific failure modes.
+        </p>
       </div>
     </div>
   </div>
@@ -245,25 +218,6 @@
               </p>
 
               <div class="chart-container" id="gantt-chart"></div>
-
-              <div class="speedup-cards">
-                <div class="speedup-card">
-                  <span class="speedup-value" data-count="36">0×</span>
-                  <span class="speedup-label">Abstract Screening</span>
-                </div>
-                <div class="speedup-card">
-                  <span class="speedup-value" data-count="118">0×</span>
-                  <span class="speedup-label">Full-text Screening</span>
-                </div>
-                <div class="speedup-card">
-                  <span class="speedup-value" data-count="14.7">0×</span>
-                  <span class="speedup-label">Data Extraction</span>
-                </div>
-                <div class="speedup-card highlight">
-                  <span class="speedup-value" data-count="58">0×</span>
-                  <span class="speedup-label">Calendar-Time Savings</span>
-                </div>
-              </div>
 
               <ul class="result-bullets">
                 <li>AgentSLR completes a full review in <strong>20 hours</strong> versus <strong>385 hours</strong> of manual effort, a 19.3&times; speedup in active time.</li>
@@ -435,16 +389,6 @@
 <script src="js/app.js?v=20260319c"></script>
 <script>
   (function () {
-    // Logo bar collapse on scroll
-    var bar = document.getElementById('logo-bar');
-    window.addEventListener('scroll', function () {
-      if (window.scrollY > 60) {
-        bar.classList.add('collapsed');
-      } else {
-        bar.classList.remove('collapsed');
-      }
-    }, { passive: true });
-
     // Theme toggle - default to system preference
     var themeToggle = document.getElementById('theme-toggle');
     var storedTheme = localStorage.getItem('theme');
@@ -474,10 +418,6 @@
         pane.classList.toggle('active', isActive);
         pane.setAttribute('aria-hidden', isActive ? 'false' : 'true');
       });
-
-      if (targetId === 'time-savings-pane') {
-        requestAnimationFrame(animateCounters);
-      }
     }
 
     if (resultTiles.length && resultPanes.length) {
@@ -523,36 +463,7 @@
     }
     window.addEventListener('scroll', updateToc, { passive: true });
 
-    // Animated counters
-    var countersAnimated = false;
-    function animateCounters() {
-      if (countersAnimated) return;
-      var counters = document.querySelectorAll('.speedup-value[data-count]');
-      if (!counters.length) return;
-      var rect = counters[0].getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        countersAnimated = true;
-        counters.forEach(function(el) {
-          var target = parseFloat(el.dataset.count);
-          var isDecimal = target % 1 !== 0;
-          var duration = 1200;
-          var start = performance.now();
-          el.classList.add('counting');
-          function step(now) {
-            var progress = Math.min((now - start) / duration, 1);
-            var eased = 1 - Math.pow(1 - progress, 3);
-            var current = target * eased;
-            el.textContent = (isDecimal ? current.toFixed(1) : Math.round(current)) + '×';
-            if (progress < 1) requestAnimationFrame(step);
-            else el.classList.remove('counting');
-          }
-          requestAnimationFrame(step);
-        });
-      }
-    }
-    window.addEventListener('scroll', animateCounters, { passive: true });
     updateToc();
-    animateCounters();
 
   })();
 </script>
