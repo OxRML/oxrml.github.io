@@ -208,7 +208,6 @@ a:hover { color: var(--accent-dark); }
   font-size: 1.1rem;
   line-height: var(--copy-line);
   color: var(--text);
-  max-width: var(--reading-measure);
 }
 
 .hero-lede + .hero-lede {
@@ -2235,6 +2234,7 @@ a:hover { color: var(--accent-dark); }
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 12px;
   padding: 16px 0;
   border-top: 1px solid var(--bg-accent);
@@ -2264,6 +2264,19 @@ a:hover { color: var(--accent-dark); }
 .share-btn svg {
   width: 16px;
   height: 16px;
+}
+
+.share-paper-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+}
+
+.share-paper-link img {
+  height: 1em;
+  width: auto;
 }
 
 /* ---------- RESULT TILE HOVER ANIMATION ---------- */
@@ -2363,6 +2376,15 @@ a:hover { color: var(--accent-dark); }
 [data-theme="dark"] .figure-caption {
   color: #94a3b8;
 }
+[data-theme="dark"] .hero-findings,
+[data-theme="dark"] .result-bullets {
+  background: rgba(107, 174, 126, 0.12);
+  border-color: rgba(107, 174, 126, 0.28);
+  color: var(--text);
+}
+[data-theme="dark"] .hero-findings-title {
+  color: var(--text);
+}
 [data-theme="dark"] .expert-card {
   background: #1e293b;
   border-color: #334155;
@@ -2370,4 +2392,9 @@ a:hover { color: var(--accent-dark); }
 [data-theme="dark"] .implication-pane {
   background: #1e293b;
   border-color: #334155;
+}
+[data-theme="dark"] .implication-pane.standalone {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
 }
