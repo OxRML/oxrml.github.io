@@ -30,7 +30,7 @@
     }
   </script>
   <link rel="icon" type="image/jpeg" href="../img/assets/rml_logo_dark.jpg">
-  <link rel="stylesheet" href="css/styles.css?v=20260309c">
+  <link rel="stylesheet" href="css/styles.css?v=20260319a">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
@@ -56,9 +56,6 @@
 
 <!-- Sticky TOC -->
 <nav class="sticky-toc" id="sticky-toc">
-  <a href="#about" class="toc-item" data-section="summary-section" title="About">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-  </a>
   <a href="#pipeline" class="toc-item" data-section="pipeline-section" title="Pipeline">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
   </a>
@@ -111,329 +108,369 @@
       <sup>4</sup> Snowflake AI Research &nbsp;&middot;&nbsp;
       <sup>5</sup> Independent
     </div>
+
+    <div class="hero-intro">
+      <p class="hero-lede">
+        Systematic literature reviews are essential for evidence-based public health, but they are costly, slow, and difficult to scale.
+        In epidemiology, that creates a real bottleneck for outbreak preparedness and rapid evidence synthesis.
+      </p>
+      <p class="hero-lede hero-lede-strong">
+        <strong>AgentSLR</strong> automates the full systematic review workflow for epidemiology, from article retrieval and screening to structured extraction and report drafting.
+      </p>
+      <div class="hero-findings" aria-label="Key findings">
+        <div class="hero-findings-title">
+          <strong>Key Findings:</strong> Across nine WHO-designated priority pathogens, AgentSLR delivers expert-comparable performance while dramatically reducing review time.
+        </div>
+        <ul class="hero-findings-list">
+          <li><strong>58&times; faster:</strong> review time drops from roughly 7 weeks to about 20 hours.</li>
+          <li><strong>End-to-end coverage:</strong> the pipeline handles retrieval, screening, extraction, and report synthesis in one workflow.</li>
+          <li><strong>Human oversight still matters:</strong> the paper identifies stage-specific failure modes through human-in-the-loop validation.</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </header>
 
-<!-- ============ SUMMARY ============ -->
-<section class="summary-section" id="about">
-  <div class="container">
-    <div class="summary-card">
-      <h2>About AgentSLR</h2>
-      <p>
-        <strong>AgentSLR</strong> is a collaboration between the <strong>Reasoning with Machines Lab (OxRML)</strong> at the University of Oxford
-        and the <strong>Pathogen Epidemiology Review Group (PERG)</strong> at the MRC Centre for Global Infectious Disease Analysis, Imperial College London.
-      </p>
-      <p>
-        The project brings together <strong>epidemiologists, computer scientists, and AI researchers</strong> to tackle one of the
-        most resource-intensive tasks in evidence-based public health: systematic literature reviews.
-      </p>
-      <p>
-        Systematic reviews are essential for synthesising scientific evidence, yet they are costly, difficult to scale,
-        and extremely time-intensive. <strong>AgentSLR automates the complete workflow</strong> &mdash; from article retrieval and
-        multi-stage screening, through structured data extraction, to evidence synthesis via written reports.
-      </p>
-      <p>
-        Applied to epidemiological reviews of <strong>nine WHO-designated priority pathogens</strong> and validated against expert-curated ground truth,
-        AgentSLR achieves screening decisions and data extractions consistent with human annotators
-        while completing this process <strong>58&times; faster</strong> (reducing review time from ~7 weeks to 20 hours).
-      </p>
-      <p>
-        The pipeline is <strong>open-source and open-weight</strong>, enabling reproducible and scalable evidence synthesis for outbreak preparedness and response.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ INTERACTIVE PIPELINE ============ -->
+<!-- ============ PIPELINE ============ -->
 <section class="pipeline-section" id="pipeline">
   <div class="container">
-    <h2>Interactive Pipeline Demonstration</h2>
-    <p class="pipeline-subtitle">
-      Select a pathogen and click <strong>Run</strong> to simulate the AgentSLR pipeline in action.
-    </p>
+    <div class="section-card">
+      <h2>Pipeline</h2>
+      <p class="pipeline-subtitle">
+        AgentSLR moves from literature retrieval through screening, extraction, and report generation.
+      </p>
 
-    <!-- Controls -->
-    <div class="pipeline-controls">
-      <div class="control-group">
-        <label for="pathogen-select">Select Pathogen</label>
-        <div class="select-wrapper">
-          <select id="pathogen-select">
-            <option value="">-- Choose a pathogen --</option>
-            <option value="marburg">Marburg virus</option>
-            <option value="ebola">Ebola virus</option>
-            <option value="lassa">Lassa fever virus</option>
-            <option value="sars">SARS-CoV-1</option>
-            <option value="zika">Zika virus</option>
-            <option value="mers">MERS-CoV</option>
-            <option value="nipah">Nipah virus</option>
-          </select>
-        </div>
-      </div>
-      <button id="run-btn" class="btn-run" disabled>Run Pipeline</button>
-      <button id="reset-btn" class="btn-reset" style="display:none;">Reset</button>
-    </div>
-    <div id="pipeline-loading-status" class="pipeline-loading-status" style="display:none;">
-      <span class="loading-dot" aria-hidden="true"></span>
-      <span id="pipeline-loading-text">Loading data...</span>
-    </div>
-
-    <p class="disclaimer">* This run is a simulation depicting how the pipeline would be run. Data provided is redacted and a small sub-sample.</p>
-
-    <!-- Pipeline Grid -->
-    <div class="pipeline-grid">
-      <!-- Stage 1 -->
-      <div class="pipeline-card" data-stage="1">
-        <div class="card-inner">
-          <div class="card-front">
-            <div class="stage-badge">a</div>
-            <div class="stage-icon">
-              <svg viewBox="0 0 64 64" class="icon-search" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-                <ellipse cx="23" cy="19" rx="13" ry="4.8" />
-                <path d="M10 19v17c0 2.7 5.8 4.8 13 4.8s13-2.1 13-4.8V19" />
-                <ellipse cx="23" cy="36" rx="13" ry="4.8" />
-                <path d="M47 24v13" />
-                <path d="m43.8 33.8 3.2 3.2 3.2-3.2" />
-                <path d="M42 41h10" />
+      <!-- Pipeline Diagram Grid -->
+      <div class="pipeline-diagram">
+      <!-- Stage a: Article Search and Retrieval -->
+      <div class="diagram-card">
+        <div class="diagram-badge">a</div>
+        <h4 class="diagram-title">Article Search and Retrieval</h4>
+        <div class="diagram-content diagram-content-a">
+          <!-- Database cylinder -->
+          <svg class="diagram-db" viewBox="0 0 60 50" fill="none" stroke="#333" stroke-width="1.5">
+            <ellipse cx="30" cy="10" rx="22" ry="7"/>
+            <path d="M8 10v28c0 3.9 9.8 7 22 7s22-3.1 22-7V10"/>
+            <ellipse cx="30" cy="38" rx="22" ry="7"/>
+          </svg>
+          <div class="diagram-docs-row-a">
+            <!-- Title doc (with Title header inside) -->
+            <div class="diagram-doc-a">
+              <svg viewBox="0 0 55 65" fill="none" stroke="#333" stroke-width="1.2">
+                <rect x="2" y="2" width="51" height="61" rx="2"/>
+                <rect x="6" y="6" width="18" height="6" fill="#f5f5f5" stroke="#333" stroke-width="0.6"/>
+                <text x="15" y="10.5" text-anchor="middle" font-size="4.5" fill="#333" stroke="none">Title</text>
+                <path d="M6 16h43M6 22h40M6 28h42M6 34h38M6 40h43M6 46h36M6 52h40M6 58h35"/>
               </svg>
             </div>
-            <h3>Article Search &amp; Retrieval</h3>
-            <div class="stage-status" id="status-1"></div>
-            <div class="progress-bar-container" id="progress-1" style="display:none;">
-              <div class="progress-bar"><div class="progress-fill"></div></div>
-              <span class="progress-text">0%</span>
+            <!-- PDF doc (with image placeholder) -->
+            <div class="diagram-doc-a">
+              <svg viewBox="0 0 55 65" fill="none" stroke="#333" stroke-width="1.2">
+                <path d="M2 2h40l11 11v50H2z"/>
+                <path d="M42 2v11h11"/>
+                <rect x="8" y="16" width="37" height="22" fill="#e5e5e5" stroke="#ccc" stroke-width="0.5"/>
+                <path d="M8 44h37M8 50h33M8 56h35"/>
+              </svg>
+              <span>PDF</span>
             </div>
-            <div class="stage-log" id="log-1"></div>
           </div>
-          <div class="card-back">
-            <div class="back-header">
-              <button class="flip-back-btn" title="Flip back">&larr;</button>
-              <h4>Article Search &amp; Retrieval</h4>
+          <!-- Abstract doc -->
+          <div class="diagram-abstract-a">
+            <svg viewBox="0 0 80 42" fill="none" stroke="#333" stroke-width="1.2">
+              <rect x="2" y="2" width="76" height="38" rx="2"/>
+              <rect x="5" y="5" width="24" height="6" fill="#f5f5f5" stroke="#333" stroke-width="0.5"/>
+              <text x="17" y="9.5" text-anchor="middle" font-size="4" fill="#333" stroke="none">Abstract</text>
+              <path d="M5 15h70M5 20h66M5 25h68M5 30h62M5 35h55"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage b: Title and Abstract Screening -->
+      <div class="diagram-card">
+        <div class="diagram-badge">b</div>
+        <h4 class="diagram-title">Title and Abstract Screening</h4>
+        <div class="diagram-content">
+          <div class="diagram-screen-row">
+            <!-- Title doc -->
+            <div class="diagram-doc-screen">
+              <svg viewBox="0 0 50 58" fill="none" stroke="#333" stroke-width="1.1">
+                <rect x="2" y="2" width="46" height="54" rx="2"/>
+                <rect x="5" y="5" width="16" height="5" fill="#f5f5f5" stroke="#333" stroke-width="0.5"/>
+                <text x="13" y="9" text-anchor="middle" font-size="4" fill="#333" stroke="none">Title</text>
+                <path d="M5 14h40M5 19h37M5 24h39M5 29h35M5 34h40M5 39h33M5 44h38M5 49h30"/>
+              </svg>
             </div>
-            <div class="back-content">
-              <p><strong>Data Sources:</strong> OpenAlex (30 req/s), PubMed (standard API), Europe PMC (20 req/s)</p>
-              <p><strong>Search Strategy:</strong> Boolean queries with epidemiological terms, wildcard expansion for term variants, pathogen-specific exclusion criteria.</p>
-              <p><strong>Process:</strong> Deduplication by DOI/PMID/PMCID, cascading PDF retrieval from open access sources, parallel downloads with rate limiting.</p>
-              <div class="back-query">
-                <strong>Example Query:</strong>
-                <code>[PATHOGEN] AND (transmissi* OR epidemiolog* OR model* OR severity OR "case fatality ratio*" OR "serial interval*" OR "reproduction number*" OR outbreak* ...)</code>
+            <!-- Abstract doc with TXT badge -->
+            <div class="diagram-doc-screen with-badge-screen">
+              <svg viewBox="0 0 50 58" fill="none" stroke="#333" stroke-width="1.1">
+                <rect x="2" y="2" width="46" height="54" rx="2"/>
+                <rect x="5" y="5" width="22" height="5" fill="#f5f5f5" stroke="#333" stroke-width="0.5"/>
+                <text x="16" y="9" text-anchor="middle" font-size="4" fill="#333" stroke="none">Abstract</text>
+                <path d="M5 14h40M5 19h37M5 24h39M5 29h35M5 34h40M5 39h33M5 44h38"/>
+              </svg>
+              <div class="doc-badge-screen">TXT</div>
+            </div>
+          </div>
+          <!-- Lines indicator -->
+          <div class="diagram-lines-v"></div>
+          <div class="diagram-criteria">
+            <div class="criteria-item exclude">
+              <span class="criteria-label">Exclusion Criteria</span>
+              <div class="criteria-row">
+                <span class="criteria-icon">&#10005;</span>
+                <span class="criteria-dots">...</span>
+              </div>
+            </div>
+            <div class="criteria-item include">
+              <span class="criteria-label">Inclusion Criteria</span>
+              <div class="criteria-row">
+                <span class="criteria-icon">&#10003;</span>
+                <span class="criteria-dots">...</span>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Stage 2 -->
-      <div class="pipeline-card" data-stage="2">
-        <div class="card-inner">
-          <div class="card-front">
-            <div class="stage-badge">b</div>
-            <div class="stage-icon">
-              <svg viewBox="0 0 64 64" class="icon-screen" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="12" y="8" width="40" height="30" rx="3" />
-                <path d="M18 15h28M18 20h26M18 25h29M18 30h24" />
-                <path d="m18.8 45.8 6.4 6.4m0-6.4-6.4 6.4" stroke="var(--danger)" stroke-width="2.4" />
-                <path d="m38.7 49 2.2 2.4 4.8-5.1" stroke="var(--success)" stroke-width="2.4" />
+      <!-- Stage c: PDF-to-Markdown Conversion -->
+      <div class="diagram-card">
+        <div class="diagram-badge">c</div>
+        <h4 class="diagram-title">PDF-to-Markdown Conversion</h4>
+        <div class="diagram-content diagram-content-c">
+          <div class="diagram-conversion-flow">
+            <!-- PDF -->
+            <div class="conversion-step">
+              <svg viewBox="0 0 44 52" fill="none" stroke="#333" stroke-width="1.1">
+                <path d="M2 2h30l10 10v38H2z"/>
+                <path d="M32 2v10h10"/>
+                <rect x="6" y="16" width="30" height="16" fill="#e5e5e5" stroke="#ccc" stroke-width="0.5"/>
+                <path d="M6 36h30M6 41h26M6 46h28"/>
               </svg>
+              <span>PDF</span>
             </div>
-            <h3>Title &amp; Abstract Screening</h3>
-            <div class="stage-status" id="status-2"></div>
-            <div class="progress-bar-container" id="progress-2" style="display:none;">
-              <div class="progress-bar"><div class="progress-fill"></div></div>
-              <span class="progress-text">0%</span>
+            <div class="conversion-arrow">&rarr;</div>
+            <!-- JPEG -->
+            <div class="conversion-step">
+              <svg viewBox="0 0 44 52" fill="none" stroke="#333" stroke-width="1.1">
+                <path d="M2 2h30l10 10v38H2z"/>
+                <path d="M32 2v10h10"/>
+                <rect x="6" y="16" width="30" height="16" fill="#d8d8d8" stroke="#bbb" stroke-width="0.5"/>
+                <path d="M6 36h30M6 41h26M6 46h28"/>
+              </svg>
+              <span>JPEG</span>
             </div>
-            <div class="stage-log" id="log-2"></div>
-          </div>
-          <div class="card-back">
-            <div class="back-header">
-              <button class="flip-back-btn" title="Flip back">&larr;</button>
-              <h4>Title &amp; Abstract Screening</h4>
+            <div class="conversion-arrow">&rarr;</div>
+            <!-- OCR -->
+            <div class="conversion-step">
+              <svg viewBox="0 0 44 52" fill="none" stroke="#333" stroke-width="1.1">
+                <path d="M2 2h30l10 10v38H2z"/>
+                <path d="M32 2v10h10"/>
+                <text x="22" y="32" text-anchor="middle" font-size="10" fill="#333" stroke="none" font-weight="500">OCR</text>
+              </svg>
+              <span>OCR</span>
             </div>
-            <div class="back-content">
-              <p><strong>Inclusion Criteria:</strong></p>
-              <ul>
-                <li>English-language peer-reviewed research</li>
-                <li>Contains quantitative outbreak data</li>
-                <li>Reports transmission models or epidemiological parameters</li>
-                <li>Estimates key metrics (R<sub>0</sub>, serial interval, CFR, etc.)</li>
-              </ul>
-              <p><strong>Exclusion Criteria:</strong></p>
-              <ul>
-                <li>Conference proceedings, abstracts only</li>
-                <li>In-vitro studies without human/animal data</li>
-                <li>Case studies with &lt;10 cases</li>
-              </ul>
+            <div class="conversion-arrow">&rarr;</div>
+            <!-- Markdown -->
+            <div class="conversion-step">
+              <svg viewBox="0 0 44 52" fill="none" stroke="#333" stroke-width="1.1">
+                <path d="M2 2h30l10 10v38H2z"/>
+                <path d="M32 2v10h10"/>
+                <path d="M6 18h30M6 23h26M6 28h28M6 33h24M6 38h30M6 43h22"/>
+              </svg>
+              <div class="doc-badge-c">M&#8595;</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Stage 3 -->
-      <div class="pipeline-card" data-stage="3">
-        <div class="card-inner">
-          <div class="card-front">
-            <div class="stage-badge">c</div>
-            <div class="stage-icon">
-              <svg viewBox="0 0 64 64" class="icon-ocr" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-                <!-- PDF document (left) -->
-                <path d="M6 10h16l4 4v26H6z" />
-                <path d="M22 10v4h4" />
-                <path d="M10 22h12M10 27h10M10 33h8" />
-                <!-- Arrow -->
-                <path d="M30 27h8" stroke-width="2.2" />
-                <path d="M35 23l5 4-5 4" stroke-width="2.2" />
-                <!-- MD document (right) -->
-                <path d="M42 10h16l4 4v26H42z" />
-                <path d="M58 10v4h4" />
-                <path d="M46 22h12M46 27h10M46 33h8" />
-                <!-- OCR label -->
-                <text x="32" y="54" font-size="10" fill="currentColor" stroke="none" text-anchor="middle" font-weight="500">OCR</text>
+      <!-- Stage d: Full-text Screening -->
+      <div class="diagram-card">
+        <div class="diagram-badge">d</div>
+        <h4 class="diagram-title">Full-text Screening</h4>
+        <div class="diagram-content">
+          <div class="diagram-screen-row">
+            <!-- Title doc -->
+            <div class="diagram-doc-screen">
+              <svg viewBox="0 0 50 58" fill="none" stroke="#333" stroke-width="1.1">
+                <rect x="2" y="2" width="46" height="54" rx="2"/>
+                <rect x="5" y="5" width="16" height="5" fill="#f5f5f5" stroke="#333" stroke-width="0.5"/>
+                <text x="13" y="9" text-anchor="middle" font-size="4" fill="#333" stroke="none">Title</text>
+                <path d="M5 14h40M5 19h37M5 24h39M5 29h35M5 34h40M5 39h33M5 44h38M5 49h30"/>
               </svg>
             </div>
-            <h3>PDF-to-Markdown Conversion</h3>
-            <div class="stage-status" id="status-3"></div>
-            <div class="progress-bar-container" id="progress-3" style="display:none;">
-              <div class="progress-bar"><div class="progress-fill"></div></div>
-              <span class="progress-text">0%</span>
+            <!-- Abstract doc with M↓ badge -->
+            <div class="diagram-doc-screen with-badge-screen">
+              <svg viewBox="0 0 50 58" fill="none" stroke="#333" stroke-width="1.1">
+                <rect x="2" y="2" width="46" height="54" rx="2"/>
+                <rect x="5" y="5" width="22" height="5" fill="#f5f5f5" stroke="#333" stroke-width="0.5"/>
+                <text x="16" y="9" text-anchor="middle" font-size="4" fill="#333" stroke="none">Abstract</text>
+                <path d="M5 14h40M5 19h37M5 24h39M5 29h35M5 34h40M5 39h33M5 44h38"/>
+              </svg>
+              <div class="doc-badge-screen md-badge-screen">M&#8595;</div>
             </div>
-            <div class="stage-log" id="log-3"></div>
           </div>
-          <div class="card-back">
-            <div class="back-header">
-              <button class="flip-back-btn" title="Flip back">&larr;</button>
-              <h4>PDF-to-Markdown Conversion</h4>
+          <!-- Lines indicator -->
+          <div class="diagram-lines-v"></div>
+          <div class="diagram-criteria">
+            <div class="criteria-item exclude">
+              <span class="criteria-label">Exclusion Criteria</span>
+              <div class="criteria-row">
+                <span class="criteria-icon">&#10005;</span>
+                <span class="criteria-dots">...</span>
+              </div>
             </div>
-            <div class="back-content">
-              <p><strong>OCR Pipeline:</strong> Page-by-page rendering to high-resolution images, Mistral OCR for text extraction, preserves document hierarchy.</p>
-              <p><strong>Output Features:</strong> LaTeX equations preserved, HTML tables maintained, Markdown formatting.</p>
+            <div class="criteria-item include">
+              <span class="criteria-label">Inclusion Criteria</span>
+              <div class="criteria-row">
+                <span class="criteria-icon">&#10003;</span>
+                <span class="criteria-dots">...</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Stage 4 -->
-      <div class="pipeline-card" data-stage="4">
-        <div class="card-inner">
-          <div class="card-front">
-            <div class="stage-badge">d</div>
-            <div class="stage-icon">
-              <svg viewBox="0 0 64 64" class="icon-fulltext" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="10" y="6" width="44" height="36" rx="3" />
-                <path d="M16 13h32M16 18h30M16 23h31M16 28h20" />
-                <rect x="16" y="31" width="32" height="8" rx="1.3" />
-                <path d="M26.7 31v8M37.3 31v8M16 35h32" />
-                <path d="m18.8 47.8 6.4 6.4m0-6.4-6.4 6.4" stroke="var(--danger)" stroke-width="2.4" />
-                <path d="m38.7 51 2.2 2.4 4.8-5.1" stroke="var(--success)" stroke-width="2.4" />
+      <!-- Stage e: Data Extraction -->
+      <div class="diagram-card">
+        <div class="diagram-badge">e</div>
+        <h4 class="diagram-title">Data Extraction</h4>
+        <div class="diagram-content">
+          <div class="diagram-screen-row">
+            <!-- Title doc -->
+            <div class="diagram-doc-screen">
+              <svg viewBox="0 0 50 58" fill="none" stroke="#333" stroke-width="1.1">
+                <rect x="2" y="2" width="46" height="54" rx="2"/>
+                <rect x="5" y="5" width="16" height="5" fill="#f5f5f5" stroke="#333" stroke-width="0.5"/>
+                <text x="13" y="9" text-anchor="middle" font-size="4" fill="#333" stroke="none">Title</text>
+                <path d="M5 14h40M5 19h37M5 24h39M5 29h35M5 34h40M5 39h33M5 44h38M5 49h30"/>
               </svg>
             </div>
-            <h3>Full-text Screening</h3>
-            <div class="stage-status" id="status-4"></div>
-            <div class="progress-bar-container" id="progress-4" style="display:none;">
-              <div class="progress-bar"><div class="progress-fill"></div></div>
-              <span class="progress-text">0%</span>
+            <!-- Abstract doc with M↓ badge -->
+            <div class="diagram-doc-screen with-badge-screen">
+              <svg viewBox="0 0 50 58" fill="none" stroke="#333" stroke-width="1.1">
+                <rect x="2" y="2" width="46" height="54" rx="2"/>
+                <rect x="5" y="5" width="22" height="5" fill="#f5f5f5" stroke="#333" stroke-width="0.5"/>
+                <text x="16" y="9" text-anchor="middle" font-size="4" fill="#333" stroke="none">Abstract</text>
+                <path d="M5 14h40M5 19h37M5 24h39M5 29h35M5 34h40M5 39h33M5 44h38"/>
+              </svg>
+              <div class="doc-badge-screen md-badge-screen">M&#8595;</div>
             </div>
-            <div class="stage-log" id="log-4"></div>
           </div>
-          <div class="card-back">
-            <div class="back-header">
-              <button class="flip-back-btn" title="Flip back">&larr;</button>
-              <h4>Full-text Screening</h4>
+          <!-- Lines branching down -->
+          <div class="diagram-lines-branch"></div>
+          <!-- Extraction icons -->
+          <div class="diagram-extraction-icons">
+            <div class="extraction-icon-item">
+              <!-- Parameters: table/spreadsheet icon -->
+              <svg viewBox="0 0 36 32" fill="none" stroke="#333" stroke-width="1.1">
+                <rect x="2" y="6" width="32" height="24" rx="2"/>
+                <path d="M2 12h32M12 12v18M24 12v18"/>
+                <rect x="4" y="2" width="12" height="5" fill="#f5f5f5" stroke="#333" stroke-width="0.6"/>
+              </svg>
+              <span>Parameters</span>
             </div>
-            <div class="back-content">
-              <p><strong>Additional Requirements:</strong> Must contain extractable models or parameters, quantitative estimates with values/ranges, excludes literature reviews and meta-analyses.</p>
-              <p><strong>Screening Strategies:</strong></p>
-              <ul>
-                <li>Two-stage AI (abstract &rarr; full-text): Recall 0.81</li>
-                <li>Human abstract &rarr; AI full-text: Recall 0.92</li>
-                <li>Direct AI full-text: Recall 0.89</li>
-              </ul>
+            <div class="extraction-icon-item">
+              <!-- Outbreaks: virus icon -->
+              <svg viewBox="0 0 36 36" fill="none" stroke="#333" stroke-width="1.1">
+                <circle cx="18" cy="18" r="8"/>
+                <circle cx="18" cy="18" r="2.5" fill="#333"/>
+                <!-- Spikes with dots -->
+                <line x1="18" y1="6" x2="18" y2="10"/>
+                <circle cx="18" cy="5" r="1.8" fill="#333"/>
+                <line x1="18" y1="26" x2="18" y2="30"/>
+                <circle cx="18" cy="31" r="1.8" fill="#333"/>
+                <line x1="6" y1="18" x2="10" y2="18"/>
+                <circle cx="5" cy="18" r="1.8" fill="#333"/>
+                <line x1="26" y1="18" x2="30" y2="18"/>
+                <circle cx="31" cy="18" r="1.8" fill="#333"/>
+                <!-- Diagonal spikes -->
+                <line x1="9.5" y1="9.5" x2="12" y2="12"/>
+                <circle cx="8.5" cy="8.5" r="1.8" fill="#333"/>
+                <line x1="24" y1="12" x2="26.5" y2="9.5"/>
+                <circle cx="27.5" cy="8.5" r="1.8" fill="#333"/>
+                <line x1="9.5" y1="26.5" x2="12" y2="24"/>
+                <circle cx="8.5" cy="27.5" r="1.8" fill="#333"/>
+                <line x1="24" y1="24" x2="26.5" y2="26.5"/>
+                <circle cx="27.5" cy="27.5" r="1.8" fill="#333"/>
+              </svg>
+              <span>Outbreaks</span>
+            </div>
+            <div class="extraction-icon-item">
+              <!-- Models: people/network icon -->
+              <svg viewBox="0 0 40 34" fill="none" stroke="#333" stroke-width="1.1">
+                <!-- Center person (larger) -->
+                <circle cx="20" cy="8" r="4"/>
+                <path d="M13 22c0-4 3-7 7-7s7 3 7 7"/>
+                <!-- Left person (smaller) -->
+                <circle cx="7" cy="12" r="3"/>
+                <path d="M2 24c0-3 2-5 5-5s5 2 5 5"/>
+                <!-- Right person (smaller) -->
+                <circle cx="33" cy="12" r="3"/>
+                <path d="M28 24c0-3 2-5 5-5s5 2 5 5"/>
+                <!-- Connection lines -->
+                <path d="M10 14l6 3M30 14l-6 3" stroke-dasharray="2 1"/>
+              </svg>
+              <span>Models</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Stage 5 -->
-      <div class="pipeline-card" data-stage="5">
-        <div class="card-inner">
-          <div class="card-front">
-            <div class="stage-badge">e</div>
-            <div class="stage-icon">
-              <svg viewBox="0 0 64 64" class="icon-extract" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="8" y="8" width="28" height="36" rx="3" />
-                <path d="M14 15h16M14 20h14M14 25h17M14 30h12" />
-                <circle cx="43" cy="37" r="12" />
-                <path d="M51.5 45.5 58 52" />
+      <!-- Stage f: Report Generation -->
+      <div class="diagram-card">
+        <div class="diagram-badge">f</div>
+        <h4 class="diagram-title">Report Generation</h4>
+        <div class="diagram-content diagram-content-f">
+          <div class="diagram-report-layout">
+            <!-- Report document -->
+            <div class="report-doc">
+              <svg viewBox="0 0 55 70" fill="none" stroke="#333" stroke-width="1.1">
+                <rect x="2" y="2" width="51" height="66" rx="2"/>
+                <rect x="5" y="5" width="18" height="6" fill="#f5f5f5" stroke="#333" stroke-width="0.5"/>
+                <text x="14" y="9.5" text-anchor="middle" font-size="4" fill="#333" stroke="none">Report</text>
+                <path d="M5 15h45M5 20h42"/>
+                <!-- Mini chart area -->
+                <rect x="5" y="26" width="45" height="38" rx="1" fill="#fafafa" stroke="#333" stroke-width="0.5"/>
+                <rect x="10" y="48" width="7" height="12" fill="#bbb" stroke="none"/>
+                <rect x="20" y="42" width="7" height="18" fill="#888" stroke="none"/>
+                <rect x="30" y="46" width="7" height="14" fill="#bbb" stroke="none"/>
               </svg>
             </div>
-            <h3>Data Extraction</h3>
-            <div class="stage-status" id="status-5"></div>
-            <div class="progress-bar-container" id="progress-5" style="display:none;">
-              <div class="progress-bar"><div class="progress-fill"></div></div>
-              <span class="progress-text">0%</span>
+            <!-- Robot/LLM icon -->
+            <div class="diagram-robot">
+              <svg viewBox="0 0 36 44" fill="none" stroke="#333" stroke-width="1.2">
+                <!-- Robot head -->
+                <rect x="6" y="10" width="24" height="18" rx="3"/>
+                <!-- Antenna -->
+                <line x1="18" y1="3" x2="18" y2="10"/>
+                <circle cx="18" cy="3" r="2" fill="#333"/>
+                <!-- Eyes -->
+                <rect x="10" y="15" width="5" height="5" rx="1" fill="#333"/>
+                <rect x="21" y="15" width="5" height="5" rx="1" fill="#333"/>
+                <!-- Mouth -->
+                <path d="M12 24h12"/>
+                <!-- Body -->
+                <rect x="8" y="30" width="20" height="10" rx="2"/>
+                <path d="M13 35h10"/>
+              </svg>
             </div>
-            <div class="stage-log" id="log-5"></div>
-          </div>
-          <div class="card-back">
-            <div class="back-header">
-              <button class="flip-back-btn" title="Flip back">&larr;</button>
-              <h4>Data Extraction</h4>
-            </div>
-            <div class="back-content">
-              <p><strong>Extraction Categories:</strong></p>
-              <ul>
-                <li><em>Parameters:</em> 47 types incl. R<sub>0</sub>, CFR, incubation period, serial interval, generation time, delays</li>
-                <li><em>Models:</em> Model structure, assumptions, interventions simulated</li>
-                <li><em>Outbreaks:</em> Location, timeline, case counts, demographics</li>
-              </ul>
-              <p><strong>Process:</strong> Presence flagging, structured tool calls with schema validation, population context and uncertainty capture.</p>
+            <!-- Charts visualization -->
+            <div class="report-charts">
+              <svg viewBox="0 0 80 62" fill="none" stroke="#333" stroke-width="1.1">
+                <!-- Bar chart -->
+                <rect x="4" y="36" width="12" height="22" fill="#ddd" stroke="#333"/>
+                <rect x="20" y="24" width="12" height="34" fill="#aaa" stroke="#333"/>
+                <rect x="36" y="14" width="12" height="44" fill="#888" stroke="#333"/>
+                <!-- Pie chart -->
+                <circle cx="64" cy="36" r="18" fill="#eee"/>
+                <path d="M64 36L64 18A18 18 0 0 1 79 47z" fill="#888"/>
+                <path d="M64 36L79 47A18 18 0 0 1 49 47z" fill="#aaa"/>
+              </svg>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- Stage 6 -->
-      <div class="pipeline-card" data-stage="6">
-        <div class="card-inner">
-          <div class="card-front">
-            <div class="stage-badge">f</div>
-            <div class="stage-icon">
-              <svg viewBox="0 0 64 64" class="icon-report" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M8 8h24l5 5v43H8z" />
-                <path d="M32 8v5h5" />
-                <path d="M13 19h18M13 24h16M13 29h18" />
-                <rect x="41" y="36" width="5" height="15" rx="1" />
-                <rect x="49" y="30" width="5" height="21" rx="1" />
-                <rect x="57" y="24" width="5" height="27" rx="1" />
-              </svg>
-            </div>
-            <h3>Report Generation</h3>
-            <div class="stage-status" id="status-6"></div>
-            <div class="progress-bar-container" id="progress-6" style="display:none;">
-              <div class="progress-bar"><div class="progress-fill"></div></div>
-              <span class="progress-text">0%</span>
-            </div>
-            <div class="stage-log" id="log-6"></div>
-            <div class="stage-front-actions">
-              <button class="download-btn" id="view-models-md" style="display:none;">View Models MD</button>
-              <button class="download-btn" id="view-outbreaks-md" style="display:none;">View Outbreaks MD</button>
-            </div>
-          </div>
-          <div class="card-back">
-            <div class="back-header">
-              <button class="flip-back-btn" title="Flip back">&larr;</button>
-              <h4>Report Generation</h4>
-            </div>
-            <div class="back-content">
-              <p><strong>Generation Process:</strong> Descriptive statistics and visualizations, evidence tables with traceability to source articles, LLM narrative synthesis.</p>
-              <p><strong>Self-Refinement (K=5 iterations):</strong> Rubric-based critique across 8 dimensions (completeness, clarity, evidence grounding, etc.), targeted revision, verification of claims.</p>
-              <p><strong>Output Reports:</strong></p>
-              <ul>
-                <li>Models review (architecture, interventions)</li>
-                <li>Outbreaks review (timeline, geography)</li>
-                <li>Parameters synthesis (quantitative estimates with uncertainty)</li>
-              </ul>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -444,252 +481,215 @@
 <section class="results-section" id="results">
 
   <div class="container">
+    <div class="section-card">
+      <h2>Results</h2>
 
-    <h2>Results</h2>
+      <p class="results-subtitle">Select a result tile to view the chart and summary on the right.</p>
 
-    <p class="results-subtitle">Hover a tile for preview, click to pin open detailed findings</p>
+      <div class="results-layout">
+        <div class="results-tiles-grid" role="tablist" aria-label="Results navigation">
 
-    <!-- Results Tiles Grid -->
-    <div class="results-tiles-grid">
-
-      <div class="result-tile" data-target="time-savings-pane">
-        <div class="tile-preview">
-          <div class="tile-icon">
-            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="24" cy="24" r="18"/>
-              <path d="M24 12v12l8 8"/>
-            </svg>
-          </div>
-        </div>
-        <div class="tile-content">
-          <h3>Processing Time</h3>
-          <p class="tile-claim">Calendar-time savings vs. human review</p>
-        </div>
-      </div>
-
-      <div class="result-tile" data-target="model-performance-pane">
-        <div class="tile-preview">
-          <div class="tile-bars">
-            <div class="mini-bar" style="height:74%;background:#2B2E5F;"></div>
-            <div class="mini-bar" style="height:85%;background:#4B4F86;"></div>
-            <div class="mini-bar" style="height:81%;background:#6C74AD;"></div>
-            <div class="mini-bar" style="height:81%;background:#9AA4CF;"></div>
-            <div class="mini-bar" style="height:77%;background:#BDBDBD;"></div>
-          </div>
-        </div>
-        <div class="tile-content">
-          <h3>Model Performance</h3>
-          <p class="tile-claim">F<sub>1</sub> scores across pipeline stages</p>
-        </div>
-      </div>
-
-      <div class="result-tile" data-target="cost-performance-pane">
-        <div class="tile-preview">
-          <div class="tile-icon scatter">
-            <svg viewBox="0 0 48 48" fill="none">
-              <circle cx="10" cy="20" r="4" fill="#2B2E5F"/>
-              <circle cx="22" cy="14" r="4" fill="#6C74AD"/>
-              <circle cx="34" cy="12" r="4" fill="#9AA4CF"/>
-              <circle cx="42" cy="18" r="4" fill="#BDBDBD"/>
-            </svg>
-          </div>
-        </div>
-        <div class="tile-content">
-          <h3>Cost vs. Performance</h3>
-          <p class="tile-claim">Cost savings with open-weight models</p>
-        </div>
-      </div>
-
-      <div class="result-tile" data-target="screening-pane">
-        <div class="tile-preview">
-          <div class="tile-bars">
-            <div class="mini-bar" style="height:81%;background:#8AC1E1;"></div>
-            <div class="mini-bar" style="height:89%;background:#3F86B5;"></div>
-            <div class="mini-bar" style="height:92%;background:#1F5F8C;"></div>
-          </div>
-        </div>
-        <div class="tile-content">
-          <h3>Article Screening</h3>
-          <p class="tile-claim">Best recall with human-conditioned strategy</p>
-        </div>
-      </div>
-
-      <div class="result-tile" data-target="expert-pane">
-        <div class="tile-preview">
-          <div class="tile-icon">
-            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="24" cy="14" r="8"/>
-              <path d="M10 42c0-8 6-14 14-14s14 6 14 14"/>
-            </svg>
-          </div>
-        </div>
-        <div class="tile-content">
-          <h3>Expert Evaluation</h3>
-          <p class="tile-claim">Mean competence rating by epidemiologists</p>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Time Savings -->
-    <div class="collapsible-pane" id="time-savings-pane" data-expanded="false">
-      <button class="collapsible-header" aria-expanded="false">
-        <span class="collapsible-title">Processing Time: AgentSLR vs. Human Review</span>
-        <span class="collapsible-icon"></span>
-      </button>
-      <div class="collapsible-content">
-        <div class="result-block">
-
-          <p class="figure-caption">
-            Wall-clock time (hours) for AgentSLR vs. human annotators across pipeline stages,
-            broken down by abstract screening, PDF conversion, full-text screening, and data extraction.
-          </p>
-
-          <div class="chart-container" id="gantt-chart"></div>
-
-          <div class="speedup-cards">
-            <div class="speedup-card">
-              <span class="speedup-value" data-count="36">0×</span>
-              <span class="speedup-label">Abstract Screening</span>
+          <button class="result-tile active" type="button" id="tile-time-savings" data-target="time-savings-pane" aria-selected="true" aria-controls="time-savings-pane">
+            <div class="tile-preview">
+              <div class="tile-icon">
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="24" cy="24" r="18"/>
+                  <path d="M24 12v12l8 8"/>
+                </svg>
+              </div>
             </div>
-            <div class="speedup-card">
-              <span class="speedup-value" data-count="118">0×</span>
-              <span class="speedup-label">Full-text Screening</span>
+            <div class="tile-content">
+              <h3>Processing Time</h3>
+              <p class="tile-claim">Calendar-time savings vs. human review</p>
             </div>
-            <div class="speedup-card">
-              <span class="speedup-value" data-count="14.7">0×</span>
-              <span class="speedup-label">Data Extraction</span>
-            </div>
-            <div class="speedup-card highlight">
-              <span class="speedup-value" data-count="58">0×</span>
-              <span class="speedup-label">Calendar-Time Savings</span>
-            </div>
-          </div>
+          </button>
 
-          <ul class="result-bullets">
-            <li>AgentSLR completes a full review in <strong>20 hours</strong> versus <strong>385 hours</strong> of manual effort, a 19.3&times; speedup in active time.</li>
-            <li>Running continuously, this translates to <strong>less than 1 calendar day</strong> versus 48.1 human workdays, a 58&times; reduction.</li>
-          </ul>
+          <button class="result-tile" type="button" id="tile-model-performance" data-target="model-performance-pane" aria-selected="false" aria-controls="model-performance-pane">
+            <div class="tile-preview">
+              <div class="tile-bars">
+                <div class="mini-bar" style="height:74%;background:#2B2E5F;"></div>
+                <div class="mini-bar" style="height:85%;background:#4B4F86;"></div>
+                <div class="mini-bar" style="height:81%;background:#6C74AD;"></div>
+                <div class="mini-bar" style="height:81%;background:#9AA4CF;"></div>
+                <div class="mini-bar" style="height:77%;background:#BDBDBD;"></div>
+              </div>
+            </div>
+            <div class="tile-content">
+              <h3>Model Performance</h3>
+              <p class="tile-claim">F<sub>1</sub> scores across pipeline stages</p>
+            </div>
+          </button>
 
+          <button class="result-tile" type="button" id="tile-cost-performance" data-target="cost-performance-pane" aria-selected="false" aria-controls="cost-performance-pane">
+            <div class="tile-preview">
+              <div class="tile-icon scatter">
+                <svg viewBox="0 0 48 48" fill="none">
+                  <circle cx="10" cy="20" r="4" fill="#2B2E5F"/>
+                  <circle cx="22" cy="14" r="4" fill="#6C74AD"/>
+                  <circle cx="34" cy="12" r="4" fill="#9AA4CF"/>
+                  <circle cx="42" cy="18" r="4" fill="#BDBDBD"/>
+                </svg>
+              </div>
+            </div>
+            <div class="tile-content">
+              <h3>Cost vs. Performance</h3>
+              <p class="tile-claim">Cost savings with open-weight models</p>
+            </div>
+          </button>
+
+          <button class="result-tile" type="button" id="tile-screening" data-target="screening-pane" aria-selected="false" aria-controls="screening-pane">
+            <div class="tile-preview">
+              <div class="tile-bars">
+                <div class="mini-bar" style="height:81%;background:#8AC1E1;"></div>
+                <div class="mini-bar" style="height:89%;background:#3F86B5;"></div>
+                <div class="mini-bar" style="height:92%;background:#1F5F8C;"></div>
+              </div>
+            </div>
+            <div class="tile-content">
+              <h3>Article Screening</h3>
+              <p class="tile-claim">Best recall with human-conditioned strategy</p>
+            </div>
+          </button>
+
+          <button class="result-tile" type="button" id="tile-expert" data-target="expert-pane" aria-selected="false" aria-controls="expert-pane">
+            <div class="tile-preview">
+              <div class="tile-icon">
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="24" cy="14" r="8"/>
+                  <path d="M10 42c0-8 6-14 14-14s14 6 14 14"/>
+                </svg>
+              </div>
+            </div>
+            <div class="tile-content">
+              <h3>Expert Evaluation</h3>
+              <p class="tile-claim">Mean competence rating by epidemiologists</p>
+            </div>
+          </button>
         </div>
-      </div>
-    </div>
 
-    <!-- Model Performance -->
-    <div class="collapsible-pane" id="model-performance-pane" data-expanded="false">
-      <button class="collapsible-header" aria-expanded="false">
-        <span class="collapsible-title">Model Performance Across Pipeline Stages</span>
-        <span class="collapsible-icon"></span>
-      </button>
-      <div class="collapsible-content">
-        <div class="result-block">
+        <div class="results-detail-panel">
+          <article class="result-pane active" id="time-savings-pane" role="tabpanel" aria-labelledby="tile-time-savings">
+            <div class="result-block">
+              <h3 class="result-pane-title">Processing Time: AgentSLR vs. Human Review</h3>
+              <p class="figure-caption">
+                Wall-clock time (hours) for AgentSLR vs. human annotators across pipeline stages,
+                broken down by abstract screening, PDF conversion, full-text screening, and data extraction.
+              </p>
 
-          <p class="figure-caption">
-            Macro F<sub>1</sub> for five frontier models across all pipeline stages. Coloured dots show
-            <span class="dot-legend flagging">Flagging</span>,
-            <span class="dot-legend counts">Counts</span>, and
-            <span class="dot-legend extraction">Extraction</span> sub-task scores within each extraction panel.
-          </p>
+              <div class="chart-container" id="gantt-chart"></div>
 
-          <div class="chart-container" id="model-ablation-chart"></div>
+              <div class="speedup-cards">
+                <div class="speedup-card">
+                  <span class="speedup-value" data-count="36">0×</span>
+                  <span class="speedup-label">Abstract Screening</span>
+                </div>
+                <div class="speedup-card">
+                  <span class="speedup-value" data-count="118">0×</span>
+                  <span class="speedup-label">Full-text Screening</span>
+                </div>
+                <div class="speedup-card">
+                  <span class="speedup-value" data-count="14.7">0×</span>
+                  <span class="speedup-label">Data Extraction</span>
+                </div>
+                <div class="speedup-card highlight">
+                  <span class="speedup-value" data-count="58">0×</span>
+                  <span class="speedup-label">Calendar-Time Savings</span>
+                </div>
+              </div>
 
-          <ul class="result-bullets">
-            <li><strong>Kimi-K2.5</strong> leads abstract screening (F<sub>1</sub> = 0.77) and parameter extraction (F<sub>1</sub> = 0.87); no single model dominates every stage.</li>
-            <li>Performance converges markedly during extraction, suggesting structured tool-calling partially offsets raw model capability differences.</li>
-            <li><strong>GPT-OSS-120B</strong>, the smallest model tested, stays within 4.5 F<sub>1</sub> points of the best model across all stages.</li>
-          </ul>
-
-        </div>
-      </div>
-    </div>
-
-    <!-- Cost vs Performance -->
-    <div class="collapsible-pane" id="cost-performance-pane" data-expanded="false">
-      <button class="collapsible-header" aria-expanded="false">
-        <span class="collapsible-title">Cost vs. Performance Trade-off</span>
-        <span class="collapsible-icon"></span>
-      </button>
-      <div class="collapsible-content">
-        <div class="result-block">
-
-          <p class="figure-caption">
-            Average macro F<sub>1</sub> across all pipeline stages plotted against estimated total cost per pathogen run
-            (USD, log scale). Vertical bars show one standard deviation in F<sub>1</sub> across stages.
-          </p>
-
-          <div class="chart-container" id="cost-performance-chart"></div>
-
-          <ul class="result-bullets">
-            <li><strong>GPT-OSS-120B</strong> matches GPT-5.2 in overall F<sub>1</sub> (0.70 vs. 0.69) at over <strong>96&times; lower cost</strong> ($13.9 vs. $1,348).</li>
-            <li><strong>Kimi-K2.5</strong> achieves the best overall performance (F<sub>1</sub> = 0.74) at a mid-range cost of $277, making it the strongest value option.</li>
-          </ul>
-
-        </div>
-      </div>
-    </div>
-
-    <!-- Article Screening -->
-    <div class="collapsible-pane" id="screening-pane" data-expanded="false">
-      <button class="collapsible-header" aria-expanded="false">
-        <span class="collapsible-title">Article Screening Strategies</span>
-        <span class="collapsible-icon"></span>
-      </button>
-      <div class="collapsible-content">
-        <div class="result-block">
-
-          <p class="figure-caption">
-            Recall across seven pathogens for three screening strategies: two-stage AI screening,
-            direct full-text AI screening, and human-conditioned full-text screening.
-            Bootstrapped 95% confidence intervals shown (10,000 resamples).
-          </p>
-
-          <div class="chart-container" id="screening-chart"></div>
-
-          <ul class="result-bullets">
-            <li>Skipping abstract screening and processing full-texts directly raises recall from <strong>0.81 to 0.89</strong>, with no human involvement required.</li>
-            <li>Adding human abstract triage pushes recall to <strong>0.92</strong>, the ceiling across all strategies, at the cost of manual effort.</li>
-          </ul>
-
-        </div>
-      </div>
-    </div>
-
-    <!-- Expert Validation -->
-    <div class="collapsible-pane" id="expert-pane" data-expanded="false">
-      <button class="collapsible-header" aria-expanded="false">
-        <span class="collapsible-title">Human Expert Evaluation</span>
-        <span class="collapsible-icon"></span>
-      </button>
-      <div class="collapsible-content">
-        <div class="result-block">
-
-          <p class="figure-caption">
-            Six epidemiologists rated AgentSLR extractions on flagging precision, field-level accuracy,
-            and overall competence (1 = incompetent, 4 = useful under supervision, 7 = fully autonomous)
-            across parameters, models, and outbreaks.
-          </p>
-
-          <div class="expert-grid">
-            <div class="expert-card expert-card-flagging">
-              <h4>Expert-Rated Flagging Precision</h4>
-              <div class="chart-container" id="flagging-chart"></div>
+              <ul class="result-bullets">
+                <li>AgentSLR completes a full review in <strong>20 hours</strong> versus <strong>385 hours</strong> of manual effort, a 19.3&times; speedup in active time.</li>
+                <li>Running continuously, this translates to <strong>less than 1 calendar day</strong> versus 48.1 human workdays, a 58&times; reduction.</li>
+              </ul>
             </div>
-            <div class="expert-card expert-card-accuracy">
-              <h4>Expert-Rated Extraction Accuracy</h4>
-              <div class="chart-container" id="accuracy-chart"></div>
-            </div>
-            <div class="expert-card expert-card-competence">
-              <h4>Expert-Rated Competence</h4>
-              <div class="chart-container" id="competence-chart"></div>
-            </div>
-          </div>
+          </article>
 
-          <ul class="result-bullets">
-            <li>Field-level extraction accuracy averaged <strong>0.80</strong> across all data types, nearly 19 points above automated scoring baselines.</li>
-            <li>Parameter and outbreak competence ratings of <strong>4.2 and 3.9</strong> place AgentSLR at or above the threshold for a useful supervised tool.</li>
-            <li>Experts consistently reported that AgentSLR outputs reduce net annotation effort, with false positives being quick to identify and remove.</li>
-          </ul>
+          <article class="result-pane" id="model-performance-pane" role="tabpanel" aria-labelledby="tile-model-performance">
+            <div class="result-block">
+              <h3 class="result-pane-title">Model Performance Across Pipeline Stages</h3>
+              <p class="figure-caption">
+                Macro F<sub>1</sub> for five frontier models across all pipeline stages. Coloured dots show
+                <span class="dot-legend flagging">Flagging</span>,
+                <span class="dot-legend counts">Counts</span>, and
+                <span class="dot-legend extraction">Extraction</span> sub-task scores within each extraction panel.
+              </p>
 
+              <div class="chart-container" id="model-ablation-chart"></div>
+
+              <ul class="result-bullets">
+                <li><strong>Kimi-K2.5</strong> leads abstract screening (F<sub>1</sub> = 0.77) and parameter extraction (F<sub>1</sub> = 0.87); no single model dominates every stage.</li>
+                <li>Performance converges markedly during extraction, suggesting structured tool-calling partially offsets raw model capability differences.</li>
+                <li><strong>GPT-OSS-120B</strong>, the smallest model tested, stays within 4.5 F<sub>1</sub> points of the best model across all stages.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="result-pane" id="cost-performance-pane" role="tabpanel" aria-labelledby="tile-cost-performance">
+            <div class="result-block">
+              <h3 class="result-pane-title">Cost vs. Performance Trade-off</h3>
+              <p class="figure-caption">
+                Average macro F<sub>1</sub> across all pipeline stages plotted against estimated total cost per pathogen run
+                (USD, log scale). Vertical bars show one standard deviation in F<sub>1</sub> across stages.
+              </p>
+
+              <div class="chart-container" id="cost-performance-chart"></div>
+
+              <ul class="result-bullets">
+                <li><strong>GPT-OSS-120B</strong> matches GPT-5.2 in overall F<sub>1</sub> (0.70 vs. 0.69) at over <strong>96&times; lower cost</strong> ($13.9 vs. $1,348).</li>
+                <li><strong>Kimi-K2.5</strong> achieves the best overall performance (F<sub>1</sub> = 0.74) at a mid-range cost of $277, making it the strongest value option.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="result-pane" id="screening-pane" role="tabpanel" aria-labelledby="tile-screening">
+            <div class="result-block">
+              <h3 class="result-pane-title">Article Screening Strategies</h3>
+              <p class="figure-caption">
+                Recall across seven pathogens for three screening strategies: two-stage AI screening,
+                direct full-text AI screening, and human-conditioned full-text screening.
+                Bootstrapped 95% confidence intervals shown (10,000 resamples).
+              </p>
+
+              <div class="chart-container" id="screening-chart"></div>
+
+              <ul class="result-bullets">
+                <li>Skipping abstract screening and processing full-texts directly raises recall from <strong>0.81 to 0.89</strong>, with no human involvement required.</li>
+                <li>Adding human abstract triage pushes recall to <strong>0.92</strong>, the ceiling across all strategies, at the cost of manual effort.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="result-pane" id="expert-pane" role="tabpanel" aria-labelledby="tile-expert">
+            <div class="result-block">
+              <h3 class="result-pane-title">Human Expert Evaluation</h3>
+              <p class="figure-caption">
+                Six epidemiologists rated AgentSLR extractions on flagging precision, field-level accuracy,
+                and overall competence (1 = incompetent, 4 = useful under supervision, 7 = fully autonomous)
+                across parameters, models, and outbreaks.
+              </p>
+
+              <div class="expert-grid">
+                <div class="expert-card expert-card-flagging">
+                  <h4>Expert-Rated Flagging Precision</h4>
+                  <div class="chart-container" id="flagging-chart"></div>
+                </div>
+                <div class="expert-card expert-card-accuracy">
+                  <h4>Expert-Rated Extraction Accuracy</h4>
+                  <div class="chart-container" id="accuracy-chart"></div>
+                </div>
+                <div class="expert-card expert-card-competence">
+                  <h4>Expert-Rated Competence</h4>
+                  <div class="chart-container" id="competence-chart"></div>
+                </div>
+              </div>
+
+              <ul class="result-bullets">
+                <li>Field-level extraction accuracy averaged <strong>0.80</strong> across all data types, nearly 19 points above automated scoring baselines.</li>
+                <li>Parameter and outbreak competence ratings of <strong>4.2 and 3.9</strong> place AgentSLR at or above the threshold for a useful supervised tool.</li>
+                <li>Experts consistently reported that AgentSLR outputs reduce net annotation effort, with false positives being quick to identify and remove.</li>
+              </ul>
+            </div>
+          </article>
         </div>
       </div>
     </div>
@@ -697,89 +697,13 @@
   </div>
 
 </section>
-<!-- ============ KEY FINDINGS / IMPLICATIONS / FUTURE WORK ============ -->
+<!-- ============ IMPLICATIONS / FUTURE WORK ============ -->
 
-
-<!-- <section class="implications-section">
+<section class="implications-section" id="implications">
   <div class="container">
-    <div class="implications-grid">
-      <div class="implication-pane findings">
-        <h3>Key Findings</h3>
-        <ul>
-          <li><strong>58&times; Calendar-Time Savings:</strong> AgentSLR reduces active review time from 48.1 human workdays to less than 1 day.</li>
-          <li><strong>High Screening Recall:</strong> Two-stage screening achieves 0.81 recall; direct full-text processing reaches 0.89 without human involvement.</li>
-          <li><strong>Parameter Extraction Ceiling:</strong> No model exceeds F<sub>1</sub> = 0.63 for parameter extraction, suggesting the bottleneck is task ambiguity, not model capability.</li>
-          <li><strong>Expert Validation:</strong> Human experts rate field-level accuracy at 0.80 on average, 18.8 percentage points above automated metrics.</li>
-          <li><strong>Cost-Effective:</strong> Open-weight GPT-OSS-120B achieves competitive performance at 96&times; lower cost than frontier closed-source models.</li>
-        </ul>
-      </div>
-      <div class="implication-pane implications">
-        <h3>Implications</h3>
-        <ul>
-          <li><strong>Human-in-the-Loop:</strong> AgentSLR is best deployed with expert oversight &mdash; high recall ensures relevant evidence reaches validators.</li>
-          <li><strong>Open-Weight Advantage:</strong> Open models enable version pinning and local deployment, critical for reproducible living reviews.</li>
-          <li><strong>Living Reviews:</strong> The efficiency gains enable continuous evidence updates as new research emerges.</li>
-          <li><strong>Outbreak Response:</strong> Generate preliminary reviews within days during emerging pathogen outbreaks.</li>
-          <li><strong>Resource Democratization:</strong> Make systematic review capacity accessible to resource-limited settings.</li>
-        </ul>
-      </div>
-      <div class="implication-pane future">
-        <h3>Future Directions</h3>
-        <ul>
-          <li><strong>Human Uplift Study:</strong> Formal quantification of time savings with human-in-the-loop implementation.</li>
-          <li><strong>Multi-Domain Extension:</strong> Adapt pipeline to clinical trials, social science, and other systematic review domains.</li>
-          <li><strong>Heterogeneous Multi-Agent:</strong> Route sub-tasks to models with complementary capability profiles.</li>
-          <li><strong>Error Structure Analysis:</strong> Distinguish random from systematic failure modes for high-stakes contexts.</li>
-          <li><strong>Cross-Lingual Support:</strong> Extend to non-English literature with multilingual models.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section> -->
-
-
-<section class="implications-section">
-  <div class="container">
-    <div class="implications-grid">
-
-      <div class="implication-pane findings">
-        <h3>Key Findings</h3>
-        <ul>
-          <li>
-            <svg class="impl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/><path d="M3 12h1M20 12h1"/>
-            </svg>
-            <span><strong>58&times; Calendar-Time Savings:</strong> Under 1 day versus 48.1 human workdays, with full-text screening 118&times; faster than a human reviewer.</span>
-          </li>
-          <li>
-            <svg class="impl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <text x="6" y="18" font-size="18" font-weight="700" fill="currentColor" stroke="none">$</text>
-            </svg>
-            <span><strong>Cost vs. Performance:</strong> GPT-OSS-120B achieves competitive performance (F<sub>1</sub>&nbsp;=&nbsp;0.70) at $13.9 per run. GPT-5.2 costs 96&times; more and scores lower.</span>
-          </li>
-          <li>
-            <svg class="impl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="10" cy="10" r="7"/><path d="M21 21l-5.2-5.2"/><path d="M7 10h6M10 7v6"/>
-            </svg>
-            <span><strong>Flexible Screening:</strong> Two-stage AI screening achieves 0.81 recall. Skipping abstract screening and going direct to full-text recovers this to 0.89; human abstract triage improves it further to 0.92.</span>
-          </li>
-          <li>
-            <svg class="impl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 20h18"/><path d="M5 20v-8h3v8"/><path d="M10 20V8h3v12"/><path d="M15 20V4h3v16"/><path d="M2 8h20" stroke-dasharray="2 2"/>
-            </svg>
-            <span><strong>Parameter Extraction Ceiling:</strong> No model exceeds F<sub>1</sub>&nbsp;=&nbsp;0.63. The bottleneck is task ambiguity and reporting heterogeneity across papers, not model capability.</span>
-          </li>
-          <li>
-            <svg class="impl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="7" r="4"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/><path d="M9 12l2 2 4-4"/>
-            </svg>
-            <span><strong>Experts Agree it Works:</strong> Six epidemiologists rated field-level accuracy at 0.80 on average, 18.8 percentage points above automated scores, and confirmed a net reduction in annotation effort.</span>
-          </li>
-        </ul>
-      </div>
-
-      <div class="implication-pane implications">
-        <h3>Implications</h3>
+    <div class="section-card">
+      <h2>Implications</h2>
+      <div class="implication-pane implications standalone">
         <ul>
           <li>
             <svg class="impl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -814,9 +738,15 @@
           </li>
         </ul>
       </div>
+    </div>
+  </div>
+</section>
 
-      <div class="implication-pane future">
-        <h3>Future Directions</h3>
+<section class="future-section" id="future-directions">
+  <div class="container">
+    <div class="section-card">
+      <h2>Future Directions</h2>
+      <div class="implication-pane future standalone">
         <ul>
           <li>
             <svg class="impl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -852,7 +782,6 @@
           </li>
         </ul>
       </div>
-
     </div>
   </div>
 </section>
@@ -909,9 +838,9 @@
 </div>
 
 <script src="js/data.js?v=20260306e"></script>
-<script src="js/charts.js?v=20260306e"></script>
-<script src="js/pipeline.js?v=20260309c"></script>
-<script src="js/app.js?v=20260306e"></script>
+<script src="js/charts.js?v=20260319a"></script>
+<script src="js/pipeline.js?v=20260319a"></script>
+<script src="js/app.js?v=20260319a"></script>
 <script>
   (function () {
     // Logo bar collapse on scroll
@@ -937,199 +866,38 @@
       localStorage.setItem('theme', newTheme);
     });
 
-    // Collapsible panes - hover preview + click to pin
-    var currentlyExpandedPane = null;
-    var pinnedPane = null;
-    var OPEN_MS = 700;
-    var COLLAPSE_MS = 600;
-    var isPaneTransitioning = false;
-    var queuedPane = null;
+    // Result tiles - click to switch the active detail pane
+    var resultTiles = Array.prototype.slice.call(document.querySelectorAll('.result-tile'));
+    var resultPanes = Array.prototype.slice.call(document.querySelectorAll('.result-pane'));
 
-    function collapsePane(pane) {
-      if (!pane) return;
-      var content = pane.querySelector('.collapsible-content');
-      var header = pane.querySelector('.collapsible-header');
-      if (pane._hideTimer) {
-        clearTimeout(pane._hideTimer);
-        pane._hideTimer = null;
-      }
-      content.style.maxHeight = content.scrollHeight + 'px';
-      content.style.transitionDuration = COLLAPSE_MS + 'ms';
-      content.offsetHeight; // force reflow
-      content.style.maxHeight = '0';
-      pane.dataset.expanded = 'false';
-      header.setAttribute('aria-expanded', 'false');
-      pane._hideTimer = setTimeout(function() {
-        pane.classList.remove('active');
-        pane._hideTimer = null;
-      }, COLLAPSE_MS);
-    }
-
-    function expandPane(pane) {
-      if (!pane) return;
-      var content = pane.querySelector('.collapsible-content');
-      var header = pane.querySelector('.collapsible-header');
-      if (pane._hideTimer) {
-        clearTimeout(pane._hideTimer);
-        pane._hideTimer = null;
-      }
-      pane.classList.add('active');
-      content.style.transitionDuration = OPEN_MS + 'ms';
-      content.style.maxHeight = content.scrollHeight + 'px';
-      pane.dataset.expanded = 'true';
-      header.setAttribute('aria-expanded', 'true');
-      setTimeout(function() {
-        content.style.maxHeight = 'none';
-      }, OPEN_MS);
-    }
-
-    function collapseCurrentThenResume() {
-      if (!currentlyExpandedPane || isPaneTransitioning) return;
-      var previousPane = currentlyExpandedPane;
-      isPaneTransitioning = true;
-      collapsePane(previousPane);
-      currentlyExpandedPane = null;
-      setTimeout(function() {
-        isPaneTransitioning = false;
-        if (pinnedPane) return;
-        var nextPane = queuedPane;
-        queuedPane = null;
-        if (!nextPane) return;
-        expandPane(nextPane);
-        currentlyExpandedPane = nextPane;
-      }, COLLAPSE_MS);
-    }
-
-    function showPane(pane) {
-      if (!pane) return;
-      if (isPaneTransitioning) {
-        queuedPane = pane;
-        return;
-      }
-      if (currentlyExpandedPane && currentlyExpandedPane !== pane) return;
-      expandPane(pane);
-      currentlyExpandedPane = pane;
-    }
-
-    function togglePinnedPane(pane) {
-      var isExpanded = pane.dataset.expanded === 'true';
-
-      if (isExpanded && pinnedPane === pane) {
-        queuedPane = null;
-        collapsePane(pane);
-        currentlyExpandedPane = null;
-        pinnedPane = null;
-        return;
-      }
-      queuedPane = null;
-      if (currentlyExpandedPane && currentlyExpandedPane !== pane) {
-        var previousPane = currentlyExpandedPane;
-        isPaneTransitioning = true;
-        collapsePane(previousPane);
-        currentlyExpandedPane = null;
-        pinnedPane = pane;
-        setTimeout(function() {
-          isPaneTransitioning = false;
-          expandPane(pane);
-          currentlyExpandedPane = pane;
-        }, COLLAPSE_MS);
-        return;
-      }
-      pinnedPane = pane;
-      showPane(pane);
-    }
-
-    document.querySelectorAll('.collapsible-header').forEach(function(header) {
-      header.addEventListener('click', function() {
-        togglePinnedPane(this.parentElement);
-      });
-    });
-
-    // Result tiles - hover previews; click pins/unpins
-    var hasScrolledToResults = false;
-    var hoverCloseTimer = null;
-    var HOVER_CLOSE_DELAY = 150; // ms delay to cross gap between tile and pane
-
-    function scrollToResultsOnce() {
-      if (hasScrolledToResults) return;
-      hasScrolledToResults = true;
-      var resultsHeader = document.querySelector('.results-section h2');
-      if (resultsHeader) {
-        resultsHeader.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
-
-    function cancelHoverClose() {
-      if (hoverCloseTimer) {
-        clearTimeout(hoverCloseTimer);
-        hoverCloseTimer = null;
-      }
-    }
-
-    function scheduleHoverClose(pane) {
-      cancelHoverClose();
-      hoverCloseTimer = setTimeout(function() {
-        hoverCloseTimer = null;
-        if (!pane || pinnedPane) return;
-        if (queuedPane === pane && currentlyExpandedPane !== pane) {
-          queuedPane = null;
-        }
-        if (currentlyExpandedPane === pane) {
-          collapseCurrentThenResume();
-        }
-      }, HOVER_CLOSE_DELAY);
-    }
-
-    document.querySelectorAll('.result-tile').forEach(function(tile) {
-      tile.addEventListener('mouseenter', function() {
-        cancelHoverClose();
-        scrollToResultsOnce();
-        var pane = document.getElementById(this.dataset.target);
-        if (!pane || pinnedPane) return;
-        if (isPaneTransitioning) {
-          queuedPane = pane;
-          return;
-        }
-        if (currentlyExpandedPane && currentlyExpandedPane !== pane) {
-          // Switching to a different tile - collapse current and queue new
-          queuedPane = pane;
-          collapseCurrentThenResume();
-          return;
-        }
-        showPane(pane);
+    function activateResultPane(targetId) {
+      resultTiles.forEach(function(tile) {
+        var isActive = tile.dataset.target === targetId;
+        tile.classList.toggle('active', isActive);
+        tile.setAttribute('aria-selected', isActive ? 'true' : 'false');
       });
 
-      tile.addEventListener('mouseleave', function() {
-        var pane = document.getElementById(this.dataset.target);
-        if (!pane || pinnedPane) return;
-        scheduleHoverClose(pane);
+      resultPanes.forEach(function(pane) {
+        var isActive = pane.id === targetId;
+        pane.classList.toggle('active', isActive);
+        pane.setAttribute('aria-hidden', isActive ? 'false' : 'true');
       });
 
-      tile.addEventListener('click', function() {
-        scrollToResultsOnce();
-        var targetId = this.dataset.target;
-        var pane = document.getElementById(targetId);
-        if (pane) togglePinnedPane(pane);
-      });
-    });
+      if (targetId === 'time-savings-pane') {
+        requestAnimationFrame(animateCounters);
+      }
+    }
 
-    // Collapsible panes - keep open when hovering over them
-    document.querySelectorAll('.collapsible-pane').forEach(function(pane) {
-      pane.addEventListener('mouseenter', function() {
-        if (pinnedPane) return;
-        cancelHoverClose();
-      });
+    if (resultTiles.length && resultPanes.length) {
+      var defaultTile = document.querySelector('.result-tile.active') || resultTiles[0];
+      if (defaultTile) activateResultPane(defaultTile.dataset.target);
 
-      pane.addEventListener('mouseleave', function() {
-        if (pinnedPane || currentlyExpandedPane !== this) return;
-        scheduleHoverClose(this);
+      resultTiles.forEach(function(tile) {
+        tile.addEventListener('click', function() {
+          activateResultPane(this.dataset.target);
+        });
       });
-    });
-
-    // Initialize collapsed panes
-    document.querySelectorAll('.collapsible-pane .collapsible-content').forEach(function(content) {
-      content.style.maxHeight = '0';
-    });
+    }
 
     // Sticky TOC
     var stickyToc = document.getElementById('sticky-toc');
@@ -1191,6 +959,8 @@
       }
     }
     window.addEventListener('scroll', animateCounters, { passive: true });
+    updateToc();
+    animateCounters();
 
   })();
 </script>

@@ -5,13 +5,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- ELEMENTS ---------- */
-  const select   = document.getElementById('pathogen-select');
-  const runBtn   = document.getElementById('run-btn');
-  const resetBtn = document.getElementById('reset-btn');
   const copyBtn  = document.getElementById('copy-bibtex');
-  const loadingStatus = document.getElementById('pipeline-loading-status');
-  const loadingText = document.getElementById('pipeline-loading-text');
-  const pipelineSection = document.querySelector('.pipeline-section');
   const viewModelsMdBtn = document.getElementById('view-models-md');
   const viewOutbreaksMdBtn = document.getElementById('view-outbreaks-md');
   const mdModal = document.getElementById('md-modal');
@@ -20,110 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const mdModalClose = document.getElementById('md-modal-close');
   const mdModalBackdrop = document.getElementById('md-modal-backdrop');
   const mdModalHeader = mdModal ? mdModal.querySelector('.md-modal-header') : null;
-  let currentPathogen = '';
   let mdZoom = 1;
-
-  /* ---------- PATHOGEN SELECT ---------- */
-  select.addEventListener('change', () => {
-    runBtn.disabled = !select.value;
-  });
-
-  /* ---------- RUN PIPELINE ---------- */
-  runBtn.addEventListener('click', async () => {
-    const pathogen = select.value;
-    if (!pathogen) return;
-    currentPathogen = pathogen;
-
-    runBtn.disabled = true;
-    runBtn.textContent = 'Running...';
-    resetBtn.style.display = 'inline-block';
-    if (loadingStatus) {
-      loadingText.textContent = 'Pipeline warm-up...';
-      loadingStatus.style.display = 'flex';
-    }
-
-    // Load data
-    const data = await DataLoader.loadPathogenData(pathogen);
-
-    if (!data.harvest.length && !data.abstractScreen.length) {
-      // No data available for this pathogen yet
-      alert(`Data for this pathogen is not yet available.`);
-      runBtn.disabled = false;
-      runBtn.textContent = 'Run Pipeline';
-      if (loadingStatus) loadingStatus.style.display = 'none';
-      return;
-    }
-
-    // Run animation
-    if (pipelineSection) pipelineSection.classList.add('pipeline-started');
-    if (loadingStatus) loadingText.textContent = 'Pipeline is running...';
-    await Pipeline.run(data);
-
-    runBtn.textContent = 'Run Pipeline';
-    runBtn.disabled = false;
-    if (loadingStatus) loadingStatus.style.display = 'none';
-  });
-
-  /* ---------- RESET ---------- */
-  resetBtn.addEventListener('click', () => {
-    Pipeline.reset();
-    resetBtn.style.display = 'none';
-    runBtn.disabled = !select.value;
-    runBtn.textContent = 'Run Pipeline';
-    if (pipelineSection) pipelineSection.classList.remove('pipeline-started');
-    if (loadingStatus) loadingStatus.style.display = 'none';
-  });
-
-  /* ---------- CARD FLIP ---------- */
-  document.querySelectorAll('.pipeline-card').forEach(card => {
-    card.dataset.pinned = 'false';
-
-    card.addEventListener('mouseenter', () => {
-      if (Pipeline.hasRunStarted()) return;
-      if (Pipeline.isRunning()) return;
-      if (card.classList.contains('active') || card.classList.contains('dimmed')) return;
-      card.classList.add('flipped');
-    });
-
-    card.addEventListener('mouseleave', () => {
-      if (Pipeline.hasRunStarted()) return;
-      if (Pipeline.isRunning()) return;
-      if (card.dataset.pinned === 'true') return;
-      card.classList.remove('flipped');
-    });
-
-    // Click anywhere on card surface to pin/flip (except explicit controls)
-    card.addEventListener('click', (e) => {
-      if (e.target.closest('.flip-back-btn')) return;
-      if (e.target.closest('#view-models-md') || e.target.closest('#view-outbreaks-md')) return;
-
-      // Don't flip during animation
-      if (Pipeline.isRunning()) return;
-      if (card.classList.contains('dimmed')) return;
-      if (card.classList.contains('active')) return;
-
-      // Before first run: click pins hover-flipped card.
-      // After run starts: click-only flipping.
-      if (!Pipeline.hasRunStarted()) {
-        card.dataset.pinned = 'true';
-        card.classList.add('flipped');
-        return;
-      }
-
-      card.classList.toggle('flipped');
-      card.dataset.pinned = card.classList.contains('flipped') ? 'true' : 'false';
-    });
-
-    // Click back button to flip back
-    const backBtn = card.querySelector('.flip-back-btn');
-    if (backBtn) {
-      backBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        card.dataset.pinned = 'false';
-        card.classList.remove('flipped');
-      });
-    }
-  });
 
   function escapeHtml(str) {
     return (str || '')
@@ -309,16 +200,14 @@ document.addEventListener('DOMContentLoaded', () => {
   if (viewModelsMdBtn) {
     viewModelsMdBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      const p = currentPathogen || (select && select.value) || 'lassa';
-      window.open(`md-viewer.html?path=${encodeURIComponent(`data/${p}/report/models/models_writeup.md`)}`, '_blank', 'noopener,noreferrer');
+      window.open(`md-viewer.html?path=${encodeURIComponent('data/lassa/report/models/models_writeup.md')}`, '_blank', 'noopener,noreferrer');
     });
   }
 
   if (viewOutbreaksMdBtn) {
     viewOutbreaksMdBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      const p = currentPathogen || (select && select.value) || 'lassa';
-      window.open(`md-viewer.html?path=${encodeURIComponent(`data/${p}/report/outbreaks/outbreaks_writeup.md`)}`, '_blank', 'noopener,noreferrer');
+      window.open(`md-viewer.html?path=${encodeURIComponent('data/lassa/report/outbreaks/outbreaks_writeup.md')}`, '_blank', 'noopener,noreferrer');
     });
   }
 

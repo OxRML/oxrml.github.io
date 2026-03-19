@@ -602,7 +602,7 @@ const Charts = (() => {
       return dist.map(d => d / competence.length);
     }
 
-    let html = '<div style="display:flex;flex-direction:column;gap:16px;">';
+    let html = '<div style="display:flex;flex-direction:column;gap:10px;">';
     categories.forEach(cat => {
       const dist = getDistribution(cat.data.competence);
       const maxVal = Math.max(...dist);
@@ -615,7 +615,7 @@ const Charts = (() => {
           </div>
           <div class="competence-bar-group">
           ${dist.map((d, i) => {
-            const h = maxVal > 0 ? (d / maxVal) * 55 : 0;
+            const h = maxVal > 0 ? (d / maxVal) * 42 : 0;
             return `<div class="competence-bar" style="height:${h}px;background:${cat.color};"></div>`;
           }).join('')}
             <div class="competence-mean-line" style="left:${((cat.data.mean - 1) / 6) * 100}%;"></div>
