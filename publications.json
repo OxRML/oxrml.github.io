@@ -20,6 +20,26 @@
         "website": ""
       }
     },
+      {
+    "id": "madqa_agents_reasoning",
+    "date": "2026-03-12",
+    "displayDate": "March 2026",
+    "title": "Strategic Navigation or Stochastic Search? How Agents and Humans Reason Over Document Collections",
+    "authors": "Ł Borchmann, J Van Landeghem, M Turski, S Padarha, RO Kearns, A Mahdi, N Rogge, C Fourrier, S Han, H Yao, A Llabrés, Y Xu, D Karatzas, H Zhang, A Datta",
+    "labMembers": ["Shreyansh Padarha", "Ryan O Kearns", "Adam Mahdi"],
+    "pubDate": "2026",
+    "venue": "Under review",
+    "home_display": true,
+    "abstract": "Multimodal agents are increasingly used to automate document-intensive workflows, but it remains unclear whether they exhibit genuine strategic reasoning or rely on stochastic trial-and-error search. We introduce MADQA, a benchmark of 2,250 human-authored questions grounded in 800 heterogeneous PDF documents, designed using Classical Test Theory to discriminate across levels of agentic ability. We propose a novel evaluation protocol capturing the accuracy–effort trade-off to assess reasoning efficiency. Our results show that while top agents can match human performance in raw accuracy, they succeed on different subsets of questions and often rely on brute-force search rather than strategic planning. Agents fail to close a nearly 20% gap to oracle performance and frequently exhibit unproductive looping behaviour. We release the dataset and evaluation framework to support progress toward more efficient and calibrated agent reasoning.",
+    "webp_path": "img/publications/madqa.webp",
+    "links": {
+      "arxiv": "https://arxiv.org/abs/2603.12180",
+      "code": "https://github.com/OxRML/MADQA",
+      "huggingface": "https://huggingface.co/datasets/OxRML/MADQA",
+      "publication": "",
+      "website": "https://huggingface.co/spaces/Snowflake/MADQA-Leaderboard"
+    }
+  },
     {
       "id": "faithfulness_self_explanations",
       "date": "2026-02-02",
