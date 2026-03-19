@@ -51,17 +51,24 @@ const Charts = (() => {
 
     function pct(v) { return (v / maxHours * 100).toFixed(2) + '%'; }
     function w(bar) { return ((bar.end - bar.start) / maxHours * 100).toFixed(2) + '%'; }
+    function ganttBarPositionClass(index, total) {
+      if (total === 1) return 'gantt-bar-single';
+      if (index === 0) return 'gantt-bar-first';
+      if (index === total - 1) return 'gantt-bar-last';
+      return 'gantt-bar-middle';
+    }
 
     function renderRow(label, bars, totalHours, showLabels = false) {
       return `
         <div class="gantt-row">
           <div class="gantt-label">${label}<br><span style="font-size:0.75rem;color:var(--text-light);">${totalHours}h</span></div>
           <div class="gantt-track">
-            ${bars.map(b => {
+            ${bars.map((b, index) => {
               const duration = (b.end - b.start).toFixed(1);
               const widthPct = (b.end - b.start) / maxHours * 100;
               const showLabel = showLabels && widthPct > 8;
-              return `<div class="gantt-bar" style="left:${pct(b.start)};width:${w(b)};background:${b.color};" title="${b.label}: ${duration}h">${showLabel ? duration + 'h' : ''}</div>`;
+              const positionClass = ganttBarPositionClass(index, bars.length);
+              return `<div class="gantt-bar ${positionClass}" style="left:${pct(b.start)};width:${w(b)};background:${b.color};" title="${b.label}: ${duration}h">${showLabel ? duration + 'h' : ''}</div>`;
             }).join('')}
           </div>
         </div>`;
@@ -90,9 +97,10 @@ const Charts = (() => {
       <div class="gantt-row">
         <div class="gantt-label" style="font-size:0.75rem;color:var(--accent);">AgentSLR<br>(magnified)</div>
         <div class="gantt-track" style="background:rgba(74,111,165,0.08);">
-          ${agentBars.map(b => {
+          ${agentBars.map((b, index) => {
             const duration = (b.end - b.start).toFixed(1);
-            return `<div class="gantt-bar" style="left:${zoomPct(b.start)};width:${zoomW(b)};background:${b.color};" title="${b.label}: ${duration}h">${duration}h</div>`;
+            const positionClass = ganttBarPositionClass(index, agentBars.length);
+            return `<div class="gantt-bar ${positionClass}" style="left:${zoomPct(b.start)};width:${zoomW(b)};background:${b.color};" title="${b.label}: ${duration}h">${duration}h</div>`;
           }).join('')}
         </div>
       </div>
@@ -343,7 +351,7 @@ const Charts = (() => {
 
     let svg = `<svg viewBox="0 0 ${svgW} ${svgH}" style="width:100%;height:auto;">`;
 
-    // Corner triangles for ideal/less ideal regions
+    // Corner triangles for ideal/not ideal regions
     // Top-left triangle (ideal - green pastel)
     svg += `<defs>
       <linearGradient id="idealGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -359,12 +367,12 @@ const Charts = (() => {
     // Ideal region (top-left)
     svg += `<polygon points="${margin.left},${margin.top} ${margin.left + plotW * 0.4},${margin.top} ${margin.left},${margin.top + plotH * 0.4}" fill="url(#idealGradient)"/>`;
 
-    // Less ideal region (bottom-right)
+    // Not ideal region (bottom-right)
     svg += `<polygon points="${margin.left + plotW},${margin.top + plotH} ${margin.left + plotW * 0.6},${margin.top + plotH} ${margin.left + plotW},${margin.top + plotH * 0.6}" fill="url(#lessIdealGradient)"/>`;
 
     // Labels for regions
     svg += `<text x="${margin.left + 15}" y="${margin.top + 20}" font-size="9" fill="#6BAE7E" font-style="italic">Ideal</text>`;
-    svg += `<text x="${margin.left + plotW - 50}" y="${margin.top + plotH - 10}" font-size="9" fill="#D17171" font-style="italic">Less Ideal</text>`;
+    svg += `<text x="${margin.left + plotW - 50}" y="${margin.top + plotH - 10}" font-size="9" fill="#D17171" font-style="italic">Not Ideal</text>`;
 
     // Y axis (no gridlines)
     svg += `<line x1="${margin.left}" y1="${margin.top}" x2="${margin.left}" y2="${margin.top + plotH}" stroke="#bbb" stroke-width="1"/>`;

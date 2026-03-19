@@ -202,6 +202,8 @@ a:hover { color: var(--accent-dark); }
 
 .hero-intro {
   margin-top: 1.35rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid var(--bg-accent);
 }
 
 .hero-lede {
@@ -1447,7 +1449,7 @@ a:hover { color: var(--accent-dark); }
   position: absolute;
   top: 2px;
   height: 28px;
-  border-radius: 3px;
+  border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1457,6 +1459,15 @@ a:hover { color: var(--accent-dark); }
   white-space: nowrap;
   overflow: hidden;
   transition: width 1s ease;
+}
+.gantt-bar.gantt-bar-single {
+  border-radius: 3px;
+}
+.gantt-bar.gantt-bar-first {
+  border-radius: 3px 0 0 3px;
+}
+.gantt-bar.gantt-bar-last {
+  border-radius: 0 3px 3px 0;
 }
 .gantt-axis {
   display: flex;

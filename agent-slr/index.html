@@ -30,7 +30,7 @@
     }
   </script>
   <link rel="icon" type="image/jpeg" href="../img/assets/rml_logo_dark.jpg">
-  <link rel="stylesheet" href="css/styles.css?v=20260319h">
+  <link rel="stylesheet" href="css/styles.css?v=20260319i">
 </head>
 <body>
 
@@ -116,16 +116,11 @@
 
       <!-- Pipeline Figure -->
       <figure class="pipeline-figure">
-        <img src="logos/flashfigure.jpg" alt="AgentSLR Pipeline Overview" class="pipeline-img">
-        <figcaption>
-          <strong>Figure:</strong> End-to-end AgentSLR pipeline for automated systematic reviews.
-          <strong>(a)</strong> Article Search queries databases and retrieves PDFs.
-          <strong>(b)</strong> Title/Abstract Screening filters using inclusion/exclusion criteria.
-          <strong>(c)</strong> PDF-to-Markdown converts documents via OCR.
-          <strong>(d)</strong> Full-text Screening applies stricter criteria.
-          <strong>(e)</strong> Data Extraction uses tool-calling to extract parameters, models, and outbreaks.
-          <strong>(f)</strong> Report Generation synthesises data through iterative LLM refinement.
-        </figcaption>
+        <img
+          src="logos/flashfigure.jpg"
+          alt="Diagram of the six-stage AgentSLR pipeline: article search, title and abstract screening, PDF-to-Markdown conversion via OCR, full-text screening, data extraction, and report generation."
+          class="pipeline-img"
+        >
       </figure>
     </div>
   </div>
@@ -240,7 +235,7 @@
 
               <ul class="result-bullets">
                 <li><strong>Kimi-K2.5</strong> leads abstract screening (F<sub>1</sub> = 0.77) and parameter extraction (F<sub>1</sub> = 0.87); no single model dominates every stage</li>
-                <li>Performance converges markedly during extraction, suggesting structured tool-calling partially offsets raw model capability differences</li>
+                <li>The performance gap across models narrows during extraction, suggesting structured tool-calling partially offsets raw model capability differences</li>
                 <li><strong>GPT-OSS-120B</strong>, the smallest model tested, stays within 4.5 F<sub>1</sub> points of the best model across all stages</li>
               </ul>
             </div>
@@ -267,7 +262,7 @@
             <div class="result-block">
               <h3 class="result-pane-title">Article Screening Strategies</h3>
               <p class="figure-caption">
-                Recall across seven pathogens for three screening strategies: two-stage AI screening,
+                We show recall performance across seven pathogens for three screening strategies: two-stage AI screening,
                 direct full-text AI screening, and human-conditioned full-text screening.
                 Bootstrapped 95% confidence intervals shown (10,000 resamples).
               </p>
@@ -387,7 +382,7 @@
 </div>
 
 <script src="js/data.js?v=20260306e"></script>
-<script src="js/charts.js?v=20260319e"></script>
+<script src="js/charts.js?v=20260319g"></script>
 <script src="js/pipeline.js?v=20260319c"></script>
 <script src="js/app.js?v=20260319c"></script>
 <script>
