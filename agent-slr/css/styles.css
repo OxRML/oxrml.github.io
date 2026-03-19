@@ -188,15 +188,15 @@ a:hover { color: var(--accent-dark); }
   width: auto;
 }
 .authors-block {
-  font-size: 1.02rem;
-  line-height: 1.6;
-  margin-bottom: 0.5rem;
+  font-size: 0.98rem;
+  line-height: 2;
+  margin-bottom: 0.75rem;
   color: var(--text);
 }
 .authors-block sup { font-size: 0.7em; }
 .affils-block {
   color: var(--text-muted);
-  font-size: 0.98rem;
+  font-size: 0.96rem;
   line-height: 1.4;
 }
 
