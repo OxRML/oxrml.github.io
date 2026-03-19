@@ -241,6 +241,44 @@
 
         .publications-list {
             background: transparent;
+            min-width: 0;
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .publications-section-body {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 3.5rem;
+            gap: 1.25rem;
+            align-items: start;
+        }
+
+        .year-scroll-indicator {
+            grid-column: 2;
+            grid-row: 1;
+            position: sticky;
+            top: 8.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 8rem;
+            padding-left: 0.9rem;
+            border-left: 1px solid #dbe4ee;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-size: 1.55rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            color: rgba(26, 54, 93, 0.42);
+            pointer-events: none;
+            user-select: none;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.92) 12%, rgba(255, 255, 255, 0.92) 88%, rgba(255, 255, 255, 0));
+        }
+
+        .year-scroll-indicator.visible {
+            opacity: 1;
         }
 
         .publication {
@@ -412,6 +450,16 @@
         .clear-filter-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
+        }
+
+        @media (max-width: 1100px) {
+            .publications-section-body {
+                grid-template-columns: 1fr;
+            }
+
+            .year-scroll-indicator {
+                display: none;
+            }
         }
 
         /* Publication Modal Styles */
@@ -933,7 +981,6 @@
                 <div class="nav-content">
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="research.html">Research</a></li>
                         <li><a href="team.html">Team</a></li>
                         <li><a href="publications.html" class="active">Publications</a></li>
                         <li><a href="news.html">News</a></li>
@@ -964,8 +1011,11 @@
                 </div>
             </div>
 
-            <div class="publications-list" id="publications-list">
-                <!-- Publications will be loaded dynamically -->
+            <div class="publications-section-body">
+                <div class="year-scroll-indicator" id="yearScrollIndicator" aria-hidden="true"></div>
+                <div class="publications-list" id="publications-list">
+                    <!-- Publications will be loaded dynamically -->
+                </div>
             </div>
         </section>
     </main>
@@ -991,7 +1041,7 @@
     </div>
     <footer class="footer">
         <p>
-            &copy; 2025 Reasoning with Machines Lab, Oxford University. All rights reserved.
+            &copy; 2026 Reasoning with Machines Lab, Oxford University. All rights reserved.
         </p>
     </footer>
     <script>
@@ -1152,6 +1202,7 @@
             const searchInput = document.getElementById('searchInput');
             const authorFilter = document.getElementById('authorFilter');
             const clearFilterBtn = document.getElementById('clearFilterBtn');
+            const yearScrollIndicator = document.getElementById('yearScrollIndicator');
 
             function resolveAssetPath(path) {
                 if (!path || !path.trim()) {
@@ -1165,6 +1216,39 @@
 
                 const normalizedPath = trimmedPath.replace(/^\.?\//, '');
                 return normalizedPath.startsWith('/') ? normalizedPath : `/${normalizedPath}`;
+            }
+
+            function getPublicationYear(pub) {
+                const year = new Date(pub.date).getFullYear();
+                if (!Number.isNaN(year)) {
+                    return String(year);
+                }
+
+                const fallbackText = `${pub.pubDate || ''} ${pub.displayDate || ''}`;
+                const match = fallbackText.match(/\b(19|20)\d{2}\b/);
+                return match ? match[0] : '';
+            }
+
+            function updateYearIndicator() {
+                const publicationNodes = Array.from(document.querySelectorAll('.publication[data-year]'));
+                if (!publicationNodes.length) {
+                    yearScrollIndicator.textContent = '';
+                    yearScrollIndicator.classList.remove('visible');
+                    return;
+                }
+
+                const viewportAnchor = window.innerHeight * 0.35;
+                let activePublication = publicationNodes[0];
+
+                publicationNodes.forEach(pubNode => {
+                    if (pubNode.getBoundingClientRect().top <= viewportAnchor) {
+                        activePublication = pubNode;
+                    }
+                });
+
+                const currentYear = activePublication.dataset.year || '';
+                yearScrollIndicator.textContent = currentYear;
+                yearScrollIndicator.classList.toggle('visible', Boolean(currentYear));
             }
 
             // Close modal
@@ -1299,6 +1383,7 @@
                 filteredPublications.forEach(pub => {
                     const pubDiv = document.createElement('div');
                     pubDiv.className = 'publication';
+                    pubDiv.dataset.year = getPublicationYear(pub);
 
                     // Process authors to bold lab members
                     const processedAuthors = pub.authors.split(', ').map(author => {
@@ -1354,6 +1439,8 @@
 
                     publicationsList.appendChild(pubDiv);
                 });
+
+                updateYearIndicator();
             }
 
             // Fetch publications and team data
@@ -1427,6 +1514,8 @@
                 authorFilter.value = '';
                 applySortAndFilter();
             });
+            window.addEventListener('scroll', updateYearIndicator, { passive: true });
+            window.addEventListener('resize', updateYearIndicator);
         });
     </script>
 </body>

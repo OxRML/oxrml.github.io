@@ -8,8 +8,23 @@
   </title>
   <link href="styles/common.css" rel="stylesheet"/>
   <style>
-   #landing {
-            padding-bottom: 0;
+        #hero-image {
+            padding-top: 2rem;
+            padding-bottom: 1.25rem;
+        }
+
+        #landing {
+            padding-top: 0.5rem;
+            padding-bottom: 0.35rem;
+        }
+
+        #research {
+            padding-top: 0.2rem;
+            padding-bottom: 2rem;
+        }
+
+        #news-section {
+            padding-top: 1.5rem;
         }
 
         .oii-link {
@@ -34,44 +49,166 @@
 
         .research-overview {
             background: white;
-            padding: 3rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border: 1px solid #e2e8f0;
-            margin-bottom: 3rem;
+            padding: 0;
+            border-radius: 0;
+            box-shadow: none;
+            border: none;
+            margin-bottom: 1.15rem;
         }
 
-        .research-areas {
+        .landing-hero-image {
+            display: block;
+            width: 100%;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 24px rgba(26, 54, 93, 0.08);
+            overflow: hidden;
+        }
+
+        .landing-hero-image img {
+            display: block;
+            width: 100%;
+            height: min(38vw, 340px);
+            object-fit: cover;
+        }
+
+        .research-themes {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
         }
 
-        .research-card {
-            background: white;
-            padding: 2.5rem;
+        .research-theme-tab {
+            background: linear-gradient(180deg, #fbfdff, #f5f6f7);
+            padding: 1.1rem 1.2rem;
             border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border: 1px solid #e2e8f0;
-            border-left: 4px solid #2d5986;
-            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 10px rgba(26, 54, 93, 0.04);
+            border: 1px solid #e6edf5;
+            display: grid;
+            grid-template-columns: 58px minmax(0, 1fr);
+            grid-template-areas:
+                "icon title"
+                "icon copy";
+            align-items: start;
+            column-gap: 1rem;
+            row-gap: 0.35rem;
+            text-align: left;
+            width: 100%;
         }
 
-        .research-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-
-        .research-card h3 {
+        .research-theme-tab h3 {
+            grid-area: title;
             color: #1a365d;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
+            margin: 0;
+            font-size: 1rem;
             font-weight: 600;
+            line-height: 1.4;
         }
 
-        .research-card p {
+        .theme-icon {
+            grid-area: icon;
+            width: 62px;
+            height: 62px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 18px;
+            background: linear-gradient(180deg, #f8fbff, #eef4fb);
+            border: 1px solid #d8e3ee;
+            color: #2d5986;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            flex-shrink: 0;
+        }
+
+        .theme-icon svg {
+            width: 34px;
+            height: 34px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.9;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            overflow: visible;
+        }
+
+        .research-theme-copy {
+            grid-area: copy;
             color: #4a5568;
             line-height: 1.6;
+            margin: 0;
+            font-size: 0.94rem;
+        }
+
+        .icon-eval .bar-1,
+        .icon-eval .bar-2,
+        .icon-eval .bar-3 {
+            transform-box: fill-box;
+            transform-origin: center bottom;
+            animation: barPulse 2.8s ease-in-out infinite;
+        }
+
+        .icon-eval .bar-2 {
+            animation-delay: 0.35s;
+        }
+
+        .icon-eval .bar-3 {
+            animation-delay: 0.7s;
+        }
+
+        .icon-agentic .node {
+            animation: nodePulse 3.4s ease-in-out infinite;
+        }
+
+        .icon-agentic .node-2 {
+            animation-delay: 0.4s;
+        }
+
+        .icon-agentic .node-3 {
+            animation-delay: 0.8s;
+        }
+
+        .icon-agentic .link {
+            stroke-dasharray: 3 3;
+            animation: dashFlow 3s linear infinite;
+        }
+
+        .icon-safety .shield-core {
+            animation: shieldBeat 3.1s ease-in-out infinite;
+            transform-origin: center;
+            transform-box: fill-box;
+        }
+
+        .icon-hai .person-head,
+        .icon-hai .device-frame {
+            animation: iconFloat 4.4s ease-in-out infinite;
+        }
+
+        .icon-hai .device-frame {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-2.5px); }
+        }
+
+        @keyframes barPulse {
+            0%, 100% { transform: scaleY(0.92); opacity: 0.82; }
+            50% { transform: scaleY(1.08); opacity: 1; }
+        }
+
+        @keyframes nodePulse {
+            0%, 100% { opacity: 0.7; transform: scale(0.95); }
+            50% { opacity: 1; transform: scale(1.06); }
+        }
+
+        @keyframes dashFlow {
+            to { stroke-dashoffset: -12; }
+        }
+
+        @keyframes shieldBeat {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.06); opacity: 1; }
         }
 
         .pi-section {
@@ -315,6 +452,135 @@
             font-size: 0.9rem;
         }
 
+        .featured-work-shell {
+            position: relative;
+            overflow: visible;
+            padding: 0;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+        }
+
+        .featured-work-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 1.5rem;
+            padding: 0 0 1.25rem;
+        }
+
+        .featured-work-header h3 {
+            color: #1a365d;
+            margin: 0 0 0.4rem;
+            font-size: 1.8rem;
+        }
+
+        .featured-work-header p {
+            color: #4a5568;
+            margin: 0;
+            max-width: 560px;
+            line-height: 1.6;
+        }
+
+        .pin-gallery {
+            overflow: hidden;
+            padding-bottom: 0.4rem;
+            cursor: grab;
+            user-select: none;
+            touch-action: pan-y;
+        }
+
+        .pin-gallery-track {
+            display: flex;
+            gap: 1.1rem;
+            width: max-content;
+            padding: 0.5rem 0 1rem;
+            will-change: auto;
+        }
+
+        .pin-gallery.is-dragging {
+            cursor: grabbing;
+        }
+
+        .pin-card {
+            position: relative;
+            flex: 0 0 240px;
+            display: flex;
+            flex-direction: column;
+            min-height: 325px;
+            padding: 1.1rem 1rem 1.15rem;
+            border-radius: 10px;
+            text-decoration: none;
+            color: inherit;
+            background: #fffdf9;
+            border: 1px solid #d9e2ec;
+            box-shadow: 0 8px 18px rgba(26, 54, 93, 0.08);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+            transform-origin: top center;
+        }
+
+        .pin-card:nth-child(4n + 1) { transform: rotate(-2deg); }
+        .pin-card:nth-child(4n + 2) { transform: rotate(1.5deg); }
+        .pin-card:nth-child(4n + 3) { transform: rotate(-0.9deg); }
+        .pin-card:nth-child(4n + 4) { transform: rotate(2.1deg); }
+
+        .pin-card:hover {
+            transform: translateY(-6px) rotate(0deg);
+            box-shadow: 0 14px 24px rgba(26, 54, 93, 0.12);
+            border-color: #b7cadf;
+        }
+
+        .pin-head {
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 24px;
+            pointer-events: none;
+        }
+
+        .pin-frame {
+            margin: 0.65rem 0.25rem 1rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+        }
+
+        .pin-frame img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 720 / 450;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid #d8e3ee;
+            background: #f8fafc;
+        }
+
+        .pin-year {
+            display: inline-block;
+            color: #2d5986;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 0.55rem;
+        }
+
+        .pin-title {
+            margin: 0 0 0.5rem;
+            color: #1a365d;
+            font-size: 0.98rem;
+            line-height: 1.45;
+        }
+
+        .pin-venue {
+            color: #4a5568;
+            font-size: 0.84rem;
+            line-height: 1.45;
+        }
+
         .contact-section {
             background: white;
             padding: 3rem;
@@ -391,6 +657,42 @@
 
             .section {
                 padding: 3rem 0;
+            }
+
+            .featured-work-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .pin-card {
+                flex-basis: 210px;
+                min-height: 296px;
+            }
+
+            .research-themes {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .research-theme-tab {
+                grid-template-columns: 50px minmax(0, 1fr);
+                padding: 1rem;
+            }
+
+            .theme-icon {
+                width: 50px;
+                height: 50px;
+                border-radius: 14px;
+            }
+
+            .theme-icon svg {
+                width: 28px;
+                height: 28px;
+            }
+
+            #landing .section-title {
+                font-size: 1.75rem;
             }
         }
 
@@ -656,7 +958,7 @@
         }
 
         .news-item {
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             position: relative;
             padding-left: 1rem;
             font-size: 0.95rem;
@@ -670,7 +972,7 @@
         .news-title {
             color: #1a365d;
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             margin-left: 0.5rem;
         }
 
@@ -707,6 +1009,39 @@
         .news-text {
             display: block;
             margin-top: 0.25rem;
+            color: #4a5568;
+            line-height: 1.5;
+            font-size: 0.94rem;
+        }
+
+        #landing .section-header {
+            margin-bottom: 0.2rem;
+        }
+
+        #landing .section-title {
+            margin-bottom: 0.75rem;
+            font-size: 1.95rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+
+        #landing .section-subtitle {
+            color: #4a5568;
+            font-size: 1.02rem;
+            line-height: 1.7;
+            max-width: none;
+        }
+
+        #research > h3,
+        #news-section > h3 {
+            margin-bottom: 1.25rem !important;
+            font-size: 1.65rem !important;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        #research > h3 {
+            margin-top: 0 !important;
         }
 
 
@@ -739,7 +1074,6 @@
                 <div class="nav-content">
                     <ul>
                     <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="research.html">Research</a></li>
                     <li><a href="team.html">Team</a></li>
                     <li><a href="publications.html">Publications</a></li>
                     <li><a href="news.html">News</a></li>
@@ -750,28 +1084,105 @@
         </div>
     </header>
   <div class="container">
+   <!--
+   <section class="section" id="featured-work">
+   <div class="featured-work-shell">
+     <div class="pin-gallery">
+      <div class="pin-gallery-track" id="pin-gallery-track"></div>
+     </div>
+     <p id="pin-gallery-fallback" style="display:none; padding: 0 2rem 1rem; color: #718096; margin: 0;">
+      Publication previews could not be loaded right now.
+     </p>
+    </div>
+   </section>
+   -->
+   <section class="section" id="hero-image">
+    <div class="landing-hero-image">
+     <img src="img/assets/radcam_hero.jpg" alt="Reasoning with Machines Lab hero image">
+    </div>
+   </section>
+  </div>
+  <div class="container">
    <section class="section" id="landing">
     <div class="section-header">
      <h2 class="section-title">
       Welcome to the Reasoning with Machines Lab
      </h2>
      <p class="section-subtitle">
-      We conduct research on AI evaluation, safety, and human-AI interaction to advance our understanding of how large language models reason, solve complex problems, and collaborate with humans.
+      Our Lab combines mathematical rigour with empirical investigation to advance our understanding of how LLMs and agentic systems process information, solve complex tasks and interact with humans.
      </p>
     </div>
    </section>
   </div>
   <div class="container">
-   <section class="section" id="news-section">
-    <h3 style="color: #1a365d; margin-bottom: 2rem; font-size: 1.8rem;">Recent news</h3>
-    <ul class="news-list" id="news-list" style="list-style: none; padding: 0; margin: 0;">
-     <!-- News items will be loaded dynamically -->
-    </ul>
+   <section class="section" id="research">
+    <h3 style="color: #1a365d; margin-bottom: 2rem; font-size: 1.8rem;">Research Themes</h3>
+    <div class="research-themes" aria-label="Research themes">
+     <div class="research-theme-tab">
+      <div class="theme-icon" aria-hidden="true">
+       <svg class="icon-eval" viewBox="0 0 24 24">
+        <path d="M5 8l3-3 3 2 5-3 3 2"></path>
+        <path d="M4 19h16"></path>
+        <path class="bar-1" d="M7 19V10"></path>
+        <path class="bar-2" d="M12 19V6"></path>
+        <path class="bar-3" d="M17 19v-4"></path>
+       </svg>
+      </div>
+      <h3>Benchmarks and Evaluation</h3>
+      <p class="research-theme-copy">We develop the science of LLM evaluation, setting the standard for rigorous assessment and identifying hidden risks before they matter.</p>
+     </div>
+     <div class="research-theme-tab">
+      <div class="theme-icon" aria-hidden="true">
+       <svg class="icon-safety" viewBox="0 0 24 24">
+        <path d="M12 3l7 3v5c0 4.5-2.7 7.8-7 10-4.3-2.2-7-5.5-7-10V6l7-3z"></path>
+        <path class="shield-core" d="M9.2 12.2l1.9 1.9 3.7-4.1"></path>
+       </svg>
+      </div>
+      <h3>AI Safety and Security</h3>
+      <p class="research-theme-copy">From bias and toxicity to agentic misalignment, we study the full spectrum of AI risk and develop the technical and governance tools to address it.</p>
+     </div>
+     <div class="research-theme-tab">
+      <div class="theme-icon" aria-hidden="true">
+       <svg class="icon-agentic" viewBox="0 0 24 24">
+        <circle class="node node-1" cx="7" cy="7" r="2.5"></circle>
+        <circle class="node node-2" cx="17" cy="7" r="2.5"></circle>
+        <circle class="node node-3" cx="12" cy="17" r="2.5"></circle>
+        <path class="link" d="M9.2 8.4l2.2 6.2"></path>
+        <path class="link" d="M14.8 8.4l-2.2 6.2"></path>
+        <path d="M9.5 7h5"></path>
+       </svg>
+      </div>
+      <h3>Agentic AI for Science</h3>
+      <p class="research-theme-copy">We build agentic systems that automate scientific knowledge synthesis and discovery, with a focus on agents that are reliable, transparent and domain-grounded.</p>
+     </div>
+     <div class="research-theme-tab">
+      <div class="theme-icon" aria-hidden="true">
+       <svg class="icon-hai" viewBox="0 0 24 24">
+        <circle class="person-head" cx="8" cy="8" r="3"></circle>
+        <path d="M3.5 19a4.5 4.5 0 0 1 9 0"></path>
+        <rect class="device-frame" x="14.5" y="5.5" width="6" height="9" rx="1.5"></rect>
+        <path d="M16.5 9h2"></path>
+        <path d="M16.5 12h2.5"></path>
+        <path d="M17.5 18h0"></path>
+       </svg>
+      </div>
+      <h3>Human-AI Interaction</h3>
+      <p class="research-theme-copy">We run large-scale empirical studies on how people use AI for high stakes decisions, from healthcare and law to policy and beyond.</p>
+     </div>
+    </div>
    </section>
   </div>
+  <!-- <div class="container">
+   <section class="section" id="news-section">
+    <h3 style="color: #1a365d; margin-bottom: 2rem; font-size: 1.8rem;">News</h3>
+    <ul class="news-list" id="news-list" style="list-style: none; padding: 0; margin: 0;">
+     News items will be loaded dynamically
+    <!-- </ul> -->
+   <!-- </section> -->
+  <!-- </div> --> -->
   <footer class="footer">
    <p>
-    &copy; 2025 Reasoning with Machines Lab, Oxford University. All rights reserved.
+    &copy; 2026 Reasoning with Machines Lab, Oxford University. All rights reserved.
    </p>
   </footer>
   <script>
@@ -924,7 +1335,158 @@
   <script>
     // Load and display news from JSON file
     document.addEventListener('DOMContentLoaded', function() {
-        fetch('news.json')
+        const pinGalleryViewport = document.querySelector('.pin-gallery');
+        const pinGalleryTrack = document.getElementById('pin-gallery-track');
+        const pinGalleryFallback = document.getElementById('pin-gallery-fallback');
+        const publicationsUrl = new URL('./publications.json', window.location.origin + window.location.pathname).href;
+        const newsUrl = new URL('./news.json', window.location.origin + window.location.pathname).href;
+        const teamUrl = new URL('./team.json', window.location.origin + window.location.pathname).href;
+        let isDraggingGallery = false;
+        let dragStartX = 0;
+        let dragStartScrollLeft = 0;
+        let didDragGallery = false;
+        let galleryAutoScrollStarted = false;
+        const galleryAutoSpeed = 0.55;
+
+        function createPinSvg() {
+            return `
+                <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+                    <circle cx="12" cy="7" r="5" fill="#8fb6d8" stroke="#2d5986" stroke-width="1"></circle>
+                    <path d="M12 12 L12.9 21" stroke="#4b6f93" stroke-width="1.8" stroke-linecap="round"></path>
+                    <circle cx="10.3" cy="5.7" r="1.2" fill="rgba(255,255,255,0.8)"></circle>
+                </svg>
+            `;
+        }
+
+        function publicationHref(links) {
+            if (!links) return '#';
+            return links.publication || links.arxiv || links.website || links.code || '#';
+        }
+
+        function buildPinCard(publication) {
+            const href = publicationHref(publication.links);
+            const card = document.createElement('a');
+            card.className = 'pin-card';
+            card.href = href;
+            if (href !== '#') {
+                card.target = '_blank';
+                card.rel = 'noopener noreferrer';
+            }
+
+            card.innerHTML = `
+                <span class="pin-head" aria-hidden="true">${createPinSvg()}</span>
+                <div class="pin-frame">
+                    <img src="${publication.webp_path}" alt="${publication.title}" loading="lazy">
+                </div>
+                <span class="pin-year">${publication.displayDate || publication.pubDate || ''}</span>
+                <h4 class="pin-title">${publication.title}</h4>
+                <div class="pin-venue">${publication.venue || ''}</div>
+            `;
+
+            if (href === '#') {
+                card.addEventListener('click', function(event) {
+                    event.preventDefault();
+                });
+            }
+
+            return card;
+        }
+
+        function normaliseGalleryScroll() {
+            if (!pinGalleryViewport || !pinGalleryTrack) return;
+            const resetAt = pinGalleryTrack.scrollWidth / 2;
+            if (!resetAt) return;
+            if (pinGalleryViewport.scrollLeft >= resetAt) {
+                pinGalleryViewport.scrollLeft -= resetAt;
+            } else if (pinGalleryViewport.scrollLeft < 0) {
+                pinGalleryViewport.scrollLeft += resetAt;
+            }
+        }
+
+        function stepGallery() {
+            if (!pinGalleryViewport || !pinGalleryTrack) return;
+            if (!isDraggingGallery) {
+                pinGalleryViewport.scrollLeft += galleryAutoSpeed;
+                normaliseGalleryScroll();
+            }
+            requestAnimationFrame(stepGallery);
+        }
+
+        function startGalleryDrag(event) {
+            if (!pinGalleryViewport) return;
+            isDraggingGallery = true;
+            didDragGallery = false;
+            pinGalleryViewport.classList.add('is-dragging');
+            dragStartX = event.clientX;
+            dragStartScrollLeft = pinGalleryViewport.scrollLeft;
+        }
+
+        function moveGalleryDrag(event) {
+            if (!isDraggingGallery || !pinGalleryViewport) return;
+            const delta = event.clientX - dragStartX;
+            if (Math.abs(delta) > 4) {
+                didDragGallery = true;
+            }
+            pinGalleryViewport.scrollLeft = dragStartScrollLeft - delta;
+            normaliseGalleryScroll();
+        }
+
+        function endGalleryDrag() {
+            if (!isDraggingGallery || !pinGalleryViewport) return;
+            isDraggingGallery = false;
+            pinGalleryViewport.classList.remove('is-dragging');
+        }
+
+        if (pinGalleryViewport) {
+            pinGalleryViewport.addEventListener('pointerdown', startGalleryDrag);
+            window.addEventListener('pointermove', moveGalleryDrag);
+            window.addEventListener('pointerup', endGalleryDrag);
+            window.addEventListener('pointercancel', endGalleryDrag);
+            pinGalleryTrack.addEventListener('click', function(event) {
+                if (didDragGallery) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    didDragGallery = false;
+                }
+            }, true);
+        }
+
+        fetch(publicationsUrl, { cache: 'no-store' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to load publications.json');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (!pinGalleryTrack || !data || !Array.isArray(data.publications)) return;
+
+                const publications = data.publications
+                    .filter(item => item && item.home_display === true && item.webp_path && item.title)
+                    .sort((a, b) => new Date(b.date) - new Date(a.date))
+                    .slice(0, 12);
+
+                if (!publications.length) {
+                    throw new Error('No homepage publications found');
+                }
+
+                publications.concat(publications).forEach(publication => {
+                    pinGalleryTrack.appendChild(buildPinCard(publication));
+                });
+
+                if (!galleryAutoScrollStarted) {
+                    galleryAutoScrollStarted = true;
+                    requestAnimationFrame(stepGallery);
+                }
+            })
+            .catch(error => {
+                console.error('Error loading publications:', error);
+                if (pinGalleryFallback) {
+                    pinGalleryFallback.style.display = 'block';
+                }
+            });
+
+        fetch(newsUrl, { cache: 'no-store' })
             .then(response => response.json())
             .then(data => {
                 const newsList = document.getElementById('news-list');
@@ -968,7 +1530,7 @@
   <script>
     // Load and display team members from JSON file
     document.addEventListener('DOMContentLoaded', function() {
-        fetch('team.json')
+        fetch(teamUrl, { cache: 'no-store' })
             .then(response => response.json())
             .then(data => {
                 const teamGrid = document.getElementById('team-grid');
