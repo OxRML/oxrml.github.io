@@ -29,8 +29,21 @@
       window.location.replace(window.location.pathname + '/' + window.location.search + window.location.hash);
     }
   </script>
+  <script>
+    (function () {
+      try {
+        var storedTheme = localStorage.getItem('theme');
+        var savedTheme = storedTheme === 'dark' || storedTheme === 'light' ? storedTheme : null;
+        var systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var currentTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', currentTheme);
+      } catch (error) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
   <link rel="icon" type="image/jpeg" href="../img/assets/rml_logo_dark.jpg">
-  <link rel="stylesheet" href="css/styles.css?v=20260319j">
+  <link rel="stylesheet" href="css/styles.css?v=20260320a">
 </head>
 <body>
 
@@ -46,6 +59,18 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9h6V5H6v4zm0 10h6v-4H6v4zM12 9h6V5h-6v4zm0 10h6v-4h-6v4z"/></svg>
   </a>
 </nav>
+
+<div class="theme-control">
+  <button class="theme-toggle" id="theme-toggle" type="button" title="Switch to dark mode" aria-label="Switch to dark mode" aria-pressed="false">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="5"/>
+      <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+    </svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+  </button>
+</div>
 
 <!-- ============ HEADER ============ -->
 <header class="site-header">
@@ -362,6 +387,44 @@
 <script src="js/app.js?v=20260319d"></script>
 <script>
   (function () {
+    // Theme toggle - default to system preference until the user chooses
+    var themeToggle = document.getElementById('theme-toggle');
+
+    function setTheme(theme, persist) {
+      document.documentElement.setAttribute('data-theme', theme);
+      if (themeToggle) {
+        var nextTheme = theme === 'dark' ? 'light' : 'dark';
+        themeToggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+        themeToggle.setAttribute('aria-label', 'Switch to ' + nextTheme + ' mode');
+        themeToggle.setAttribute('title', 'Switch to ' + nextTheme + ' mode');
+      }
+      if (persist) {
+        localStorage.setItem('theme', theme);
+      }
+    }
+
+    if (themeToggle) {
+      setTheme(document.documentElement.getAttribute('data-theme') || 'light', false);
+      themeToggle.addEventListener('click', function() {
+        var newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        setTheme(newTheme, true);
+      });
+
+      var themeMedia = window.matchMedia('(prefers-color-scheme: dark)');
+      var handleSystemThemeChange = function(event) {
+        var storedTheme = localStorage.getItem('theme');
+        if (storedTheme !== 'light' && storedTheme !== 'dark') {
+          setTheme(event.matches ? 'dark' : 'light', false);
+        }
+      };
+
+      if (themeMedia.addEventListener) {
+        themeMedia.addEventListener('change', handleSystemThemeChange);
+      } else if (themeMedia.addListener) {
+        themeMedia.addListener(handleSystemThemeChange);
+      }
+    }
+
     // Result tiles - click to switch the active detail pane
     var resultTiles = Array.prototype.slice.call(document.querySelectorAll('.result-tile'));
     var resultPanes = Array.prototype.slice.call(document.querySelectorAll('.result-pane'));
