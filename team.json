@@ -155,7 +155,7 @@
     {
       "id": "shreyansh_padarha",
       "name": "Shreyansh Padarha",
-      "role": "Research Assistant (2025-26)",
+      "role": "Research Assistant",
       "focus": "AI for Science, AI Safety, LLM Evaluations",
       "photo": "img/members/shreyansh_padarha.jpg",
       "shortBio": "Shreyansh is a Research Assistant at the Reasoning with Machines Lab and previously studied Social Data Science (MSc) at the University of Oxford. His research focuses on pushing the performative boundaries of AI models while stress-testing their safety.\nHis current work focuses on LLMs and agents that automate scientific processes, building faithful evaluations, and knowledge distillation.",
@@ -167,6 +167,23 @@
         "twitter": "",
         "github": "https://github.com/shreyansh-2003",
         "scholar": "https://scholar.google.com/citations?hl=en&user=b0aneOsAAAAJ"
+      }
+    },
+    {
+      "id": "mia_kussman",
+      "name": "Mia Kussman",
+      "role": "MSc Student",
+      "focus": "Human-LLM Interaction, LLM Evaluations",
+      "photo": "img/members/mia_kussman.jpeg",
+      "shortBio": "Mia is an MSc Student at the Reasoning with Machines Lab, studying Social Data Science at the University of Oxford. Her current research focuses on evaluating the socio-communicative abilities of LLMs as medical assistants for the general public.",
+      "longBio": "Mia is an MSc student in the Reasoning with Machines Lab, studying Social Data Science at the University of Oxford. Her current research focuses on evaluating the socio-communicative abilities of LLMs as medical assistants for the general public. Prior to this, she studied psychology and linguistics at Haverford College, and worked as a researcher in the Social Neuroscience Lab at Princeton University, where she investigated emotional conversations between humans.",
+      "links": {
+        "email": "mia.kussman@oii.ox.ac.uk",
+        "linkedin": "https://www.linkedin.com/in/mia-kussman-81666b100/",
+        "website": "",
+        "twitter": "",
+        "github": "",
+        "scholar": "https://scholar.google.com/citations?user=6wjhsQkAAAAJ&hl=en"
       }
     },
     {
