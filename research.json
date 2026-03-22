@@ -1,0 +1,586 @@
+{
+  "publications": [
+    {
+      "id": "llm_as_judge_polyvis",
+      "date": "2025-11-01",
+      "displayDate": "November 2025",
+      "title": "Evaluating LLM-as-a-Judge under Multilingual, Multimodal and Multi-domain Constraints",
+      "authors": "S Padarha, E Semenova, B Vidgen, A Mahdi, S A Hale",
+      "labMembers": [
+        "S Padarha",
+        "A Mahdi"
+      ],
+      "pubDate": "2025",
+      "venue": "Evaluating the Evolving LLM Lifecycle @ NeurIPS",
+      "home_display": true,
+      "abstract": "Large Language Models (LLMs) as judges have emerged as an important component within the post-training pipeline. The growing popularity of judge LLMs has prompted their evaluation on proxy alignment and reward modelling datasets. Yet, they have not been assessed under combined cross-lingual and multimodal settings. To address this gap, we introduce PolyVis (Polyglot Vision-Language Alignment), a multilingual vision-language alignment benchmark that evaluates judge models under 12 languages and distinct task objectives: hallucinations, safety, knowledge and reasoning. Our findings reveal LLM judge model performance is significantly influenced by composite interactions between task objectives, language and individual model characteristics. These results suggest the need for building tailored evaluation frameworks to challenge each model’s specific capabilities, moving beyond one-size-fits-all approaches that obscure critical performance disparities.",
+      "webp_path": "img/publications/eval_llm_judge.webp",
+      "links": {
+        "hf_link": "",
+        "hf_text_display": "",
+        "preprint_link": "",
+        "preprint_text_display": "",
+        "paper_link": "https://openreview.net/pdf?id=cAIjWwoZNf",
+        "paper_text_display": "Publication",
+        "github_link": "",
+        "github_text_display": "",
+        "website_link": "",
+        "website_text_display": "",
+        "youtube_link": "",
+        "youtube_text": ""
+      }
+    },
+    {
+      "id": "madqa_agents_reasoning",
+      "date": "2026-03-12",
+      "displayDate": "March 2026",
+      "title": "Strategic Navigation or Stochastic Search? How Agents and Humans Reason Over Document Collections",
+      "authors": "Ł Borchmann, J Van Landeghem, M Turski, S Padarha, RO Kearns, A Mahdi, N Rogge, C Fourrier, S Han, H Yao, A Llabrés, Y Xu, D Karatzas, H Zhang, A Datta",
+      "labMembers": [
+        "S Padarha",
+        "RO Kearns",
+        "A Mahdi"
+      ],
+      "pubDate": "2026",
+      "venue": "Under review",
+      "home_display": true,
+      "abstract": "Multimodal agents are increasingly used to automate document-intensive workflows, but it remains unclear whether they exhibit genuine strategic reasoning or rely on stochastic trial-and-error search. We introduce MADQA, a benchmark of 2,250 human-authored questions grounded in 800 heterogeneous PDF documents, designed using Classical Test Theory to discriminate across levels of agentic ability. We propose a novel evaluation protocol capturing the accuracy–effort trade-off to assess reasoning efficiency. Our results show that while top agents can match human performance in raw accuracy, they succeed on different subsets of questions and often rely on brute-force search rather than strategic planning. Agents fail to close a nearly 20% gap to oracle performance and frequently exhibit unproductive looping behaviour. We release the dataset and evaluation framework to support progress toward more efficient and calibrated agent reasoning.",
+      "webp_path": "img/publications/madqa.webp",
+      "links": {
+        "hf_link": "https://huggingface.co/datasets/OxRML/MADQA",
+        "hf_text_display": "Dataset",
+        "preprint_link": "https://arxiv.org/abs/2603.12180",
+        "preprint_text_display": "Preprint",
+        "paper_link": "",
+        "paper_text_display": "",
+        "github_link": "https://github.com/OxRML/MADQA",
+        "github_text_display": "Code",
+        "website_link": "https://huggingface.co/spaces/Snowflake/MADQA-Leaderboard",
+        "website_text_display": "Website",
+        "youtube_link": "",
+        "youtube_text": ""
+      }
+    },
+    {
+      "id": "faithfulness_self_explanations",
+      "date": "2026-02-02",
+      "displayDate": "February 2026",
+      "title": "A Positive Case for Faithfulness: LLM Self-Explanations Help Predict Model Behavior",
+      "authors": "H Mayne, JS Kang, D Gould, K Ramchandran, A Mahdi, NY Siegel",
+      "labMembers": [
+        "H Mayne",
+        "A Mahdi"
+      ],
+      "pubDate": "2026",
+      "venue": "Under review",
+      "home_display": true,
+      "abstract": "LLM self-explanations are often presented as a promising tool for AI oversight, yet their faithfulness to the model's true reasoning process is poorly understood. Existing faithfulness metrics have critical limitations, typically relying on identifying unfaithfulness via adversarial prompting or detecting reasoning errors. These methods overlook the predictive value of explanations. We introduce Normalized Simulatability Gain (NSG), a general and scalable metric based on the idea that a faithful explanation should allow an observer to learn a model's decision-making criteria, and thus better predict its behavior on related inputs. We evaluate 18 frontier proprietary and open-weight models, e.g., Gemini 3, GPT-5.2, and Claude 4.5, on 7,000 counterfactuals from popular datasets covering health, business, and ethics. We find self-explanations substantially improve prediction of model behavior (11-37% NSG). Self-explanations also provide more predictive information than explanations generated by external models, even when those models are stronger. This implies an advantage from self-knowledge that external explanation methods cannot replicate. Our approach also reveals that, across models, 5-15% of self-explanations are egregiously misleading. Despite their imperfections, we show a positive case for self-explanations: they encode information that helps predict model behavior.",
+      "webp_path": "img/publications/faithfulNSG.webp",
+      "links": {
+        "hf_link": "",
+        "hf_text_display": "",
+        "preprint_link": "https://arxiv.org/abs/2602.02639",
+        "preprint_text_display": "Preprint",
+        "paper_link": "",
+        "paper_text_display": "",
+        "github_link": "https://github.com/HarryMayne/faithfulness",
+        "github_text_display": "Code",
+        "website_link": "https://oxrml.com/faithfulness/",
+        "website_text_display": "Website",
+        "youtube_link": "",
+        "youtube_text": ""
+      }
+    },
+    {
+      "id": "1",
+      "date": "2025-11-04",
+      "displayDate": "November 2025",
+      "title": "Measuring what matters: Construct validity in large language model benchmarks",
+      "authors": "AM Bean, RO Kearns, A Romanou, FS Hafner, H Mayne, J Batzner, N Foroutan, C Schmitz, K Korgul, H Batra, O Deb, E Beharry, C Emde, T Foster, A Gausen, M Grandury, J Khouja, S Han, V Hofmann, L Ibrahim, H Kim, HR Kirk, F Lin, L Luettgau, J Magomere, J Rystrøm, GKM Liu, A Sotnikova, Y Yang, Y Zhao, A Bibi, A Bosselut, R Clark, A Cohan, J Foerster, Y Gal, SA Hale, ID Raji, C Summerfield, PHS Torr, C Ududec, L Rocher, A Mahdi",
+      "labMembers": [
+        "AM Bean",
+        "RO Kearns",
+        "H Mayne",
+        "K Korgul",
+        "Y Yang",
+        "A Mahdi"
+      ],
+      "pubDate": "2025",
+      "venue": "NeurIPS Datasets and Benchmarks Track",
+      "home_display": true,
+      "abstract": "Abstract",
+      "webp_path": "img/publications/mwm.webp",
+      "links": {
+        "hf_link": "https://huggingface.co/datasets/ambean/construct-validity-review",
+        "hf_text_display": "Dataset",
+        "preprint_link": "https://arxiv.org/abs/2511.04703",
+        "preprint_text_display": "Preprint",
+        "paper_link": "https://openreview.net/pdf?id=mdA5lVvNcU",
+        "paper_text_display": "Publication",
+        "github_link": "",
+        "github_text_display": "",
+        "website_link": "https://oxrml.com/measuring-what-matters/",
+        "website_text_display": "Website",
+        "youtube_link": "",
+        "youtube_text": ""
+      }
+    },
+    {
+      "id": "help-med",
+      "date": "2026-02-05",
+      "displayDate": "February 2026",
+      "title": "Reliability of LLMs as medical assistants for the general public: a randomized preregsitered study",
+      "authors": "AM Bean, RE Payne, G Parsons, HR Kirk, J Ciro, R Mosquera-Gómez, S Hincapié M, AS Ekanayaka, L Tarassenko, L Rocher, A Mahdi",
+      "labMembers": [
+        "AM Bean",
+        "G Parsons",
+        "A Mahdi"
+      ],
+      "pubDate": "2026",
+      "venue": "Nature Medicine",
+      "home_display": true,
+      "abstract": "Abstract",
+      "webp_path": "img/publications/helpmed.webp",
+      "links": {
+        "hf_link": "https://huggingface.co/datasets/ambean/HELPMed",
+        "hf_text_display": "Dataset",
+        "preprint_link": "https://arxiv.org/abs/2504.18919",
+        "preprint_text_display": "Preprint",
+        "paper_link": "https://www.nature.com/articles/s41591-025-04074-y",
+        "paper_text_display": "Publication",
+        "github_link": "https://github.com/am-bean/HELPMed",
+        "github_text_display": "Code",
+        "website_link": "https://oxrml.com/llm-medical-assistants/",
+        "website_text_display": "Website",
+        "youtube_link": "",
+        "youtube_text": ""
+      }
+    },
+    {
+      "id": "dpo_toxicity",
+      "date": "2025-11-01",
+      "displayDate": "November 2025",
+      "title": "How Does DPO Reduce Toxicity? A Mechanistic Neuron-Level Analysis",
+      "authors": "Y Yang, F Sondej, H Mayne, A Lee, A Mahdi",
+      "labMembers": [
+        "Y Yang",
+        "H Mayne",
+        "A Mahdi"
+      ],
+      "pubDate": "2025",
+      "venue": "EMNLP",
+      "home_display": true,
+      "abstract": "Abstract",
+      "webp_path": "img/publications/dpo_toxicity.webp",
+      "links": {
+        "hf_link": "",
+        "hf_text_display": "",
+        "preprint_link": "https://arxiv.org/abs/2411.06424",
+        "preprint_text_display": "Preprint",
+        "paper_link": "https://aclanthology.org/2025.emnlp-main.1501/",
+        "paper_text_display": "Publication",
+        "github_link": "https://github.com/Yushi-Y/dpo-toxic-neurons",
+        "github_text_display": "Code",
+        "website_link": "",
+        "website_text_display": "",
+        "youtube_link": "",
+        "youtube_text": ""
+      }
+    },
+    {
+      "id": "decision_boundaries",
+      "date": "2025-09-11",
+      "displayDate": "September 2025",
+      "title": "LLMs Don't Know Their Own Decision Boundaries: The Unreliability of Self-Generated Counterfactual Explanations",
+      "authors": "H Mayne, RO Kearns, Y Yang, AM Bean, E Delaney, C Russel, A Mahdi",
+      "labMembers": [
+        "H Mayne",
+        "RO Kearns",
+        "Y Yang",
+        "AM Bean",
+        "A Mahdi"
+      ],
+      "pubDate": "2025",
+      "venue": "EMNLP",
+      "home_display": true,
+      "abstract": "Abstract",
+      "webp_path": "img/publications/counterfactual.webp",
+      "links": {
+        "hf_link": "",
+        "hf_text_display": "",
+        "preprint_link": "https://arxiv.org/abs/2509.09396",
+        "preprint_text_display": "Preprint",
+        "paper_link": "https://aclanthology.org/2025.emnlp-main.1231/",
+        "paper_text_display": "",
+        "github_link": "https://github.com/HarryMayne/SCEs",
+        "github_text_display": "Code",
+        "website_link": "https://www.lesswrong.com/posts/YydYPCsZJJEwnCMe7/llms-don-t-know-their-own-decision-boundaries-why-is-this",
+        "website_text_display": "Blog",
+        "youtube_link": "https://www.youtube.com/watch?v=e4c864V8tIo",
+        "youtube_text": "Video"
+      }
+    },
+    {
+      "id": "multimodal_healthcare",
+      "date": "2025-02-01",
+      "displayDate": "February 2025",
+      "title": "Review of multimodal machine learning approaches in healthcare",
+      "authors": "F Krones, U Marikkar, G Parsons, A Szmul, A Mahdi",
+      "labMembers": [
+        "F Krones",
+        "G Parsons",
+        "A Mahdi"
+      ],
+      "pubDate": "2025",
+      "venue": "Information Fusion",
+      "home_display": true,
+      "abstract": "Abstract",
+      "webp_path": "img/publications/multimodal.webp",
+      "links": {
+        "hf_link": "",
+        "hf_text_display": "",
+        "preprint_link": "https://arxiv.org/abs/2402.02460",
+        "preprint_text_display": "Preprint",
+        "paper_link": "https://www.sciencedirect.com/science/article/pii/S1566253524004688",
+        "paper_text_display": "Publication",
+        "github_link": "",
+        "github_text_display": "",
+        "website_link": "",
+        "website_text_display": "",
+        "youtube_link": "",
+        "youtube_text": ""
+      }
+    },
+    {
+      "id": "2",
+      "date": "2026-04-23",
+      "displayDate": "April 2026",
+      "title": "LingOly-TOO: Disentangling Reasoning from Knowledge with Templatised Orthographic Obfuscation",
+      "authors": "J Khouja, K Korgul, S Hellsten, L Yang, V Neacsu, H Mayne, RO Kearns, A Bean, A Mahdi",
+      "labMembers": [
+        "K Korgul",
+        "H Mayne",
+        "RO Kearns",
+        "A Bean",
+        "A Mahdi"
+      ],
+      "pubDate": "2026",
+      "venue": "ICLR",
+      "home_display": true,
+      "abstract": "Abstract",
+      "webp_path": "img/publications/lingolytoo.webp",
+      "links": {
+        "hf_link": "https://huggingface.co/spaces/jkhouja/lingoly-too",
+        "hf_text_display": "Leaderboard",
+        "preprint_link": "https://arxiv.org/abs/2503.02972",
+        "preprint_text_display": "Preprint",
+        "paper_link": "https://openreview.net/pdf?id=CQIkN2uuBr",
+        "paper_text_display": "Publication",
+        "github_link": "https://github.com/jkhouja/LingOly-TOO",
+        "github_text_display": "Code",
+        "website_link": "https://oxrml.com/lingoly-too",
+        "website_text_display": "Website",
+        "youtube_link": "",
+        "youtube_text": ""
+      }
+    },
+    {
+      "id": "4",
+      "date": "2024-12-10",
+      "displayDate": "December 2024",
+      "title": "Evaluating the role of 'Constitutions' for learning from AI feedback",
+      "authors": "S Redgate, AM Bean, A Mahdi",
+      "labMembers": [
+        "S Redgate",
+        "AM Bean",
+        "A Mahdi"
+      ],
+      "pubDate": "2024",
+      "venue": "Preprint",
+      "abstract": "Abstract",
+      "webp_path": "img/publications/constitutions.webp",
+      "links": {
+        "hf_link": "",
+        "hf_text_display": "",
+        "preprint_link": "https://arxiv.org/abs/2411.10168",
+        "preprint_text_display": "Preprint",
+        "paper_link": "https://openreview.net/forum?id=Pf3ow4YbFl",
+        "paper_text_display": "Publication",
+        "github_link": "",
+        "github_text_display": "",
+        "website_link": "",
+        "website_text_display": "",
+        "youtube_link": "",
+        "youtube_text": ""
+      }
+    },
+    {
+      "id": "5",
+      "date": "2024-11-20",
+      "displayDate": "November 2024",
+      "title": "Can sparse autoencoders be used to decompose and interpret steering vectors?",
+      "authors": "H Mayne, Y Yang, A Mahdi",
+      "labMembers": [
+        "H Mayne",
+        "Y Yang",
+        "A Mahdi"
+      ],
+      "pubDate": "2024",
+      "venue": "MINT @ NeurIPS, InterpretableAI @ NeurIPS",
+      "abstract": "Abstract",
+      "webp_path": "img/publications/sae.webp",
+      "links": {
+        "hf_link": "",
+        "hf_text_display": "",
+        "preprint_link": "https://arxiv.org/abs/2411.08790",
+        "preprint_text_display": "Preprint",
+        "paper_link": "https://openreview.net/forum?id=QRpzG4b5dz",
+        "paper_text_display": "Publication",
+        "github_link": "",
+        "github_text_display": "",
+        "website_link": "",
+        "website_text_display": "",
+        "youtube_link": "",
+        "youtube_text": ""
+      }
+    },
+    {
+      "id": "7",
+      "date": "2024-10-25",
+      "displayDate": "October 2024",
+      "title": "Improving in-context learning with small language model ensembles",
+      "authors": "MM Mojarradi, L Yang, R McCraith, A Mahdi",
+      "labMembers": [
+        "MM Mojarradi",
+        "A Mahdi"
+      ],
+      "pubDate": "2024",
+      "venue": "Preprint",
+      "abstract": "Abstract",
+      "webp_path": "img/publications/icl_ensemble.webp",
+      "links": {
+        "hf_link": "",
+        "hf_text_display": "",
+        "preprint_link": "https://arxiv.org/abs/2410.21868",
+        "preprint_text_display": "Preprint",
+        "paper_link": "https://openreview.net/forum?id=v9WxznHEaL",
+        "paper_text_display": "Publication",
+        "github_link": "",
+        "github_text_display": "",
+        "website_link": "",
+        "website_text_display": "",
+        "youtube_link": "",
+        "youtube_text": ""
+      }
+    },
+    {
+      "id": "8",
+      "date": "2024-10-18",
+      "displayDate": "October 2024",
+      "title": "Combining Hough transform and deep learning approaches to reconstruct ECG signals from printouts",
+      "authors": "F Krones, B Walker, T Lyons, A Mahdi",
+      "labMembers": [
+        "F Krones",
+        "A Mahdi"
+      ],
+      "pubDate": "2024",
+      "venue": "Computing in Cardiology (CinC)",
+      "abstract": "Abstract",
+      "webp_path": "img/publications/ecg.webp",
+      "links": {
+        "hf_link": "",
+        "hf_text_display": "",
+        "preprint_link": "https://arxiv.org/abs/2410.14185",
+        "preprint_text_display": "Preprint",
+        "paper_link": "",
+        "paper_text_display": "",
+        "github_link": "",
+        "github_text_display": "",
+        "website_link": "",
+        "website_text_display": "",
+        "youtube_link": "",
+        "youtube_text": ""
+      }
+    },
+    {
+      "id": "9",
+      "date": "2024-10-31",
+      "displayDate": "October 2024",
+      "title": "LINGOLY: A Benchmark of Olympiad-Level Linguistic Reasoning Puzzles in Low-Resource and Extinct Languages",
+      "authors": "AM Bean, S Hellsten, H Mayne, J Magomere, EA Chi, R Chi, SA Hale, HR Kirk",
+      "labMembers": [
+        "AM Bean",
+        "H Mayne"
+      ],
+      "pubDate": "2024",
+      "venue": "NeurIPS (Oral)",
+      "abstract": "Abstract",
+      "webp_path": "img/publications/lingoly_one.webp",
+      "links": {
+        "hf_link": "https://huggingface.co/datasets/ambean/lingOly",
+        "hf_text_display": "Dataset",
+        "preprint_link": "https://arxiv.org/abs/2406.06196",
+        "preprint_text_display": "Preprint",
+        "paper_link": "https://openreview.net/forum?id=cLga8GStdk",
+        "paper_text_display": "Publication",
+        "github_link": "https://github.com/am-bean/lingOly",
+        "github_text_display": "Code",
+        "website_link": "",
+        "website_text_display": "",
+        "youtube_link": "",
+        "youtube_text": ""
+      }
+    },
+    {
+      "id": "llm_shared_weaknesses",
+      "date": "2023-10-01",
+      "displayDate": "October 2023",
+      "title": "Do Large Language Models have Shared Weaknesses in Medical Question Answering?",
+      "authors": "AM Bean, K Korgul, F Krones, R McCraith, A Mahdi",
+      "labMembers": [
+        "AM Bean",
+        "K Korgul",
+        "F Krones",
+        "A Mahdi"
+      ],
+      "pubDate": "2023",
+      "venue": "arXiv preprint",
+      "abstract": "Abstract",
+      "webp_path": "img/publications/llm_shared_weaknesses.webp",
+      "links": {
+        "hf_link": "",
+        "hf_text_display": "",
+        "preprint_link": "https://arxiv.org/abs/2310.07225",
+        "preprint_text_display": "Preprint",
+        "paper_link": "https://openreview.net/forum?id=ZjQ04tsRQl",
+        "paper_text_display": "Publication",
+        "github_link": "",
+        "github_text_display": "",
+        "website_link": "",
+        "website_text_display": "",
+        "youtube_link": "",
+        "youtube_text": ""
+      }
+    },
+    {
+      "id": "lt_vit",
+      "date": "2023-10-09",
+      "displayDate": "October 2023",
+      "title": "LT-ViT: A Vision Transformer for Multi-Label Chest X-Ray Classification",
+      "authors": "U Marikkar, S Atito, M Awais, A Mahdi",
+      "labMembers": [
+        "U Marikkar",
+        "A Mahdi"
+      ],
+      "pubDate": "2023",
+      "venue": "IEEE International Conference on Image Processing (ICIP)",
+      "abstract": "Abstract",
+      "webp_path": "img/publications/lt_vit.webp",
+      "links": {
+        "hf_link": "",
+        "hf_text_display": "",
+        "preprint_link": "https://arxiv.org/abs/2311.07263",
+        "preprint_text_display": "Preprint",
+        "paper_link": "https://ieeexplore.ieee.org/abstract/document/10222175",
+        "paper_text_display": "Publication",
+        "github_link": "",
+        "github_text_display": "",
+        "website_link": "",
+        "website_text_display": "",
+        "youtube_link": "",
+        "youtube_text": ""
+      }
+    },
+    {
+      "id": "llm_landscape",
+      "date": "2023-05-01",
+      "displayDate": "May 2023",
+      "title": "Exploring the landscape of large language models in medical question answering: Observations and open questions",
+      "authors": "K Korgul, AM Bean, F Krones, R McCraith, A Mahdi",
+      "labMembers": [
+        "K Korgul",
+        "AM Bean",
+        "F Krones",
+        "A Mahdi"
+      ],
+      "pubDate": "2023",
+      "venue": "CoRR",
+      "abstract": "Abstract",
+      "webp_path": "img/publications/llm_landscape_med.webp",
+      "links": {
+        "hf_link": "",
+        "hf_text_display": "",
+        "preprint_link": "https://arxiv.org/abs/2310.07225",
+        "preprint_text_display": "Preprint",
+        "paper_link": "https://openreview.net/forum?id=mxe1XCcRrc",
+        "paper_text_display": "Publication",
+        "github_link": "",
+        "github_text_display": "",
+        "website_link": "",
+        "website_text_display": "",
+        "youtube_link": "",
+        "youtube_text": ""
+      }
+    },
+    {
+      "id": "dual_bayesian_resnet",
+      "date": "2022-09-01",
+      "displayDate": "September 2022",
+      "title": "Dual Bayesian ResNet: A deep learning approach to heart murmur detection",
+      "authors": "B Walker, F Krones, I Kiskin, G Parsons, T Lyons, A Mahdi",
+      "labMembers": [
+        "F Krones",
+        "G Parsons",
+        "A Mahdi"
+      ],
+      "pubDate": "2022",
+      "venue": "Computing in Cardiology (CinC)",
+      "abstract": "Abstract",
+      "webp_path": "img/publications/dual_bayesian_resnet.webp",
+      "links": {
+        "hf_link": "",
+        "hf_text_display": "",
+        "preprint_link": "https://arxiv.org/abs/2305.16691",
+        "preprint_text_display": "Preprint",
+        "paper_link": "https://ieeexplore.ieee.org/abstract/document/10081848/",
+        "paper_text_display": "Publication",
+        "github_link": "",
+        "github_text_display": "",
+        "website_link": "",
+        "website_text_display": "",
+        "youtube_link": "",
+        "youtube_text": ""
+      }
+    },
+    {
+      "id": "multimodal_cardiomegaly",
+      "date": "2022-07-01",
+      "displayDate": "July 2022",
+      "title": "Multimodal cardiomegaly classification with image-derived digital biomarkers",
+      "authors": "B Duvieusart, F Krones, G Parsons, A Mahdi, L Tarassenko",
+      "labMembers": [
+        "F Krones",
+        "G Parsons",
+        "A Mahdi"
+      ],
+      "pubDate": "2022",
+      "venue": "Annual Conference on Medical Image Understanding and Analysis (MIUA)",
+      "abstract": "Abstract",
+      "webp_path": "img/publications/multimodal_cardiomegaly.webp",
+      "links": {
+        "hf_link": "",
+        "hf_text_display": "",
+        "preprint_link": "",
+        "preprint_text_display": "",
+        "paper_link": "https://link.springer.com/chapter/10.1007/978-3-031-12053-4_2",
+        "paper_text_display": "Publication",
+        "github_link": "",
+        "github_text_display": "",
+        "website_link": "",
+        "website_text_display": "",
+        "youtube_link": "",
+        "youtube_text": ""
+      }
+    }
+  ]
+}
