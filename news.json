@@ -1,47 +1,251 @@
-{
-  "news": [
-    {
-      "id": "6",
-      "date": "2025-11-04",
-      "displayDate": "November 2025", 
-      "title": "New paper!",
-      "text": "'Measuring what matters: Construct validity in large language model benchmarks.' will be presented at the NeurIPS 2025 Datasets and Benchmarks Track.",
-      "category": "publication"
-    },
-    {
-      "id": "6",
-      "date": "2025-11-04",
-      "displayDate": "November 2025", 
-      "title": "OxRML @ EMNLP 2025",
-      "text": "We presented two papers at EMNLP 2025: 'How Does DPO Reduce Toxicity? A Mechanistic Neuron-Level Analysis' and 'LLMs Don't Know Their Own Decision Boundaries: The Unreliability of Self-Generated Counterfactual Explanations.'",
-      "category": "conference",
-      "photos": ["img/news/emnlp_2025.png"]
-    },
-    {
-      "id": "4",
-      "date": "2024-12-15",
-      "displayDate": "Dec 2024",
-      "title": "OxRML @ NeurIPS 2024",
-      "text": "We presented five papers at NeurIPS 2024 and its constituent workshops.",
-      "category": "conference",
-      "photos": ["img/news/neurips_2024.jpeg"]
-    },
-    {
-      "id": "3",
-      "date": "2024-07-21",
-      "displayDate": "Jul 2024",
-      "title": "OxRML @ ICML 2024",
-      "text": "Team members presented research and attended workshops at ICML 2024 in Vienna, Austria.",
-      "category": "conference",
-      "photos": ["img/news/icml_2024.jpeg"]
-    },
-    {
-      "id": "1",
-      "date": "2024-12-05",
-      "displayDate": "Dec 2024",
-      "title": "New paper!",
-      "text": "Evaluating the role of 'Constitutions' for learning from AI feedback.",
-      "category": "publication"
+[
+  {
+    "id": "2",
+    "date": "2026-02-09",
+    "displayDate": "February 2026",
+    "title": "New Paper in Nature Medicine!",
+    "text": "\"Reliability of LLMs as medical assistants for the general public: a randomized preregistered study\" published in Nature Medicine. It shows that strong performance on medical tests does not translate into reliable medical advice for the general public.",
+    "category": "paper",
+    "photos": [
+      {
+        "src": "img/news/nature_med_helpmed.png",
+        "alt": "Nature Medicine HelpMed paper visual",
+        "fit": "contain"
+      }
+    ],
+    "span_links": {
+      "Reliability of LLMs as medical assistants for the general public: a randomized preregistered study": "https://www.nature.com/articles/s41591-025-04074-y"
     }
-  ]
-}
+  },
+  {
+    "id": "3",
+    "date": "2026-01-25",
+    "displayDate": "January 2026",
+    "title": "Paper accepted at ICLR 2026!",
+    "text": "\"LINGOLY-TOO: Disentangling Reasoning from Knowledge with Templatised Orthographic Obfuscation\": a paper on disentangling reasoning from memorisation in language models, accepted as a poster at ICLR 2026.",
+    "category": "paper",
+    "photos": [
+      {
+        "src": "img/news/lingoly_too.png",
+        "alt": "LINGOLY-TOO paper visual",
+        "fit": "contain"
+      }
+    ],
+    "span_links": {
+      "LINGOLY-TOO: Disentangling Reasoning from Knowledge with Templatised Orthographic Obfuscation": "https://arxiv.org/pdf/2503.02972"
+    }
+  },
+  {
+    "id": "4",
+    "date": "2025-12-05",
+    "displayDate": "December 2025",
+    "title": "OxRML @ NeurIPS 2025",
+    "text": "Two papers presented at NeurIPS 2025 in San Diego:",
+    "bullets": [
+      {
+        "text": "Measuring what Matters: Construct Validity in Large Language Model Benchmarks [Poster Presentation]"
+      },
+      {
+        "text": "Evaluating LLM-as-a-Judge under Multilingual, Multimodal and Multi-domain Constraints [LLM Evaluation Workshop]"
+      }
+    ],
+    "category": "conference",
+    "photos": [
+      {
+        "src": "img/news/neurips_2025.jpg",
+        "alt": "NeurIPS 2025 conference image",
+        "fit": "cover"
+      }
+    ],
+    "span_links": {
+      "Measuring what Matters: Construct Validity in Large Language Model Benchmarks": "https://neurips.cc/virtual/2025/loc/san-diego/poster/121477",
+      "Evaluating LLM-as-a-Judge under Multilingual, Multimodal and Multi-domain Constraints": "https://neurips.cc/virtual/2025/loc/san-diego/122390"
+    }
+  },
+  {
+    "id": "6",
+    "date": "2025-11-04",
+    "displayDate": "November 2025",
+    "title": "OxRML @ EMNLP 2025",
+    "text": "Two papers presented at EMNLP 2025 in Suzhou:",
+    "bullets": [
+      {
+        "text": "How Does DPO Reduce Toxicity? A Mechanistic Neuron-Level Analysis"
+      },
+      {
+        "text": "LLMs Don't Know Their Own Decision Boundaries: The Unreliability of Self-Generated Counterfactual Explanations"
+      }
+    ],
+    "category": "conference",
+    "photos": [
+      {
+        "src": "img/news/emnlp_2025.png",
+        "alt": "OxRML at EMNLP 2025",
+        "fit": "cover"
+      }
+    ],
+    "span_links": {
+      "How Does DPO Reduce Toxicity? A Mechanistic Neuron-Level Analysis": "https://aclanthology.org/2025.emnlp-main.1501/",
+      "LLMs Don't Know Their Own Decision Boundaries: The Unreliability of Self-Generated Counterfactual Explanations": "https://aclanthology.org/2025.emnlp-main.1231/"
+    }
+  },
+  {
+    "id": "7",
+    "date": "2025-06-18",
+    "displayDate": "June 2025",
+    "title": "Prof. Adam Mahdi Wins Teaching Excellence Award 2025",
+    "text": "Prof. Adam Mahdi awarded the 2025 Teaching Excellence Award for delivering the Deep Learning course on the MSc Social Data Science programme, University of Oxford.",
+    "category": "award",
+    "photos": [
+      {
+        "src": "img/news/2025_teaching_excellence_awards.png",
+        "alt": "2025 OII Teaching Excellence Award graphic",
+        "fit": "contain"
+      }
+    ],
+    "span_links": {
+      "2025 Teaching Excellence Award": "https://www.socsci.ox.ac.uk/article/winners-of-teaching-excellence-awards-2025-announced"
+    }
+  },
+  {
+    "id": "8",
+    "date": "2025-04-01",
+    "displayDate": "April 2025",
+    "title": "DPhil Confirmation of Status Milestone Achieved",
+    "text": "Congratulations to Andrew Bean and Djavan De Clercq for successfully passing Confirmation of Status, a key DPhil milestone at the University of Oxford assessing research progress and readiness for thesis completion.",
+    "category": "milestone",
+    "photos": [],
+    "span_links": {}
+  },
+  {
+    "id": "9",
+    "date": "2025-03-26",
+    "displayDate": "March 2025",
+    "title": "DPhil Clarendon Scholarship Awarded",
+    "text": "Ryan Othniel Kearns was awarded the Clarendon Scholarship to study for a DPhil in Social Data Science at the Oxford Internet Institute.",
+    "category": "award",
+    "photos": [],
+    "span_links": {}
+  },
+  {
+    "id": "10",
+    "date": "2025-02-01",
+    "displayDate": "February 2025",
+    "title": "New Paper in Information Fusion!",
+    "text": "\"Review of multimodal machine learning approaches in healthcare\" published in Information Fusion. The paper surveys 50+ studies on integrating multimodal clinical data and provides a breakdown of fusion techniques, applications and challenges.",
+    "category": "paper",
+    "photos": [
+      {
+        "src": "img/news/f_krones_review_of_multimodal.png",
+        "alt": "Information Fusion multimodal healthcare review visual",
+        "fit": "contain"
+      }
+    ],
+    "span_links": {
+      "Review of multimodal machine learning approaches in healthcare": "https://www.sciencedirect.com/science/article/pii/S1566253524004688"
+    }
+  },
+  {
+    "id": "11",
+    "date": "2025-01-01",
+    "displayDate": "January 2025",
+    "title": "DPhil Transfer of Status Milestone Achieved",
+    "text": "Harry Mayne and Yushi Yang have successfully passed Transfer of Status, an important Oxford DPhil milestone assessing research proposal strength, progress and potential impact.",
+    "category": "milestone",
+    "photos": [],
+    "span_links": {}
+  },
+  {
+    "id": "12",
+    "date": "2024-12-15",
+    "displayDate": "December 2024",
+    "title": "OxRML @ NeurIPS 2024",
+    "text": "Seven papers presented at NeurIPS 2024 in Vancouver:",
+    "bullets": [
+      {
+        "text": "LINGOLY: A Benchmark of Olympiad-Level Linguistic Reasoning Puzzles in Low-Resource and Extinct Languages [Oral Presentation]"
+      },
+      {
+        "text": "Improving in-Context Learning with Small Language Model Ensembles [Adaptive Foundation Models Workshop]"
+      },
+      {
+        "text": "Do Large Language Models have Shared Weaknesses in Medical Question Answering? [AIM-FM Workshop]"
+      },
+      {
+        "text": "Can Fine-Tuning Improve the Medical Question-Answering Capabilities of Large Language Models? [FITML Workshop]"
+      },
+      {
+        "text": "Can Sparse Autoencoders be Used to Decompose and Interpret Steering Vectors? [MINT Workshop]"
+      },
+      {
+        "text": "How Does DPO Reduce Toxicity? A Mechanistic Neuron-Level Analysis [MINT Workshop]"
+      },
+      {
+        "text": "Evaluating the Role of 'Constitutions' for Learning from AI Feedback [Language Gamification Workshop]"
+      }
+    ],
+    "category": "conference",
+    "photos": [
+      {
+        "src": "img/news/neurips_2024.jpeg",
+        "alt": "OxRML at NeurIPS 2024",
+        "fit": "cover"
+      }
+    ],
+    "span_links": {
+      "LINGOLY: A Benchmark of Olympiad-Level Linguistic Reasoning Puzzles in Low-Resource and Extinct Languages": "https://openreview.net/forum?id=cLga8GStdk",
+      "Improving in-Context Learning with Small Language Model Ensembles": "https://openreview.net/forum?id=v9WxznHEaL",
+      "Do Large Language Models have Shared Weaknesses in Medical Question Answering?": "https://openreview.net/forum?id=ZjQ04tsRQl",
+      "Can Fine-Tuning Improve the Medical Question-Answering Capabilities of Large Language Models?": "https://openreview.net/forum?id=g23rePzu0X",
+      "Can Sparse Autoencoders be Used to Decompose and Interpret Steering Vectors?": "https://openreview.net/forum?id=QRpzG4b5dz",
+      "How Does DPO Reduce Toxicity? A Mechanistic Neuron-Level Analysis": "https://openreview.net/forum?id=qY1rkqcRuM",
+      "Evaluating the Role of 'Constitutions' for Learning from AI Feedback": "https://openreview.net/forum?id=Pf3ow4YbFl"
+    }
+  },
+  {
+    "id": "13",
+    "date": "2024-09-11",
+    "displayDate": "September 2024",
+    "title": "Winners of 2024 PhysioNet Challenge",
+    "text": "Congratulations to Felix Krones, Ben Walker, Terry Lyons and Adam Mahdi on winning the 2024 George B. Moody PhysioNet Challenge by developing an algorithm that converts printed electrocardiograms into digital time-series data, unlocking historical medical records for analysis. The team achieved the top score on the hidden test set, with the award announced at Computing in Cardiology in Karlsruhe.",
+    "category": "award",
+    "photos": [
+      {
+        "src": "img/news/physionet_challenge_2024_logo.gif",
+        "alt": "2024 PhysioNet Challenge logo",
+        "fit": "contain"
+      },
+      {
+        "src": "img/news/physionet_challenge_cinc.jpg",
+        "alt": "Computing in Cardiology and PhysioNet Challenge banner",
+        "fit": "contain"
+      }
+    ],
+    "span_links": {
+      "achieved the top score": "https://www.oii.ox.ac.uk/news-events/oxford-researchers-win-international-ai-competition/"
+    }
+  },
+  {
+    "id": "14",
+    "date": "2024-07-21",
+    "displayDate": "July 2024",
+    "title": "OxRML @ ICML 2024",
+    "text": "Adam Mahdi and Andrew Bean organised the Data-Centric Machine Learning Research (DMLR) workshop at ICML 2024, Vienna, bringing together researchers to advance data-centric approaches to machine learning. The workshop focused on the role of datasets in foundation models, highlighting challenges in data quality, curation and evaluation and fostering discussion on how better data can drive more reliable and robust AI systems.",
+    "category": "conference",
+    "photos": [
+      {
+        "src": "img/news/icml_2024.jpeg",
+        "alt": "OxRML at ICML 2024",
+        "fit": "cover"
+      },
+      {
+        "src": "img/news/icml_2024_dmlr.png",
+        "alt": "Data-Centric Machine Learning Research workshop visual",
+        "fit": "contain"
+      }
+    ],
+    "span_links": {
+      "Data-Centric Machine Learning Research (DMLR) workshop": "https://dmlr.ai/"
+    }
+  }
+]
