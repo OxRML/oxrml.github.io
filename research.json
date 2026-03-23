@@ -1,6 +1,39 @@
 {
   "publications": [
     {
+      "id": "trap_benchmark",
+      "date": "2025-12-01",
+      "displayDate": "December 2025",
+      "title": "It's a TRAP! Task-Redirecting Agent Persuasion Benchmark for Web Agents",
+      "authors": "K Korgul, Y Yang, A Drohomirecki, P Błaszczyk, W Howard, L Aichberger, C Russell, P H S Torr, A Mahdi, A Bibi",
+      "labMembers": [
+        "K Korgul",
+        "Y Yang",
+        "W Howard",
+        "A Mahdi",
+        "A Bibi"
+      ],
+      "pubDate": "2025",
+      "venue": "Under review",
+      "home_display": true,
+      "abstract": "Web-based agents powered by large language models are increasingly used for tasks such as email management or professional networking. Their reliance on dynamic web content, however, makes them vulnerable to prompt injection attacks: adversarial instructions embedded in interface elements that persuade agents to divert from their intended tasks. We introduce the Task-Redirecting Agent Persuasion Benchmark (TRAP), an evaluation suite for studying how persuasion techniques misguide autonomous web agents on realistic tasks. Across six frontier models, agents are susceptible to prompt injection in 25% of tasks on average (13% for GPT-5 to 43% for DeepSeek-R1), with small interface or contextual changes often doubling success rates and revealing systemic, psychologically driven vulnerabilities in web-based agents. We also provide a modular social-engineering injection framework with controlled experiments on high-fidelity website clones, allowing for further benchmark expansion.",
+      "webp_path": "",
+      "links": {
+        "hf_link": "",
+        "hf_text_display": "",
+        "preprint_link": "https://arxiv.org/abs/2512.23128",
+        "preprint_text_display": "Preprint",
+        "paper_link": "https://openreview.net/pdf?id=Smk4fl6Q9E",
+        "paper_text_display": "Publication",
+        "github_link": "",
+        "github_text_display": "",
+        "website_link": "https://oxrml.com/its-a-trap/",
+        "website_text_display": "Website",
+        "youtube_link": "",
+        "youtube_text": ""
+      }
+    },
+    {
       "id": "llm_as_judge_polyvis",
       "date": "2025-11-01",
       "displayDate": "November 2025",
