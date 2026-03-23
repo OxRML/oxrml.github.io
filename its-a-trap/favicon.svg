@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Bear trap / jaw trap icon -->
+  <ellipse cx="32" cy="38" rx="24" ry="12" fill="none" stroke="#dc2626" stroke-width="3"/>
+  <path d="M12,38 L18,20 L24,38" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M22,38 L28,22 L34,38" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M30,38 L36,20 L42,38" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M40,38 L46,22 L52,38" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linejoin="round"/>
+</svg>

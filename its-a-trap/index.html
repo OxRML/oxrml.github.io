@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>It's a TRAP!</title>
+  <meta name="description" content="Task-Redirecting Agent Persuasion Benchmark for Web Agents" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="favicon.svg" type="image/svg+xml" />
+  <style>
+    :root{
+      --ink:#1f2937;
+      --muted:#6b7280;
+      --link:#002147;
+      --bg:#ffffff;
+      --card:#ffffff;
+      --border:#e5e7eb;
+      --accent:#0f172a;
+      --maxw: 920px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:16px/1.7 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,Apple Color Emoji,Segoe UI Emoji}
+    a{color:var(--link);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:var(--maxw);margin:0 auto;padding:2.5rem 1.25rem}
+    header{padding-bottom:1rem;border-bottom:1px solid var(--border)}
+    h1{font-size:clamp(1.9rem,3.8vw,2.6rem);line-height:1.2;margin:0 0 .5rem;color:var(--accent);font-weight:650;letter-spacing:-.01em}
+    .meta{display:flex;flex-direction:column;gap:.5rem;margin:.75rem 0 0}
+    .authors{font-size:1.02rem}
+    .affils{color:var(--muted);font-size:.98rem}
+    .badges{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.25rem}
+    .badge{display:inline-block;font-size:.8rem;background:var(--card);border:1px solid var(--border);padding:.15rem .5rem;border-radius:.4rem;color:var(--muted)}
+    main{display:grid;gap:1.25rem;margin-top:1.5rem}
+    section{background:var(--card);border:1px solid var(--border);border-radius:.6rem;padding:1rem 1.25rem}
+    section h2{margin:.25rem 0 .25rem;font-size:1.25rem;color:var(--accent)}
+    .keywords{color:var(--muted);font-size:.95rem;margin-top:.5rem}
+    code,pre,textarea{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
+    .bibtex{background:#0b1020;color:#e5e7eb;border-radius:.6rem;border:1px solid #111827;padding:0}
+    .bibtex header{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;border:0;border-bottom:1px solid #1f2937}
+    .bibtex h3{margin:0;font-size:1rem;color:#e5e7eb}
+    .copy-btn{appearance:none;border:1px solid #334155;background:#111827;color:#e5e7eb;border-radius:.4rem;padding:.4rem .6rem;font-size:.85rem;cursor:pointer}
+    .copy-btn:hover{background:#0b1324}
+    .bibtex textarea{width:100%;height:8rem;max-height:16rem;overflow:auto;border:0;margin:0;padding:1rem;background:transparent;color:inherit;resize:vertical}
+    footer{margin-top:2rem;color:var(--muted);font-size:.9rem;text-align:center}
+
+    /* back button */
+    .back-btn{
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .95rem;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid transparent;
+      padding: .35rem .6rem;
+      border-radius: .5rem;
+      text-decoration: none;
+      margin-bottom: .75rem;
+    }
+    .back-btn:hover{
+      color: var(--link);
+      background: rgba(2,6,23,0.03);
+      border-color: var(--border);
+      text-decoration: none;
+    }
+
+    /* hero highlight with image */
+    .highlight-row{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:1.25rem;
+      align-items:center;
+    }
+    .highlight-row img{
+      max-width:220px;
+      width:100%;
+      border-radius:.6rem;
+      border:1px solid var(--border);
+    }
+    @media (max-width:600px){
+      .highlight-row{grid-template-columns:1fr}
+      .highlight-row img{max-width:200px;justify-self:center}
+    }
+
+    /* video */
+    .demo-video{
+      width:100%;
+      max-width:800px;
+      border-radius:.5rem;
+      border:1px solid var(--border);
+      margin:.75rem auto;
+      display:block;
+    }
+
+    /* figures */
+    .iframe-wrapper {
+      display: flex;
+      justify-content: center;
+      margin: .75rem 0;
+    }
+    .iframe-wrapper img {
+      width: 80%;
+      max-width: 900px;
+      height: auto;
+      border: none;
+      border-radius: .4rem;
+      background: #fff;
+      padding: .25rem;
+    }
+
+    /* stats bar */
+    .stats-bar{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px,1fr));
+      gap:.75rem;
+      margin:.75rem 0;
+    }
+    .stat{text-align:center}
+    .stat-val{font-size:1.6rem;font-weight:700;color:var(--accent)}
+    .stat-label{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+
+    /* results table */
+    .results-table{width:100%;border-collapse:collapse;font-size:.9rem;margin:.5rem 0}
+    .results-table th,.results-table td{padding:.5rem .75rem;text-align:left;border-bottom:1px solid var(--border)}
+    .results-table th{font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600}
+    .results-table td:first-child{font-weight:600}
+    .asr{color:#dc2626;font-weight:600}
+
+    /* findings list */
+    .findings-list{list-style:none;margin:.5rem 0 0;padding:0;display:grid;gap:.75rem}
+    .findings-list li{display:flex;gap:.75rem;align-items:flex-start;font-size:.93rem}
+    .finding-num{flex-shrink:0;width:1.6rem;height:1.6rem;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;margin-top:.15rem}
+
+    @media (prefers-color-scheme: dark){
+      :root{--bg:#0b0f14;--ink:#e5e7eb;--muted:#94a3b8;--card:#0f172a;--border:#1f2937;--accent:#f3f4f6;--link:#60a5fa}
+      header h4 a{color:#ffffff !important}
+      .back-btn{ color: var(--muted); }
+      .back-btn:hover{ background: rgba(255,255,255,0.02); }
+      .asr{color:#f87171}
+      .finding-num{background:#94a3b8;color:#0f172a}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a class="back-btn" href="https://oxrml.com" rel="noopener noreferrer" aria-label="Back to oxrml.com">&larr; Reasoning with Machines Lab</a>
+      <h1>It's a TRAP! Task-Redirecting Agent Persuasion Benchmark for Web Agents</h1>
+      <h4 style="margin:0; display:flex; align-items:center; gap:.5rem;">
+        <i>Under review</i>
+      </h4>
+
+      <div class="meta">
+        <div class="authors">
+          Karolina Korgul, Yushi Yang, Arkadiusz Drohomirecki, Piotr B&#322;aszczyk, Will Howard, Lukas Aichberger, Chris Russell, Philip H.S. Torr, Adam Mahdi, Adel Bibi
+        </div>
+        <div class="badges">
+          <a class="badge" href="https://openreview.net/pdf?id=Smk4fl6Q9E" aria-label="PDF" target="_blank">PDF</a>
+          <a class="badge" href="https://arxiv.org/abs/2512.23128" aria-label="arXiv" target="_blank"><img src="../img/assets/arxiv.svg" style="height:1.2em; vertical-align:middle; display:inline-block; margin-right:.4rem;">arXiv</a>
+        </div>
+      </div>
+      <br>
+
+      <section id="highlight">
+        <div class="highlight-row">
+          <div>
+            <p style="padding-top:0;padding-bottom:.4rem;margin:0">Web agents powered by LLMs are increasingly deployed to manage email, shop online, and handle professional tasks. But their reliance on dynamic web content makes them vulnerable to <strong>prompt injection attacks</strong>: adversarial instructions hidden in interface elements that redirect agents from their intended tasks.</p>
+            <p style="padding-top:0;padding-bottom:.4rem;margin:0">We introduce <strong>TRAP</strong>, a modular social-engineering evaluation suite for studying how persuasion techniques misguide autonomous web agents. Across six frontier models, agents are susceptible to prompt injection in <strong>25% of tasks on average</strong> (13% for GPT-5 to 43% for DeepSeek-R1).</p>
+          </div>
+          <img src="img/admiral-ackbar-meme.webp" alt="Admiral Ackbar: It's a Trap!" />
+        </div>
+      </section>
+
+      <div class="stats-bar" style="margin-top:1rem">
+        <div class="stat"><div class="stat-val">25%</div><div class="stat-label">Average ASR</div></div>
+        <div class="stat"><div class="stat-val">630</div><div class="stat-label">Unique Injections</div></div>
+        <div class="stat"><div class="stat-val">6</div><div class="stat-label">High-Fidelity Clones</div></div>
+        <div class="stat"><div class="stat-val">5</div><div class="stat-label">Attack Dimensions</div></div>
+      </div>
+    </header>
+
+    <main>
+      <section id="abstract">
+        <h2>Abstract</h2>
+        <p>Web-based agents powered by large language models are increasingly used for tasks such as email management or professional networking. Their reliance on dynamic web content, however, makes them vulnerable to prompt injection attacks: adversarial instructions embedded in interface elements that persuade agents to divert from their intended tasks. We introduce the Task-Redirecting Agent Persuasion Benchmark (TRAP), an evaluation suite for studying how persuasion techniques misguide autonomous web agents on realistic tasks. Across six frontier models, agents are susceptible to prompt injection in 25% of tasks on average (13% for GPT-5 to 43% for DeepSeek-R1), with small interface or contextual changes often doubling success rates and revealing systemic, psychologically driven vulnerabilities in web-based agents. We also provide a modular social-engineering injection framework with controlled experiments on high-fidelity website clones, allowing for further benchmark expansion.</p>
+      </section>
+
+      <section id="contributions">
+        <h2>Core contributions</h2>
+        <ul class="findings-list">
+          <li>
+            <span class="finding-num">1</span>
+            <div><strong>Modular attack space.</strong> A 5-dimensional attack space of 630 distinct injections, varying persuasion principles, manipulation methods, and interface forms for granular analysis of agent failure.</div>
+          </li>
+          <li>
+            <span class="finding-num">2</span>
+            <div><strong>Extensible framework.</strong> Built on the REAL framework, TRAP provides an extensible environment for evaluating web-based LLM agents with deterministic website simulations for reproducible and realistic safety testing.</div>
+          </li>
+          <li>
+            <span class="finding-num">3</span>
+            <div><strong>Psychological analysis.</strong> Shifts focus from simple task completion to <em>why</em> attacks succeed, revealing systematic vulnerabilities driven by human-centric persuasion strategies like Social Proof and Authority.</div>
+          </li>
+        </ul>
+      </section>
+
+      <section id="environments">
+        <h2>Target environments</h2>
+        <p>We selected six common web interfaces to host our injections: clones of <strong>Google Calendar, Gmail, Amazon, Upwork, LinkedIn,</strong> and <strong>DoorDash</strong>, created originally by <a href="https://www.realevals.xyz/" target="_blank">AGI Inc</a>. These environments were chosen for their large user-editable surfaces (bios, reviews, post feeds), which serve as natural vectors for indirect prompt injection.</p>
+        <div class="iframe-wrapper">
+          <img src="img/target-environments.png" alt="Six high-fidelity website clones used in TRAP" />
+        </div>
+      </section>
+
+      <section id="architecture">
+        <h2>Five-dimensional attack space</h2>
+        <p>Attacks are synthesized using a modular approach. By combining interface vectors with specific persuasion techniques, we isolate the exact triggers for agent failure. The five dimensions are: <strong>injection location</strong>, <strong>interaction vector</strong> (button vs. hyperlink), <strong>persuasion principles</strong> (e.g., authority, social proof), <strong>manipulation methods</strong> (e.g., CoT injection, many-shot), and <strong>tailoring</strong> (generic vs. task-specific wording).</p>
+        <div class="iframe-wrapper">
+          <img src="img/attack-architecture.png" alt="Modular attack construction" />
+        </div>
+      </section>
+
+      <section id="pipeline">
+        <h2>The redirection pipeline</h2>
+        <p>When an agent processes a page, it consumes the <strong>Accessibility Tree (AXTree)</strong>. Our pipeline measures the binary outcome of whether the agent clicks a malicious redirect button or link. Redirection to an attacker-controlled site is the critical security boundary, enabling downstream harvesting or exfiltration.</p>
+        <div class="iframe-wrapper">
+          <img src="img/attack-pipeline.png" alt="TRAP attack pipeline" />
+        </div>
+      </section>
+
+      <section id="results">
+        <h2>Empirical findings</h2>
+        <p>We evaluated six closed- and open-source frontier models across 3,780 experimental runs.</p>
+
+        <table class="results-table">
+          <thead>
+            <tr><th>Model</th><th>Benign Utility</th><th>Attack Success Rate</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>GPT-5</td><td>89%</td><td class="asr">13%</td></tr>
+            <tr><td>Claude 3.7 Sonnet</td><td>83%</td><td class="asr">20%</td></tr>
+            <tr><td>Gemini 2.5 Flash</td><td>61%</td><td class="asr">30%</td></tr>
+            <tr><td>DeepSeek-R1</td><td>67%</td><td class="asr">43%</td></tr>
+          </tbody>
+        </table>
+
+        <div class="iframe-wrapper" style="margin-top:1rem">
+          <img src="img/hijack-rate-matrix.png" alt="Hijack success rate matrix across persuasion techniques and models" style="width:55%" />
+        </div>
+        <p style="font-size:.85rem;color:var(--muted);margin-top:.25rem"><strong>Hijack success matrix.</strong> Social Proof and Consistency principles emerged as the most universal triggers. Many-shot conditioning and Chain-of-Thought injections were the most successful manipulation methods across all evaluated agents.</p>
+      </section>
+
+      <section id="findings">
+        <h2>Key findings</h2>
+        <ul class="findings-list">
+          <li>
+            <span class="finding-num">1</span>
+            <div><strong>The interface gap.</strong> Button-based injections are over 3.5&times; more effective than hyperlinks, likely due to models associating buttons with mandatory UI interactions.</div>
+          </li>
+          <li>
+            <span class="finding-num">2</span>
+            <div><strong>Systematic transfer.</strong> Attacks that breach robust models like GPT-5 are high-confidence "super-injections" that almost always transfer to weaker models.</div>
+          </li>
+          <li>
+            <span class="finding-num">3</span>
+            <div><strong>Tailoring multiplier.</strong> Swapping generic phrases for task-specific wording (e.g., "access event details") increases attack success rates by up to 600%.</div>
+          </li>
+          <li>
+            <span class="finding-num">4</span>
+            <div><strong>Model-specific weaknesses.</strong> Each model exhibits a distinct vulnerability profile. GPT-5 is most susceptible to many-shot and CoT attacks; DeepSeek-R1 is almost entirely compromised through CoT injection; Claude Sonnet 3.7 is particularly sensitive to consistency-based persuasion.</div>
+          </li>
+        </ul>
+      </section>
+
+      <section id="example">
+        <h2>Anatomy of a successful attack</h2>
+        <p>How multiple layers of persuasion create an effective hijack:</p>
+        <div class="iframe-wrapper">
+          <img src="img/example-injection.png" alt="Example injection combining Authority principle with CoT injection" style="width:55%" />
+        </div>
+        <p style="font-size:.85rem;color:var(--muted);margin-top:.25rem">The injection impersonates a "Legally Required" Admin Policy notice (<strong>Authority</strong> principle) while numbered "Reasoning steps" mimic the agent's internal chain of thought (<strong>CoT injection</strong>), effectively overwriting its planned behaviour.</p>
+      </section>
+
+      <section id="demo">
+        <h2>Beyond one click: data exfiltration demo</h2>
+        <p>A key question is whether a single-click hijack can lead to real downstream harm. We demonstrate that it can: once an agent is redirected to an attacker-controlled page, it can be induced to exfiltrate private data from previously visited pages.</p>
+        <video class="demo-video" controls preload="metadata" poster="img/target-environments.png">
+          <source src="img/gemini-2-5-flash-full-attack-demo.webm" type="video/webm" />
+          Your browser does not support the video tag.
+        </video>
+        <p style="font-size:.85rem;color:var(--muted);margin-top:.25rem"><strong>Gemini 2.5 Flash demo.</strong> The agent reads a bank statement email, opens a second email containing an injected "click here" button, is redirected to an attacker-controlled "verification" page, and fills in the exact banking details from the first email &mdash; data exfiltrated.</p>
+      </section>
+
+      <div class="bibtex">
+        <header>
+          <h3>Citation</h3>
+          <button class="copy-btn" type="button" id="copyBib">Copy</button>
+        </header>
+        <textarea id="bibtexBox" readonly spellcheck="false">@article{korgul2025trap,
+  title={It's a TRAP! Task-Redirecting Agent Persuasion Benchmark for Web Agents},
+  author={Korgul, Karolina and Yang, Yushi and Drohomirecki, Arkadiusz and Blaszczyk, Piotr and Howard, Will and Aichberger, Lukas and Russell, Chris and Torr, Philip and Mahdi, Adam and Bibi, Adel},
+  journal={arXiv preprint arXiv:2512.23128},
+  year={2025}
+}</textarea>
+      </div>
+    </main>
+
+    <footer>
+      &copy; 2025 Reasoning with Machines Lab, University of Oxford.
+    </footer>
+  </div>
+
+  <script>
+    (function(){
+      const btn = document.getElementById('copyBib');
+      const box = document.getElementById('bibtexBox');
+      if(btn && box){
+        btn.addEventListener('click', async () => {
+          try{
+            await navigator.clipboard.writeText(box.value);
+            btn.textContent = 'Copied!';
+            setTimeout(()=> btn.textContent = 'Copy', 1200);
+          }catch(e){
+            box.select(); document.execCommand('copy');
+            btn.textContent = 'Copied!';
+            setTimeout(()=> btn.textContent = 'Copy', 1200);
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
