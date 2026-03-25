@@ -1,6 +1,37 @@
 {
   "publications": [
     {
+      "id": "agentslr",
+      "date": "2026-01-28",
+      "displayDate": "January 2026",
+      "title": "AgentSLR: Automating Systematic Literature Reviews in Epidemiology with Agentic AI",
+      "authors": "S Padarha, RO Kearns, T Naidoo, L Yang, Ł Borchmann, P Błaszczyk, C Morgenstern, R McCabe, S Bhatia, PH Torr, J Foerster, SA Hale, T Rawson, A Cori, E Semenova, A Mahdi",
+      "labMembers": [
+        "S Padarha",
+        "RO Kearns",
+        "A Mahdi"
+      ],
+      "pubDate": "2026",
+      "venue": "Under review",
+      "home_display": false,
+      "abstract": "Systematic literature reviews are essential for synthesizing scientific evidence but are costly, difficult to scale and time-intensive, creating bottlenecks for evidence-based policy. We study whether large language models can automate the complete systematic review workflow, from article retrieval, article screening, data extraction to report synthesis. Applied to epidemiological reviews of nine WHO-designated priority pathogens and validated against expert-curated ground truth, our open-source agentic pipeline (AgentSLR) achieves performance comparable to human researchers while reducing review time from approximately 7 weeks to 20 hours (a 58x speed-up). Our comparison of five frontier models reveals that performance on SLR is driven less by model size or inference cost than by each model's distinctive capabilities. Through human-in-the-loop validation, we identify key failure modes. Our results demonstrate that agentic AI can substantially accelerate scientific evidence synthesis in specialised domains.",
+      "webp_path": "",
+      "links": {
+        "hf_link": "https://huggingface.co/datasets/OxRML/AgentSLR",
+        "hf_text_display": "Dataset",
+        "preprint_link": "https://arxiv.org/abs/2603.22327",
+        "preprint_text_display": "Preprint",
+        "paper_link": "",
+        "paper_text_display": "",
+        "github_link": "https://github.com/OxRML/AgentSLR",
+        "github_text_display": "Code",
+        "website_link": "https://oxrml.com/agent-slr/",
+        "website_text_display": "Website",
+        "youtube_link": "",
+        "youtube_text": ""
+      }
+    },
+    {
       "id": "llm_as_judge_polyvis",
       "date": "2025-11-01",
       "displayDate": "November 2025",
@@ -32,8 +63,8 @@
     },
     {
       "id": "madqa_agents_reasoning",
-      "date": "2026-03-12",
-      "displayDate": "March 2026",
+      "date": "2026-01-28",
+      "displayDate": "January 2026",
       "title": "Strategic Navigation or Stochastic Search? How Agents and Humans Reason Over Document Collections",
       "authors": "Ł Borchmann, J Van Landeghem, M Turski, S Padarha, RO Kearns, A Mahdi, N Rogge, C Fourrier, S Han, H Yao, A Llabrés, Y Xu, D Karatzas, H Zhang, A Datta",
       "labMembers": [
@@ -63,8 +94,8 @@
     },
     {
       "id": "faithfulness_self_explanations",
-      "date": "2026-02-02",
-      "displayDate": "February 2026",
+      "date": "2026-01-28",
+      "displayDate": "January 2026",
       "title": "A Positive Case for Faithfulness: LLM Self-Explanations Help Predict Model Behavior",
       "authors": "H Mayne, JS Kang, D Gould, K Ramchandran, A Mahdi, NY Siegel",
       "labMembers": [
