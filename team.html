@@ -85,8 +85,8 @@
         }
 
         .member-photo {
-            width: 135px;
-            height: 135px;
+            width: 150px;
+            height: 150px;
             background: linear-gradient(135deg, #f7fafc, #edf2f7);
             border-radius: 50%;
             margin: 0 auto 1.5rem;
@@ -96,6 +96,16 @@
             font-size: 1rem;
             color: #718096;
             border: 2px solid #e2e8f0;
+            overflow: hidden;
+        }
+
+        .member-photo img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            border-radius: inherit;
         }
 
         .member-name {
@@ -388,16 +398,20 @@
                             Adam Mahdi
                         </h3>
                         <p class="pi-title">
-                            Lab lead, Reasoning with Machines Lab
+                            Lab lead, <a href="https://www.oii.ox.ac.uk/people/profiles/adam-mahdi/"
+                                rel="noopener noreferrer" target="_blank"
+                                style="color:inherit;text-decoration:underline;">Associate Professor</a>
                             <br />
                             University of Oxford
                         </p>
-                        <div class="member-contact-links" style="justify-content:flex-start">
+                        <div class="member-contact-links">
                             <a href="mailto:adam.mahdi@oii.ox.ac.uk" aria-label="Email Adam Mahdi"><i
                                     class="fas fa-envelope"></i></a>
                             <a href="https://scholar.google.com/citations?user=jUDSqzEAAAAJ"
                                 rel="noopener noreferrer" target="_blank" aria-label="$Adam Mahdi Google Scholar"><i
                                     class="fas fa-graduation-cap"></i></a>
+                            <a href="https://x.com/adam_mahdi_" rel="noopener noreferrer" target="_blank"
+                                aria-label="$Adam Mahdi X"><i class="fab fa-x-twitter"></i></a>
                             <a href="https://www.linkedin.com/in/adam-mahdi/" rel="noopener noreferrer"
                                 target="_blank" aria-label="$Adam Mahdi LinkedIn"><i
                                     class="fab fa-linkedin"></i></a>
@@ -485,7 +499,7 @@
                             cardContactLinks += `<a href="${member.links.linkedin}" rel="noopener noreferrer" target="_blank" aria-label="${member.name} LinkedIn"><i class="fab fa-linkedin"></i></a>`;
                         }
                         if (member.links.twitter) {
-                            cardContactLinks += `<a href="${member.links.twitter}" rel="noopener noreferrer" target="_blank" aria-label="${member.name} Twitter"><i class="fab fa-twitter"></i></a>`;
+                            cardContactLinks += `<a href="${member.links.twitter}" rel="noopener noreferrer" target="_blank" aria-label="${member.name} X"><i class="fab fa-x-twitter"></i></a>`;
                         }
                         if (member.links.github) {
                             cardContactLinks += `<a href="${member.links.github}" rel="noopener noreferrer" target="_blank" aria-label="${member.name} GitHub"><i class="fab fa-github"></i></a>`;

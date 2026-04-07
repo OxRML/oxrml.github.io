@@ -187,6 +187,23 @@
       }
     },
     {
+      "id": "caleb_tan",
+      "name": "Caleb Tan",
+      "role": "MSc Student",
+      "focus": "LLM Evaluations, Reasoning",
+      "photo": "img/members/caleb_tan.JPG",
+      "shortBio": "Caleb Tan is a MSc Social Data Science Student in the Reasoning with Machines Lab and the Digital Ethics and Defence Technologies Research Group at the Oxford Internet Institute.",
+      "longBio": "Caleb Tan is a MSc Social Data Science Student in the Reasoning with Machines Lab and the Digital Ethics and Defence Technologies Research Group at the Oxford Internet Institute. His research focuses on the reasoning of LLMs in high-risk domains, and is supervised by Professor Mariarosaria Taddeo and Professor Adam Mahdi. He holds a BSc (Econ) in Economics and Geography from University College London.",
+      "links": {
+        "email": "caleb.tan@oii.ox.ac.uk",
+        "linkedin": "https://www.linkedin.com/in/tan-caleb-2001/",
+        "website": "",
+        "twitter": "",
+        "github": "",
+        "scholar": ""
+      }
+    },
+    {
       "id": "sebastian_petric",
       "name": "Sebastian Petric",
       "role": "Visiting Policy Fellow (2024-2026)",
@@ -200,6 +217,23 @@
         "website": "https://www.sebastianpetric.com/",
         "twitter": "",
         "github": ""
+      }
+    },
+    {
+      "id": "tristan_naidoo",
+      "name": "Tristan Naidoo",
+      "role": "Research Affiliate",
+      "focus": "Public Health AI, LLM evaluations",
+      "photo": "img/members/tristan_naidoo.jpeg",
+      "shortBio": "Tristan is a Research Associate in AI for Health Data Systems at Imperial College London. His current research focuses on the equitable distribution and use of AI tools as means of improving public health. Within this, he has a particular interest in LLMs and agentic AI, which has led to his affiliation with the Reasoning with Machines Lab.",
+      "longBio": "Tristan is a Research Associate in AI for Health Data Systems at Imperial College London. His current research focuses on the equitable distribution and use of AI tools as a means of improving public health. Within this, he has a particular interest in LLMs and agentic AI, which has led to his affiliation with the Reasoning with Machines Lab.\n\nBefore his current role, Tristan completed a PhD at Imperial College London, where he used NLP to study public discourse during the COVID-19 pandemic, and an MSc in Advanced Analytics from the University of Cape Town. Between his studies, he worked at a data science start-up as both a Data Scientist and a Technical Lead.",
+      "links": {
+        "email": "t.naidoo21@imperial.ac.uk",
+        "linkedin": "https://www.linkedin.com/in/tristan-naidoo-864b6b142/",
+        "website": "",
+        "twitter": "",
+        "github": "https://github.com/tristan-myles",
+        "scholar": "https://scholar.google.co.uk/citations?user=AqYz76wAAAAJ"
       }
     }
   ],
