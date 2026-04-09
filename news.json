@@ -247,5 +247,23 @@
     "span_links": {
       "Data-Centric Machine Learning Research (DMLR) workshop": "https://dmlr.ai/"
     }
+  },
+  {
+    "id": "15",
+    "date": "2026-02-18",
+    "displayDate": "February 2026",
+    "title": "Ryan Othniel Kearns Wins MSc Thesis Prize",
+    "text": "Ryan Othniel Kearns has been awarded the 2025 MSc Thesis Prize for his thesis, 'Quantifying construct validity in large language model evaluations'. From supervisor Prof. Adam Mahdi: \"Ryan's thesis addresses one of the most important challenges in today's AI research: how to meaningfully interpret benchmark results for large language models.\"",
+    "category": "award",
+    "photos": [
+      {
+        "src": "img/news/2025_msc_thesis_awards.png",
+        "alt": "2025 MSc Thesis Prize graphic",
+        "fit": "contain"
+      }
+    ],
+    "span_links": {
+      "2025 MSc Thesis Prize": "https://www.oii.ox.ac.uk/news-events/introducing-the-2025-msc-thesis-prize-winners/"
+    }
   }
 ]
