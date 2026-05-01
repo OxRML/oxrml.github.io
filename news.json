@@ -19,20 +19,34 @@
   },
   {
     "id": "3",
-    "date": "2026-01-25",
-    "displayDate": "January 2026",
-    "title": "Paper accepted at ICLR 2026!",
-    "text": "\"LINGOLY-TOO: Disentangling Reasoning from Knowledge with Templatised Orthographic Obfuscation\": a paper on disentangling reasoning from memorisation in language models, accepted as a poster at ICLR 2026.",
+    "date": "2026-04-25",
+    "displayDate": "April 2026",
+    "title": "OxRML at ICLR 2026!",
+    "text": "Two papers presented at ICLR 2026 in Rio de Janeiro:",
     "category": "paper",
+    "bullets": [
+      {
+        "text": "LINGOLY-TOO: Disentangling Reasoning from Knowledge with Templatised Orthographic Obfuscation [Poster Presentation]"
+      },
+      {
+        "text": "A Positive Case for Faithfulness: LLM Self-Explanations Help Predict Model Behaviour  [Trustworthy AI Workshop ]"
+      }
+    ],
     "photos": [
       {
-        "src": "img/news/lingoly_too.png",
-        "alt": "LINGOLY-TOO paper visual",
-        "fit": "contain"
+        "src": "img/news/2026_iclr_1.jpeg",
+        "alt": "OxRML @ ICLR 2026",
+        "fit": "cover"
+      },
+      {
+        "src": "img/news/2026_iclr_2.jpeg",
+        "alt": "OxRML @ ICLR 2026",
+        "fit": "cover"
       }
     ],
     "span_links": {
-      "LINGOLY-TOO: Disentangling Reasoning from Knowledge with Templatised Orthographic Obfuscation": "https://arxiv.org/pdf/2503.02972"
+      "LINGOLY-TOO: Disentangling Reasoning from Knowledge with Templatised Orthographic Obfuscation": "https://arxiv.org/pdf/2503.02972",
+      "A Positive Case for Faithfulness: LLM Self-Explanations Help Predict Model Behaviour": "https://arxiv.org/pdf/2602.02639"
     }
   },
   {
