@@ -128,14 +128,20 @@
         }
 
         .theme-icon svg {
-            width: 34px;
-            height: 34px;
+            width: 32px;
+            height: 32px;
             stroke: currentColor;
             fill: none;
-            stroke-width: 2;
+            stroke-width: 1.85;
             stroke-linecap: round;
             stroke-linejoin: round;
             overflow: visible;
+            vector-effect: non-scaling-stroke;
+        }
+
+        .icon-eval,
+        .icon-agentic {
+            transform: translateY(1px);
         }
 
         .research-theme-copy {
@@ -982,9 +988,9 @@
       <div class="theme-icon" aria-hidden="true">
        <svg class="icon-eval" viewBox="0 0 24 24">
         <path d="M4 19h16"></path>
-        <path d="M7 16V9"></path>
-        <path d="M12 16V5"></path>
-        <path d="M17 16v-6"></path>
+        <path d="M7 16V10"></path>
+        <path d="M12 16V6"></path>
+        <path d="M17 16V12"></path>
        </svg>
       </div>
       <h3>Benchmarks and Evaluation</h3>
@@ -993,8 +999,8 @@
      <div class="research-theme-tab">
       <div class="theme-icon" aria-hidden="true">
        <svg class="icon-safety" viewBox="0 0 24 24">
-        <circle cx="10.5" cy="10.5" r="5.5"></circle>
-        <path d="M14.5 14.5L20 20"></path>
+        <circle cx="10" cy="10" r="5"></circle>
+        <path d="M14 14l6 6"></path>
        </svg>
       </div>
       <h3>AI Safety and Security</h3>
@@ -1003,10 +1009,10 @@
      <div class="research-theme-tab">
       <div class="theme-icon" aria-hidden="true">
        <svg class="icon-agentic" viewBox="0 0 24 24">
-        <path d="M7 7a7 7 0 0 1 10.2-.6"></path>
-        <path d="M17.5 3.5v3.4h-3.4"></path>
-        <path d="M17 17a7 7 0 0 1-10.2.6"></path>
-        <path d="M6.5 20.5v-3.4h3.4"></path>
+        <path d="M7 8a7 7 0 0 1 10-1"></path>
+        <path d="M17 4v3h-3"></path>
+        <path d="M17 16a7 7 0 0 1-10 1"></path>
+        <path d="M7 20v-3h3"></path>
        </svg>
       </div>
       <h3>Agentic AI for Science</h3>
