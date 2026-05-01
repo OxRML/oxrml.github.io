@@ -132,7 +132,7 @@
             height: 34px;
             stroke: currentColor;
             fill: none;
-            stroke-width: 1.9;
+            stroke-width: 2;
             stroke-linecap: round;
             stroke-linejoin: round;
             overflow: visible;
@@ -144,78 +144,6 @@
             line-height: 1.6;
             margin: 0;
             font-size: 0.94rem;
-        }
-
-        .icon-eval .bar-1,
-        .icon-eval .bar-2,
-        .icon-eval .bar-3 {
-            transform-box: fill-box;
-            transform-origin: center bottom;
-            animation: barPulse 2.8s ease-in-out infinite;
-        }
-
-        .icon-eval .bar-2 {
-            animation-delay: 0.35s;
-        }
-
-        .icon-eval .bar-3 {
-            animation-delay: 0.7s;
-        }
-
-        .icon-agentic .node {
-            animation: nodePulse 3.4s ease-in-out infinite;
-        }
-
-        .icon-agentic .node-2 {
-            animation-delay: 0.4s;
-        }
-
-        .icon-agentic .node-3 {
-            animation-delay: 0.8s;
-        }
-
-        .icon-agentic .link {
-            stroke-dasharray: 3 3;
-            animation: dashFlow 3s linear infinite;
-        }
-
-        .icon-safety .shield-core {
-            animation: shieldBeat 3.1s ease-in-out infinite;
-            transform-origin: center;
-            transform-box: fill-box;
-        }
-
-        .icon-hai .person-head,
-        .icon-hai .device-frame {
-            animation: iconFloat 4.4s ease-in-out infinite;
-        }
-
-        .icon-hai .device-frame {
-            animation-delay: 0.5s;
-        }
-
-        @keyframes iconFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-2.5px); }
-        }
-
-        @keyframes barPulse {
-            0%, 100% { transform: scaleY(0.92); opacity: 0.82; }
-            50% { transform: scaleY(1.08); opacity: 1; }
-        }
-
-        @keyframes nodePulse {
-            0%, 100% { opacity: 0.7; transform: scale(0.95); }
-            50% { opacity: 1; transform: scale(1.06); }
-        }
-
-        @keyframes dashFlow {
-            to { stroke-dashoffset: -12; }
-        }
-
-        @keyframes shieldBeat {
-            0%, 100% { transform: scale(1); opacity: 0.9; }
-            50% { transform: scale(1.06); opacity: 1; }
         }
 
         .pi-section {
@@ -1053,11 +981,10 @@
      <div class="research-theme-tab">
       <div class="theme-icon" aria-hidden="true">
        <svg class="icon-eval" viewBox="0 0 24 24">
-        <path d="M5 8l3-3 3 2 5-3 3 2"></path>
         <path d="M4 19h16"></path>
-        <path class="bar-1" d="M7 19V10"></path>
-        <path class="bar-2" d="M12 19V6"></path>
-        <path class="bar-3" d="M17 19v-4"></path>
+        <path d="M7 16V9"></path>
+        <path d="M12 16V5"></path>
+        <path d="M17 16v-6"></path>
        </svg>
       </div>
       <h3>Benchmarks and Evaluation</h3>
@@ -1066,8 +993,8 @@
      <div class="research-theme-tab">
       <div class="theme-icon" aria-hidden="true">
        <svg class="icon-safety" viewBox="0 0 24 24">
-        <path d="M12 3l7 3v5c0 4.5-2.7 7.8-7 10-4.3-2.2-7-5.5-7-10V6l7-3z"></path>
-        <path class="shield-core" d="M9.2 12.2l1.9 1.9 3.7-4.1"></path>
+        <circle cx="10.5" cy="10.5" r="5.5"></circle>
+        <path d="M14.5 14.5L20 20"></path>
        </svg>
       </div>
       <h3>AI Safety and Security</h3>
@@ -1076,12 +1003,10 @@
      <div class="research-theme-tab">
       <div class="theme-icon" aria-hidden="true">
        <svg class="icon-agentic" viewBox="0 0 24 24">
-        <circle class="node node-1" cx="7" cy="7" r="2.5"></circle>
-        <circle class="node node-2" cx="17" cy="7" r="2.5"></circle>
-        <circle class="node node-3" cx="12" cy="17" r="2.5"></circle>
-        <path class="link" d="M9.2 8.4l2.2 6.2"></path>
-        <path class="link" d="M14.8 8.4l-2.2 6.2"></path>
-        <path d="M9.5 7h5"></path>
+        <path d="M7 7a7 7 0 0 1 10.2-.6"></path>
+        <path d="M17.5 3.5v3.4h-3.4"></path>
+        <path d="M17 17a7 7 0 0 1-10.2.6"></path>
+        <path d="M6.5 20.5v-3.4h3.4"></path>
        </svg>
       </div>
       <h3>Agentic AI for Science</h3>
@@ -1090,12 +1015,8 @@
      <div class="research-theme-tab">
       <div class="theme-icon" aria-hidden="true">
        <svg class="icon-hai" viewBox="0 0 24 24">
-        <circle class="person-head" cx="8" cy="8" r="3"></circle>
-        <path d="M3.5 19a4.5 4.5 0 0 1 9 0"></path>
-        <rect class="device-frame" x="14.5" y="5.5" width="6" height="9" rx="1.5"></rect>
-        <path d="M16.5 9h2"></path>
-        <path d="M16.5 12h2.5"></path>
-        <path d="M17.5 18h0"></path>
+        <circle cx="12" cy="8" r="4"></circle>
+        <path d="M5 20a7 7 0 0 1 14 0"></path>
        </svg>
       </div>
       <h3>Human-AI Interaction</h3>
