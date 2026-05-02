@@ -1,35 +1,64 @@
-[
+[   
   {
-    "id": "2",
-    "date": "2026-02-09",
-    "displayDate": "February 2026",
-    "title": "New Paper in Nature Medicine!",
-    "text": "\"Reliability of LLMs as medical assistants for the general public: a randomized preregistered study\" published in Nature Medicine. It shows that strong performance on medical tests does not translate into reliable medical advice for the general public.",
+    "id": "0",
+    "date": "2026-05-01",
+    "displayDate": "May 2026",
+    "title": "Papers accepted at ICML 2026!",
+    "text": "Three papers from OxRML have been accepted at ICML 2026, taking place in Seoul (July 2026):",
     "category": "paper",
+    "bullets": [
+      {
+        "text": "Strategic Navigation or Stochastic Search? How Agents and Humans Reason Over Document Collections [Spotlight, top 2%]",
+        "bullet_icon": "publications"
+      },
+      {
+        "text": "A Positive Case for Faithfulness: LLM Self-Explanations Help Predict Model Behaviour  [Main]",
+        "bullet_icon": "publications"
+      },
+      {
+        "text": "It's a TRAP! Task-Redirecting Agent Persuasion Benchmark for Web Agents [Main]",
+        "bullet_icon": "publications"
+      }
+    ],
     "photos": [
       {
-        "src": "img/news/nature_med_helpmed.png",
-        "alt": "Nature Medicine HelpMed paper visual",
+        "src": "img/news/madqa_icml26.png",
+        "alt": "OxRML papers @ ICML 2026",
+        "fit": "contain"
+      },
+      {
+        "src": "img/news/nsg_icml26.png",
+        "alt": "OxRML papers @ ICML 2026",
+        "fit": "contain"
+      },
+      {
+        "src": "img/news/trap_icml26.png",
+        "alt": "OxRML papers @ ICML 2026",
         "fit": "contain"
       }
     ],
     "span_links": {
-      "Reliability of LLMs as medical assistants for the general public: a randomized preregistered study": "https://www.nature.com/articles/s41591-025-04074-y"
+      "Strategic Navigation or Stochastic Search? How Agents and Humans Reason Over Document Collections": "https://arxiv.org/pdf/2603.12180",
+      "A Positive Case for Faithfulness: LLM Self-Explanations Help Predict Model Behaviour": "https://arxiv.org/pdf/2602.02639",
+      "It's a TRAP! Task-Redirecting Agent Persuasion Benchmark for Web Agents": "https://arxiv.org/pdf/2512.23128"
     }
-  },
-  {
-    "id": "3",
+  }, 
+
+{
+    "id": "1",
     "date": "2026-04-25",
     "displayDate": "April 2026",
     "title": "OxRML at ICLR 2026",
     "text": "Two papers presented at ICLR 2026 in Rio de Janeiro:",
-    "category": "paper",
+    "category": "conference",
     "bullets": [
       {
-        "text": "LINGOLY-TOO: Disentangling Reasoning from Knowledge with Templatised Orthographic Obfuscation [Poster Presentation]"
+        "text": "LINGOLY-TOO: Disentangling Reasoning from Knowledge with Templatised Orthographic Obfuscation [Main]",
+        "bullet_icon": "publications"
       },
       {
-        "text": "A Positive Case for Faithfulness: LLM Self-Explanations Help Predict Model Behaviour  [Trustworthy AI Workshop ]"
+        "text": "A Positive Case for Faithfulness: LLM Self-Explanations Help Predict Model Behaviour  [Trustworthy AI Workshop ]",
+        "bullet_icon": "publications"
       }
     ],
     "photos": [
@@ -50,6 +79,34 @@
     }
   },
   {
+  "id": "2",
+  "date": "2026-04-15",
+  "displayDate": "April 2026",
+  "title": "DPhil ESRC Grand Union DTP Studentship Awarded",
+  "text": "Shreyansh Padarha was awarded the ESRC (Economic and Social Research Council) Grand Union studentship to study for a DPhil in Social Data Science at the Oxford Internet Institute.",
+  "category": "award",
+  "photos": [],
+  "span_links": {}
+},
+  {
+    "id": "3",
+    "date": "2026-02-09",
+    "displayDate": "February 2026",
+    "title": "New Paper in Nature Medicine!",
+    "text": "\"Reliability of LLMs as medical assistants for the general public: a randomized preregistered study\" published in Nature Medicine. It shows that strong performance on medical tests does not translate into reliable medical advice for the general public.",
+    "category": "paper",
+    "photos": [
+      {
+        "src": "img/news/nature_med_helpmed.png",
+        "alt": "Nature Medicine HelpMed paper visual",
+        "fit": "contain"
+      }
+    ],
+    "span_links": {
+      "Reliability of LLMs as medical assistants for the general public: a randomized preregistered study": "https://www.nature.com/articles/s41591-025-04074-y"
+    }
+  },
+  {
     "id": "4",
     "date": "2025-12-05",
     "displayDate": "December 2025",
@@ -57,10 +114,12 @@
     "text": "Two papers presented at NeurIPS 2025 in San Diego:",
     "bullets": [
       {
-        "text": "Measuring what Matters: Construct Validity in Large Language Model Benchmarks [Poster Presentation]"
+        "text": "Measuring what Matters: Construct Validity in Large Language Model Benchmarks [Main]",
+        "bullet_icon": "publications"
       },
       {
-        "text": "Evaluating LLM-as-a-Judge under Multilingual, Multimodal and Multi-domain Constraints [LLM Evaluation Workshop]"
+        "text": "Evaluating LLM-as-a-Judge under Multilingual, Multimodal and Multi-domain Constraints [LLM Evaluation Workshop]",
+        "bullet_icon": "publications"
       }
     ],
     "category": "conference",
@@ -84,10 +143,12 @@
     "text": "Two papers presented at EMNLP 2025 in Suzhou:",
     "bullets": [
       {
-        "text": "How Does DPO Reduce Toxicity? A Mechanistic Neuron-Level Analysis"
+        "text": "How Does DPO Reduce Toxicity? A Mechanistic Neuron-Level Analysis",
+        "bullet_icon": "publications"
       },
       {
-        "text": "LLMs Don't Know Their Own Decision Boundaries: The Unreliability of Self-Generated Counterfactual Explanations"
+        "text": "LLMs Don't Know Their Own Decision Boundaries: The Unreliability of Self-Generated Counterfactual Explanations",
+        "bullet_icon": "publications"
       }
     ],
     "category": "conference",
@@ -177,25 +238,32 @@
     "text": "Seven papers presented at NeurIPS 2024 in Vancouver:",
     "bullets": [
       {
-        "text": "LINGOLY: A Benchmark of Olympiad-Level Linguistic Reasoning Puzzles in Low-Resource and Extinct Languages [Oral Presentation]"
+        "text": "LINGOLY: A Benchmark of Olympiad-Level Linguistic Reasoning Puzzles in Low-Resource and Extinct Languages [Oral, top 0.5%]",
+        "bullet_icon": "publications"
       },
       {
-        "text": "Improving in-Context Learning with Small Language Model Ensembles [Adaptive Foundation Models Workshop]"
+        "text": "Improving in-Context Learning with Small Language Model Ensembles [Adaptive Foundation Models Workshop]",
+        "bullet_icon": "publications"
       },
       {
-        "text": "Do Large Language Models have Shared Weaknesses in Medical Question Answering? [AIM-FM Workshop]"
+        "text": "Do Large Language Models have Shared Weaknesses in Medical Question Answering? [AIM-FM Workshop]",
+        "bullet_icon": "publications"
       },
       {
-        "text": "Can Fine-Tuning Improve the Medical Question-Answering Capabilities of Large Language Models? [FITML Workshop]"
+        "text": "Can Fine-Tuning Improve the Medical Question-Answering Capabilities of Large Language Models? [FITML Workshop]",
+        "bullet_icon": "publications"
       },
       {
-        "text": "Can Sparse Autoencoders be Used to Decompose and Interpret Steering Vectors? [MINT Workshop]"
+        "text": "Can Sparse Autoencoders be Used to Decompose and Interpret Steering Vectors? [MINT Workshop]",
+        "bullet_icon": "publications"
       },
       {
-        "text": "How Does DPO Reduce Toxicity? A Mechanistic Neuron-Level Analysis [MINT Workshop]"
+        "text": "How Does DPO Reduce Toxicity? A Mechanistic Neuron-Level Analysis [MINT Workshop]",
+        "bullet_icon": "publications"
       },
       {
-        "text": "Evaluating the Role of 'Constitutions' for Learning from AI Feedback [Language Gamification Workshop]"
+        "text": "Evaluating the Role of 'Constitutions' for Learning from AI Feedback [Language Gamification Workshop]",
+        "bullet_icon": "publications"
       }
     ],
     "category": "conference",

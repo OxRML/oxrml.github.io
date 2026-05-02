@@ -111,12 +111,51 @@
             max-width: 76ch;
         }
 
+        .news-bullets.has-custom-bullets {
+            list-style: none;
+            padding-left: 0;
+        }
+
         .news-bullets li + li {
             margin-top: 0.45rem;
         }
 
         .news-bullet-item {
             line-height: 1.7;
+        }
+
+        .news-bullets.has-custom-bullets .news-bullet-item.is-default-bullet {
+            display: list-item;
+            list-style: disc;
+            margin-left: 1.35rem;
+        }
+
+        .news-bullet-item.has-icon-bullet {
+            display: grid;
+            grid-template-columns: 1.9rem minmax(0, 1fr);
+            gap: 0.55rem;
+            align-items: start;
+        }
+
+        .news-bullet-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.9rem;
+            height: 1.9rem;
+            border-radius: 8px;
+            border: 1px solid #d7e3f0;
+            background: #f8fbff;
+        }
+
+        .news-bullet-icon img {
+            width: 0.92rem;
+            height: 0.92rem;
+            display: block;
+        }
+
+        .news-bullet-copy {
+            min-width: 0;
         }
 
         .news-bullet-link {
@@ -581,6 +620,11 @@
             return fragment;
         }
 
+        const BULLET_ICON_PATHS = {
+            publications: 'img/assets/paper.svg',
+            arxiv: 'img/assets/arxiv.svg'
+        };
+
         function normalizeBullets(bullets) {
             if (!Array.isArray(bullets)) {
                 return [];
@@ -592,9 +636,14 @@
                 }
 
                 return {
-                    text: bullet.text
+                    text: bullet.text,
+                    bulletIcon: typeof bullet.bullet_icon === 'string' ? bullet.bullet_icon.toLowerCase() : 'default'
                 };
             }).filter(Boolean);
+        }
+
+        function getBulletIconPath(iconName) {
+            return BULLET_ICON_PATHS[iconName] || '';
         }
 
         function buildBulletList(bullets, spanLinks) {
@@ -606,11 +655,36 @@
 
             const list = document.createElement('ul');
             list.className = 'news-bullets';
+            const hasCustomBullets = items.some(item => getBulletIconPath(item.bulletIcon));
+
+            if (hasCustomBullets) {
+                list.classList.add('has-custom-bullets');
+            }
 
             items.forEach(item => {
                 const listItem = document.createElement('li');
                 listItem.className = 'news-bullet-item';
-                listItem.append(buildLinkedText(item.text, spanLinks));
+                const iconPath = getBulletIconPath(item.bulletIcon);
+
+                if (iconPath) {
+                    const icon = document.createElement('span');
+                    const iconImage = document.createElement('img');
+                    const copy = document.createElement('span');
+
+                    listItem.classList.add('has-icon-bullet');
+                    icon.className = 'news-bullet-icon';
+                    icon.setAttribute('aria-hidden', 'true');
+                    iconImage.src = iconPath;
+                    iconImage.alt = '';
+                    copy.className = 'news-bullet-copy';
+                    copy.append(buildLinkedText(item.text, spanLinks));
+                    icon.append(iconImage);
+                    listItem.append(icon, copy);
+                } else {
+                    listItem.classList.add('is-default-bullet');
+                    listItem.append(buildLinkedText(item.text, spanLinks));
+                }
+
                 list.append(listItem);
             });
 
