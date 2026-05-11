@@ -1,41 +1,8 @@
 {
   "publications": [
     {
-      "id": "trap_benchmark",
-      "date": "2025-12-01",
-      "displayDate": "December 2025",
-      "title": "It's a TRAP! Task-Redirecting Agent Persuasion Benchmark for Web Agents",
-      "authors": "K Korgul, Y Yang, A Drohomirecki, P Błaszczyk, W Howard, L Aichberger, C Russell, P H S Torr, A Mahdi, A Bibi",
-      "labMembers": [
-        "K Korgul",
-        "Y Yang",
-        "W Howard",
-        "A Mahdi",
-        "A Bibi"
-      ],
-      "pubDate": "2025",
-      "venue": "Under review",
-      "home_display": true,
-      "abstract": "Web-based agents powered by large language models are increasingly used for tasks such as email management or professional networking. Their reliance on dynamic web content, however, makes them vulnerable to prompt injection attacks: adversarial instructions embedded in interface elements that persuade agents to divert from their intended tasks. We introduce the Task-Redirecting Agent Persuasion Benchmark (TRAP), an evaluation suite for studying how persuasion techniques misguide autonomous web agents on realistic tasks. Across six frontier models, agents are susceptible to prompt injection in 25% of tasks on average (13% for GPT-5 to 43% for DeepSeek-R1), with small interface or contextual changes often doubling success rates and revealing systemic, psychologically driven vulnerabilities in web-based agents. We also provide a modular social-engineering injection framework with controlled experiments on high-fidelity website clones, allowing for further benchmark expansion.",
-      "webp_path": "",
-      "links": {
-        "hf_link": "",
-        "hf_text_display": "",
-        "preprint_link": "https://arxiv.org/abs/2512.23128",
-        "preprint_text_display": "Preprint",
-        "paper_link": "",
-        "paper_text_display": "",
-        "github_link": "",
-        "github_text_display": "",
-        "website_link": "https://oxrml.com/its-a-trap/",
-        "website_text_display": "Website",
-        "youtube_link": "",
-        "youtube_text": ""
-      }
-    },
-    {
       "id": "agentslr",
-      "date": "2026-01-28",
+      "date": "2026-01-04",
       "displayDate": "January 2026",
       "title": "AgentSLR: Automating Systematic Literature Reviews in Epidemiology with Agentic AI",
       "authors": "S Padarha, RO Kearns, T Naidoo, L Yang, Ł Borchmann, P Błaszczyk, C Morgenstern, R McCabe, S Bhatia, PH Torr, J Foerster, SA Hale, T Rawson, A Cori, E Semenova, A Mahdi",
@@ -65,39 +32,9 @@
       }
     },
     {
-      "id": "llm_as_judge_polyvis",
-      "date": "2025-11-01",
-      "displayDate": "November 2025",
-      "title": "Evaluating LLM-as-a-Judge under Multilingual, Multimodal and Multi-domain Constraints",
-      "authors": "S Padarha, E Semenova, B Vidgen, A Mahdi, S A Hale",
-      "labMembers": [
-        "S Padarha",
-        "A Mahdi"
-      ],
-      "pubDate": "2025",
-      "venue": "Evaluating the Evolving LLM Lifecycle @ NeurIPS",
-      "home_display": true,
-      "abstract": "Large Language Models (LLMs) as judges have emerged as an important component within the post-training pipeline. The growing popularity of judge LLMs has prompted their evaluation on proxy alignment and reward modelling datasets. Yet, they have not been assessed under combined cross-lingual and multimodal settings. To address this gap, we introduce PolyVis (Polyglot Vision-Language Alignment), a multilingual vision-language alignment benchmark that evaluates judge models under 12 languages and distinct task objectives: hallucinations, safety, knowledge and reasoning. Our findings reveal LLM judge model performance is significantly influenced by composite interactions between task objectives, language and individual model characteristics. These results suggest the need for building tailored evaluation frameworks to challenge each model’s specific capabilities, moving beyond one-size-fits-all approaches that obscure critical performance disparities.",
-      "webp_path": "img/publications/eval_llm_judge.webp",
-      "links": {
-        "hf_link": "",
-        "hf_text_display": "",
-        "preprint_link": "",
-        "preprint_text_display": "",
-        "paper_link": "https://openreview.net/pdf?id=cAIjWwoZNf",
-        "paper_text_display": "Publication",
-        "github_link": "",
-        "github_text_display": "",
-        "website_link": "",
-        "website_text_display": "",
-        "youtube_link": "",
-        "youtube_text": ""
-      }
-    },
-    {
       "id": "madqa_agents_reasoning",
-      "date": "2026-01-28",
-      "displayDate": "January 2026",
+      "date": "2026-05-01",
+      "displayDate": "May 2026",
       "title": "Strategic Navigation or Stochastic Search? How Agents and Humans Reason Over Document Collections",
       "authors": "Ł Borchmann, J Van Landeghem, M Turski, S Padarha, RO Kearns, A Mahdi, N Rogge, C Fourrier, S Han, H Yao, A Llabrés, Y Xu, D Karatzas, H Zhang, A Datta",
       "labMembers": [
@@ -106,7 +43,7 @@
         "A Mahdi"
       ],
       "pubDate": "2026",
-      "venue": "Under review",
+      "venue": "ICML (Spotlight)",
       "home_display": true,
       "abstract": "Multimodal agents are increasingly used to automate document-intensive workflows, but it remains unclear whether they exhibit genuine strategic reasoning or rely on stochastic trial-and-error search. We introduce MADQA, a benchmark of 2,250 human-authored questions grounded in 800 heterogeneous PDF documents, designed using Classical Test Theory to discriminate across levels of agentic ability. We propose a novel evaluation protocol capturing the accuracy–effort trade-off to assess reasoning efficiency. Our results show that while top agents can match human performance in raw accuracy, they succeed on different subsets of questions and often rely on brute-force search rather than strategic planning. Agents fail to close a nearly 20% gap to oracle performance and frequently exhibit unproductive looping behaviour. We release the dataset and evaluation framework to support progress toward more efficient and calibrated agent reasoning.",
       "webp_path": "img/publications/madqa.webp",
@@ -127,8 +64,8 @@
     },
     {
       "id": "faithfulness_self_explanations",
-      "date": "2026-01-28",
-      "displayDate": "January 2026",
+      "date": "2026-05-01",
+      "displayDate": "May 2026",
       "title": "A Positive Case for Faithfulness: LLM Self-Explanations Help Predict Model Behavior",
       "authors": "H Mayne, JS Kang, D Gould, K Ramchandran, A Mahdi, NY Siegel",
       "labMembers": [
@@ -136,7 +73,7 @@
         "A Mahdi"
       ],
       "pubDate": "2026",
-      "venue": "Under review",
+      "venue": "ICML",
       "home_display": true,
       "abstract": "LLM self-explanations are often presented as a promising tool for AI oversight, yet their faithfulness to the model's true reasoning process is poorly understood. Existing faithfulness metrics have critical limitations, typically relying on identifying unfaithfulness via adversarial prompting or detecting reasoning errors. These methods overlook the predictive value of explanations. We introduce Normalized Simulatability Gain (NSG), a general and scalable metric based on the idea that a faithful explanation should allow an observer to learn a model's decision-making criteria, and thus better predict its behavior on related inputs. We evaluate 18 frontier proprietary and open-weight models, e.g., Gemini 3, GPT-5.2, and Claude 4.5, on 7,000 counterfactuals from popular datasets covering health, business, and ethics. We find self-explanations substantially improve prediction of model behavior (11-37% NSG). Self-explanations also provide more predictive information than explanations generated by external models, even when those models are stronger. This implies an advantage from self-knowledge that external explanation methods cannot replicate. Our approach also reveals that, across models, 5-15% of self-explanations are egregiously misleading. Despite their imperfections, we show a positive case for self-explanations: they encode information that helps predict model behavior.",
       "webp_path": "img/publications/faithfulNSG.webp",
@@ -150,6 +87,70 @@
         "github_link": "https://github.com/HarryMayne/faithfulness",
         "github_text_display": "Code",
         "website_link": "https://oxrml.com/faithfulness/",
+        "website_text_display": "Website",
+        "youtube_link": "",
+        "youtube_text": ""
+      }
+    },
+        {
+      "id": "trap_benchmark",
+      "date": "2026-05-01",
+      "displayDate": "May 2025",
+      "title": "It's a TRAP! Task-Redirecting Agent Persuasion Benchmark for Web Agents",
+      "authors": "K Korgul, Y Yang, A Drohomirecki, P Błaszczyk, W Howard, L Aichberger, C Russell, P H S Torr, A Mahdi, A Bibi",
+      "labMembers": [
+        "K Korgul",
+        "Y Yang",
+        "W Howard",
+        "A Mahdi",
+        "A Bibi"
+      ],
+      "pubDate": "2026",
+      "venue": "ICML",
+      "home_display": true,
+      "abstract": "Web-based agents powered by large language models are increasingly used for tasks such as email management or professional networking. Their reliance on dynamic web content, however, makes them vulnerable to prompt injection attacks: adversarial instructions embedded in interface elements that persuade agents to divert from their intended tasks. We introduce the Task-Redirecting Agent Persuasion Benchmark (TRAP), an evaluation suite for studying how persuasion techniques misguide autonomous web agents on realistic tasks. Across six frontier models, agents are susceptible to prompt injection in 25% of tasks on average (13% for GPT-5 to 43% for DeepSeek-R1), with small interface or contextual changes often doubling success rates and revealing systemic, psychologically driven vulnerabilities in web-based agents. We also provide a modular social-engineering injection framework with controlled experiments on high-fidelity website clones, allowing for further benchmark expansion.",
+      "webp_path": "",
+      "links": {
+        "hf_link": "",
+        "hf_text_display": "",
+        "preprint_link": "https://arxiv.org/abs/2512.23128",
+        "preprint_text_display": "Preprint",
+        "paper_link": "",
+        "paper_text_display": "",
+        "github_link": "",
+        "github_text_display": "",
+        "website_link": "https://oxrml.com/its-a-trap/",
+        "website_text_display": "Website",
+        "youtube_link": "",
+        "youtube_text": ""
+      }
+    },
+        {
+      "id": "help-med",
+      "date": "2026-02-05",
+      "displayDate": "February 2026",
+      "title": "Reliability of LLMs as medical assistants for the general public: a randomized preregsitered study",
+      "authors": "AM Bean, RE Payne, G Parsons, HR Kirk, J Ciro, R Mosquera-Gómez, S Hincapié M, AS Ekanayaka, L Tarassenko, L Rocher, A Mahdi",
+      "labMembers": [
+        "AM Bean",
+        "G Parsons",
+        "A Mahdi"
+      ],
+      "pubDate": "2026",
+      "venue": "Nature Medicine",
+      "home_display": true,
+      "abstract": "Abstract",
+      "webp_path": "img/publications/helpmed.webp",
+      "links": {
+        "hf_link": "https://huggingface.co/datasets/ambean/HELPMed",
+        "hf_text_display": "Dataset",
+        "preprint_link": "https://arxiv.org/abs/2504.18919",
+        "preprint_text_display": "Preprint",
+        "paper_link": "https://www.nature.com/articles/s41591-025-04074-y",
+        "paper_text_display": "Publication",
+        "github_link": "https://github.com/am-bean/HELPMed",
+        "github_text_display": "Code",
+        "website_link": "https://oxrml.com/llm-medical-assistants/",
         "website_text_display": "Website",
         "youtube_link": "",
         "youtube_text": ""
@@ -189,33 +190,32 @@
         "youtube_text": ""
       }
     },
-    {
-      "id": "help-med",
-      "date": "2026-02-05",
-      "displayDate": "February 2026",
-      "title": "Reliability of LLMs as medical assistants for the general public: a randomized preregsitered study",
-      "authors": "AM Bean, RE Payne, G Parsons, HR Kirk, J Ciro, R Mosquera-Gómez, S Hincapié M, AS Ekanayaka, L Tarassenko, L Rocher, A Mahdi",
+        {
+      "id": "llm_as_judge_polyvis",
+      "date": "2025-11-01",
+      "displayDate": "November 2025",
+      "title": "Evaluating LLM-as-a-Judge under Multilingual, Multimodal and Multi-domain Constraints",
+      "authors": "S Padarha, E Semenova, B Vidgen, A Mahdi, S A Hale",
       "labMembers": [
-        "AM Bean",
-        "G Parsons",
+        "S Padarha",
         "A Mahdi"
       ],
-      "pubDate": "2026",
-      "venue": "Nature Medicine",
+      "pubDate": "2025",
+      "venue": "Evaluating the Evolving LLM Lifecycle @ NeurIPS",
       "home_display": true,
-      "abstract": "Abstract",
-      "webp_path": "img/publications/helpmed.webp",
+      "abstract": "Large Language Models (LLMs) as judges have emerged as an important component within the post-training pipeline. The growing popularity of judge LLMs has prompted their evaluation on proxy alignment and reward modelling datasets. Yet, they have not been assessed under combined cross-lingual and multimodal settings. To address this gap, we introduce PolyVis (Polyglot Vision-Language Alignment), a multilingual vision-language alignment benchmark that evaluates judge models under 12 languages and distinct task objectives: hallucinations, safety, knowledge and reasoning. Our findings reveal LLM judge model performance is significantly influenced by composite interactions between task objectives, language and individual model characteristics. These results suggest the need for building tailored evaluation frameworks to challenge each model’s specific capabilities, moving beyond one-size-fits-all approaches that obscure critical performance disparities.",
+      "webp_path": "img/publications/eval_llm_judge.webp",
       "links": {
-        "hf_link": "https://huggingface.co/datasets/ambean/HELPMed",
-        "hf_text_display": "Dataset",
-        "preprint_link": "https://arxiv.org/abs/2504.18919",
-        "preprint_text_display": "Preprint",
-        "paper_link": "https://www.nature.com/articles/s41591-025-04074-y",
+        "hf_link": "",
+        "hf_text_display": "",
+        "preprint_link": "",
+        "preprint_text_display": "",
+        "paper_link": "https://openreview.net/pdf?id=cAIjWwoZNf",
         "paper_text_display": "Publication",
-        "github_link": "https://github.com/am-bean/HELPMed",
-        "github_text_display": "Code",
-        "website_link": "https://oxrml.com/llm-medical-assistants/",
-        "website_text_display": "Website",
+        "github_link": "",
+        "github_text_display": "",
+        "website_link": "",
+        "website_text_display": "",
         "youtube_link": "",
         "youtube_text": ""
       }
