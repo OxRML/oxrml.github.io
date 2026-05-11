@@ -155,11 +155,11 @@
     {
       "id": "shreyansh_padarha",
       "name": "Shreyansh Padarha",
-      "role": "Research Assistant",
+      "role": "DPhil Student",
       "focus": "AI for Science, AI Safety, LLM Evaluations",
       "photo": "img/members/shreyansh_padarha.jpg",
-      "shortBio": "Shreyansh is a Research Assistant at the Reasoning with Machines Lab and previously studied Social Data Science (MSc) at the University of Oxford. His research focuses on pushing the performative boundaries of AI models while stress-testing their safety.\nHis current work focuses on LLMs and agents that automate scientific processes, building faithful evaluations, and knowledge distillation.",
-      "longBio": "Shreyansh is a Research Assistant at the Reasoning with Machines Lab and previously studied Social Data Science (MSc) at the University of Oxford. His research focuses on pushing the performative boundaries of AI models while stress-testing their safety.\nHis current work focuses on LLMs and agents that automate scientific processes, building faithful evaluations, and knowledge distillation. Prior to this, during his undergraduate studies he worked at startups and as a researcher on projects involving building datasets and training computer vision models for agriculture, dentistry, and the entertainment industry.",
+      "shortBio": "Shreyansh is a Research Assistant at the Reasoning with Machines Lab and an incoming DPhil student in Social Data Science, supported by the ESRC Grand Union DTP studentship. He previously studied Social Data Science (MSc) at the University of Oxford. His research motivation is to push the performative boundaries of AI models while stress-testing their safety.\nHis current work focuses on LLMs and agents that automate scientific processes and building faithful evaluations.",
+      "longBio": "Shreyansh is a Research Assistant at the Reasoning with Machines Lab and an incoming (2026) DPhil student in Social Data Science, supported by the ESRC Grand Union DTP studentship.\nHis research is motivated by the goal of pushing the performative boundaries of AI models while stress-testing their safety. His current work focuses on LLMs and agents that automate scientific processes, as well as building faithful evaluations for knowledge synthesis.\nHe previously studied Social Data Science (MSc) at the University of Oxford, focusing on emergent misalignment in knowledge distillation. Prior to this, during his undergraduate studies, he worked at startups and as a researcher on projects involving building datasets and training computer vision models for agriculture, dentistry, and the entertainment industry.",
       "links": {
         "email": "shreyansh.padarha@oii.ox.ac.uk",
         "linkedin": "https://www.linkedin.com/in/shreyansh-padarha/",
