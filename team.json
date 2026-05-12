@@ -55,10 +55,10 @@
       "id": "yushi_yang",
       "name": "Yushi Yang",
       "role": "DPhil Student",
-      "focus": "AI safety, mechanistic interpretability",
+      "focus": "LLM & Agentic Post-training, AI Alignment",
       "photo": "img/members/yushi_y.png",
-      "shortBio": "Yushi is a DPhil student in Social Data Science at the OII, and a data scientist. Her research focuses on interpretability methods to improve the safety of large language models.",
-      "longBio": "Yushi is a DPhil student in Social Data Science at the OII, and a data scientist. Her research focuses on interpretability methods to improve the safety of large language models.\nYushi holds an MSc in Statistical Science from the University of Oxford and an MSc in Artificial Intelligence from Imperial College London. Before that, she held a BSc in Mathematics, Operation Research, Statistics, and Economics from the University of Warwick. Prior to the DPhil, she interned with UNDP as a data analyst, at Oxford and Imperial College London as a machine learning researcher, and at a start-up as a data scientist.\nYushi's experience includes a range of data science projects, developing machine learning models to build privacy-preserving recommender systems, track brand sentiment in online news, and predict US gun violence diffusion rates. Her skillsets include Python, R, SQL, deep learning models, and AWS SageMaker",
+      "shortBio": "Yushi is a DPhil student in Social Data Science at the OII. Her research focuses on LLM Post-training, Agents, and AI Alignment.",
+      "longBio": "Yushi is a DPhil student in Social Data Science at the OII. Her research focuses on LLM post-training, agents, and AI alignment.\nYushi holds an MSc in Artificial Intelligence from Imperial College London and an MSc in Statistical Science from the University of Oxford. She also worked as an AI engineer at Reply and a data analyst at UNDP.\nHer skillsets include Python, PyTorch, SQL, and AWS services.",
       "links": {
         "email": "yushi.yang@oii.ox.ac.uk",
         "linkedin": "https://www.linkedin.com/in/yushiyang514/",

@@ -247,8 +247,8 @@
         "github_text_display": "Code",
         "website_link": "",
         "website_text_display": "",
-        "youtube_link": "",
-        "youtube_text": ""
+        "youtube_link": "https://underline.io/lecture/131253-how-does-dpo-reduce-toxicityquestion-a-mechanistic-neuron-level-analysis",
+        "youtube_text": "Video"
       }
     },
     {
@@ -344,6 +344,36 @@
         "github_text_display": "Code",
         "website_link": "https://oxrml.com/lingoly-too",
         "website_text_display": "Website",
+        "youtube_link": "",
+        "youtube_text": ""
+      }
+    },
+    {
+      "id": "sft_medqa",
+      "date": "2024-12-14",
+      "displayDate": "December 2024",
+      "title": "Evaluating Fine-Tuning Efficiency of Human-Inspired Learning Strategies in Medical Question Answering",
+      "authors": "Y Yang, AM Bean, R McCraith, A Mahdi",
+      "labMembers": [
+        "Y Yang",
+        "AM Bean",
+        "A Mahdi"
+      ],
+      "pubDate": "2024",
+      "venue": "FITML @ NeurIPS",
+      "abstract": "Fine-tuning Large Language Models (LLMs) incurs considerable training costs, driving the need for data-efficient training with optimised data ordering. Human-inspired strategies offer a solution by organising data based on human learning practices. This study evaluates the fine-tuning efficiency of five human-inspired strategies across four language models, three datasets, and both human- and LLM-labelled data in the context of medical question answering. These strategies achieve the best accuracy gain of 1.81% and an average gain of 1.02% across datasets, with interleaved strategies delivering the best average results. However, the best strategy varies across model-dataset combinations, limiting the generalisability of the effects of any single strategy. Additionally, LLM-defined question difficulty outperforms human-defined labels in curriculum-based learning, showing the potential of model-generated data as a cost-effective alternative for optimising fine-tuning.",
+      "webp_path": "img/publications/sft_medqa.webp",
+      "links": {
+        "hf_link": "",
+        "hf_text_display": "",
+        "preprint_link": "https://arxiv.org/abs/2408.07888",
+        "preprint_text_display": "Preprint",
+        "paper_link": "https://openreview.net/forum?id=g23rePzu0X",
+        "paper_text_display": "Publication",
+        "github_link": "https://github.com/Oxford-AI-for-Society/human-inspired-llm-finetuning",
+        "github_text_display": "Code",
+        "website_link": "",
+        "website_text_display": "",
         "youtube_link": "",
         "youtube_text": ""
       }
