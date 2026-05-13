@@ -1,0 +1,100 @@
+<!--
+Parked theme filter feature from research.html.
+
+To restore:
+1. Add the CSS block back inside the research.html <style> tag.
+2. Add the HTML block above .filter-sort-section in the Research section.
+3. Reintroduce the JavaScript lines in the publications script.
+-->
+
+<!-- CSS -->
+<style>
+    .theme-filter-section {
+        margin-bottom: 1rem;
+    }
+
+    .theme-controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem 1.25rem;
+        align-items: center;
+    }
+
+    .theme-filter-btn {
+        position: relative;
+        padding: 0.15rem 0 0.32rem;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        color: #52657a;
+        cursor: pointer;
+        font-size: 0.95rem;
+        font-weight: 600;
+        box-shadow: none;
+        transition: color 0.2s ease;
+    }
+
+    .theme-filter-btn:hover,
+    .theme-filter-btn:focus {
+        background: transparent;
+        color: #1a365d;
+        outline: none;
+    }
+
+    .theme-filter-btn.is-active {
+        color: #236247;
+        box-shadow: none;
+    }
+
+    .theme-filter-btn.is-active::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 2px;
+        border-radius: 999px;
+        background: #8cc8ad;
+    }
+</style>
+
+<!-- HTML -->
+<div class="theme-filter-section" aria-label="Filter publications by research theme">
+    <div class="theme-controls" id="themeControls">
+        <button class="theme-filter-btn is-active" type="button" data-theme="" aria-pressed="true">Show All</button>
+        <button class="theme-filter-btn" type="button" data-theme="Benchmarks and Evaluation" aria-pressed="false">Benchmarks and Evaluation</button>
+        <button class="theme-filter-btn" type="button" data-theme="Agentic AI" aria-pressed="false">Agentic AI</button>
+        <button class="theme-filter-btn" type="button" data-theme="AI Safety and Alignment" aria-pressed="false">AI Safety and Alignment</button>
+        <button class="theme-filter-btn" type="button" data-theme="AI in Healthcare" aria-pressed="false">AI in Healthcare</button>
+    </div>
+</div>
+
+<!-- JavaScript snippets -->
+<script>
+    // Add near the other DOM references:
+    const themeControls = document.getElementById('themeControls');
+    let selectedTheme = '';
+
+    // Add inside applySortAndFilter(), after the search filter:
+    if (selectedTheme) {
+        filteredPublications = filteredPublications.filter(pub => {
+            return Array.isArray(pub.themes) && pub.themes.includes(selectedTheme);
+        });
+    }
+
+    // Add near the search input listener:
+    themeControls.addEventListener('click', event => {
+        const button = event.target.closest('.theme-filter-btn');
+        if (!button) {
+            return;
+        }
+
+        selectedTheme = button.dataset.theme || '';
+        themeControls.querySelectorAll('.theme-filter-btn').forEach(themeButton => {
+            const isActive = themeButton === button;
+            themeButton.classList.toggle('is-active', isActive);
+            themeButton.setAttribute('aria-pressed', String(isActive));
+        });
+        applySortAndFilter();
+    });
+</script>
