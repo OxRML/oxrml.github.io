@@ -19,6 +19,17 @@
     </title>
     <link href="styles/common.css" rel="stylesheet" />
     <style>
+        :root {
+            --research-accent: #2d5986;
+            --research-accent-deep: #1a365d;
+            --research-border: #d7e2ee;
+            --venue-soft: #e7f4ee;
+            --venue-text: #236247;
+            --website-soft: #fbfaf6;
+            --website-border: #dfd8c8;
+            --website-text: #314968;
+        }
+
         .research-overview {
             background: white;
             padding: 3rem;
@@ -253,12 +264,57 @@
             background: transparent;
         }
 
+        .research-intro {
+            width: 100%;
+            max-width: none;
+            margin: -0.75rem 0 1.35rem;
+            color: #3f5063;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .research-intro p {
+            margin: 0;
+            max-width: none;
+            text-align: justify;
+            text-align-last: left;
+            hyphens: auto;
+        }
+
+        .research-intro p + p {
+            margin-top: 0.85rem;
+        }
+
+        .research-intro a {
+            color: inherit;
+            font-weight: 650;
+            text-decoration: none;
+            box-shadow: inset 0 -1px 0 rgba(63, 80, 99, 0.18);
+            transition: color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .research-intro a:hover {
+            color: #1a365d;
+            box-shadow: inset 0 -1px 0 rgba(45, 89, 134, 0.42);
+        }
+
+        .research-impact-label {
+            color: #1a365d;
+            font-weight: 700;
+        }
+
         .publication-entry {
             display: grid;
             grid-template-columns: 4rem minmax(0, 1fr);
             gap: 1rem;
             align-items: start;
             margin-bottom: 1.25rem;
+        }
+
+        #research.research-compact .publication-entry {
+            grid-template-columns: 3.4rem minmax(0, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 0.7rem;
         }
 
         .publication-entry:last-child {
@@ -289,6 +345,16 @@
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
         }
 
+        #research.research-compact .publication {
+            padding: 0.95rem 1.1rem;
+        }
+
+        .publication::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
         .publication:hover {
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -308,8 +374,58 @@
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
 
+        #research.research-compact .pub-title {
+            font-size: 1rem;
+            margin-bottom: 0.32rem;
+            line-height: 1.25;
+        }
+
         .pub-title:hover {
             color: #1a365d;
+        }
+
+        .pub-illustration {
+            float: left;
+            width: clamp(9rem, 18vw, 12.25rem);
+            aspect-ratio: 16 / 10;
+            margin: 0.05rem 1rem 0.45rem 0;
+            padding: 0.35rem;
+            overflow: hidden;
+            border-radius: 6px;
+            border: 1px solid rgba(203, 213, 225, 0.7);
+            background: white;
+            appearance: none;
+            cursor: zoom-in;
+            line-height: 0;
+            box-sizing: border-box;
+        }
+
+        #research.research-compact .pub-illustration {
+            width: clamp(7rem, 14vw, 9.5rem);
+            margin: 0.05rem 0.8rem 0.3rem 0;
+            padding: 0.28rem;
+        }
+
+        .pub-illustration img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border-radius: 4px;
+            background: white;
+            object-position: center;
+        }
+
+        .pub-illustration:focus-visible {
+            outline: 2px solid #2d5986;
+            outline-offset: 3px;
+        }
+
+        .pub-illustration img.is-cover {
+            object-fit: cover;
+        }
+
+        .pub-illustration img.is-contain {
+            object-fit: contain;
         }
 
         .pub-authors {
@@ -319,12 +435,25 @@
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
 
+        #research.research-compact .pub-authors {
+            margin-bottom: 0.28rem;
+            font-size: 0.86rem;
+        }
+
         .pub-date-venue {
             display: flex;
+            flex-wrap: wrap;
+            align-items: center;
             gap: 1rem;
             margin-bottom: 0.5rem;
             font-size: 0.9rem;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        #research.research-compact .pub-date-venue {
+            gap: 0.65rem;
+            margin-bottom: 0.35rem;
+            font-size: 0.84rem;
         }
 
         .pub-date {
@@ -333,15 +462,22 @@
         }
 
         .pub-venue {
-            color: #2d5986;
-            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            width: fit-content;
+            color: var(--venue-text);
+            font-weight: 650;
+            line-height: 1;
+            background: var(--venue-soft);
+            border-radius: 6px;
+            padding: 0.28rem 0.68rem;
         }
 
         .filter-sort-section {
             display: flex;
             flex-wrap: wrap;
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: 1rem 2rem;
+            margin-bottom: 1.75rem;
             align-items: flex-start;
         }
 
@@ -365,55 +501,6 @@
         #searchInput:focus {
             border-color: #2d5986;
             outline: none;
-        }
-
-        .filter-controls {
-            display: flex;
-            gap: 0.75rem;
-            align-items: center;
-        }
-
-        .filter-controls label {
-            font-weight: 500;
-            color: #1a365d;
-            font-size: 0.95rem;
-        }
-
-        #authorFilter {
-            padding: 0.5rem 0.75rem;
-            border: 1px solid #cbd5e0;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            background: white;
-            color: #2c3e50;
-            cursor: pointer;
-            transition: border-color 0.2s ease;
-        }
-
-        #authorFilter:hover,
-        #authorFilter:focus {
-            border-color: #2d5986;
-            outline: none;
-        }
-
-        .clear-filter-btn {
-            padding: 0.5rem 1rem;
-            background: #e2e8f0;
-            border: 1px solid #cbd5e0;
-            border-radius: 4px;
-            color: #2c3e50;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: background 0.2s ease;
-        }
-
-        .clear-filter-btn:hover {
-            background: #cbd5e0;
-        }
-
-        .clear-filter-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
         }
 
         /* Publication Modal Styles */
@@ -505,6 +592,18 @@
             color: #2c3e50;
         }
 
+        .pub-modal-venue {
+            display: inline-flex;
+            align-items: center;
+            width: fit-content;
+            color: var(--venue-text);
+            font-weight: 650;
+            line-height: 1;
+            background: var(--venue-soft);
+            border-radius: 6px;
+            padding: 0.3rem 0.68rem;
+        }
+
         .pub-modal-abstract {
             margin-bottom: 1.5rem;
             padding: 1rem;
@@ -532,40 +631,126 @@
             margin-top: 1.5rem;
         }
 
+        .illustration-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.72);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(1rem, 3vw, 2.5rem);
+            z-index: 1100;
+        }
+
+        .illustration-modal-overlay.active {
+            display: flex;
+        }
+
+        .illustration-modal-content {
+            position: relative;
+            max-width: min(92vw, 1100px);
+            max-height: 88vh;
+            padding: 0.75rem;
+            border-radius: 10px;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            background: white;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.28);
+            line-height: 0;
+        }
+
+        .illustration-modal-content img {
+            display: block;
+            max-width: 100%;
+            max-height: calc(88vh - 1.5rem);
+            border-radius: 6px;
+            object-fit: contain;
+        }
+
+        .illustration-modal-close {
+            position: absolute;
+            top: 0.45rem;
+            right: 0.55rem;
+            width: 2rem;
+            height: 2rem;
+            border: none;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #2c3e50;
+            cursor: pointer;
+            font-size: 1.5rem;
+            line-height: 1;
+            box-shadow: 0 1px 5px rgba(15, 23, 42, 0.16);
+        }
+
+        .illustration-modal-close:hover {
+            background: #f7fafc;
+        }
+
         .pub-links {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
+            gap: 0;
             margin-top: 0.6rem;
             align-items: center;
+        }
+
+        #research.research-compact .pub-links {
+            gap: 0;
+            margin-top: 0.42rem;
         }
 
         .pub-link-box {
             display: inline-flex;
             align-items: center;
-            gap: 0.38rem;
-            min-height: 1.9rem;
-            padding: 0.32rem 0.62rem;
-            border-radius: 8px;
-            border: 1px solid #d7e3f0;
-            background: #f8fbff;
+            gap: 0.28rem;
+            min-height: 0;
+            padding: 0;
+            border-radius: 0;
+            border: 0;
+            background: transparent;
             text-decoration: none;
-            transition: all 0.2s ease;
+            transition: color 0.2s ease;
             cursor: pointer;
         }
 
+        .pub-link-box:not(:last-child)::after {
+            content: "|";
+            margin: 0 0.5rem;
+            color: #a0aec0;
+            font-weight: 400;
+        }
+
+        #research.research-compact .pub-link-box {
+            min-height: 0;
+            padding: 0;
+        }
+
         .pub-link-box:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(26, 54, 93, 0.12);
-            border-color: #bfd0e4;
-            background: #f1f6fb;
+            color: #1a365d;
+            background: transparent;
+        }
+
+        .pub-link-box.is-website {
+            background: transparent;
+            border-color: transparent;
+        }
+
+        .pub-link-box.is-website:hover {
+            background: transparent;
+            border-color: transparent;
         }
 
         .pub-link-box img {
-            width: 0.92rem;
-            height: 0.92rem;
+            width: 0.82rem;
+            height: 0.82rem;
             display: block;
             flex-shrink: 0;
+            opacity: 0.72;
+            transition: opacity 0.2s ease;
+        }
+
+        .pub-link-box:hover img {
+            opacity: 0.95;
         }
 
         .pub-link-box span {
@@ -577,10 +762,21 @@
             clip: auto;
             white-space: nowrap;
             border: 0;
-            color: #1a365d;
-            font-size: 0.76rem;
-            font-weight: 400;
+            color: #52657a;
+            font-size: 0.78rem;
+            font-weight: 500;
             letter-spacing: 0.01em;
+        }
+
+        .pub-link-box:hover span {
+            color: #1a365d;
+            text-decoration: underline;
+            text-underline-offset: 0.18rem;
+        }
+
+        .pub-link-box.is-website span {
+            color: #314968;
+            font-weight: 600;
         }
 
         .lab-member {
@@ -629,6 +825,11 @@
             .publication-entry {
                 grid-template-columns: 1fr;
                 gap: 0.45rem;
+            }
+
+            .pub-illustration {
+                width: min(43vw, 9.5rem);
+                margin-right: 0.85rem;
             }
 
             .pub-year-marker {
@@ -880,20 +1081,13 @@
         <section class="section" id="research">
             <div class="section-header">
                 <h2 class="section-title">
-                    Recent Research
+                    Research
                 </h2>
             </div>
 
             <div class="filter-sort-section">
                 <div class="search-controls">
                     <input type="text" id="searchInput" placeholder="Search by title, author, venue...">
-                </div>
-                <div class="filter-controls">
-                    <label for="authorFilter">Filter by Author:</label>
-                    <select id="authorFilter">
-                        <option value="">All Authors</option>
-                    </select>
-                    <button class="clear-filter-btn" id="clearFilterBtn" disabled>Clear Filter</button>
                 </div>
             </div>
 
@@ -913,6 +1107,12 @@
                 <div class="pub-modal-abstract-text" id="pubModalAbstract"></div>
             </div>
             <div class="pub-modal-links" id="pubModalLinks"></div>
+        </div>
+    </div>
+    <div class="illustration-modal-overlay" id="illustrationModal">
+        <div class="illustration-modal-content" role="dialog" aria-modal="true" aria-label="Publication illustration preview">
+            <button class="illustration-modal-close" id="illustrationModalClose" aria-label="Close illustration preview">&times;</button>
+            <img id="illustrationModalImage" src="" alt="">
         </div>
     </div>
     <footer class="footer">
@@ -1060,14 +1260,35 @@
         document.addEventListener('DOMContentLoaded', function () {
             const pubModal = document.getElementById('pubModal');
             const pubModalClose = document.getElementById('pubModalClose');
+            const illustrationModal = document.getElementById('illustrationModal');
+            const illustrationModalClose = document.getElementById('illustrationModalClose');
+            const illustrationModalImage = document.getElementById('illustrationModalImage');
             const searchInput = document.getElementById('searchInput');
-            const authorFilter = document.getElementById('authorFilter');
-            const clearFilterBtn = document.getElementById('clearFilterBtn');
+            const researchSection = document.getElementById('research');
+            researchSection.classList.add('research-compact');
 
             // Close modal
             function closePubModal() {
                 pubModal.classList.remove('active');
                 document.body.style.overflow = '';
+            }
+
+            function openIllustrationModal(src, title) {
+                if (!src) {
+                    return;
+                }
+
+                illustrationModalImage.src = src;
+                illustrationModalImage.alt = title ? `${title} illustration` : 'Publication illustration';
+                illustrationModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeIllustrationModal() {
+                illustrationModal.classList.remove('active');
+                illustrationModalImage.removeAttribute('src');
+                illustrationModalImage.alt = '';
+                document.body.style.overflow = pubModal.classList.contains('active') ? 'hidden' : '';
             }
 
             pubModalClose.addEventListener('click', closePubModal);
@@ -1077,9 +1298,19 @@
                 }
             });
 
+            illustrationModalClose.addEventListener('click', closeIllustrationModal);
+            illustrationModal.addEventListener('click', function (event) {
+                if (event.target === illustrationModal) {
+                    closeIllustrationModal();
+                }
+            });
+
             document.addEventListener('keydown', function (event) {
                 if (event.key === 'Escape' && pubModal.classList.contains('active')) {
                     closePubModal();
+                }
+                if (event.key === 'Escape' && illustrationModal.classList.contains('active')) {
+                    closeIllustrationModal();
                 }
             });
 
@@ -1095,7 +1326,7 @@
                 </div>
                 <div class="pub-modal-meta-item">
                     <div class="pub-modal-meta-label">Venue</div>
-                    <div class="pub-modal-meta-value">${pub.venue}</div>
+                    <div class="pub-modal-meta-value pub-modal-venue">${pub.venue}</div>
                 </div>
             `;
                 document.getElementById('pubModalMeta').innerHTML = metaHtml;
@@ -1127,21 +1358,8 @@
                     filteredPublications = filteredPublications.filter(pub => {
                         return pub.title.toLowerCase().includes(query) ||
                             pub.authors.toLowerCase().includes(query) ||
-                            (pub.authorsFullNames && pub.authorsFullNames.includes(query)) ||
                             pub.venue.toLowerCase().includes(query) ||
                             (pub.displayDate && pub.displayDate.toLowerCase().includes(query));
-                    });
-                }
-
-                // Apply lab member filter
-                const selectedFullName = authorFilter.value;
-                if (selectedFullName) {
-                    const selectedLastName = selectedFullName.split(' ').pop();
-                    filteredPublications = filteredPublications.filter(pub => {
-                        return pub.labMembers.some(member => {
-                            const memberLastName = member.split(' ').pop();
-                            return memberLastName === selectedLastName;
-                        });
                     });
                 }
 
@@ -1149,7 +1367,6 @@
                 filteredPublications.sort((a, b) => new Date(b.date) - new Date(a.date));
 
                 renderPublications();
-                clearFilterBtn.disabled = !selectedFullName;
             }
 
             function renderPublications() {
@@ -1166,9 +1383,11 @@
                     pubDiv.className = 'publication';
 
                     const linkBoxes = renderPublicationLinks(pub);
+                    const illustrationBox = renderPublicationIllustration(pub);
 
                     pubDiv.innerHTML = `
                     <h4 class="pub-title">${pub.title}</h4>
+                    ${illustrationBox}
                     <p class="pub-authors">${pub.authors}</p>
                     <div class="pub-date-venue">
                         <span class="pub-date">${pub.pubDate || pub.displayDate}</span>
@@ -1194,99 +1413,94 @@
                     {
                         href: links.preprint_link || links.arxiv || '',
                         text: links.preprint_text_display || ((links.preprint_link || links.arxiv) ? 'Preprint' : ''),
-                        icon: 'img/assets/arxiv.svg'
+                        icon: 'img/assets/arxiv.svg',
+                        kind: 'preprint'
                     },
                     {
                         href: links.paper_link || links.publication || '',
                         text: links.paper_text_display || ((links.paper_link || links.publication) ? 'Publication' : ''),
-                        icon: 'img/assets/paper.svg'
+                        icon: 'img/assets/paper.svg',
+                        kind: 'paper'
                     },
                     {
                         href: links.github_link || links.code || '',
                         text: links.github_text_display || ((links.github_link || links.code) ? 'Code' : ''),
-                        icon: 'img/assets/github.svg'
+                        icon: 'img/assets/github.svg',
+                        kind: 'code'
                     },
                     {
                         href: links.hf_link || links.huggingface || '',
                         text: links.hf_text_display || ((links.hf_link || links.huggingface) ? 'Data' : ''),
-                        icon: 'img/assets/hf.svg'
+                        icon: 'img/assets/hf.svg',
+                        kind: 'data'
                     },
                     {
                         href: youtubeHref,
                         text: links.youtube_text || (youtubeHref ? 'Video' : ''),
-                        icon: 'img/assets/yt.svg'
+                        icon: 'img/assets/yt.svg',
+                        kind: 'video'
                     },
                     {
                         href: links.website_link || links.website || '',
                         text: links.website_text_display || ((links.website_link || links.website) ? 'Website' : ''),
-                        icon: 'img/assets/website.svg'
+                        icon: 'img/assets/website.svg',
+                        kind: 'website'
                     }
                 ].filter(link => link.href && link.href.trim() !== '');
             }
 
+            function escapeAttribute(value) {
+                return String(value || '')
+                    .replace(/&/g, '&amp;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;');
+            }
+
+            function renderPublicationIllustration(pub) {
+                const illustrationPath = pub.illustration_path || '';
+                if (!illustrationPath.trim()) {
+                    return '';
+                }
+
+                const illustrationFit = pub.illustration_fit === 'cover' ? 'cover' : 'contain';
+                const escapedPath = escapeAttribute(illustrationPath);
+                const escapedTitle = escapeAttribute(pub.title || 'publication');
+
+                return `
+                    <button class="pub-illustration" type="button" data-illustration-src="${escapedPath}" data-illustration-title="${escapedTitle}" aria-label="Expand illustration for ${escapedTitle}">
+                        <img src="${escapedPath}" alt="" class="is-${illustrationFit}">
+                    </button>
+                `;
+            }
+
             function renderPublicationLinks(pub) {
                 return getPublicationLinkData(pub).map(link => `
-                    <a href="${link.href}" target="_blank" rel="noopener noreferrer" class="pub-link-box" aria-label="${link.text}">
+                    <a href="${link.href}" target="_blank" rel="noopener noreferrer" class="pub-link-box is-${link.kind}" aria-label="${link.text}">
                         <img src="${link.icon}" alt="${link.text}">
                         <span>${link.text}</span>
                     </a>
                 `).join('');
             }
 
-            // Fetch publications and team data
-            Promise.all([
-                fetch('research.json').then(r => r.json()),
-                fetch('team.json').then(r => r.json())
-            ])
-                .then(([pubData, teamData]) => {
+            document.getElementById('publications-list').addEventListener('click', function (event) {
+                const illustrationButton = event.target.closest('.pub-illustration');
+                if (!illustrationButton) {
+                    return;
+                }
+
+                event.preventDefault();
+                event.stopPropagation();
+                openIllustrationModal(
+                    illustrationButton.dataset.illustrationSrc,
+                    illustrationButton.dataset.illustrationTitle
+                );
+            });
+
+            fetch('research.json')
+                .then(r => r.json())
+                .then(pubData => {
                     allPublications = pubData.publications;
-
-                    // Build last name → full name mapping from team data
-                    const lastNameToFullName = {};
-                    lastNameToFullName['Mahdi'] = 'Adam Mahdi';
-                    teamData.currentStudents.forEach(member => {
-                        const lastName = member.name.split(' ').pop();
-                        lastNameToFullName[lastName] = member.name;
-                    });
-                    teamData.alumni.forEach(member => {
-                        const lastName = member.name.split(' ').pop();
-                        if (!lastNameToFullName[lastName]) {
-                            lastNameToFullName[lastName] = member.name;
-                        }
-                    });
-
-                    // Build full-name author strings for search
-                    allPublications.forEach(pub => {
-                        pub.authorsFullNames = pub.authors.split(', ').map(author => {
-                            const lastName = author.trim().split(' ').pop();
-                            return lastNameToFullName[lastName] || author;
-                        }).join(', ').toLowerCase();
-                    });
-
-                    // Collect unique lab member full names from publications
-                    const labMemberFullNames = new Set();
-                    allPublications.forEach(pub => {
-                        pub.labMembers.forEach(abbrev => {
-                            const lastName = abbrev.split(' ').pop();
-                            const fullName = lastNameToFullName[lastName] || abbrev;
-                            labMemberFullNames.add(fullName);
-                        });
-                    });
-
-                    // Populate dropdown sorted by last name
-                    const sortedNames = Array.from(labMemberFullNames).sort((a, b) => {
-                        const lastA = a.split(' ').pop();
-                        const lastB = b.split(' ').pop();
-                        return lastA.localeCompare(lastB);
-                    });
-                    sortedNames.forEach(name => {
-                        const option = document.createElement('option');
-                        option.value = name;
-                        option.textContent = name;
-                        authorFilter.appendChild(option);
-                    });
-
-                    // Initial render
                     applySortAndFilter();
                 })
                 .catch(error => {
@@ -1297,13 +1511,7 @@
                     }
                 });
 
-            // Event listeners for search and filter
             searchInput.addEventListener('input', applySortAndFilter);
-            authorFilter.addEventListener('change', applySortAndFilter);
-            clearFilterBtn.addEventListener('click', () => {
-                authorFilter.value = '';
-                applySortAndFilter();
-            });
         });
     </script>
 </body>
