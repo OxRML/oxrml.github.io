@@ -79,16 +79,6 @@
     }
   },
   {
-  "id": "2",
-  "date": "2026-04-15",
-  "displayDate": "April 2026",
-  "title": "DPhil ESRC Grand Union DTP Studentship Awarded",
-  "text": "Shreyansh Padarha was awarded the ESRC (Economic and Social Research Council) Grand Union studentship to study for a DPhil in Social Data Science at the Oxford Internet Institute.",
-  "category": "award",
-  "photos": [],
-  "span_links": {}
-},
-  {
     "id": "3",
     "date": "2026-02-09",
     "displayDate": "February 2026",
@@ -183,26 +173,6 @@
     }
   },
   {
-    "id": "8",
-    "date": "2025-04-01",
-    "displayDate": "April 2025",
-    "title": "DPhil Confirmation of Status Milestone Achieved",
-    "text": "Congratulations to Andrew Bean and Djavan De Clercq for successfully passing Confirmation of Status, a key DPhil milestone at the University of Oxford assessing research progress and readiness for thesis completion.",
-    "category": "milestone",
-    "photos": [],
-    "span_links": {}
-  },
-  {
-    "id": "9",
-    "date": "2025-03-26",
-    "displayDate": "March 2025",
-    "title": "DPhil Clarendon Scholarship Awarded",
-    "text": "Ryan Othniel Kearns was awarded the Clarendon Scholarship to study for a DPhil in Social Data Science at the Oxford Internet Institute.",
-    "category": "award",
-    "photos": [],
-    "span_links": {}
-  },
-  {
     "id": "10",
     "date": "2025-02-01",
     "displayDate": "February 2025",
@@ -219,16 +189,6 @@
     "span_links": {
       "Review of multimodal machine learning approaches in healthcare": "https://www.sciencedirect.com/science/article/pii/S1566253524004688"
     }
-  },
-  {
-    "id": "11",
-    "date": "2025-01-01",
-    "displayDate": "January 2025",
-    "title": "DPhil Transfer of Status Milestone Achieved",
-    "text": "Harry Mayne and Yushi Yang have successfully passed Transfer of Status, an important Oxford DPhil milestone assessing research proposal strength, progress and potential impact.",
-    "category": "milestone",
-    "photos": [],
-    "span_links": {}
   },
   {
     "id": "12",
