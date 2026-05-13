@@ -42,7 +42,7 @@
             grid-template-columns: 1fr;
             padding: 1.6rem;
             background: #ffffff;
-            border-radius: 20px;
+            border-radius: 12px;
             border: 1px solid var(--news-border);
             transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
             box-shadow: var(--news-shadow);
@@ -72,19 +72,28 @@
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.55rem 0.75rem;
+            padding-left: 0.75rem;
+            border-left: 3px solid var(--news-border);
         }
 
         .news-date-full {
             display: inline-flex;
             align-items: center;
-            background: var(--news-accent-deep);
-            color: white;
-            padding: 0.34rem 0.82rem;
-            border-radius: 999px;
-            font-size: 0.78rem;
+            color: #52657b;
+            padding: 0.08rem 0;
+            font-size: 0.82rem;
             font-weight: 600;
             letter-spacing: 0.02em;
+        }
+
+        .news-date-full::after {
+            content: "";
+            width: 0.26rem;
+            height: 0.26rem;
+            margin-left: 0.75rem;
+            border-radius: 50%;
+            background: #b8c7d8;
         }
 
         .news-title-full {
@@ -192,13 +201,11 @@
             display: inline-flex;
             align-items: center;
             gap: 0.45rem;
-            background: var(--news-soft);
-            color: var(--news-accent);
-            padding: 0.34rem 0.8rem;
-            border-radius: 999px;
-            font-size: 0.78rem;
+            color: var(--news-accent-deep);
+            padding: 0.08rem 0;
+            font-size: 0.82rem;
             font-weight: 600;
-            border: 1px solid rgba(var(--news-accent-rgb), 0.12);
+            letter-spacing: 0.02em;
         }
 
         .news-category-icon {
@@ -231,7 +238,7 @@
         .news-media-stage {
             position: relative;
             overflow: hidden;
-            border-radius: 18px;
+            border-radius: 12px;
             background: #ffffff;
             border: 1px solid rgba(var(--news-accent-rgb), 0.12);
             aspect-ratio: 5 / 4;
@@ -257,7 +264,7 @@
             width: 100%;
             height: 100%;
             display: block;
-            border-radius: 14px;
+            border-radius: 8px;
             background: #ffffff;
             object-position: center;
         }
@@ -330,7 +337,7 @@
 
             .news-item-full {
                 padding: 1.3rem;
-                border-radius: 18px;
+                border-radius: 12px;
             }
 
             .news-title-full {
