@@ -588,40 +588,6 @@
       }
     },
     {
-      "id": "llm_shared_weaknesses",
-      "date": "2023-10-01",
-      "displayDate": "October 2023",
-      "title": "Do Large Language Models have Shared Weaknesses in Medical Question Answering?",
-      "authors": "AM Bean, K Korgul, F Krones, R McCraith, A Mahdi",
-      "labMembers": [
-        "AM Bean",
-        "K Korgul",
-        "F Krones",
-        "A Mahdi"
-      ],
-      "pubDate": "2023",
-      "venue": "AIM-FM @ NeurIPS",
-      "themes": [
-        "AI in Healthcare",
-        "Benchmarks and Evaluation"
-      ],
-      "abstract": "Abstract",
-      "links": {
-        "hf_link": "",
-        "hf_text_display": "",
-        "preprint_link": "https://arxiv.org/abs/2310.07225",
-        "preprint_text_display": "Preprint",
-        "paper_link": "https://openreview.net/forum?id=ZjQ04tsRQl",
-        "paper_text_display": "Publication",
-        "github_link": "",
-        "github_text_display": "",
-        "website_link": "",
-        "website_text_display": "",
-        "youtube_link": "",
-        "youtube_text": ""
-      }
-    },
-    {
       "id": "lt_vit",
       "date": "2023-10-09",
       "displayDate": "October 2023",
