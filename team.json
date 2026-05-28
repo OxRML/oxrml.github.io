@@ -204,6 +204,23 @@
       }
     },
     {
+      "id": "amelia_mercado",
+      "name": "Amelia Mercado",
+      "role": "MSc Student",
+      "focus": "Clinical AI, Computational Psychiatry, Human-LLM Interaction, LLMs in Mental Health",
+      "photo": "img/members/amelia.png",
+      "shortBio": "Amelia is a medical student at Baylor College of Medicine who is pursuing an MSc in Social Data Science at the University of Oxford. As a future psychiatrist, her research focuses on the intersection of artificial intelligence and clinical medicine. Co-supervised by Adam Mahdi and Robert McCutcheon, she works within the OxRML and Oxford Psychosis Research & Application (OPERA) labs to apply machine learning to schizophrenia outcomes. Her broader research also investigates human-LLM interactions in mental health care and medicine.",
+      "longBio": "Amelia is a medical student at Baylor College of Medicine and a Rotary Global Grant Scholar pursuing an MSc in Social Data Science at the University of Oxford. As a future psychiatrist, her research focuses on the intersection of artificial intelligence and clinical medicine. Under the co-supervision of Adam Mahdi and Robert McCutcheon, she works within the OxRML and Oxford Psychosis Research & Application (OPERA) labs to apply machine learning to schizophrenia outcomes. Her broader work investigates human-LLM interactions in mental health care and medicine. Previously, she earned a Bachelor of Science and Arts in Biology from the University of Texas at Austin, graduating with Highest Honors and a Distinction in Research.",
+      "links": {
+        "email": "amelia.mercado@bcm.edu",
+        "linkedin": "https://www.linkedin.com/in/amelia-mercado/",
+        "website": "https://ameliamercado.github.io/",
+        "twitter": "https://x.com/ameliamercado00?lang=en",
+        "github": "",
+        "scholar": "https://scholar.google.com/citations?user=tGJgEk4AAAAJ&hl=en"
+      }
+    },
+    {
       "id": "sebastian_petric",
       "name": "Sebastian Petric",
       "role": "Visiting Policy Fellow (2024-2026)",
