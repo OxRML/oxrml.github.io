@@ -42,9 +42,25 @@
       "A Positive Case for Faithfulness: LLM Self-Explanations Help Predict Model Behaviour": "https://arxiv.org/pdf/2602.02639",
       "It's a TRAP! Task-Redirecting Agent Persuasion Benchmark for Web Agents": "https://arxiv.org/pdf/2512.23128"
     }
-  }, 
+  },
 
-{
+  {
+    "id": "2",
+    "date": "2026-05-01",
+    "displayDate": "May 2026",
+    "title": "Felix Krones Successfully Defends His DPhil Thesis",
+    "text": "Many congratulations to Felix Krones on successfully passing his DPhil viva, an important milestone in the completion of a DPhil at Oxford. His thesis is titled \"Experimental Evaluation of Multimodal Machine Learning Models for Cardiovascular Conditions in ICU Patients.\"",
+    "category": "award",
+    "photos": [
+      {
+        "src": "img/news/felix_dphil_viva.jpeg",
+        "alt": "Felix Krones DPhil viva",
+        "fit": "cover"
+      }
+    ]
+  },
+
+  {
     "id": "1",
     "date": "2026-04-25",
     "displayDate": "April 2026",
