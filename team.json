@@ -170,6 +170,23 @@
       }
     },
     {
+      "id": "max_davy",
+      "name": "Max Davy",
+      "role": "DPhil Student",
+      "focus": "Human-AI and AI-AI interactions",
+      "photo": "img/members/max_davy.png",
+      "shortBio": "Max is a DPhil student in Social Data Science at the Oxford Internet Institute, supported by the Shirley Scholarship. He previously studied a MSc at the OII, after working for 5 years as a data scientist at Atlassian and Canva and studying mathematics at the University of Sydney. He is interested in studying interactions between humans and AI, as well as between AI systems.",
+      "longBio": "Max is a DPhil student in Social Data Science at the Oxford Internet Institute. He is supported by the Shirley Scholarship and a studentship from the BOLD lab. He previously studied a MSc at the OII, after working for 5 years as a data scientist at Atlassian and Canva, including in Canva’s Trust and Safety team. In undergrad he studied mathematics and computer science at University of Sydney. Max is a member of the Reasoning with Machines lab (Adam Mahdi), eaquilab (Scott Hale), BOLD (Jakob Foerster) and is also supervised by Paul Röttger. He is interested in the phenomenon of people delegating tasks to LLM-powered agents and systems, including information-seeking, collaboration, competitive goal-seeking and scientific discovery. He is trying not to get too distracted by his interests in measurement science, causal inference, mathematics, normative ethics or algorithm design. He enjoys rowing, boardgames, and travelling to places with good (and inexpensive) food.",
+      "links": {
+        "email": "max.davy@oii.ox.ac.uk",
+        "linkedin": "https://www.linkedin.com/in/maxdavy/",
+        "website": "https://daxmavy.github.io/",
+        "twitter": "",
+        "github": "https://github.com/daxmavy",
+        "scholar": "https://scholar.google.com/citations?user=QS6E49AAAAAJ&hl=en"
+      }
+    },
+    {
       "id": "mia_kussman",
       "name": "Mia Kussman",
       "role": "MSc Student",
@@ -218,6 +235,23 @@
         "twitter": "https://x.com/ameliamercado00?lang=en",
         "github": "",
         "scholar": "https://scholar.google.com/citations?user=tGJgEk4AAAAJ&hl=en"
+      }
+    },
+    {
+      "id": "karol_suchan",
+      "name": "Karol Suchan",
+      "role": "Visiting Professor",
+      "focus": "AI, digital technologies, and collaborative decision-making",
+      "photo": "img/members/karol_suchan.jpg",
+      "shortBio": "Karol is an Associate Professor at Universidad Diego Portales in Chile and Head of CITYLOG, the Center for Innovation in Transport and Logistics. His interdisciplinary research examines artificial intelligence, digital platforms, decision-support systems, education, logistics, and transportation.",
+      "longBio": "Karol Suchan is an Associate Professor at the School of Computer Science and Telecommunications at Universidad Diego Portales in Chile, where he also leads CITYLOG, the Center for Innovation in Transport and Logistics. He holds a PhD and an MSc in Computer Science from the University of Orléans, as well as an MSc in Mathematics from AGH University. His research combines computational methods with interdisciplinary applications across artificial intelligence, digital platforms, decision-support systems, education, logistics, and transportation. Karol is a principal investigator and founding member of the Millennium Institute for Authority and Social Regulation, where he contributes to the research line on Authority, Digital Technologies, and the Digital World. As a visiting professor at Oxford, he works with Adam Mahdi as an international collaborator of the Institute, examining how AI and digital technologies reshape authority, social regulation, and collaborative decision-making.",
+      "links": {
+        "email": "karol.suchan@mail.udp.cl",
+        "linkedin": "https://www.linkedin.com/in/ksuchan/",
+        "website": "",
+        "twitter": "",
+        "github": "",
+        "scholar": "https://scholar.google.com/citations?user=mBNeLBUAAAAJ&hl=en"
       }
     },
     {
