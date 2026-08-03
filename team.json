@@ -286,6 +286,23 @@
         "github": "https://github.com/tristan-myles",
         "scholar": "https://scholar.google.co.uk/citations?user=AqYz76wAAAAJ"
       }
+    },
+    {
+      "id": "lukasz_borchmann",
+      "name": "Łukasz Borchmann",
+      "role": "Research Affiliate",
+      "focus": "LLM Training, Multimodal Models, LLM Evaluations",
+      "photo": "img/members/lukasz_borchmann.jpg",
+      "shortBio": "Łukasz Borchmann is a Staff Research Scientist at Snowflake AI Research, where he designs and trains models — from document and vision-language systems to reasoning models for code generation — and studies how to measure their capabilities. He collaborates with the Reasoning with Machines Lab on the science of LLM evaluation. Łukasz holds a PhD in Computer Science and an MA in Linguistics.",
+      "longBio": "Łukasz Borchmann is a Staff Research Scientist at Snowflake AI Research, where he designs and trains models — from document and vision-language systems to reasoning models for code generation — and studies how to measure their capabilities. He collaborates with the Reasoning with Machines Lab on the science of LLM evaluation. Łukasz holds a PhD in Computer Science and an MA in Linguistics.",
+      "links": {
+        "email": "lukasz.borchmann@snowflake.com",
+        "linkedin": "https://www.linkedin.com/in/%C5%82ukasz-borchmann/",
+        "website": "",
+        "twitter": "https://x.com/LukaszBorchmann",
+        "github": "",
+        "scholar": "https://scholar.google.com/citations?user=IPpWyNIAAAAJ&hl=en&oi=ao"
+      }
     }
   ],
   "alumni": [
