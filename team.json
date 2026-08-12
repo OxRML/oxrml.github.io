@@ -187,6 +187,23 @@
       }
     },
     {
+      "id": "terry_zhang",
+      "name": "Terry J. C. Zhang",
+      "role": "DPhil Student",
+      "focus": "Evaluation & Benchmarking, Multi-Agent System, AI Safety, Recursive Self-Improvement",
+      "photo": "img/members/terry_zhang.jpeg",
+      "shortBio": "Terry is DPhil student working with Adam Mahdi, Christian Schroeder de Witt and Philip Torr, he previously obtained bachelor and master of science at ETH Zurich in interdisciplinary sciences with dual focus on CS and physics. His current research seeks to de-risk large scale deployment of (multi-)agentic system by making them smarter (reasoning) and safer (alignment) at the same time",
+      "longBio": "Terry is DPhil student working with Adam Mahdi, Christian Schroeder de Witt and Philip Torr, he previously obtained bachelor and master of science at ETH Zurich in interdisciplinary sciences with dual focus on CS and physics. His current research seeks to de-risk large scale deployment of (multi-)agentic system by developing rigorous evaluation on how agents interact with training data, surrounding environment, other agents and our society at large. His vertical focus on testing reliability and generalizability of frontier capability/propensity evaluation and post-training methods, where he often leverage horizontal methods from formal verification (Lean) and mechanistic interpretability.",
+      "links": {
+        "email": "terry@safe.eu",
+        "linkedin": "https://www.linkedin.com/in/terryjczhang",
+        "website": "https://terry-zhang.notion.site",
+        "twitter": "https://x.com/TerryJCZhang",
+        "github": "https://github.com/orgs/AI4Collaboration/repositories",
+        "scholar": "https://scholar.google.com/citations?hl=en&user=hFY4t8gAAAAJ&view_op=list_works&sortby=pubdate"
+      }
+    },
+    {
       "id": "mia_kussman",
       "name": "Mia Kussman",
       "role": "MSc Student",
