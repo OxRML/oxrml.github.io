@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgentSLR: Automating Systematic Literature Reviews with Agentic AI</title>
+  <meta name="description" content="AgentSLR automates systematic literature reviews using agentic AI, achieving 58× faster review times while maintaining expert-level accuracy.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://oxrml.com/agent-slr/">
+  <meta property="og:title" content="AgentSLR: Automating Systematic Literature Reviews with Agentic AI">
+  <meta property="og:description" content="AI-powered systematic literature review automation in epidemiology — 58× faster than manual review.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://oxrml.com/agent-slr/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AgentSLR: Automating Systematic Literature Reviews">
+  <meta name="twitter:description" content="AI-powered systematic literature review automation in epidemiology — 58× faster than manual review.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "AgentSLR: Automating Systematic Literature Reviews in Epidemiology with Agentic AI",
+    "author": [{"@type": "Person", "name": "Shreyansh Padarha"}, {"@type": "Person", "name": "Ryan Othniel Kearns"}, {"@type": "Person", "name": "Tristan Naidoo"}, {"@type": "Person", "name": "Lingyi Yang"}, {"@type": "Person", "name": "Łukasz Borchmann"}, {"@type": "Person", "name": "Piotr Błaszczyk"}, {"@type": "Person", "name": "Christian Morgenstern"}, {"@type": "Person", "name": "Ruth McCabe"}, {"@type": "Person", "name": "Sangeeta Bhatia"}, {"@type": "Person", "name": "Philip H. Torr"}, {"@type": "Person", "name": "Jakob Foerster"}, {"@type": "Person", "name": "Scott A. Hale"}, {"@type": "Person", "name": "Thomas Rawson"}, {"@type": "Person", "name": "Anne Cori"}, {"@type": "Person", "name": "Elizaveta Semenova"}, {"@type": "Person", "name": "Adam Mahdi"}],
+    "datePublished": "2025",
+    "publisher": {"@type": "Organization", "name": "ICML 2025"},
+    "url": "https://oxrml.com/agent-slr/",
+    "sameAs": [
+      "https://arxiv.org/abs/2603.22327",
+      "https://github.com/OxRML/AgentSLR"
+    ]
+  }
+  </script>
+  <script>
+    // Ensure relative assets resolve correctly on GitHub Pages.
+    if (window.location.pathname.endsWith('/agent-slr')) {
+      window.location.replace(window.location.pathname + '/' + window.location.search + window.location.hash);
+    }
+  </script>
+  <script>
+    (function () {
+      try {
+        var storedTheme = localStorage.getItem('theme');
+        var savedTheme = storedTheme === 'dark' || storedTheme === 'light' ? storedTheme : null;
+        var systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var currentTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', currentTheme);
+      } catch (error) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+  <link rel="icon" type="image/jpeg" href="../img/assets/rml_logo_dark.jpg">
+  <link rel="stylesheet" href="css/styles.css?v=20260320a">
+</head>
+<body>
+
+<!-- Sticky TOC -->
+<nav class="sticky-toc" id="sticky-toc">
+  <a href="#pipeline" class="toc-item" data-section="pipeline-section" title="Pipeline">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </a>
+  <a href="#results" class="toc-item" data-section="results-section" title="Results">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 5-6"/></svg>
+  </a>
+  <a href="#citation" class="toc-item" data-section="citation-section" title="Citation">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9h6V5H6v4zm0 10h6v-4H6v4zM12 9h6V5h-6v4zm0 10h6v-4h-6v4z"/></svg>
+  </a>
+</nav>
+
+<div class="theme-control">
+  <button class="theme-toggle" id="theme-toggle" type="button" title="Switch to dark mode" aria-label="Switch to dark mode" aria-pressed="false">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="5"/>
+      <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+    </svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+  </button>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="container">
+    <a class="back-btn" href="https://oxrml.com" rel="noopener noreferrer">&larr; Reasoning with Machines Lab</a>
+
+    <h1 class="paper-title">AgentSLR: Automating Systematic Literature Reviews in Epidemiology with Agentic AI</h1>
+
+    <div class="header-badges">
+      <a class="header-badge" href="https://arxiv.org/abs/2603.22327" target="_blank">  
+        <img src="logos/arxiv.svg" alt="">Paper
+      </a>
+      <a class="header-badge" href="https://huggingface.co/datasets/OxRML/AgentSLR" target="_blank">
+        <img src="../img/assets/hf.svg" alt="">Dataset
+      </a>
+      <a class="header-badge" href="https://github.com/OxRML/AgentSLR" target="_blank">
+        <img src="logos/github.svg" alt="">Codebase
+      </a>
+    </div>
+
+    <div class="authors-block">
+      Shreyansh Padarha<sup>1</sup>, Ryan Othniel Kearns<sup>1</sup>, Tristan Naidoo<sup>2</sup>, Lingyi Yang<sup>3</sup>, &Lstrok;ukasz Borchmann<sup>4</sup>,
+      Piotr B&lstrok;aszczyk<sup>5</sup>, Christian Morgenstern<sup>2</sup>,<br> Ruth McCabe<sup>2</sup>, Sangeeta Bhatia<sup>2</sup>, Philip H. Torr<sup>1</sup>,
+      Jakob Foerster<sup>1</sup>, Scott A. Hale<sup>1</sup>, Thomas Rawson<sup>2</sup>, Anne Cori<sup>2</sup>, Elizaveta Semenova<sup>2</sup>, Adam Mahdi<sup>1</sup>
+    </div>
+
+    <div class="affils-block">
+      <sup>1</sup> University of Oxford &nbsp;&middot;&nbsp;
+      <sup>2</sup> Imperial College London &nbsp;&middot;&nbsp;
+      <sup>3</sup> University of Nottingham &nbsp;&middot;&nbsp;
+      <sup>4</sup> Snowflake AI Research &nbsp;&middot;&nbsp;
+      <sup>5</sup> Independent
+    </div>
+
+    <div class="hero-intro">
+      <p class="hero-lede">
+        Systematic literature reviews are essential for evidence-based public health, but they are costly, slow, and difficult to scale. In epidemiology, that creates a real bottleneck for outbreak preparedness and rapid evidence synthesis. <strong>AgentSLR</strong> automates the full systematic review workflow for epidemiology, from article retrieval and screening to structured extraction and report drafting.
+      </p>
+      <div class="hero-findings" aria-label="Key findings">
+        <p class="hero-findings-title">
+          <strong>Key Findings:</strong> Across WHO-designated priority pathogens, AgentSLR delivers expert-comparable performance while being <strong>58&times; faster</strong>, cutting review time from roughly <strong>7 weeks</strong> to about <strong>20 hours</strong>. It provides <strong>end-to-end coverage</strong> across retrieval, screening, extraction, and report synthesis, while <strong>human-in-the-loop oversight</strong> remains important for catching stage-specific failure modes.
+        </p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ PIPELINE ============ -->
+<section class="pipeline-section" id="pipeline">
+  <div class="container">
+    <div class="section-card">
+      <h2>Pipeline</h2>
+      <p class="pipeline-subtitle">
+        AgentSLR moves from literature retrieval through screening, extraction, and report generation.
+      </p>
+
+      <!-- Pipeline Figure -->
+      <figure class="pipeline-figure">
+        <img
+          src="logos/flashfigure.jpg"
+          alt="Diagram of the six-stage AgentSLR pipeline: article search, title and abstract screening, PDF-to-Markdown conversion via OCR, full-text screening, data extraction, and report generation."
+          class="pipeline-img"
+        >
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESULTS ============ -->
+
+<section class="results-section" id="results">
+
+  <div class="container">
+    <div class="section-card">
+      <h2>Results</h2>
+
+      <p class="results-subtitle">Select a result tile to view the chart and summary below.</p>
+
+      <div class="results-layout">
+        <div class="results-tiles-grid" role="tablist" aria-label="Results navigation">
+
+          <button class="result-tile active" type="button" id="tile-time-savings" data-target="time-savings-pane" aria-selected="true" aria-controls="time-savings-pane">
+            <div class="tile-preview">
+              <div class="tile-icon">
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="24" cy="24" r="18"/>
+                  <path d="M24 12v12l8 8"/>
+                </svg>
+              </div>
+            </div>
+            <div class="tile-content">
+              <h3>Processing Time</h3>
+              <p class="tile-claim">Calendar-time savings vs. human review</p>
+            </div>
+          </button>
+
+          <button class="result-tile" type="button" id="tile-model-performance" data-target="model-performance-pane" aria-selected="false" aria-controls="model-performance-pane">
+            <div class="tile-preview">
+              <div class="tile-bars">
+                <div class="mini-bar" style="height:74%;background:#2B2E5F;"></div>
+                <div class="mini-bar" style="height:85%;background:#4B4F86;"></div>
+                <div class="mini-bar" style="height:81%;background:#6C74AD;"></div>
+                <div class="mini-bar" style="height:81%;background:#9AA4CF;"></div>
+                <div class="mini-bar" style="height:77%;background:#BDBDBD;"></div>
+              </div>
+            </div>
+            <div class="tile-content">
+              <h3>Model Performance</h3>
+              <p class="tile-claim">F<sub>1</sub> scores across pipeline stages</p>
+            </div>
+          </button>
+
+          <button class="result-tile" type="button" id="tile-cost-performance" data-target="cost-performance-pane" aria-selected="false" aria-controls="cost-performance-pane">
+            <div class="tile-preview">
+              <div class="tile-icon scatter">
+                <svg viewBox="0 0 48 48" fill="none">
+                  <circle cx="10" cy="20" r="4" fill="#2B2E5F"/>
+                  <circle cx="22" cy="14" r="4" fill="#6C74AD"/>
+                  <circle cx="34" cy="12" r="4" fill="#9AA4CF"/>
+                  <circle cx="42" cy="18" r="4" fill="#BDBDBD"/>
+                </svg>
+              </div>
+            </div>
+            <div class="tile-content">
+              <h3>Cost vs. Performance</h3>
+              <p class="tile-claim">Cost savings with open-weight models</p>
+            </div>
+          </button>
+
+          <button class="result-tile" type="button" id="tile-screening" data-target="screening-pane" aria-selected="false" aria-controls="screening-pane">
+            <div class="tile-preview">
+              <div class="tile-bars">
+                <div class="mini-bar" style="height:81%;background:#8AC1E1;"></div>
+                <div class="mini-bar" style="height:89%;background:#3F86B5;"></div>
+                <div class="mini-bar" style="height:92%;background:#1F5F8C;"></div>
+              </div>
+            </div>
+            <div class="tile-content">
+              <h3>Article Screening</h3>
+              <p class="tile-claim">Best recall with human-conditioned strategy</p>
+            </div>
+          </button>
+
+        </div>
+
+        <div class="results-detail-panel">
+          <article class="result-pane active" id="time-savings-pane" role="tabpanel" aria-labelledby="tile-time-savings">
+            <div class="result-block">
+              <h3 class="result-pane-title">Processing Time: AgentSLR vs. Human Review</h3>
+              <p class="figure-caption">
+                Wall-clock time (hours) for AgentSLR vs. human annotators across pipeline stages,
+                broken down by abstract screening, PDF conversion, full-text screening, and data extraction.
+              </p>
+
+              <div class="chart-container" id="gantt-chart"></div>
+
+              <ul class="result-bullets">
+                <li>AgentSLR completes a full review in <strong>20 hours</strong> versus <strong>385 hours</strong> of manual effort, a 19.3&times; speedup in active time</li>
+                <li>Running continuously, this translates to <strong>less than 1 calendar day</strong> versus 48.1 human workdays, a 58&times; reduction</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="result-pane" id="model-performance-pane" role="tabpanel" aria-labelledby="tile-model-performance">
+            <div class="result-block">
+              <h3 class="result-pane-title">Model Performance Across Pipeline Stages</h3>
+              <p class="figure-caption">
+                Macro F<sub>1</sub> for five frontier models across all pipeline stages. Coloured dots show
+                <span class="dot-legend flagging">Flagging</span>,
+                <span class="dot-legend counts">Counts</span>, and
+                <span class="dot-legend extraction">Extraction</span> sub-task scores within each extraction panel.
+              </p>
+
+              <div class="chart-container" id="model-ablation-chart"></div>
+
+              <ul class="result-bullets">
+                <li><strong>Kimi-K2.5</strong> leads abstract screening (F<sub>1</sub> = 0.77) and parameter extraction (F<sub>1</sub> = 0.87); no single model dominates every stage</li>
+                <li>The performance gap across models narrows during extraction, suggesting structured tool-calling partially offsets raw model capability differences</li>
+                <li><strong>GPT-OSS-120B</strong>, the smallest model tested, stays within 4.5 F<sub>1</sub> points of the best model across all stages</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="result-pane" id="cost-performance-pane" role="tabpanel" aria-labelledby="tile-cost-performance">
+            <div class="result-block">
+              <h3 class="result-pane-title">Cost vs. Performance Trade-off</h3>
+              <p class="figure-caption">
+                Average macro F<sub>1</sub> across all pipeline stages plotted against estimated total cost per pathogen run
+                (USD, log scale). Vertical bars show one standard deviation in F<sub>1</sub> across stages.
+              </p>
+
+              <div class="chart-container" id="cost-performance-chart"></div>
+
+              <ul class="result-bullets">
+                <li><strong>GPT-OSS-120B</strong> matches GPT-5.2 in overall F<sub>1</sub> (0.70 vs. 0.69) at over <strong>96&times; lower cost</strong> ($13.9 vs. $1,348)</li>
+                <li><strong>Kimi-K2.5</strong> achieves the best overall performance (F<sub>1</sub> = 0.74) at a mid-range cost of $277, making it the strongest value option</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="result-pane" id="screening-pane" role="tabpanel" aria-labelledby="tile-screening">
+            <div class="result-block">
+              <h3 class="result-pane-title">Article Screening Strategies</h3>
+              <p class="figure-caption">
+                We show recall performance across seven pathogens for three screening strategies: two-stage AI screening,
+                direct full-text AI screening, and human-conditioned full-text screening.
+                Bootstrapped 95% confidence intervals shown (10,000 resamples).
+              </p>
+
+              <div class="chart-container" id="screening-chart"></div>
+
+              <ul class="result-bullets">
+                <li>Skipping abstract screening and processing full-texts directly raises recall from <strong>0.81 to 0.89</strong>, with no human involvement required</li>
+                <li>Adding human abstract triage pushes recall to <strong>0.92</strong>, the ceiling across all strategies, at the cost of manual effort</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+<!-- ============ IMPLICATIONS / FUTURE WORK ============ -->
+
+<section class="implications-section" id="implications">
+  <div class="container">
+    <div class="section-card">
+      <h2>Implications</h2>
+      <div class="implication-pane implications standalone">
+        <ul>
+          <li>
+            <svg class="impl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="7" r="4"/><path d="M5 21v-2a7 7 0 0 1 7-7"/><path d="M15 15a4 4 0 1 0 4 4"/><path d="M19 15v4h-4"/>
+            </svg>
+            <span><strong>Human Oversight Remains Essential:</strong> High recall ensures relevant evidence reaches validators. False positives are easy to remove, giving a net reduction in effort</span>
+          </li>
+          <li>
+            <svg class="impl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/><circle cx="12" cy="17" r="1.5"/>
+            </svg>
+            <span><strong>Open-Weight Models Support Reproducible Reviews:</strong> Version pinning and local deployment matter for long-running living reviews where reproducibility across model updates is a scientific requirement</span>
+          </li>
+          <li>
+            <svg class="impl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 9v4M12 17h.01"/><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+            </svg>
+            <span><strong>Broad Content Restrictions Pose Real Risk:</strong> Claude Opus 4.5 and Sonnet 4.5 refused all pathogen-related queries. Filters applied too broadly can block entire model families from legitimate public-health research</span>
+          </li>
+          <li>
+            <svg class="impl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M6 10h4M6 13h3"/><path d="M14 8v5l3-2.5"/><path d="M8 21h8"/><path d="M12 17v4"/>
+              <path d="M19 7a3 3 0 1 1 0 4" stroke-width="1.5"/><path d="M20.5 7.5l-1.5-.5.5-1.5"/>
+            </svg>
+            <span><strong>Living Reviews Become Feasible:</strong> Reducing the per-update burden makes continuous evidence curation practical, with direct benefits for pandemic preparedness</span>
+          </li>
+          <li>
+            <svg class="impl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+            </svg>
+            <span><strong>Failure Modes Matter as Much as Error Rates:</strong> Systematic gaps in coverage introduce bias. Characterising failure modes, not just rates, is essential before high-stakes deployment</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CITATION ============ -->
+<section class="citation-section" id="citation">
+  <div class="container">
+    <h2>Citation</h2>
+    <div class="citation-block">
+      <pre><code id="bibtex-code">@misc{padarha2025agentslr,
+  title={AgentSLR: Automating Systematic Literature Reviews
+         in Epidemiology with Agentic AI},
+  author={Padarha, Shreyansh and Kearns, Ryan Othniel
+          and Naidoo, Tristan and Yang, Lingyi
+          and Borchmann, {\L}ukasz and B{\l}aszczyk, Piotr
+          and Morgenstern, Christian and McCabe, Ruth
+          and Bhatia, Sangeeta and Torr, Philip H.
+          and Foerster, Jakob and Hale, Scott A.
+          and Rawson, Thomas and Cori, Anne
+          and Semenova, Elizaveta and Mahdi, Adam},
+  year={2026},
+  eprint={2603.22327},
+  archivePrefix={arXiv},
+  primaryClass={cs.IR},
+  url={https://arxiv.org/abs/2603.22327}
+}</code></pre>
+      <button class="copy-btn" id="copy-bibtex" title="Copy to clipboard">Copy</button>
+    </div>
+  </div>
+</section>
+
+<!-- Share buttons -->
+<div class="share-bar">
+  <span class="share-label">Share</span>
+  <a href="https://twitter.com/intent/tweet?text=New%20AI4Science%20study%20from%20Oxford%20%26%20Imperial%20automates%20systematic%20literature%20reviews%20with%20agentic%20AI%0A%0AKey%20results%3A%0A%E2%80%A2%2058%C3%97%20faster%20than%20manual%20review%0A%E2%80%A2%200.92%20recall%20on%20article%20screening%0A%E2%80%A2%2096%C3%97%20cheaper%20with%20open-weight%20models%0A%0A&url=https%3A%2F%2Foxrml.com%2Fagent-slr%2F" target="_blank" rel="noopener" class="share-btn" title="Share on X">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+  </a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Foxrml.com%2Fagent-slr%2F" target="_blank" rel="noopener" class="share-btn" title="Share on LinkedIn">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+  </a>
+  <a href="https://arxiv.org/abs/2603.22327" target="_blank" rel="noopener" class="header-badge share-paper-link" title="Read the full paper">
+    <img src="logos/arxiv.svg" alt="">Paper
+  </a>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 Reasoning with Machines Lab, University of Oxford.</p>
+  </div>
+</footer>
+
+<script src="js/charts.js?v=20260319h"></script>
+<script src="js/app.js?v=20260319d"></script>
+<script>
+  (function () {
+    // Theme toggle - default to system preference until the user chooses
+    var themeToggle = document.getElementById('theme-toggle');
+
+    function setTheme(theme, persist) {
+      document.documentElement.setAttribute('data-theme', theme);
+      if (themeToggle) {
+        var nextTheme = theme === 'dark' ? 'light' : 'dark';
+        themeToggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+        themeToggle.setAttribute('aria-label', 'Switch to ' + nextTheme + ' mode');
+        themeToggle.setAttribute('title', 'Switch to ' + nextTheme + ' mode');
+      }
+      if (persist) {
+        localStorage.setItem('theme', theme);
+      }
+    }
+
+    if (themeToggle) {
+      setTheme(document.documentElement.getAttribute('data-theme') || 'light', false);
+      themeToggle.addEventListener('click', function() {
+        var newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        setTheme(newTheme, true);
+      });
+
+      var themeMedia = window.matchMedia('(prefers-color-scheme: dark)');
+      var handleSystemThemeChange = function(event) {
+        var storedTheme = localStorage.getItem('theme');
+        if (storedTheme !== 'light' && storedTheme !== 'dark') {
+          setTheme(event.matches ? 'dark' : 'light', false);
+        }
+      };
+
+      if (themeMedia.addEventListener) {
+        themeMedia.addEventListener('change', handleSystemThemeChange);
+      } else if (themeMedia.addListener) {
+        themeMedia.addListener(handleSystemThemeChange);
+      }
+    }
+
+    // Result tiles - click to switch the active detail pane
+    var resultTiles = Array.prototype.slice.call(document.querySelectorAll('.result-tile'));
+    var resultPanes = Array.prototype.slice.call(document.querySelectorAll('.result-pane'));
+
+    function activateResultPane(targetId) {
+      resultTiles.forEach(function(tile) {
+        var isActive = tile.dataset.target === targetId;
+        tile.classList.toggle('active', isActive);
+        tile.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+
+      resultPanes.forEach(function(pane) {
+        var isActive = pane.id === targetId;
+        pane.classList.toggle('active', isActive);
+        pane.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+      });
+    }
+
+    if (resultTiles.length && resultPanes.length) {
+      var defaultTile = document.querySelector('.result-tile.active') || resultTiles[0];
+      if (defaultTile) activateResultPane(defaultTile.dataset.target);
+
+      resultTiles.forEach(function(tile) {
+        tile.addEventListener('click', function() {
+          activateResultPane(this.dataset.target);
+        });
+      });
+    }
+
+    // Sticky TOC
+    var stickyToc = document.getElementById('sticky-toc');
+    var tocItems = document.querySelectorAll('.toc-item');
+    var sections = {
+      'pipeline': document.getElementById('pipeline'),
+      'results': document.getElementById('results'),
+      'citation': document.getElementById('citation')
+    };
+
+    function updateToc() {
+      var scrollY = window.scrollY;
+      // Show TOC after scrolling past header
+      if (scrollY > 200) {
+        stickyToc.classList.add('visible');
+      } else {
+        stickyToc.classList.remove('visible');
+      }
+      // Highlight active section
+      var current = '';
+      Object.keys(sections).forEach(function(key) {
+        var section = sections[key];
+        if (section && section.offsetTop - 150 <= scrollY) {
+          current = key;
+        }
+      });
+      tocItems.forEach(function(item) {
+        item.classList.toggle('active', item.getAttribute('href') === '#' + current);
+      });
+    }
+    window.addEventListener('scroll', updateToc, { passive: true });
+
+    updateToc();
+
+  })();
+</script>
+</body>
+</html>

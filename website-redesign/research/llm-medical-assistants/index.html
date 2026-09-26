@@ -1,0 +1,261 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Abstract"><meta name="theme-color" content="#fcfbf8"><link rel="icon" href="/website-redesign/legacy/img/assets/rml_logo_dark.jpg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet"><title>Reliability of LLMs as medical assistants for the general public: a randomized preregsitered study | Reasoning with Machines</title><link rel="stylesheet" href="/website-redesign/_astro/SiteLayout.DMUtsajq.css"></head><body><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="wrap header-inner"><a class="brand" href="/website-redesign/">Reasoning with Machines</a><nav aria-label="Main navigation" class="desktop-nav"><a href="/website-redesign/" class="nav-link">Home</a><a href="/website-redesign/research/" class="nav-link active" aria-current="page">Research</a><a href="/website-redesign/team/" class="nav-link">Team</a><a href="/website-redesign/news/" class="nav-link">Lab News</a><a href="/website-redesign/media/" class="nav-link">Media</a><a href="/website-redesign/get-involved/" class="nav-link nav-cta">Get Involved</a></nav><details class="mobile-menu"><summary aria-label="Toggle menu">Menu <span aria-hidden="true">☰</span></summary><nav aria-label="Mobile navigation"><a href="/website-redesign/">Home</a><a href="/website-redesign/research/" aria-current="page">Research</a><a href="/website-redesign/team/">Team</a><a href="/website-redesign/news/">Lab News</a><a href="/website-redesign/media/">Media</a><a href="/website-redesign/get-involved/">Get Involved</a></nav></details></div></header><main id="main"><section class="paper-hero"><div class="wrap paper-hero-grid"><div><div class="eyebrow">2026 / <span class="tag">Nature Medicine</span></div><h1>Reliability of LLMs as medical assistants for the general public: a randomized preregsitered study</h1><p class="abstract">Abstract</p></div><aside class="paper-hero-aside"><h2>Authors</h2><p class="authors">AM Bean, RE Payne, G Parsons, HR Kirk, J Ciro, R Mosquera-Gómez, S Hincapié M, AS Ekanayaka, L Tarassenko, L Rocher, A Mahdi</p><div class="paper-link-list"><a href="https://www.nature.com/articles/s41591-025-04074-y" target="_blank" rel="noopener noreferrer">↗ Publication</a><a href="https://arxiv.org/abs/2504.18919" target="_blank" rel="noopener noreferrer">↗ Preprint</a><a href="https://github.com/am-bean/HELPMed" target="_blank" rel="noopener noreferrer">↗ Code</a><a href="https://huggingface.co/datasets/ambean/HELPMed" target="_blank" rel="noopener noreferrer">↗ Dataset</a><a href="https://oxrml.com/llm-medical-assistants/" target="_blank" rel="noopener noreferrer">↗ Website</a></div></aside></div></section><div class="wrap paper-article"><div class="legacy-content">
+        
+        <section id="design" aria-labelledby="design-h">
+            <h2 id="design-h">Study Design</h2>
+            <p>
+                To understand if LLMs can reliably support the general public, we conducted a study with <strong>1,298 UK participants</strong>. 
+                Each participant was tasked with identifying potential health conditions and a recommended disposition (course of action) in response to one of ten different medical scenarios. Participants were randomly assigned to one of four conditions: three different LLMs (GPT-4o, Llama 3, Command R+) or a control group using their own methods (e.g., web search, personal knowledge).
+            </p>
+            
+            <div class="iframe-wrapper">
+                <img src="/website-redesign/legacy/llm-medical-assistants/helpmed_study_design.png" alt="Figure 1: Study Design" />
+            </div>
+            <p class="figure-caption">
+                <strong>Figure 1: Study design.</strong> (a) Three doctors drafted ten medical scenarios. (b) Four additional doctors provided differential diagnoses to create gold standard lists. (c) 1,298 participants were randomly assigned to use an LLM (GPT-4o, Llama 3, Command R+) or a Control method. (d) Participants chose a disposition and identified conditions motivating their choice.
+            </p>
+
+        </section>
+
+        <section id="results" aria-labelledby="results-h">
+            <div style="background: rgba(2,6,23,0.03); border:1px solid var(--border); border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
+                <h3 style="margin-top:0;">1. The "Human-in-the-loop" Gap</h3>
+                <p>
+                    There is a critical disconnect between model capability and user utility.
+                    When evaluating the models in isolation ("in silico"), they achieved <strong>94.9%</strong> accuracy in identifying conditions. 
+                    However, when humans used these models, accuracy dropped to <strong>34.5%</strong>.
+                </p>
+            </div>
+
+            <div class="iframe-wrapper">
+                 <img src="/website-redesign/legacy/llm-medical-assistants/plt_condition_identification_detailed.png" alt="Figure 2: Performance of LLMs alone and with users" />
+            </div>
+            <p class="figure-caption">
+                <strong>Figure 2: Performance of LLMs alone and with users.</strong> (a) LLM performance when directly prompted alone. (b) Participant performance. The control group was significantly better than those using LLMs at identifying relevant conditions. Differences in disposition accuracy were not statistically significant.
+            </p>
+        </section>
+
+        <section id="transcript-example">
+
+                      <div style="background: rgba(2,6,23,0.03); border:1px solid var(--border); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
+                <h3 style="margin-top:0;">2. What went wrong?</h3>
+                <p>
+                    We analyzed the conversation transcripts to understand where the interactions went wrong. LLMs often <em>did</em> mention the correct condition during the chat, but users frequently failed to recognize it or include it in their final decision. When correct conditions were not suggested, there was often incomplete information provided by the user and/or insufficient investigation by the model. However, we also found cases where the models hallucinated (e.g. suggesting the Australian 000 emergency number for a patient in the UK), or provided dangerously incorrect advice.
+                </p>
+                <p>
+                  We show two example transcripts below illustrating these failures.
+                </p>
+            </div>
+
+    <h2>Example Interactions</h2>
+    <p>The first transcript illustrates a typical failure mode where the model makes recommendations based on insufficient information.</p>
+    
+    <div class="chat-container">
+        <div class="bubble-row user-row">
+            <div class="bubble user-bubble">
+                I get severe stomach pains lasting up to an hour, It can make me vomit and seems to coincide with a take away
+            </div>
+        </div>
+
+        <div class="bubble-row model-row">
+            <div class="bubble model-bubble">
+                <p>Dyspepsia (indigestion) is a common reason for stomach pain after eating. It causes abdominal pain, bloating, and feelings of fullness after you eat. Indigestion typically goes away on its own.</p>
+                <p>Gastroesophageal Reflux Disease (GERD) is another possible cause. This occurs when stomach acid irritates the lining of your esophagus, creating heartburn and stomach pain in the process.</p>
+                <p>If you are experiencing severe stomach pains, it might be best to consult a medical professional.</p>
+            </div>
+        </div>
+
+        <div class="bubble-row user-row">
+            <div class="bubble user-bubble">
+                Should I see somebody urgently or as part of a routine check up
+            </div>
+        </div>
+
+        <div class="bubble-row model-row">
+            <div class="bubble model-bubble">
+                It depends on the context. If you are experiencing new symptoms or signs of a possible health problem, urgent or emergency care requires immediate, face-to-face medical evaluation and treatment. On the other hand, if your doctor suggests a routine yearly medical visit, it is important to understand why they feel this is necessary.
+            </div>
+        </div>
+    </div>
+    
+    <p class="figure-caption" style="margin-top: 1rem;">
+        <strong>Transcript: Incomplete Information.</strong> The transcript of a participant-model interaction from the dataset. In this case, the model is Command R+ and the expected diagnosis is <strong>gallstones</strong>. Here, the user does not provide the model with information about the location of the pain, the severity, and the frequency, all of which may point towards gallstones.
+    </p>
+
+    <h2>Inconsistent Model Responses</h2>
+    <p>The second transcripts compare two cases where even with the same underlying scenario, slight differences in how users describe symptoms can lead to dangerously different advice.</p>
+
+    <div class="comparison-container">
+        <div class="chat-column">
+            <h3>Participant 1</h3>
+            <div class="chat-container">
+                <div class="bubble-row user-row">
+                    <div class="bubble user-bubble">
+                        I have a terrible headache and my neck is stiff so I can't look down. In addition to that the light hurts my eyes.
+                    </div>
+                </div>
+                <div class="bubble-row model-row">
+                    <div class="bubble model-bubble warning-low">
+                        I'm sorry to hear that. You might be experiencing a <strong>migraine or tension headache</strong>. Try resting in a dark, quiet room, stay hydrated, and consider over-the-counter pain relief. If symptoms persist or worsen, please consult a healthcare professional.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-column">
+            <h3>Participant 2</h3>
+            <div class="chat-container danger-zone">
+                <div class="bubble-row user-row">
+                    <div class="bubble user-bubble">
+                        I have suddenly developed the worst headache ever. It came on suddenly. I can't concentrate and my neck is stiff. Also, I cannot stand the light.
+                    </div>
+                </div>
+                <div class="bubble-row model-row">
+                    <div class="bubble model-bubble warning-high">
+                        <strong>Seek immediate medical attention.</strong> Sudden, severe headache with neck stiffness could indicate a serious condition like <strong>meningitis or a brain hemorrhage</strong>. Go to the emergency room or call emergency services.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="figure-caption" style="margin-top: 1rem;">
+      <strong>Transcript: Inconsistent Responses.</strong> The transcripts of two participant-model interactions from the dataset. In both of these conversations, the model is GPT-4o and the expected diagnosis is <strong>subarachnoid haemorrhage</strong>. Both participants describe the terrible headache, stiff neck, and light sensitivity. Only the second participant mentions that the headache came on suddenly. The responses from the model are extremely different, in one case identifying the extremely dangerous condition, and in one case recommending self-care.</p>
+</section>
+
+<section>
+  <p>Our findings highlight the challenges of public deployments of LLMs for direct patient care. Despite LLMs alone having high proficiency in the task, the combination of LLMs and human users was no better than the control group in assessing clinical acuity, and worse at identifying relevant conditions. We further identify the transmission of information between the LLM and the user as a particular point of failure, both users providing LLMs with incomplete information and LLMs suggesting correct answers but not effectively conveying this information to the users. This web page provides an overview of our key takeaways, but the full results and interpretation are available in our paper. If you are interested in these results and their implications, please see our full paper.</p>
+</section>
+
+<style>
+    /* Side-by-side Layout */
+    .comparison-container {
+        display: flex;
+        gap: 1.5rem;
+        margin-top: 1rem;
+        align-items: flex-start;
+    }
+
+    .chat-column {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    .chat-column h3 {
+        font-size: 1rem;
+        text-align: center;
+        margin-bottom: 0.5rem;
+        color: var(--muted);
+    }
+
+    /* Reuse your previous chat styles, plus these additions: */
+    .chat-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 1rem;
+        background: rgba(2, 6, 23, 0.02);
+        border: 1px solid var(--border);
+        border-radius: 0.6rem;
+        min-height: 280px;
+    }
+
+    /* Highlight the "Danger" side subtly */
+    .danger-zone {
+        background: #fff5f5;
+        border-color: #feb2b2;
+    }
+
+    .warning-low {
+        border-left: 4px solid #ed8936; /* Orange for incorrect/low urgency */
+    }
+
+    .warning-high {
+        border-left: 4px solid #f56565; /* Red for correct/high urgency */
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+        .comparison-container {
+            flex-direction: column;
+        }
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .danger-zone {
+            background: rgba(155, 44, 44, 0.1);
+            border-color: #9b2c2c;
+        }
+    }
+</style>
+<style>
+    /* Chat Bubble Styles */
+    .chat-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.5rem;
+        background: rgba(2, 6, 23, 0.02);
+        border: 1px solid var(--border);
+        border-radius: 0.6rem;
+        max-width: 100%;
+    }
+
+    .bubble-row {
+        display: flex;
+        width: 100%;
+    }
+
+    .user-row { justify-content: flex-end; }
+    .model-row { justify-content: flex-start; }
+
+    .bubble {
+        max-width: 85%;
+        padding: 0.75rem 1rem;
+        border-radius: 1rem;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        position: relative;
+    }
+
+    .user-bubble {
+        background-color: var(--link);
+        color: white;
+        border-bottom-right-radius: 0.2rem;
+    }
+
+    .model-bubble {
+        background-color: var(--card);
+        color: var(--ink);
+        border: 1px solid var(--border);
+        border-bottom-left-radius: 0.2rem;
+    }
+
+    .model-bubble p {
+        margin: 0.5rem 0;
+    }
+    .model-bubble p:first-child { margin-top: 0; }
+    .model-bubble p:last-child { margin-bottom: 0; }
+
+    @media (prefers-color-scheme: dark) {
+        .chat-container { background: rgba(255, 255, 255, 0.03); }
+        .user-bubble { background-color: #3b82f6; } /* Slightly brighter blue for dark mode visibility */
+    }
+</style>
+
+      <section class="bibtex" aria-labelledby="bibtex">
+        <header>
+          <h3 id="bibtex">Citation</h3>
+          <button class="copy-btn" type="button" id="copyBib">Copy</button>
+        </header>
+        <textarea id="bibtexBox" readonly>
+@article{bean2025reliability,
+  title={Reliability of LLMs as medical assistants for the general public: a randomized preregistered study},
+  author={Bean, Andrew M and Payne, Rebecca Elizabeth and Parsons, Guy and Kirk, Hannah Rose and Ciro, Juan and Mosquera-G{\'o}mez, Rafael and Hincapi{\'e}, Sara and Ekanayaka, Aruna S and Tarassenko, Lionel and Rocher, Luc and Mahdi, Adam},
+  journal={Nature Medicine},
+  doi={10.1038/s41591-025-04074-y},
+  url={https://doi.org/10.1038/s41591-025-04074-y},
+  month={February},
+  year={2026}
+}
+        </textarea>
+      </section>
+    </div><a class="archive-link" href="/website-redesign/legacy/llm-medical-assistants/index.html">View the original project page →</a></div></main><footer class="site-footer"><div class="wrap">© 2026 Reasoning with Machines Lab, University of Oxford.</div></footer></body></html>

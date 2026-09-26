@@ -1,0 +1,63 @@
+/* Base styles shared across all pages */
+
+:root {
+    --horizontal-padding: 8rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 1.7;
+    color: #2c3e50;
+    background-color: #fdfdfd;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--horizontal-padding);
+}
+
+.section {
+    padding: 4rem 0;
+}
+
+.section-header {
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-size: 2.25rem;
+    color: #1a365d;
+    margin-bottom: 1rem;
+    font-weight: 400;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: #718096;
+    max-width: 800px;
+}
+
+@media (max-width: 1000px) {
+    :root {
+        --horizontal-padding: 4rem;
+    }
+    html {
+        font-size: 95%;
+    }
+}
+
+@media (max-width: 600px) {
+    :root {
+        --horizontal-padding: 1.5rem;
+    }
+    html {
+        font-size: 90%;
+    }
+}

@@ -1,0 +1,125 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Web-based agents powered by large language models are increasingly used for tasks such as email management or professional networking. Their reliance on dynamic web content, however, makes them vulnerable to prompt injection attacks: adversarial instructions embedded in interface elements that persuade agents to divert from their intended tasks. We introduce the Task-Redirecting Agent Persuasion Benchmark (TRAP), an evaluation suite for studying how persuasion techniques misguide autonomous web agents on realistic tasks. Across six frontier models, agents are susceptible to prompt injection in 25% of tasks on average (13% for GPT-5 to 43% for DeepSeek-R1), with small interface or contextual changes often doubling success rates and revealing systemic, psychologically driven vulnerabilities in web-based agents. We also provide a modular social-engineering injection framework with controlled experiments on high-fidelity website clones, allowing for further benchmark expansion."><meta name="theme-color" content="#fcfbf8"><link rel="icon" href="/website-redesign/legacy/img/assets/rml_logo_dark.jpg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet"><title>It&#39;s a TRAP! Task-Redirecting Agent Persuasion Benchmark for Web Agents | Reasoning with Machines</title><link rel="stylesheet" href="/website-redesign/_astro/SiteLayout.DMUtsajq.css"></head><body><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="wrap header-inner"><a class="brand" href="/website-redesign/">Reasoning with Machines</a><nav aria-label="Main navigation" class="desktop-nav"><a href="/website-redesign/" class="nav-link">Home</a><a href="/website-redesign/research/" class="nav-link active" aria-current="page">Research</a><a href="/website-redesign/team/" class="nav-link">Team</a><a href="/website-redesign/news/" class="nav-link">Lab News</a><a href="/website-redesign/media/" class="nav-link">Media</a><a href="/website-redesign/get-involved/" class="nav-link nav-cta">Get Involved</a></nav><details class="mobile-menu"><summary aria-label="Toggle menu">Menu <span aria-hidden="true">☰</span></summary><nav aria-label="Mobile navigation"><a href="/website-redesign/">Home</a><a href="/website-redesign/research/" aria-current="page">Research</a><a href="/website-redesign/team/">Team</a><a href="/website-redesign/news/">Lab News</a><a href="/website-redesign/media/">Media</a><a href="/website-redesign/get-involved/">Get Involved</a></nav></details></div></header><main id="main"><section class="paper-hero"><div class="wrap paper-hero-grid"><div><div class="eyebrow">2026 / <span class="tag">ICML</span></div><h1>It&#39;s a TRAP! Task-Redirecting Agent Persuasion Benchmark for Web Agents</h1><p class="abstract">Web-based agents powered by large language models are increasingly used for tasks such as email management or professional networking. Their reliance on dynamic web content, however, makes them vulnerable to prompt injection attacks: adversarial instructions embedded in interface elements that persuade agents to divert from their intended tasks. We introduce the Task-Redirecting Agent Persuasion Benchmark (TRAP), an evaluation suite for studying how persuasion techniques misguide autonomous web agents on realistic tasks. Across six frontier models, agents are susceptible to prompt injection in 25% of tasks on average (13% for GPT-5 to 43% for DeepSeek-R1), with small interface or contextual changes often doubling success rates and revealing systemic, psychologically driven vulnerabilities in web-based agents. We also provide a modular social-engineering injection framework with controlled experiments on high-fidelity website clones, allowing for further benchmark expansion.</p></div><aside class="paper-hero-aside"><h2>Authors</h2><p class="authors">K Korgul, Y Yang, A Drohomirecki, P Błaszczyk, W Howard, L Aichberger, C Russell, P H S Torr, A Mahdi, A Bibi</p><div class="paper-link-list"><a href="https://arxiv.org/abs/2512.23128" target="_blank" rel="noopener noreferrer">↗ Preprint</a><a href="https://oxrml.com/its-a-trap/" target="_blank" rel="noopener noreferrer">↗ Website</a></div></aside></div></section><div class="wrap paper-article"><div class="legacy-content">
+      <section id="abstract">
+        <h2>Abstract</h2>
+        <p>Web-based agents powered by large language models are increasingly used for tasks such as email management or professional networking. Their reliance on dynamic web content, however, makes them vulnerable to prompt injection attacks: adversarial instructions embedded in interface elements that persuade agents to divert from their intended tasks. We introduce the Task-Redirecting Agent Persuasion Benchmark (TRAP), an evaluation suite for studying how persuasion techniques misguide autonomous web agents on realistic tasks. Across six frontier models, agents are susceptible to prompt injection in 25% of tasks on average (13% for GPT-5 to 43% for DeepSeek-R1), with small interface or contextual changes often doubling success rates and revealing systemic, psychologically driven vulnerabilities in web-based agents. We also provide a modular social-engineering injection framework with controlled experiments on high-fidelity website clones, allowing for further benchmark expansion.</p>
+      </section>
+
+      <section id="contributions">
+        <h2>Core contributions</h2>
+        <ul class="findings-list">
+          <li>
+            <span class="finding-num">1</span>
+            <div><strong>Modular attack space.</strong> A 5-dimensional attack space of 630 distinct injections, varying persuasion principles, manipulation methods, and interface forms for granular analysis of agent failure.</div>
+          </li>
+          <li>
+            <span class="finding-num">2</span>
+            <div><strong>Extensible framework.</strong> Built on the REAL framework, TRAP provides an extensible environment for evaluating web-based LLM agents with deterministic website simulations for reproducible and realistic safety testing.</div>
+          </li>
+          <li>
+            <span class="finding-num">3</span>
+            <div><strong>Psychological analysis.</strong> Shifts focus from simple task completion to <em>why</em> attacks succeed, revealing systematic vulnerabilities driven by human-centric persuasion strategies like Social Proof and Authority.</div>
+          </li>
+        </ul>
+      </section>
+
+      <section id="environments">
+        <h2>Target environments</h2>
+        <p>We selected six common web interfaces to host our injections: clones of <strong>Google Calendar, Gmail, Amazon, Upwork, LinkedIn,</strong> and <strong>DoorDash</strong>, created originally by <a href="https://www.realevals.xyz/" target="_blank">AGI Inc</a>. These environments were chosen for their large user-editable surfaces (bios, reviews, post feeds), which serve as natural vectors for indirect prompt injection.</p>
+        <div class="iframe-wrapper">
+          <img src="/website-redesign/legacy/its-a-trap/img/target-environments.png" alt="Six high-fidelity website clones used in TRAP" />
+        </div>
+      </section>
+
+      <section id="architecture">
+        <h2>Five-dimensional attack space</h2>
+        <p>Attacks are synthesized using a modular approach. By combining interface vectors with specific persuasion techniques, we isolate the exact triggers for agent failure. The five dimensions are: <strong>injection location</strong>, <strong>interaction vector</strong> (button vs. hyperlink), <strong>persuasion principles</strong> (e.g., authority, social proof), <strong>manipulation methods</strong> (e.g., CoT injection, many-shot), and <strong>tailoring</strong> (generic vs. task-specific wording).</p>
+        <div class="iframe-wrapper">
+          <img src="/website-redesign/legacy/its-a-trap/img/attack-architecture.png" alt="Modular attack construction" />
+        </div>
+      </section>
+
+      <section id="pipeline">
+        <h2>The redirection pipeline</h2>
+        <p>When an agent processes a page, it consumes the <strong>Accessibility Tree (AXTree)</strong>. Our pipeline measures the binary outcome of whether the agent clicks a malicious redirect button or link. Redirection to an attacker-controlled site is the critical security boundary, enabling downstream harvesting or exfiltration.</p>
+        <div class="iframe-wrapper">
+          <img src="/website-redesign/legacy/its-a-trap/img/attack-pipeline.png" alt="TRAP attack pipeline" />
+        </div>
+      </section>
+
+      <section id="results">
+        <h2>Empirical findings</h2>
+        <p>We evaluated six closed- and open-source frontier models across 3,780 experimental runs.</p>
+
+        <table class="results-table">
+          <thead>
+            <tr><th>Model</th><th>Benign Utility</th><th>Attack Success Rate</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>GPT-5</td><td>89%</td><td class="asr">13%</td></tr>
+            <tr><td>Claude 3.7 Sonnet</td><td>83%</td><td class="asr">20%</td></tr>
+            <tr><td>Gemini 2.5 Flash</td><td>61%</td><td class="asr">30%</td></tr>
+            <tr><td>DeepSeek-R1</td><td>67%</td><td class="asr">43%</td></tr>
+          </tbody>
+        </table>
+
+        <div class="iframe-wrapper" style="margin-top:1rem">
+          <img src="/website-redesign/legacy/its-a-trap/img/hijack-rate-matrix.png" alt="Hijack success rate matrix across persuasion techniques and models" style="width:55%" />
+        </div>
+        <p style="font-size:.85rem;color:var(--muted);margin-top:.25rem"><strong>Hijack success matrix.</strong> Social Proof and Consistency principles emerged as the most universal triggers. Many-shot conditioning and Chain-of-Thought injections were the most successful manipulation methods across all evaluated agents.</p>
+      </section>
+
+      <section id="findings">
+        <h2>Key findings</h2>
+        <ul class="findings-list">
+          <li>
+            <span class="finding-num">1</span>
+            <div><strong>The interface gap.</strong> Button-based injections are over 3.5&times; more effective than hyperlinks, likely due to models associating buttons with mandatory UI interactions.</div>
+          </li>
+          <li>
+            <span class="finding-num">2</span>
+            <div><strong>Systematic transfer.</strong> Attacks that breach robust models like GPT-5 are high-confidence "super-injections" that almost always transfer to weaker models.</div>
+          </li>
+          <li>
+            <span class="finding-num">3</span>
+            <div><strong>Tailoring multiplier.</strong> Swapping generic phrases for task-specific wording (e.g., "access event details") increases attack success rates by up to 600%.</div>
+          </li>
+          <li>
+            <span class="finding-num">4</span>
+            <div><strong>Model-specific weaknesses.</strong> Each model exhibits a distinct vulnerability profile. GPT-5 is most susceptible to many-shot and CoT attacks; DeepSeek-R1 is almost entirely compromised through CoT injection; Claude Sonnet 3.7 is particularly sensitive to consistency-based persuasion.</div>
+          </li>
+        </ul>
+      </section>
+
+      <section id="example">
+        <h2>Anatomy of a successful attack</h2>
+        <p>How multiple layers of persuasion create an effective hijack:</p>
+        <div class="iframe-wrapper">
+          <img src="/website-redesign/legacy/its-a-trap/img/example-injection.png" alt="Example injection combining Authority principle with CoT injection" style="width:55%" />
+        </div>
+        <p style="font-size:.85rem;color:var(--muted);margin-top:.25rem">The injection impersonates a "Legally Required" Admin Policy notice (<strong>Authority</strong> principle) while numbered "Reasoning steps" mimic the agent's internal chain of thought (<strong>CoT injection</strong>), effectively overwriting its planned behaviour.</p>
+      </section>
+
+      <section id="demo">
+        <h2>Beyond one click: data exfiltration demo</h2>
+        <p>A key question is whether a single-click hijack can lead to real downstream harm. We demonstrate that it can: once an agent is redirected to an attacker-controlled page, it can be induced to exfiltrate private data from previously visited pages.</p>
+        <video class="demo-video" controls preload="metadata" poster="img/target-environments.png">
+          <source src="/website-redesign/legacy/its-a-trap/img/gemini-2-5-flash-full-attack-demo.webm" type="video/webm" />
+          Your browser does not support the video tag.
+        </video>
+        <p style="font-size:.85rem;color:var(--muted);margin-top:.25rem"><strong>Gemini 2.5 Flash demo.</strong> The agent reads a bank statement email, opens a second email containing an injected "click here" button, is redirected to an attacker-controlled "verification" page, and fills in the exact banking details from the first email &mdash; data exfiltrated.</p>
+      </section>
+
+      <div class="bibtex">
+        <header>
+          <h3>Citation</h3>
+          <button class="copy-btn" type="button" id="copyBib">Copy</button>
+        </header>
+        <textarea id="bibtexBox" readonly spellcheck="false">@inproceedings{korgul2026trap,
+title={It's a {TRAP}! Task-Redirecting Agent Persuasion Benchmark for Web Agents},
+author={Karolina Korgul and Yushi Yang and Arkadiusz Drohomirecki and Piotr Blaszczyk and Will Howard and Lukas Aichberger and Chris Russell and Philip Torr and Adam Mahdi and Adel Bibi},
+booktitle={Forty-third International Conference on Machine Learning},
+year={2026},
+url={https://openreview.net/forum?id=Smk4fl6Q9E}
+}</textarea>
+      </div>
+    </div><a class="archive-link" href="/website-redesign/legacy/its-a-trap/index.html">View the original project page →</a></div></main><footer class="site-footer"><div class="wrap">© 2026 Reasoning with Machines Lab, University of Oxford.</div></footer></body></html>

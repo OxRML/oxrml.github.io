@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description" content="Research publications, project pages, datasets, and papers from the Reasoning with Machines Lab." />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://oxrml.com/research.html" />
+    <meta property="og:title" content="Research - Reasoning with Machines Lab" />
+    <meta property="og:description" content="Research publications, project pages, datasets, and papers from the Reasoning with Machines Lab." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://oxrml.com/research.html" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Research - Reasoning with Machines Lab" />
+    <meta name="twitter:description" content="Research publications, project pages, datasets, and papers from the Reasoning with Machines Lab." />
+    <title>
+        Research - Reasoning with Machines Lab
+    </title>
+    <link href="styles/common.css" rel="stylesheet" />
+    <style>
+        :root {
+            --research-accent: #2d5986;
+            --research-accent-deep: #1a365d;
+            --research-border: #d7e2ee;
+            --venue-soft: #e7f4ee;
+            --venue-text: #236247;
+            --website-soft: #fbfaf6;
+            --website-border: #dfd8c8;
+            --website-text: #314968;
+        }
+
+        .research-overview {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 3rem;
+        }
+
+        .research-areas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .research-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #2d5986;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .research-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .research-card h3 {
+            color: #1a365d;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .research-card p {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .pi-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .pi-profile {
+            display: flex;
+            gap: 2.5rem;
+            align-items: flex-start;
+        }
+
+        .pi-photo {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #718096;
+            flex-shrink: 0;
+            border: 2px solid #e2e8f0;
+        }
+
+        .pi-info h3 {
+            font-size: 1.8rem;
+            color: #1a365d;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .pi-title {
+            color: #718096;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .pi-description {
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .team-member {
+            background: white;
+            padding: 1.0rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .member-photo {
+            width: 135px;
+            height: 135px;
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #718096;
+            border: 2px solid #e2e8f0;
+        }
+
+        .member-name {
+            font-size: 1.25rem;
+            color: #1a365d;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .member-role {
+            color: #718096;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .member-focus {
+            color: #4a5568;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .past-members-section {
+            background: #f8fafc;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            margin-top: 3rem;
+        }
+
+        .past-members-section h3 {
+            color: #1a365d;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .past-members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .past-member {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .past-member-photo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #718096;
+            border: 2px solid #e2e8f0;
+        }
+
+        .past-member-name {
+            font-size: 1.1rem;
+            color: #1a365d;
+            margin-bottom: 0.25rem;
+            font-weight: 600;
+        }
+
+        .past-member-role {
+            color: #718096;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        .collaborators-section {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .collaborators-section h4 {
+            color: #1a365d;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .collaborators-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .collaborator-tag {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            color: #4a5568;
+            font-size: 0.9rem;
+        }
+
+        .publications-list {
+            background: transparent;
+        }
+
+        .research-intro {
+            width: 100%;
+            max-width: none;
+            margin: -0.75rem 0 1.35rem;
+            color: #3f5063;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .research-intro p {
+            margin: 0;
+            max-width: none;
+            text-align: justify;
+            text-align-last: left;
+            hyphens: auto;
+        }
+
+        .research-intro p + p {
+            margin-top: 0.85rem;
+        }
+
+        .research-intro a {
+            color: inherit;
+            font-weight: 650;
+            text-decoration: none;
+            box-shadow: inset 0 -1px 0 rgba(63, 80, 99, 0.18);
+            transition: color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .research-intro a:hover {
+            color: #1a365d;
+            box-shadow: inset 0 -1px 0 rgba(45, 89, 134, 0.42);
+        }
+
+        .research-impact-label {
+            color: #1a365d;
+            font-weight: 700;
+        }
+
+        .publication-entry {
+            display: grid;
+            grid-template-columns: 4rem minmax(0, 1fr);
+            gap: 1rem;
+            align-items: start;
+            margin-bottom: 1.25rem;
+        }
+
+        #research.research-compact .publication-entry {
+            grid-template-columns: 3.4rem minmax(0, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .publication-entry:last-child {
+            margin-bottom: 0;
+        }
+
+        .pub-year-marker,
+        .pub-year-spacer {
+            min-height: 1px;
+        }
+
+        .pub-year-marker {
+            padding-top: 0.2rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #6f86a0;
+            text-align: left;
+        }
+
+        .publication {
+            padding: 1.5rem 1.75rem;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+            min-width: 0;
+        }
+
+        #research.research-compact .publication {
+            padding: 0.95rem 1.1rem;
+        }
+
+        .publication::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        .publication:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-color: #cbd5e0;
+        }
+
+        .publication:last-child {
+            margin-bottom: 0;
+        }
+
+        .pub-title {
+            font-size: 1.1rem;
+            color: #1a365d;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            line-height: 1.3;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        #research.research-compact .pub-title {
+            font-size: 1rem;
+            margin-bottom: 0.32rem;
+            line-height: 1.25;
+        }
+
+        .pub-title:hover {
+            color: #1a365d;
+        }
+
+        .pub-illustration {
+            float: left;
+            width: clamp(9rem, 18vw, 12.25rem);
+            aspect-ratio: 16 / 10;
+            margin: 0.05rem 1rem 0.45rem 0;
+            padding: 0.35rem;
+            overflow: hidden;
+            border-radius: 6px;
+            border: 1px solid rgba(203, 213, 225, 0.7);
+            background: white;
+            appearance: none;
+            cursor: zoom-in;
+            line-height: 0;
+            box-sizing: border-box;
+        }
+
+        #research.research-compact .pub-illustration {
+            width: clamp(7rem, 14vw, 9.5rem);
+            margin: 0.05rem 0.8rem 0.3rem 0;
+            padding: 0.28rem;
+        }
+
+        .pub-illustration img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border-radius: 4px;
+            background: white;
+            object-position: center;
+        }
+
+        .pub-illustration:focus-visible {
+            outline: 2px solid #2d5986;
+            outline-offset: 3px;
+        }
+
+        .pub-illustration img.is-cover {
+            object-fit: cover;
+        }
+
+        .pub-illustration img.is-contain {
+            object-fit: contain;
+        }
+
+        .pub-authors {
+            color: #4a5568;
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        #research.research-compact .pub-authors {
+            margin-bottom: 0.28rem;
+            font-size: 0.86rem;
+        }
+
+        .pub-date-venue {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        #research.research-compact .pub-date-venue {
+            gap: 0.65rem;
+            margin-bottom: 0.35rem;
+            font-size: 0.84rem;
+        }
+
+        .pub-date {
+            color: #718096;
+            font-weight: 500;
+        }
+
+        .pub-venue {
+            display: inline-flex;
+            align-items: center;
+            width: fit-content;
+            color: var(--venue-text);
+            font-weight: 650;
+            line-height: 1;
+            background: var(--venue-soft);
+            border-radius: 6px;
+            padding: 0.28rem 0.68rem;
+        }
+
+        .filter-sort-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 2rem;
+            margin-bottom: 1.75rem;
+            align-items: flex-start;
+        }
+
+        .search-controls {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 0.6rem 0.75rem;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            background: white;
+            color: #2c3e50;
+            transition: border-color 0.2s ease;
+        }
+
+        #searchInput:hover,
+        #searchInput:focus {
+            border-color: #2d5986;
+            outline: none;
+        }
+
+        /* Publication Modal Styles */
+        .pub-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.25s ease-in-out;
+        }
+
+        .pub-modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .pub-modal-content {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 850px;
+            position: relative;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        @media (max-width: 600px) {
+            .pub-modal-content {
+                padding: 1.5rem;
+            }
+        }
+
+        .pub-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2.2rem;
+            font-weight: 300;
+            color: #6c757d;
+            cursor: pointer;
+            line-height: 1;
+            padding: 5px;
+            border: none;
+            background: none;
+        }
+
+        .pub-modal-close:hover {
+            color: #343a40;
+        }
+
+        .pub-modal-title {
+            font-size: 1.5rem;
+            color: #1a365d;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .pub-modal-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
+        }
+
+        .pub-modal-meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pub-modal-meta-label {
+            color: #718096;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+            font-size: 0.85rem;
+        }
+
+        .pub-modal-meta-value {
+            color: #2c3e50;
+        }
+
+        .pub-modal-venue {
+            display: inline-flex;
+            align-items: center;
+            width: fit-content;
+            color: var(--venue-text);
+            font-weight: 650;
+            line-height: 1;
+            background: var(--venue-soft);
+            border-radius: 6px;
+            padding: 0.3rem 0.68rem;
+        }
+
+        .pub-modal-abstract {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f7fafc;
+            border-left: 4px solid #2d5986;
+            border-radius: 4px;
+        }
+
+        .pub-modal-abstract-label {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 0.5rem;
+        }
+
+        .pub-modal-abstract-text {
+            color: #4a5568;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .pub-modal-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .illustration-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.72);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(1rem, 3vw, 2.5rem);
+            z-index: 1100;
+        }
+
+        .illustration-modal-overlay.active {
+            display: flex;
+        }
+
+        .illustration-modal-content {
+            position: relative;
+            max-width: min(92vw, 1100px);
+            max-height: 88vh;
+            padding: 0.75rem;
+            border-radius: 10px;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            background: white;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.28);
+            line-height: 0;
+        }
+
+        .illustration-modal-content img {
+            display: block;
+            max-width: 100%;
+            max-height: calc(88vh - 1.5rem);
+            border-radius: 6px;
+            object-fit: contain;
+        }
+
+        .illustration-modal-close {
+            position: absolute;
+            top: 0.45rem;
+            right: 0.55rem;
+            width: 2rem;
+            height: 2rem;
+            border: none;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #2c3e50;
+            cursor: pointer;
+            font-size: 1.5rem;
+            line-height: 1;
+            box-shadow: 0 1px 5px rgba(15, 23, 42, 0.16);
+        }
+
+        .illustration-modal-close:hover {
+            background: #f7fafc;
+        }
+
+        .pub-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+            margin-top: 0.6rem;
+            align-items: center;
+        }
+
+        #research.research-compact .pub-links {
+            gap: 0;
+            margin-top: 0.42rem;
+        }
+
+        .pub-link-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.28rem;
+            min-height: 0;
+            padding: 0;
+            border-radius: 0;
+            border: 0;
+            background: transparent;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            cursor: pointer;
+        }
+
+        .pub-link-box:not(:last-child)::after {
+            content: "|";
+            margin: 0 0.5rem;
+            color: #a0aec0;
+            font-weight: 400;
+        }
+
+        #research.research-compact .pub-link-box {
+            min-height: 0;
+            padding: 0;
+        }
+
+        .pub-link-box:hover {
+            color: #1a365d;
+            background: transparent;
+        }
+
+        .pub-link-box.is-website {
+            background: transparent;
+            border-color: transparent;
+        }
+
+        .pub-link-box.is-website:hover {
+            background: transparent;
+            border-color: transparent;
+        }
+
+        .pub-link-box img {
+            width: 0.82rem;
+            height: 0.82rem;
+            display: block;
+            flex-shrink: 0;
+            opacity: 0.72;
+            transition: opacity 0.2s ease;
+        }
+
+        .pub-link-box:hover img {
+            opacity: 0.95;
+        }
+
+        .pub-link-box span {
+            position: static;
+            width: auto;
+            height: auto;
+            margin: 0;
+            overflow: visible;
+            clip: auto;
+            white-space: nowrap;
+            border: 0;
+            color: #52657a;
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+        }
+
+        .pub-link-box:hover span {
+            color: #1a365d;
+            text-decoration: underline;
+            text-underline-offset: 0.18rem;
+        }
+
+        .pub-link-box.is-website span {
+            color: #314968;
+            font-weight: 600;
+        }
+
+        .lab-member {
+            font-weight: 700;
+        }
+
+        .contact-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-item h4 {
+            color: #1a365d;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .contact-item p {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .footer {
+            background: #1a365d;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer p {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .publication-entry,
+            #research.research-compact .publication-entry {
+                grid-template-columns: 1fr;
+                gap: 0.45rem;
+            }
+
+            .pub-illustration,
+            #research.research-compact .pub-illustration {
+                width: min(43vw, 9.5rem);
+                margin-right: 0.85rem;
+            }
+
+            #research.research-compact .publication {
+                padding: 1rem;
+            }
+
+            .pub-year-marker {
+                padding-left: 0.25rem;
+            }
+
+            .pub-year-spacer {
+                display: none;
+            }
+
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .lab-identity h1 {
+                font-size: 2rem;
+            }
+
+            .nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .pi-profile {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .section {
+                padding: 3rem 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .pub-illustration,
+            #research.research-compact .pub-illustration {
+                float: none;
+                width: min(100%, 12rem);
+                margin: 0.35rem 0 0.75rem;
+            }
+
+            .pub-links,
+            #research.research-compact .pub-links {
+                gap: 0.35rem 0.7rem;
+            }
+
+            .pub-link-box:not(:last-child)::after {
+                content: none;
+            }
+        }
+
+        /* ... (your existing CSS rules) ... */
+
+        /* Styles for the hidden details within each team member card */
+        .member-full-details {
+            display: none !important;
+            /* Ensure these are always hidden on the card */
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            /* Semi-transparent background */
+            display: none;
+            /* Hidden by default */
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.25s ease-in-out;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 750px;
+            /* Max width of modal */
+            position: relative;
+            text-align: left;
+            max-height: 85vh;
+            /* Max height of modal */
+            overflow-y: auto;
+            /* Enable scroll for long content */
+            display: flex;
+            /* For layouting photo and text */
+            gap: 1.5rem;
+            /* Space between photo area and text area */
+        }
+
+        @media (max-width: 600px) {
+            .modal-content {
+                flex-direction: column;
+                /* Stack photo and text on small screens */
+                padding: 1.5rem;
+            }
+
+            .modal-photo-area {
+                text-align: center;
+                /* Center photo on small screens */
+            }
+        }
+
+        .modal-photo-area {
+            flex: 0 0 150px;
+            /* Fixed width for photo area */
+        }
+
+        .modal-photo-placeholder {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #e9ecef, #dee2e6);
+            /* Slightly different gradient */
+            border-radius: 50%;
+            /* Circular photo in modal */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #495057;
+            border: 2px solid #ced4da;
+            margin: 0 auto;
+            /* Center if parent is wider */
+        }
+
+        .modal-text-area {
+            flex: 1;
+            /* Takes remaining space */
+        }
+
+        .modal-close-button {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2.2rem;
+            font-weight: 300;
+            color: #6c757d;
+            cursor: pointer;
+            line-height: 1;
+            padding: 5px;
+        }
+
+        .modal-close-button:hover {
+            color: #343a40;
+        }
+
+        #modalMemberName {
+            font-size: 2rem;
+            /* Slightly larger */
+            color: #1a365d;
+            /* From .pi-info h3 */
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+            /* From .section-title */
+        }
+
+        #modalMemberRole {
+            color: #718096;
+            /* From .pi-title */
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            /* Slightly larger */
+        }
+
+        /* Re-use or adapt .member-bio and .member-contact-links from previous solution if needed */
+        /* These styles should generally work fine */
+        .member-bio {
+            /* This class is used inside the modal now */
+            font-size: 0.95rem;
+            /* Standardize bio font size */
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .member-contact-links a {
+            /* This class is used inside the modal now */
+            color: #2d5986;
+            text-decoration: none;
+            margin-right: 1rem;
+            /* More spacing */
+            font-size: 0.95rem;
+            display: inline-block;
+            /* Better spacing */
+            margin-bottom: 0.5rem;
+            /* Spacing for wrapped links */
+        }
+
+        .member-contact-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Button on the card */
+        .view-details-button {
+            background-color: #2d5986;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .view-details-button:hover {
+            background-color: #1a365d;
+        }
+
+        .member-contact-links i {
+            font-size: 1.1rem;
+            margin: 0 8px;
+            color: #2d5986;
+            transition: color 0.2s;
+        }
+
+        .member-contact-links i:hover {
+            color: #1a365d;
+        }
+
+        /* ... (rest of your existing CSS rules) ... */
+    </style>
+    <link href="styles/header.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+    <link href="img/assets/rml_logo_dark.jpg" rel="icon" type="image/x-icon" />
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" aria-label="Reasoning with Machines Lab Home">
+                <div class="rml-logo">
+                    <img src="img/assets/rml_logo_light.jpg" alt="Reasoning with Machines Lab logo"
+                        class="lab-logo-img" />
+
+                </div>
+            </a>
+            <nav class="nav" aria-label="Primary">
+                <div class="nav-content">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="team.html">Team</a></li>
+                        <li><a href="research.html" class="active">Research</a></li>
+                        <li><a href="news.html">News</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <section class="section" id="research">
+            <div class="section-header">
+                <h2 class="section-title">
+                    Research
+                </h2>
+            </div>
+
+            <div class="filter-sort-section">
+                <div class="search-controls">
+                    <input type="text" id="searchInput" placeholder="Search by title, author, venue...">
+                </div>
+            </div>
+
+            <div class="publications-list" id="publications-list">
+                <!-- Publications will be loaded dynamically -->
+            </div>
+        </section>
+    </main>
+    <div class="pub-modal-overlay" id="pubModal">
+        <div class="pub-modal-content">
+            <button class="pub-modal-close" id="pubModalClose">&times;</button>
+            <h3 class="pub-modal-title" id="pubModalTitle"></h3>
+            <div class="pub-modal-meta" id="pubModalMeta"></div>
+            <p class="pub-authors" id="pubModalAuthors"></p>
+            <div class="pub-modal-abstract" id="pubModalAbstractContainer" style="display: none;">
+                <div class="pub-modal-abstract-label">Abstract</div>
+                <div class="pub-modal-abstract-text" id="pubModalAbstract"></div>
+            </div>
+            <div class="pub-modal-links" id="pubModalLinks"></div>
+        </div>
+    </div>
+    <div class="illustration-modal-overlay" id="illustrationModal">
+        <div class="illustration-modal-content" role="dialog" aria-modal="true" aria-label="Publication illustration preview">
+            <button class="illustration-modal-close" id="illustrationModalClose" aria-label="Close illustration preview">&times;</button>
+            <img id="illustrationModalImage" src="" alt="">
+        </div>
+    </div>
+    <footer class="footer">
+        <p>
+            &copy; 2026 Reasoning with Machines Lab, University of Oxford. All rights reserved.
+        </p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const expandButtons = document.querySelectorAll('.expand-bio-button');
+
+            expandButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    // Find the parent .team-member div
+                    const teamMember = this.closest('.team-member');
+                    if (!teamMember) return;
+
+                    // Find the expandable content within this team member
+                    const expandableContent = teamMember.querySelector('.member-expandable-content');
+                    if (!expandableContent) return;
+
+                    // Toggle the 'expanded' class which triggers CSS display change
+                    expandableContent.classList.toggle('expanded');
+
+                    // Update button text based on the state
+                    if (expandableContent.classList.contains('expanded')) {
+                        this.textContent = 'Read Less';
+                    } else {
+                        this.textContent = 'Read More';
+                    }
+                });
+            });
+        });
+    </script>
+    <div class="modal-overlay" id="teamMemberModal">
+        <div class="modal-content">
+            <span class="modal-close-button">
+                &times;
+            </span>
+            <div class="modal-photo-area">
+                <div class="modal-photo-placeholder">
+                    [Photo Placeholder]
+                </div>
+            </div>
+            <div class="modal-text-area">
+                <h3 id="modalMemberName">
+                    Member Name
+                </h3>
+                <p id="modalMemberRole">
+                    Member Role
+                </p>
+                <div class="member-bio" id="modalMemberBio">
+                </div>
+                <div class="member-contact-links" id="modalMemberContactLinks">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const modalOverlay = document.getElementById('teamMemberModal');
+            if (!modalOverlay) {
+                console.error("Modal overlay not found!");
+                return;
+            }
+            const modalCloseButton = modalOverlay.querySelector('.modal-close-button');
+            const modalMemberNameElem = document.getElementById('modalMemberName');
+            const modalMemberRoleElem = document.getElementById('modalMemberRole');
+            const modalMemberBioElem = document.getElementById('modalMemberBio');
+            const modalMemberContactLinksElem = document.getElementById('modalMemberContactLinks');
+            const modalPhotoPlaceholderElem = modalOverlay.querySelector('.modal-photo-placeholder');
+
+            // Make each .team-member card clickable (except if clicking a link inside)
+            const teamMemberDivs = document.querySelectorAll('.team-member');
+
+            teamMemberDivs.forEach(div => {
+                div.style.cursor = 'pointer';
+                div.addEventListener('click', function (event) {
+                    // Prevent modal if clicking a link inside the card
+                    if (event.target.tagName === 'A') return;
+                    const teamMemberDiv = this.closest('.team-member');
+
+                    // Get data from the team member card
+                    const name = teamMemberDiv.querySelector('.member-name').textContent;
+                    const role = teamMemberDiv.querySelector('.member-role').textContent;
+
+                    // Keep the modal on text placeholders for now instead of rendering images.
+                    const photoDiv = teamMemberDiv.querySelector('.member-photo');
+                    // Clear previous modal photo content
+                    modalPhotoPlaceholderElem.innerHTML = '';
+                    if (photoDiv) {
+                        // Otherwise, use the text content (e.g., [Photo Placeholder])
+                        modalPhotoPlaceholderElem.textContent = photoDiv.textContent;
+                    }
+
+                    // Get hidden detailed content
+                    const fullDetailsDiv = teamMemberDiv.querySelector('.member-full-details');
+                    if (!fullDetailsDiv) {
+                        console.error("Full details div not found for this team member.", teamMemberDiv);
+                        return;
+                    }
+                    const bioHtml = fullDetailsDiv.querySelector('.member-bio').innerHTML;
+                    const contactLinksHtml = fullDetailsDiv.querySelector('.member-contact-links').innerHTML;
+
+                    // Populate modal
+                    if (modalMemberNameElem) modalMemberNameElem.textContent = name;
+                    if (modalMemberRoleElem) modalMemberRoleElem.textContent = role;
+                    if (modalMemberBioElem) modalMemberBioElem.innerHTML = bioHtml;
+                    if (modalMemberContactLinksElem) modalMemberContactLinksElem.innerHTML = contactLinksHtml;
+
+                    // Show modal
+                    modalOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Prevent background scroll
+                });
+            });
+
+            // Close modal actions
+            function closeModal() {
+                modalOverlay.classList.remove('active');
+                document.body.style.overflow = ''; // Restore background scroll
+            }
+
+            if (modalCloseButton) modalCloseButton.addEventListener('click', closeModal);
+
+            modalOverlay.addEventListener('click', function (event) {
+                // Only close if clicked on the overlay itself, not the content
+                if (event.target === modalOverlay) {
+                    closeModal();
+                }
+            });
+
+            // Optional: Close modal with Escape key
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+    <script>
+        // Load and display publications from JSON file
+        let allPublications = [];
+        let filteredPublications = [];
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const pubModal = document.getElementById('pubModal');
+            const pubModalClose = document.getElementById('pubModalClose');
+            const illustrationModal = document.getElementById('illustrationModal');
+            const illustrationModalClose = document.getElementById('illustrationModalClose');
+            const illustrationModalImage = document.getElementById('illustrationModalImage');
+            const searchInput = document.getElementById('searchInput');
+            const researchSection = document.getElementById('research');
+            researchSection.classList.add('research-compact');
+
+            // Close modal
+            function closePubModal() {
+                pubModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            function openIllustrationModal(src, title) {
+                if (!src) {
+                    return;
+                }
+
+                illustrationModalImage.src = src;
+                illustrationModalImage.alt = title ? `${title} illustration` : 'Publication illustration';
+                illustrationModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeIllustrationModal() {
+                illustrationModal.classList.remove('active');
+                illustrationModalImage.removeAttribute('src');
+                illustrationModalImage.alt = '';
+                document.body.style.overflow = pubModal.classList.contains('active') ? 'hidden' : '';
+            }
+
+            pubModalClose.addEventListener('click', closePubModal);
+            pubModal.addEventListener('click', function (event) {
+                if (event.target === pubModal) {
+                    closePubModal();
+                }
+            });
+
+            illustrationModalClose.addEventListener('click', closeIllustrationModal);
+            illustrationModal.addEventListener('click', function (event) {
+                if (event.target === illustrationModal) {
+                    closeIllustrationModal();
+                }
+            });
+
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape' && pubModal.classList.contains('active')) {
+                    closePubModal();
+                }
+                if (event.key === 'Escape' && illustrationModal.classList.contains('active')) {
+                    closeIllustrationModal();
+                }
+            });
+
+            // Open publication modal
+            function openPubModal(pub) {
+                document.getElementById('pubModalTitle').textContent = pub.title;
+
+                // Populate metadata
+                const metaHtml = `
+                <div class="pub-modal-meta-item">
+                    <div class="pub-modal-meta-label">Date</div>
+                    <div class="pub-modal-meta-value">${pub.pubDate || pub.displayDate}</div>
+                </div>
+                <div class="pub-modal-meta-item">
+                    <div class="pub-modal-meta-label">Venue</div>
+                    <div class="pub-modal-meta-value pub-modal-venue">${pub.venue}</div>
+                </div>
+            `;
+                document.getElementById('pubModalMeta').innerHTML = metaHtml;
+
+                document.getElementById('pubModalAuthors').textContent = pub.authors;
+
+                // Display abstract if available
+                const abstractContainer = document.getElementById('pubModalAbstractContainer');
+                if (pub.abstract && pub.abstract.trim() !== '') {
+                    document.getElementById('pubModalAbstract').textContent = pub.abstract;
+                    abstractContainer.style.display = 'block';
+                } else {
+                    abstractContainer.style.display = 'none';
+                }
+
+                document.getElementById('pubModalLinks').innerHTML = renderPublicationLinks(pub);
+
+                pubModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            // Sort and filter functions
+            function applySortAndFilter() {
+                filteredPublications = [...allPublications];
+
+                // Apply search filter
+                const query = searchInput.value.trim().toLowerCase();
+                if (query) {
+                    filteredPublications = filteredPublications.filter(pub => {
+                        return pub.title.toLowerCase().includes(query) ||
+                            pub.authors.toLowerCase().includes(query) ||
+                            pub.venue.toLowerCase().includes(query) ||
+                            (pub.displayDate && pub.displayDate.toLowerCase().includes(query));
+                    });
+                }
+
+                // Always sort by date (newest first)
+                filteredPublications.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                renderPublications();
+            }
+
+            function renderPublications() {
+                const publicationsList = document.getElementById('publications-list');
+                publicationsList.innerHTML = '';
+                let lastRenderedYear = null;
+
+                filteredPublications.forEach(pub => {
+                    const pubYear = String(pub.pubDate || pub.displayDate || pub.date || '').match(/\d{4}/)?.[0] || '';
+                    const showYearMarker = pubYear && pubYear !== lastRenderedYear;
+                    const entryDiv = document.createElement('div');
+                    const pubDiv = document.createElement('div');
+                    entryDiv.className = 'publication-entry';
+                    pubDiv.className = 'publication';
+
+                    const linkBoxes = renderPublicationLinks(pub);
+                    const illustrationBox = renderPublicationIllustration(pub);
+
+                    pubDiv.innerHTML = `
+                    <h4 class="pub-title">${pub.title}</h4>
+                    ${illustrationBox}
+                    <p class="pub-authors">${pub.authors}</p>
+                    <div class="pub-date-venue">
+                        <span class="pub-date">${pub.pubDate || pub.displayDate}</span>
+                        <span class="pub-venue">${pub.venue}</span>
+                    </div>
+                    ${linkBoxes ? `<div class="pub-links">${linkBoxes}</div>` : ''}
+                `;
+
+                    entryDiv.innerHTML = showYearMarker
+                        ? `<div class="pub-year-marker" aria-hidden="true">${pubYear}</div>`
+                        : '<div class="pub-year-spacer" aria-hidden="true"></div>';
+                    entryDiv.appendChild(pubDiv);
+                    publicationsList.appendChild(entryDiv);
+                    lastRenderedYear = pubYear || lastRenderedYear;
+                });
+            }
+
+            function getPublicationLinkData(pub) {
+                const links = pub.links || {};
+                const youtubeHref = links.youtube_link || links.youtube || pub.youtube || '';
+
+                return [
+                    {
+                        href: links.preprint_link || links.arxiv || '',
+                        text: links.preprint_text_display || ((links.preprint_link || links.arxiv) ? 'Preprint' : ''),
+                        icon: 'img/assets/arxiv.svg',
+                        kind: 'preprint'
+                    },
+                    {
+                        href: links.paper_link || links.publication || '',
+                        text: links.paper_text_display || ((links.paper_link || links.publication) ? 'Publication' : ''),
+                        icon: 'img/assets/paper.svg',
+                        kind: 'paper'
+                    },
+                    {
+                        href: links.github_link || links.code || '',
+                        text: links.github_text_display || ((links.github_link || links.code) ? 'Code' : ''),
+                        icon: 'img/assets/github.svg',
+                        kind: 'code'
+                    },
+                    {
+                        href: links.hf_link || links.huggingface || '',
+                        text: links.hf_text_display || ((links.hf_link || links.huggingface) ? 'Data' : ''),
+                        icon: 'img/assets/hf.svg',
+                        kind: 'data'
+                    },
+                    {
+                        href: youtubeHref,
+                        text: links.youtube_text || (youtubeHref ? 'Video' : ''),
+                        icon: 'img/assets/yt.svg',
+                        kind: 'video'
+                    },
+                    {
+                        href: links.website_link || links.website || '',
+                        text: links.website_text_display || ((links.website_link || links.website) ? 'Website' : ''),
+                        icon: 'img/assets/website.svg',
+                        kind: 'website'
+                    }
+                ].filter(link => link.href && link.href.trim() !== '');
+            }
+
+            function escapeAttribute(value) {
+                return String(value || '')
+                    .replace(/&/g, '&amp;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;');
+            }
+
+            function renderPublicationIllustration(pub) {
+                const illustrationPath = pub.illustration_path || '';
+                if (!illustrationPath.trim()) {
+                    return '';
+                }
+
+                const illustrationFit = pub.illustration_fit === 'cover' ? 'cover' : 'contain';
+                const escapedPath = escapeAttribute(illustrationPath);
+                const escapedTitle = escapeAttribute(pub.title || 'publication');
+
+                return `
+                    <button class="pub-illustration" type="button" data-illustration-src="${escapedPath}" data-illustration-title="${escapedTitle}" aria-label="Expand illustration for ${escapedTitle}">
+                        <img src="${escapedPath}" alt="" class="is-${illustrationFit}">
+                    </button>
+                `;
+            }
+
+            function renderPublicationLinks(pub) {
+                return getPublicationLinkData(pub).map(link => `
+                    <a href="${link.href}" target="_blank" rel="noopener noreferrer" class="pub-link-box is-${link.kind}" aria-label="${link.text}">
+                        <img src="${link.icon}" alt="${link.text}">
+                        <span>${link.text}</span>
+                    </a>
+                `).join('');
+            }
+
+            document.getElementById('publications-list').addEventListener('click', function (event) {
+                const illustrationButton = event.target.closest('.pub-illustration');
+                if (!illustrationButton) {
+                    return;
+                }
+
+                event.preventDefault();
+                event.stopPropagation();
+                openIllustrationModal(
+                    illustrationButton.dataset.illustrationSrc,
+                    illustrationButton.dataset.illustrationTitle
+                );
+            });
+
+            fetch('research.json')
+                .then(r => r.json())
+                .then(pubData => {
+                    allPublications = pubData.publications;
+                    applySortAndFilter();
+                })
+                .catch(error => {
+                    console.error('Error loading publications:', error);
+                    const publicationsList = document.getElementById('publications-list');
+                    if (publicationsList) {
+                        publicationsList.innerHTML = '<div class="publication"><p class="pub-authors">Unable to load publications at this time.</p></div>';
+                    }
+                });
+
+            searchInput.addEventListener('input', applySortAndFilter);
+        });
+    </script>
+</body>
+
+</html>
