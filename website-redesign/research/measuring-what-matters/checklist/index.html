@@ -1,0 +1,177 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Eight recommendations for construct validity in large language model benchmarks."><meta name="theme-color" content="#fcfbf8"><link rel="icon" href="/website-redesign/assets/img/assets/rml_logo_dark.jpg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet"><title>Construct Validity Checklist | Reasoning with Machines</title><link rel="stylesheet" href="/website-redesign/_astro/SiteLayout.BYTzWeAa.css"></head><body><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="wrap header-inner"><a class="brand" href="/website-redesign/">Reasoning with Machines</a><nav aria-label="Main navigation" class="desktop-nav"><a href="/website-redesign/" class="nav-link">Home</a><a href="/website-redesign/research/" class="nav-link active" aria-current="page">Research</a><a href="/website-redesign/team/" class="nav-link">Team</a><a href="/website-redesign/news/" class="nav-link">Lab News</a><a href="/website-redesign/media/" class="nav-link">Media</a><a href="/website-redesign/get-involved/" class="nav-link nav-cta">Get Involved</a></nav><details class="mobile-menu"><summary aria-label="Toggle menu">Menu <span aria-hidden="true">☰</span></summary><nav aria-label="Mobile navigation"><a href="/website-redesign/">Home</a><a href="/website-redesign/research/" aria-current="page">Research</a><a href="/website-redesign/team/">Team</a><a href="/website-redesign/news/">Lab News</a><a href="/website-redesign/media/">Media</a><a href="/website-redesign/get-involved/">Get Involved</a></nav></details></div></header><main id="main"><section class="paper-hero"><div class="wrap paper-hero-grid"><div><div class="eyebrow">2025 / <span class="tag">NeurIPS Datasets and Benchmarks Track</span></div><h1>Construct Validity Checklist</h1><p class="abstract">Eight recommendations for construct validity in large language model benchmarks.</p><a class="text-link" href="/website-redesign/research/measuring-what-matters/">← Measuring what Matters</a></div><aside class="paper-hero-aside"><h2>Authors</h2><p class="authors">AM Bean, RO Kearns, A Romanou, FS Hafner, H Mayne, J Batzner, N Foroutan, C Schmitz, K Korgul, H Batra, O Deb, E Beharry, C Emde, T Foster, A Gausen, M Grandury, J Khouja, S Han, V Hofmann, L Ibrahim, H Kim, HR Kirk, F Lin, L Luettgau, J Magomere, J Rystrøm, GKM Liu, A Sotnikova, Y Yang, Y Zhao, A Bibi, A Bosselut, R Clark, A Cohan, J Foerster, Y Gal, SA Hale, ID Raji, C Summerfield, PHS Torr, C Ududec, L Rocher, A Mahdi</p></aside></div></section><div class="wrap paper-article"><div class="paper-content checklist-content"><section id="highlight">
+          <p>Informed by our <a href="../" style="color: #C15548; font-weight: bold">systematic review</a>, we provide eight recommendations to ensure the construct validity of your benchmark. Download a <a href="/website-redesign/assets/papers/measuring-what-matters/checklist.pdf" target="_blank" style="color: #C15548; font-weight: bold">PDF version</a> of the checklist or the <a href="/website-redesign/assets/papers/measuring-what-matters/checklist_latex.txt" target="_blank" style="color: #C15548; font-weight: bold">LaTeX code</a> for use in your paper.</p>
+
+          <div id="progress" class="score-card" aria-live="polite">
+            <svg class="ring" viewbox="0 0 120 120" role="img" aria-label="Checklist progress">
+              <circle cx="60" cy="60" r="48" stroke="var(--border)" stroke-width="8" fill="none"></circle>
+              <circle id="progressArc" cx="60" cy="60" r="48" stroke="#C15548" stroke-width="8" fill="none" stroke-linecap="round" transform="rotate(-90 60 60)" stroke-dasharray="302" stroke-dashoffset="302"></circle>
+            </svg>
+            <div class="legend">
+              <div class="count" id="progressCount">0/0</div>
+              <div class="hint">Tick items in the checklist below</div>
+            </div>
+            <button id="clearChecklist" class="clear-btn" type="button" aria-label="Clear all checked items">Clear all</button>
+          </div>
+      </section>
+<section id="recommendations" class="recs" aria-labelledby="recs-h">
+
+        <div class="recs-grid">
+            <fieldset class="rec">
+            
+            <h4 class="rec-title">Define the phenomenon</h4>
+            <ul class="checklist">
+                <li>
+                <input id="rec1-1" type="checkbox">
+                <label for="rec1-1">Provide a precise and operational definition for the phenomenon being measured</label>
+                </li>
+                <li>
+                <input id="rec1-2" type="checkbox">
+                <label for="rec1-2">Specify the scope of the phenomenon being covered and acknowledge any excluded aspects</label>
+                </li>
+                <li>
+                <input id="rec1-3" type="checkbox">
+                <label for="rec1-3">Identify if the phenomenon has sub-components and ensure they are measured separately</label>
+                </li>
+            </ul>
+            </fieldset>
+
+            <fieldset class="rec">
+            <h4 class="rec-title">Measure only the phenomenon</h4>
+            <ul class="checklist">
+                <li>
+                <input id="rec2-1" type="checkbox">
+                <label for="rec2-1">Control for unrelated tasks that may affect the results</label>
+                </li>
+                <li>
+                <input id="rec2-2" type="checkbox">
+                <label for="rec2-2">Assess the impact of format constraints on model performance</label>
+                </li>
+                <li>
+                <input id="rec2-3" type="checkbox">
+                <label for="rec2-3">Validate any automated output parsing techniques for accuracy, consistency and bias</label>
+                </li>
+            </ul>
+            </fieldset>
+
+            <fieldset class="rec">
+            <h4 class="rec-title">Construct a representative dataset for the task</h4>
+            <ul class="checklist">
+                <li>
+                <input id="rec3-1" type="checkbox">
+                <label for="rec3-1">Employ sampling strategies to ensure task items are representative of the overall task space</label>
+                </li>
+                <li>
+                <input id="rec3-2" type="checkbox">
+                <label for="rec3-2">Verify the quality and relevance of all task items especially for large or automatically generated datasets</label>
+                </li>
+                <li>
+                <input id="rec3-3" type="checkbox">
+                <label for="rec3-3">Include task items that test known LLM sensitivities (e.g. input permutations or variations)</label>
+                </li>
+            </ul>
+            </fieldset>
+
+            <fieldset class="rec">
+            <h4 class="rec-title">Acknowledge limitations of reusing datasets</h4>
+            <ul class="checklist">
+                <li>
+                <input id="rec4-1" type="checkbox">
+                <label for="rec4-1">Document whether the benchmark adapts a previous dataset or benchmark</label>
+                </li>
+                <li>
+                <input id="rec4-2" type="checkbox">
+                <label for="rec4-2">If so, analyse and report the relevant strengths and limitations of the adapted prior work</label>
+                </li>
+                <li>
+                <input id="rec4-3" type="checkbox">
+                <label for="rec4-3">If so, report and compare performance on the new benchmark against the original</label>
+                </li>
+                <li>
+                <input id="rec4-4" type="checkbox">
+                <label for="rec4-4">Explain modifications to reused datasets and how they improve construct validity</label>
+                </li>
+            </ul>
+            </fieldset>
+
+            <fieldset class="rec">
+            <h4 class="rec-title">Prepare for contamination</h4>
+            <ul class="checklist">
+                <li>
+                <input id="rec5-1" type="checkbox">
+                <label for="rec5-1">Implement tests to detect data contamination and apply them to the benchmark</label>
+                </li>
+                <li>
+                <input id="rec5-2" type="checkbox">
+                <label for="rec5-2">Maintain a held-out set of task items to facilitate ongoing, uncontaminated evaluation</label>
+                </li>
+                <li>
+                <input id="rec5-3" type="checkbox">
+                <label for="rec5-3">Investigate the potential pre-exposure of benchmark source materials or similar data in common LLM training corpora</label>
+                </li>
+            </ul>
+            </fieldset>
+
+            <fieldset class="rec">
+            <h4 class="rec-title">Use statistical methods to compare models</h4>
+            <ul class="checklist">
+                <li>
+                <input id="rec6-1" type="checkbox">
+                <label for="rec6-1">Report the benchmark's sample size and justify its statistical power</label>
+                </li>
+                <li>
+                <input id="rec6-2" type="checkbox">
+                <label for="rec6-2">Report uncertainty estimates for all primary scores to enable robust model comparisons</label>
+                </li>
+                <li>
+                <input id="rec6-3" type="checkbox">
+                <label for="rec6-3">If using human raters, describe their demographics and mitigate potential demographic biases in rater recruitment and instructions</label>
+                </li>
+                <li>
+                <input id="rec6-4" type="checkbox">
+                <label for="rec6-4">Use metrics that capture the inherent variability of any subjective labels, without relying on single-point aggregation or exact matching</label>
+                </li>
+            </ul>
+            </fieldset>
+
+            <fieldset class="rec">
+            <h4 class="rec-title">Conduct an error analysis</h4>
+            <ul class="checklist">
+                <li>
+                <input id="rec7-1" type="checkbox">
+                <label for="rec7-1">Conduct a qualitative and quantitative analysis of common failure modes</label>
+                </li>
+                <li>
+                <input id="rec7-2" type="checkbox">
+                <label for="rec7-2">Investigate whether failure modes correlate with non-targeted phenomena (confounders) rather than the intended construct</label>
+                </li>
+                <li>
+                <input id="rec7-3" type="checkbox">
+                <label for="rec7-3">If so, identify and discuss any potential scoring biases revealed in the error analysis</label>
+                </li>
+            </ul>
+            </fieldset>
+
+            <fieldset class="rec">
+            <h4 class="rec-title">Justify construct validity</h4>
+            <ul class="checklist">
+                <li>
+                <input id="rec8-1" type="checkbox">
+                <label for="rec8-1">Justify the relevance of the benchmark for the phenomenon with real-world applications</label>
+                </li>
+                <li>
+                <input id="rec8-2" type="checkbox">
+                <label for="rec8-2">Provide a clear rationale for the choice of tasks and metrics, connected to the operational definition of the phenomenon</label>
+                </li>
+                <li>
+                <input id="rec8-3" type="checkbox">
+                <label for="rec8-3">Compare similarities and differences between the benchmark and existing evaluations of similar phenomena</label>
+                </li>
+                <li>
+                <input id="rec8-4" type="checkbox">
+                <label for="rec8-4">Discuss the limitations and design trade-offs of the benchmark concerning construct validity</label>
+                </li>
+            </ul>
+            </fieldset>
+        </div>
+        </section>
+</div></div><script type="module">var e=[...document.querySelectorAll(`#recommendations .checklist input[type="checkbox"]`)],t=document.querySelector(`#progressCount`),n=document.querySelector(`#progressArc`),r=`cv_checklist_checked_v1`,i=()=>{let i=e.filter(e=>e.checked).length;t&&(t.textContent=`${i}/${e.length}`),n?.setAttribute(`stroke-dashoffset`,String(302*(1-i/Math.max(e.length,1))));try{localStorage.setItem(r,JSON.stringify(e.filter(e=>e.checked).map(e=>e.id)))}catch{}};try{let t=new Set(JSON.parse(localStorage.getItem(r)||`[]`));e.forEach(e=>e.checked=t.has(e.id))}catch{}e.forEach(e=>e.addEventListener(`change`,i)),document.querySelector(`#clearChecklist`)?.addEventListener(`click`,()=>{e.forEach(e=>e.checked=!1),i()}),document.querySelector(`#copyBib`)?.addEventListener(`click`,async e=>{let t=document.querySelector(`#bibtexBox`);t&&(await navigator.clipboard.writeText(t.value),e.currentTarget.textContent=`Copied!`,window.setTimeout(()=>e.currentTarget.textContent=`Copy`,1200))}),i();</script></main><footer class="site-footer"><div class="wrap">© 2026 Reasoning with Machines Lab, University of Oxford.</div></footer></body></html>
