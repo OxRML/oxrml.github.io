@@ -3,17 +3,18 @@
 > Reasoning with Machines Lab at Oxford. Research on reliable, interpretable, and societally grounded machine learning, language models, and agentic AI systems.
 
 Main site: https://oxrml.com/
-Research: https://oxrml.com/research.html
-Team: https://oxrml.com/team.html
-News: https://oxrml.com/news.html
-Contact: https://oxrml.com/contact.html
+Research: https://oxrml.com/research/
+Team: https://oxrml.com/team/
+News: https://oxrml.com/news/
+Media: https://oxrml.com/media/
+Get Involved: https://oxrml.com/get-involved/
 
 Project pages:
-- https://oxrml.com/agent-slr/
-- https://oxrml.com/measuring-what-matters/
-- https://oxrml.com/faithfulness/
-- https://oxrml.com/llm-medical-assistants/
-- https://oxrml.com/lingoly-too/
+- https://oxrml.com/research/agent-slr/
+- https://oxrml.com/research/measuring-what-matters/
+- https://oxrml.com/research/faithfulness/
+- https://oxrml.com/research/llm-medical-assistants/
+- https://oxrml.com/research/lingoly-too/
 
 Sitemap: https://oxrml.com/sitemap.xml
 Robots: https://oxrml.com/robots.txt

@@ -4,36 +4,90 @@
     <loc>https://oxrml.com/</loc>
   </url>
   <url>
-    <loc>https://oxrml.com/research.html</loc>
+    <loc>https://oxrml.com/get-involved/</loc>
   </url>
   <url>
-    <loc>https://oxrml.com/team.html</loc>
+    <loc>https://oxrml.com/media/</loc>
   </url>
   <url>
-    <loc>https://oxrml.com/news.html</loc>
+    <loc>https://oxrml.com/news/</loc>
   </url>
   <url>
-    <loc>https://oxrml.com/contact.html</loc>
+    <loc>https://oxrml.com/research/</loc>
   </url>
   <url>
-    <loc>https://oxrml.com/agent-slr/</loc>
+    <loc>https://oxrml.com/research/4/</loc>
   </url>
   <url>
-    <loc>https://oxrml.com/measuring-what-matters/</loc>
+    <loc>https://oxrml.com/research/5/</loc>
   </url>
   <url>
-    <loc>https://oxrml.com/measuring-what-matters/checklist.html</loc>
+    <loc>https://oxrml.com/research/7/</loc>
   </url>
   <url>
-    <loc>https://oxrml.com/measuring-what-matters/benchmark_sankey.html</loc>
+    <loc>https://oxrml.com/research/8/</loc>
   </url>
   <url>
-    <loc>https://oxrml.com/faithfulness/</loc>
+    <loc>https://oxrml.com/research/9/</loc>
   </url>
   <url>
-    <loc>https://oxrml.com/llm-medical-assistants/</loc>
+    <loc>https://oxrml.com/research/agent-slr/</loc>
   </url>
   <url>
-    <loc>https://oxrml.com/lingoly-too/</loc>
+    <loc>https://oxrml.com/research/agentic-rl-search/</loc>
+  </url>
+  <url>
+    <loc>https://oxrml.com/research/decision-boundaries/</loc>
+  </url>
+  <url>
+    <loc>https://oxrml.com/research/dpo-toxicity/</loc>
+  </url>
+  <url>
+    <loc>https://oxrml.com/research/dual-bayesian-resnet/</loc>
+  </url>
+  <url>
+    <loc>https://oxrml.com/research/faithfulness/</loc>
+  </url>
+  <url>
+    <loc>https://oxrml.com/research/its-a-trap/</loc>
+  </url>
+  <url>
+    <loc>https://oxrml.com/research/lingoly-too/</loc>
+  </url>
+  <url>
+    <loc>https://oxrml.com/research/llm-as-judge-polyvis/</loc>
+  </url>
+  <url>
+    <loc>https://oxrml.com/research/llm-landscape/</loc>
+  </url>
+  <url>
+    <loc>https://oxrml.com/research/llm-medical-assistants/</loc>
+  </url>
+  <url>
+    <loc>https://oxrml.com/research/lt-vit/</loc>
+  </url>
+  <url>
+    <loc>https://oxrml.com/research/madqa-agents-reasoning/</loc>
+  </url>
+  <url>
+    <loc>https://oxrml.com/research/measuring-what-matters/</loc>
+  </url>
+  <url>
+    <loc>https://oxrml.com/research/measuring-what-matters/checklist/</loc>
+  </url>
+  <url>
+    <loc>https://oxrml.com/research/multimodal-cardiomegaly/</loc>
+  </url>
+  <url>
+    <loc>https://oxrml.com/research/multimodal-healthcare/</loc>
+  </url>
+  <url>
+    <loc>https://oxrml.com/research/negation-neglect/</loc>
+  </url>
+  <url>
+    <loc>https://oxrml.com/research/sft-medqa/</loc>
+  </url>
+  <url>
+    <loc>https://oxrml.com/team/</loc>
   </url>
 </urlset>
